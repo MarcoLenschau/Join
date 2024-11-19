@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Summary</title>
+    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/fonts.css" />
+
+    <link rel="stylesheet" href="../styles/flexbox.css" />
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/color.css" />
+    <link rel="stylesheet" href="../styles/media_query.css" />
+
+    <link rel="stylesheet" href="../styles/pages/pages_css/summary.css" />
+    <link rel="stylesheet" href="../styles/pages/pages_css_queries/summary_queries.css" />
+
+    <script src="../scripts/summary.js" defer></script>
+    <script src="../scripts/template.js" defer></script>
+    <script src="../scripts/script.js" defer></script>
+    <script src="../scripts/db.js" defer></script>
+  </head>
+
+  <body class="body" onload="loadSummary()">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="app-main">
+      <header id="header" class="header"></header>
+
+      <div class="container container_summary d_flex_column">
+        <div id="title_div" class="d_flex_ac_jc page_title_div">
+          <h1 class="title d_flex_c_c">Join 360</h1>
+          <div class="seperator_and_title_second d_flex_c_c">
+            <div class="vertical_seperator_blue"></div>
+            <span class="title_second color-blue">Key metrics at Glance</span>
+          </div>
+        </div>
+
+        <div id="summary_and_greeting_div" class="d_flex_jc_row">
+          <div class="d_flex_column align-items-center">
+            <div class="todo_and_done d_flex_row margin_b_20px">
+              <a href="board.html" id="todo_div" class="todo-done_div d_flex_ac_jc">
+                <img id="todo_img" src="../assets/icon/summary_todo.svg" alt="" />
+                <div class="number_and_name d_flex_ac_jc d_flex_column">
+                  <span id="todo_amount" class="number">0</span>
+                  <span class="name">To-do</span>
+                </div>
+              </a>
+
+              <a href="board.html" id="done_div" class="todo-done_div d_flex_ac_jc">
+                <img id="done_img" src="../assets/icon/summary_done.svg" alt="" />
+                <div class="number_and_name d_flex_ac_jc d_flex_column">
+                  <span id="done_amount" class="number">0</span>
+                  <span class="name">Done</span>
+                </div>
+              </a>
+            </div>
+
+            <a
+              href="board.html"
+              class="urgent_todos_div d_flex_ac_jc d_flex_row margin_b_20px bg-white"
+            >
+              <div class="g_18 d_flex_row d_flex_c_c">
+                <img class="urgent_img" src="../assets/icon/urgent_todo.svg" alt="" />
+                <div class="d_flex_ac_jc d_flex_column">
+                  <span id="urgent_amount" class="number">0</span>
+                  <span class="name">Urgent</span>
+                </div>
+              </div>
+              <div class="vertical_seperator_gray"></div>
+              <div class="g_12 d_flex_ac_jc d_flex_column">
+                <div id="deadline_date">October 16, 2024</div>
+                <span id="deadline_text">Upcoming Deadline</span>
+              </div>
+            </a>
+
+            <div class="all_task_div d_flex_row">
+              <a
+                href="board.html"
+                id="tasks_board"
+                class="d_flex_ac_jc d_flex_column task_div d_flex_ac_jc g_12"
+              >
+                <span id="all_tasks_amount" class="number">0</span>
+                <span class="name">Tasks in<br />Board</span>
+              </a>
+              <a
+                href="board.html"
+                id="tasks_progress"
+                class="d_flex_ac_jc d_flex_column task_div d_flex_ac_jc g_12"
+              >
+                <span id="in_progress_amount" class="number">0</span>
+                <span class="name">Tasks in<br />Progress</span>
+              </a>
+              <a
+                href="board.html"
+                id="feedback"
+                class="d_flex_ac_jc d_flex_column task_div d_flex_ac_jc g_12"
+              >
+                <span id="feedback_amount" class="number">0</span>
+                <span class="name">Awaiting<br />Feedback</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="greeting_div d_flex_column">
+            <span id="greeting">Good morning</span>
+            <span id="user_name"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+.productmanager {
+    background-color: var(--color-blue);
+}
+
+.developer {
+    background-color: var(--color-red);
+}
+
+.designer {
+    background-color: var(--color-green);
+}
+
+.qaengineer {
+    background-color: var(--color-pink);
+}
+
+.scrummaster {
+    background-color: var(--color-orange-dark);
+}
+
+.businessanalyst {
+    background-color: var(--color-dark-blue);
+}
+
+.uxdesigner {
+    background-color: var(--color-light-blue);
+}
+
+.productowner {
+    background-color: var(--color-turquoise);
+}
+
+.contentstrategist {
+    background-color: var(--color-orange);
+}
+
+.projectmanager {
+    background-color: var(--color-violet-light);
+}
+
+.tester {
+    background-color: var(--color-violet-light);
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join Board</title>
+    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/fonts.css" />
+
+    <link rel="shortcut icon" href="./assets/icon/icon.svg" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/pages/pages_css/add_task.css" />
+    <link rel="stylesheet" href="../styles/pages/pages_css_queries/add_task_queries.css" />
+    <link rel="stylesheet" href="../styles/pages/pages_css/board.css" />
+    <link rel="stylesheet" href="../styles/pages/pages_css_queries/board_queries.css" />
+
+    <script src="../scripts/db.js" defer></script>
+    <script src="../scripts/template.js" defer></script>
+    <script src="../scripts/board.js" defer></script>
+    <script src="../scripts/script.js" defer></script>
+    <script src="../scripts/priority.js" defer></script>
+    <script src="../scripts/add_task.js" defer></script>
+
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/flexbox.css" />
+    <link rel="stylesheet" href="../styles/color.css" />
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/job_title.css" />
+    <link rel="stylesheet" href="../styles/media_query.css" />
+  </head>
+
+  <body class="body" onload="loadBoard();">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <main class="app-main">
+      <header id="header" class="header"></header>
+
+      <div class="container">
+        <div class="board-head">
+          <h1>Board</h1>
+          <div>
+            <div class="board-searchBar">
+              <input class="board-search-input" type="text" placeholder="Find Task" oninput="filterTasks()" />
+              <span>
+                <img src="../assets/icon/search.png" alt="search icon" />
+              </span>
+            </div>
+            <button onclick="toggleAddTaskModal(event); loadModal();" class="primary-button">
+              Add Task
+              <img src="../assets/icon/add.png" />
+            </button>
+          </div>
+        </div>
+
+        <div class="board-content">
+          <div>
+            <span>
+              <h2>To do</h2>
+              <img
+                onclick="toggleAddTaskModal(event); loadModal();"
+                src="../assets/icon/plus-black.svg"
+                alt="plus icon"
+              />
+            </span>
+            <ul
+              data-draggable-area="true"
+              id="todo"
+              ondragover="handleDragOver(event);"
+              ondragleave="handleDragLeave(event);"
+              ondrop="addElementToBoardList(event);"
+            >
+              <li class="empty-message">No tasks To do</li>
+            </ul>
+          </div>
+
+          <div>
+            <span>
+              <h2>In progress</h2>
+              <img
+                onclick="toggleAddTaskModal(event); loadModal();"
+                src="../assets/icon/plus-black.svg"
+                alt="plus icon"
+              />
+            </span>
+            <ul
+              data-draggable-area="true"
+              id="progress"
+              ondragover="handleDragOver(event);"
+              ondragleave="handleDragLeave(event);"
+              ondrop="addElementToBoardList(event);"
+            >
+              <li class="empty-message">No tasks in progress</li>
+            </ul>
+          </div>
+
+          <div>
+            <span>
+              <h2>Await feedback</h2>
+              <img
+                onclick="toggleAddTaskModal(event); loadModal();"
+                src="../assets/icon/plus-black.svg"
+                alt="plus icon"
+              />
+            </span>
+            <ul
+              data-draggable-area="true"
+              id="await"
+              ondragover="handleDragOver(event);"
+              ondragleave="handleDragLeave(event);"
+              ondrop="addElementToBoardList(event);"
+            >
+              <li class="empty-message">No tasks for await feedback</li>
+            </ul>
+          </div>
+
+          <div>
+            <span>
+              <h2>Done</h2>
+              <img onclick="toggleAddTaskModal(event);" src="../assets/icon/plus-black.svg" alt="plus icon" />
+            </span>
+            <ul
+              data-draggable-area="true"
+              id="done"
+              ondragover="handleDragOver(event);"
+              ondragleave="handleDragLeave(event);"
+              ondrop="addElementToBoardList(event);"
+              ontouchend="addElementToBoardList(event);"
+            >
+              <li class="empty-message">No tasks done</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <dialog onclick="toggleAddTaskModal(event);" id="add-task-modal" class="add-task-modal"></dialog>
+    <span class="task-created-message">Task added to board</span>
+  </body>
+</html>

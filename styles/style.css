@@ -1,0 +1,497 @@
+/* STYLE FOR TEMPLATES */
+
+/* HEADER STYLE FOR ALL PAGES */
+header {
+  height: 170px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 64px;
+
+  .logo-black {
+    display: none;
+  }
+}
+
+.header-menu-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 24px;
+}
+
+.join-icon {
+  width: 100px;
+  height: 122px;
+  margin: 24px;
+}
+
+
+
+
+
+
+
+.sign-in {
+  align-items: center;
+  gap: 18px;
+}
+
+.sign-up {
+  height: 50px;
+  border-radius: 8px;
+  width: 100px;
+  color: #fff;
+  background-color: #2a3647;
+}
+
+.overlay-image {
+  margin: -40px;
+}
+
+.button {
+  width: 120px;
+  height: 40px;
+}
+
+.formDiv {
+  width: 400px;
+}
+
+/* SIDEBAR STYLE FOR ALL PAGES */
+
+.sidebar {
+  position: relative;
+  padding: 64px 0;
+  background-color: #2a3647;
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+    column-gap: 1.2rem;
+    width: 100px;
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: bold;
+
+    img {
+      width: 25px;
+    }
+  }
+}
+
+img {
+  width: 25px;
+}
+
+span {
+  font-size: 15px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 8rem;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 0.8rem;
+  }
+}
+
+.active {
+  background-color: var(--color-black-light);
+}
+
+.no-active {
+  background-color: unset;
+}
+
+.no-active:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.active-prio {
+  color: #fff;
+}
+
+.logo {
+  width: 80px;
+}
+
+a {
+  color: var(--color-white);
+  font-size: 15px;
+}
+
+.privacy-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  row-gap: 1.2rem;
+  bottom: 7%;
+
+  a {
+    color: #cdcdcd;
+
+    &:hover {
+      color: #29abe2;
+    }
+  }
+}
+
+.center-contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .contacts-div {
+  background-color: white;
+  padding: 22px 73px;
+  gap: 50px;
+} */
+
+.first-letter {
+  font-weight: bold;
+  color: white;
+  font-size: 22px;
+  padding: 12px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-big-letter {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  font-size: 22px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-letter-hover:hover {
+  cursor: pointer;
+}
+
+.email {
+  color: var(--color-dark-blue);
+}
+
+.email:hover {
+  cursor: pointer;
+}
+
+.more-button {
+  background-color: var(--color-blue);
+  width: 58px;
+  height: 58px;
+  display: flex;
+  justify-content: center;
+  border-radius: 32px;
+}
+
+.delete-and-edit:hover {
+  cursor: pointer;
+}
+
+.w-80px {
+  width: 80px;
+}
+
+.m-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.col-gap-24 {
+  column-gap: 24px;
+}
+
+.load-animation {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: ease 2s;
+}
+
+.load-animation-img {
+  height: 350px;
+  width: 350px;
+}
+
+.load-animation-move {
+  margin: -31% -32%;
+  transition: all 3s !important;
+}
+
+/* Login Loadingscreen */
+
+#loginLogo {
+  /* Versteckt den Inhalt der Seite, bis die Animation fertig ist */
+  display: none;
+}
+
+/* Loader-Stil */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
+  pointer-events: none;
+}
+
+/* Pseudoelement für Hintergrund */
+.loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1); /* Start: Weiß */
+  z-index: -1; /* Hintergrund liegt hinter dem Bild */
+  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
+}
+
+/* Loader-Logo */
+.loader-image {
+  width: 274px;
+  height: 334px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Zentriert das Bild */
+  /* opacity: 1; */
+  /* z-index: 1; */
+  animation: logoTransition 2s ease forwards;
+}
+
+/* Keyframe für Opazitätsübergang */
+@keyframes backgroundTransition {
+  0% {
+    background-color: rgba(255, 255, 255, 1); /* Anfangs weiß */
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0); /* Am Ende transparent */
+  }
+}
+
+/* Keyframe für Logo-Animation */
+@keyframes logoTransition {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 274px;
+    height: 334px;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: 24px; /* Endposition oben links */
+    left: 88px;
+    width: 100px;
+    height: 122px;
+    transform: none; /* Entfernt die Transformation */
+  }
+}
+
+/* Anwenden der Animationen für kleine Bildschirme */
+#loader.start-animation #loader-image-white {
+  animation: fadeOutWhite 1s ease forwards; /* Weißes Bild ausblenden */
+}
+
+/* Weißes Bild wird transparent */
+@keyframes fadeOutWhite {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#loader.start-animation #loader-image-black {
+  animation: fadeInBlack 1s ease forwards; /* Schwarzes Bild einblenden */
+  display: none;
+}
+
+/* Fade-In und Fade-Out für das schwarze Bild (bleibt sichtbar) */
+@keyframes fadeInBlack {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.add-contact-img-div {
+  background-color: var(--color-grey);
+  padding: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--color-white);
+  box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
+}
+
+.hide-contact-menu:hover {
+  cursor: pointer;
+}
+
+.add-subTask-icon {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-35px);
+
+  &:hover {
+    background-color: rgba(205, 205, 205, 0.3);
+  }
+}
+
+.subtask-list {
+  font-size: 15px;
+  margin-left: 24px;
+
+  li > div {
+    margin-top: 8px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(205, 205, 205, 0.3);
+    }
+
+    input {
+      width: 100%;
+      outline: none;
+      background-color: transparent;
+      pointer-events: none;
+      border: none;
+      padding: 2px 0;
+    }
+
+    &:hover [data-edit-icon] {
+      display: flex;
+    }
+
+    .edit-icon-ctn,
+    .edit-mode-ctn {
+      position: absolute;
+      right: 5%;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 6px;
+
+      .line {
+        width: 1px;
+        height: 15px;
+        background-color: #2a3647;
+      }
+
+      img {
+        width: 17px;
+
+        &:hover {
+          transform: translateY(2px);
+        }
+      }
+    }
+
+    .edit-mode-ctn {
+      display: none;
+
+      .close-icon {
+        width: 10px;
+      }
+    }
+  }
+}
+
+.input-mode {
+  border-bottom: 1px solid #29abe2 !important;
+  pointer-events: auto !important;
+}
+
+.userlist-ctn {
+  height: fit-content;
+  max-height: 200px;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  span {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#userlist {
+  width: 100%;
+  height: 100%;
+
+  label > div {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+
+    div {
+      margin-top: 12px;
+      font-size: 12px;
+      border: 1px solid #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.invalid-input {
+  border: 1px solid var(--color-orange-dark) !important;
+}

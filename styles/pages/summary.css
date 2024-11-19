@@ -1,0 +1,226 @@
+.container_summary{
+    width: 100%;
+    align-items: flex-start;
+}
+
+.padding_l_100px{
+    padding-left: 100px;
+}
+
+.page_title_div {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
+    margin-bottom: 64px;
+}
+
+.seperator_and_title_second {
+    gap: 30px;
+}
+
+.vertical_seperator_blue {
+    height: 59px;
+    width: 0;
+    border: 3px;
+    border-color: rgb(41, 171, 226);
+    border-style: solid;
+    border-radius: 50px;
+}
+
+.title {
+    height: 73px;
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.title_second {
+    height: 32px;
+    font-weight: 400;
+    font-size: 27px;
+}
+
+.todo_and_done {
+    width: 560px;
+    justify-content: space-between;
+}
+
+.todo-done_div {
+    flex-direction: row;
+    background-color: white;
+
+    height: 168px;
+    width: 264px;
+    border-radius: 30px;
+    gap: 18px;
+}
+
+#todo_div {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: left;
+    color: black;
+}
+
+#todo_div:hover {
+    transform: scale(1.05); /* Vergrößert das Element um 10% */
+    background-color: #2a3647;
+    color: white;
+}
+
+#done_div {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: right;
+    color: black;
+}
+
+#done_div:hover {
+    transform: scale(1.05); /* Vergrößert das Element um 10% */
+    background-color: #2a3647;
+    color: white;
+}
+
+.todo-done_div img {
+    height: 69px;
+    width: 69px;
+}
+
+.urgent_todos_div {
+    width: 560px;
+    height: 168px;
+    border-radius: 30px;
+    gap: 61px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: top left;
+    color: black;
+}
+
+.urgent_todos_div:hover {
+    transform: scale(1.05);
+    background-color: #2a3647;
+    color: white;
+}
+
+.urgent_img {
+    height: 69px;
+    width: 69px;
+}
+
+.margin_b_20px {
+    margin-bottom: 20px;
+}
+
+.vertical_seperator_gray {
+    height: 102px;
+    width: 0;
+    border: 2px;
+    border-color: rgb(209, 209, 209);
+    border-style: solid;
+    border-radius: 50px;
+}
+
+.all_task_div {
+    justify-content: space-between;
+    height: 170px;
+    width: 560px;
+}
+
+#tasks_board {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: left;
+    color: black;
+}
+
+#tasks_board:hover {
+    transform: scale(1.05);
+    background-color: #2a3647;
+    color: white;
+}
+
+#tasks_progress {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    color: black;
+}
+
+#tasks_progress:hover {
+    transform: scale(1.05);
+    background-color: #2a3647;
+    color: white;
+}
+
+#feedback {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: right;
+    color: black;
+}
+
+#feedback:hover {
+    transform: scale(1.05);
+    background-color: #2a3647;
+    color: white;
+}
+
+.task_div {
+    background-color: white;
+    height: 168px;
+    width: 168px;
+    border-radius: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.greeting_div {
+    width: 385px;
+    gap: 3px;
+    align-self: center;
+    padding-left: 56px;
+}
+
+#greeting {
+    height: 56px;
+    width: 338px;
+    font-size: 47px;
+    font-weight: 500;
+}
+
+#user_name {
+    height: 77px;
+    width: 385px;
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+.number_and_name {
+    height: 63px;
+    width: 101px;
+}
+
+.number {
+
+    font-weight: 600;
+    font-size: 64px;
+    align-self: center;
+}
+
+.name {
+
+    font-weight: 400;
+    font-size: 20px;
+    align-self: center;
+}
+
+#deadline_date {
+    font-weight: 700;
+    font-size: 21px;
+}
+
+#deadline_text {
+    font-weight: 400;
+    font-size: 16px;
+}

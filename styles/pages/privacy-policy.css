@@ -1,0 +1,12 @@
+.headline {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+}

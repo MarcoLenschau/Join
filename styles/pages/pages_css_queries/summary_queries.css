@@ -1,0 +1,180 @@
+/* ** SUMMARY PAGE QUERIES ** */
+
+@media (max-width: 1300px) {
+  .add-contact-div {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+  }
+
+  .add-contact {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px !important;
+    color: transparent !important;
+  }
+
+  #summary_and_greeting_div {
+    flex-direction: column-reverse;
+  }
+
+  .app-main {
+    align-items: center;
+  }
+
+  .greeting_div {
+    margin-bottom: 32px;
+  }
+
+  .greeting_div {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container_summary {
+    align-items: center;
+    margin-top: 64px !important;
+  }
+
+  .greeting_div {
+    display: none;
+  }
+
+  .todo_and_done {
+    width: 396px;
+    height: 110px;
+    border-radius: 20px;
+  }
+
+  .todo-done_div {
+    width: 186px;
+    height: 110px;
+    border-radius: 20px;
+    padding: 38px 19px;
+    gap: 10px;
+
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .number_and_name {
+    width: 40px;
+    height: 73px;
+  }
+
+  .urgent_todos_div {
+    width: 396px;
+    height: 110px;
+    border-radius: 20px;
+    gap: 20px;
+  }
+
+  .urgent_todo {
+    width: 108px;
+    height: 73px;
+    gap: 18px;
+  }
+
+  .urgent_img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .vertical_seperator_gray {
+    height: 68px;
+  }
+
+  .datum_and_info {
+    width: 135px;
+    height: 44px;
+    gap: 8px;
+  }
+
+  .all_task_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 116px;
+    width: 396px;
+  }
+
+  .task_div {
+    height: 170px;
+    width: 116px;
+    border-radius: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    gap: 13px;
+  }
+}
+
+@media (max-width: 700px) {
+  .page_title_div {
+    flex-direction: column;
+    width: 223px;
+    height: 104px;
+    gap: 16px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+  }
+
+  .title {
+    height: 56px;
+    width: 203px;
+    font-size: 47px;
+  }
+
+  .seperator_and_title_second {
+    flex-direction: column-reverse;
+  }
+
+  .title_second {
+    height: 24px;
+    width: 223px;
+
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .vertical_seperator_blue {
+    height: 0px;
+    width: 90px;
+    align-self: self-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .number {
+    font-size: 40px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .task_div {
+    width: 92px;
+  }
+
+  .all_task_div {
+    justify-content: center;
+    column-gap: 12px;
+  }
+
+  .urgent_todos_div {
+    width: 310px;
+  }
+
+  .todo-done_div {
+    width: 145px;
+    padding: 38px 19px;
+  }
+
+  .todo_and_done {
+    justify-content: center;
+    column-gap: 12px;
+  }
+}

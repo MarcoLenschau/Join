@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Signup</title>
+    <link rel="shortcut icon" href="../assets/icon/icon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/flexbox.css">
+
+    <link rel="stylesheet" href="../styles/pages/pages_css/login.css">
+    <link rel="stylesheet" href="../styles/pages/pages_css/sign_up.css">
+
+    <link rel="stylesheet" href="../styles/color.css">
+    <link rel="stylesheet" href="../styles/media_query.css">
+
+    <script src="../scripts/script.js" defer></script>
+    <script src="../scripts/add_user.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img src="../assets/icon/icon.svg" class="join-icon" alt="Join">
+        </div>
+    </header>
+    <main class="d_flex_c">
+        <div>
+            <a href="../index.html" class="back-button-link">
+                <img src="../assets/img/back.svg" class="back-button"></img>
+            </a>
+        </div> 
+        <form class="formDiv" onsubmit="handleRegisterNewUser(event);">
+            <div class="text-center login-form w-100">
+                <div class="d_flex" style="padding: 24px; justify-content: flex-start;">
+                    <div class="text-center" style="width: 280px;">
+                        <h1>Sign up</h1>
+                        <div class="separator"></div>
+                    </div>
+                </div>
+                <div class="register-container">
+                    <div class="d_flex">
+                        <input id="name" type="text" placeholder="Name" class="w-100 default-border input-font" required>
+                        <img src="../assets/img/person.svg" alt="name" class="overlay-image">
+                    </div>
+                
+                    <div class="d_flex">
+                        <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" required>
+                        <img src="../assets/img/mail.svg" alt="E-Mail" class="overlay-image">
+                   </div>
+                  
+                   <div class="d_flex">
+                        <input id="password" type="password" placeholder="Password" minlength="5" class="w-100 default-border input-font" required>
+                        <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
+                    </div>
+                    
+                    <div class="d_flex">
+                        <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" class="w-100 default-border input-font" required>
+                        <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
+                    </div>
+                      <span id="auth-error-message">User name already</span>
+                    <div id="checkboxContainer">
+
+                        <input id="checkBox" type="checkbox" required>
+                        <span>I accept the Privacy policy</span>
+                    </div>
+
+                    <div class="buttonDiv">
+                        <img class="auth-loading-spinner" src="../assets/icon/loading.png" alt="loading icon" />
+                        <button  class="primary-button">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div class="d_flex_c sign-in">
+            <a><span>Privacy Policy</span><a>
+            <a><span>Legal notice</span><a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.contact-separator {
+    background-color: blue;
+    height: 60px;
+    width: 3px;
+    margin: 0 18px;
+}
+
+.container {
+    margin: 0 !important;
+}
+
+.list-of-contacts {
+    height: 100vh;
+    background-color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.center-contacts > a:hover {
+    cursor: pointer;
+}
+
+.add-contact {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.add-contact:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
+.more-button-div:hover {
+    cursor: pointer;
+}
