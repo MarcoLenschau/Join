@@ -28,29 +28,34 @@ function moreInfomationOfContact(numberOfContact) {
     return;
   }
 
-  // Loggt die Nummer des ausgewählten Kontakts (kann entfernt werden, wenn nicht mehr benötigt)
-  console.log(numberOfContact);
-  
+  renderMoreInformationContent(numberOfContact);
+
+}
+
+function renderMoreInformationContent(numberOfContact) {
   // Den Kontakt anhand der numberOfContact-ID suchen
   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
   const jobTitle = checkJobAndColor(numberOfContact);
 
-  // Setze die 'more-information'-Sektion auf die Template-Daten des Kontakts
-  document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
+  renderInfoContainer(numberOfContact);
+  renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact);
+}
 
+function renderInfoContainer(numberOfContact) {
+  // Setze die 'more-information'-Sektion auf die Template-Daten des Kontakts
+  let infoDiv = document.getElementById('more-information');
+  infoDiv.innerHTML = getMoreInfomationTemplate(numberOfContact);
+}
+
+function renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact) {
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
 
-  // Füge den Jobtitel zur Anzeige der ersten Buchstaben hinzu
-  addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
-
-  // Aktualisiere den Namen und die E-Mail des Kontakts
-  contactNameElement.innerHTML = contacts[numberOfContact].name;
-  contactEmailElement.innerHTML = contacts[numberOfContact].email;
-
-  // Setze den aktuellen Kontakt auf die gegebene Nummer
-  currentContact = numberOfContact;
+  addClassToElement('first-big-letter-' + numberOfContact, jobTitle); // Fügt Jobtitle hinzu
+  contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
+  contactEmailElement.innerHTML = contacts[numberOfContact].email; // E-Mail aktualisieren
+  currentContact = numberOfContact; // Setze den aktuellen Kontakt auf die gegebene Nummer
 }
 
 function getHiddenMoreInformation() {
