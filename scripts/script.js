@@ -174,15 +174,6 @@ function addContact(content, numberOfContact) {
   }
 }
 
-// function saveContact(numberOfContact) {
-//   if (numberOfContact != null) {
-//     contacts[numberOfContact].name = document.getElementById('name').value;
-//     contacts[numberOfContact].email = document.getElementById('email').value;
-//     contacts[numberOfContact].phone = document.getElementById('phone').value;
-//     hideAddContactMenu();
-//   }
-// }
-
 function showTheRightButtonText(content) {
   let contentButton0,
     contentButton1 = '';
@@ -264,14 +255,10 @@ function defineUserData() {
 }
 
 /**
- *
  * This is a function for the post data at backend.
- *
- *
  * @param {object} userData - A Object with email and password from user.
- *
- *
- *
+ * @param {string} path - path to right data.
+ * 
  */
 
 async function postDataAtBackend(userData, path) {
@@ -335,18 +322,6 @@ function toggleLoadingSpinner(method) {
   loadingSpinner.classList[method]('show-element');
 }
 
-// function hideAddContactMenu() {
-//   document.getElementById('add-contact-menu').classList.add('d_none');
-// }
-
-// function deleteAndCancel(content, numberOfContact) {
-//   if (content === 'Add') {
-//     hideAddContactMenu();
-//   } else {
-//     hideAddContactMenu();
-//   }
-// }
-
 async function updateTask(taskId) {
   const newTask = tasks.find((task) => task.id === taskId);
 
@@ -388,39 +363,6 @@ async function updateTaskFields(taskId) {
 
   await updateDataAtBackend(taskId, 'tasks', newTask);
 }
-
-// async function saveAndCreate(event, content, numberOfContact) {
-//   event.preventDefault();
-
-//   if (content === 'Add') {
-//     addNewContact(defineNewContact());
-//   } else {
-//     const contact = contacts[numberOfContact];
-//     const id = contact.id;
-//     saveContact(numberOfContact);
-//     moreInfomationOfContact(numberOfContact, true);
-//     await updateDataAtBackend(id, 'contacts', { ...contact, id: undefined });
-//   }
-// }
-
-// function defineNewContact() {
-//   let userData = {
-//     name: document.getElementById('name').value,
-//     email: document.getElementById('email').value,
-//     phone: document.getElementById('phone').value,
-//     role: 'Tester',
-//   };
-//   return userData;
-// }
-
-// function addNewContact(userData) {
-//   contacts.push(userData);
-//   let numberOfNewContact = contacts.length - 1;
-//   showContactsData();
-//   postDataAtBackend(contacts[numberOfNewContact], 'contacts');
-//   moreInfomationOfContact(numberOfNewContact);
-//   hideAddContactMenu();
-// }
 
 function firstLetterBig(str) {
   if (str) return str[0].toUpperCase();
