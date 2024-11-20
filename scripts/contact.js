@@ -17,72 +17,36 @@ function showWhichSiteIsAktiv() {
   addClassToElement('contacts', 'active');
 }
 
-function toggleContactSelect(event) {
-  const contactElement = event.target.closest('[data-contact]');
-  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
+function moreInfomationOfContact(numberOfContact, isEditMode) {
 
-  contactsList.forEach((contact) => {
-    if (contact === contactElement) {
-      contact.classList.toggle('selected-contact');
-      if (contact.classList.contains('selected-contact')) {
-        const contactId = contactElement.dataset.contactId;
-        moreInfomationOfContact(contactId, false);
-      } else {
-        clearContactInformation();
-      }
-    } else {
-      contact.classList.remove('selected-contact');
-    }
-  });
-}
+  const contactElement = document.getElementById('contact-name-' + numberOfContact).closest('[data-contact]');
 
-function clearContactInformation() {
-  document.getElementById('more-information').innerHTML = ''; // Bereich leeren
-}
-
-function moreInfomationOfContact(contactId, isEditMode) {
-  const contactData = contacts.find((contact) => contact.id === contactId);
-  if (!contactData) return;
-
-  document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(contactId);
-
-  const jobTitle = checkJobAndColor(contactId);
-  const firstBigLetter = document.getElementById('first-big-letter-' + contactId);
-
-  firstBigLetter.innerHTML = extractTheFirstLetter(contactData.name.split(' '));
-  addClassToElement('first-big-letter-' + contactId, jobTitle);
-
-  if (isEditMode) {
-    document.getElementById('contact-name-' + contactId).innerHTML = contactData.name;
-    document.getElementById('contact-email-' + contactId).innerHTML = contactData.email;
+  // Überprüfen, ob das Kontakt-Element die Klasse 'selected-contact' hat
+  if (!contactElement || !contactElement.classList.contains('selected-contact')) {
+    return; // Funktion abbrechen, wenn der Kontakt nicht ausgewählt ist
   }
 
-  currentContact = contactId;
+  if (currentContact === numberOfContact && !isEditMode) return;
+
+  const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
+  const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
+  const jobTitle = checkJobAndColor(numberOfContact);
+
+  document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
+
+  // document.getElementById('more-button-div').classList.remove('d_none');
+
+  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+
+  addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
+
+  if (isEditMode) {
+    contactNameElement.innerHTML = contacts[numberOfContact].name;
+    contactEmailElement.innerHTML = contacts[numberOfContact].email;
+  }
+  
+  currentContact = numberOfContact;
 }
-
-
-// function moreInfomationOfContact(numberOfContact, isEditMode) {
-//   if (currentContact === numberOfContact && !isEditMode) return;
-
-//   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
-//   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
-//   const jobTitle = checkJobAndColor(numberOfContact);
-
-//   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
-
-//   // document.getElementById('more-button-div').classList.remove('d_none');
-
-//   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
-
-//   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
-
-//   if (isEditMode) {
-//     contactNameElement.innerHTML = contacts[numberOfContact].name;
-//     contactEmailElement.innerHTML = contacts[numberOfContact].email;
-//   }
-
-//   currentContact = numberOfContact;
-// }
 
 function getHiddenMoreInformation() {
   document.getElementById('big-content').style = '';
@@ -194,18 +158,33 @@ function sortContacts() {
   });
 }
 
-
 // function toggleContactSelect(event) {
 //   const contactElement = event.target.closest('[data-contact]');
 //   const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
 
 //   contactsList.forEach((contact) => {
-//     if (contact === contactElement) {
-//       // Wenn der Kontakt bereits ausgewählt ist, entfernen wir die Klasse
-//       contact.classList.toggle('selected-contact');
-//     } else {
-//       // Entferne die Klasse von allen anderen Kontakten
-//       contact.classList.remove('selected-contact');
-//     }
+//     const isSelectedContact = contactElement === contact;
+
+//     if (!isSelectedContact) contact.classList.remove('selected-contact');
+//     if (isSelectedContact) contact.classList.add('selected-contact');
 //   });
 // }
+
+function toggleContactSelect(event) {
+  const contactElement = event.target.closest('[data-contact]');
+  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
+
+  // Wenn der Kontakt bereits 'selected-contact' hat, entfernen und abbrechen
+  if (contactElement.classList.contains('selected-contact')) {
+    contactElement.classList.remove('selected-contact');
+    return; // Funktion beenden
+  }
+
+  // Andernfalls: Alle anderen Kontakte deselektieren
+  contactsList.forEach((contact) => {
+    contact.classList.remove('selected-contact');
+  });
+
+  // Nur dem angeklickten Kontakt 'selected-contact' hinzufügen
+  contactElement.classList.add('selected-contact');
+}

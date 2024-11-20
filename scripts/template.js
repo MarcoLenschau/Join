@@ -59,8 +59,14 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                         <div class="flex">
                             <span>Assigned to</span>
                             <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn">
-                                <span class="select-text">Select contacts to assign</span>
+                                <span class="select-text">
+                                <p>Select contacts to assign</p>
+                                <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
+                                </span>
                                 <div id="userlist" class="d_none"></div>
+                            </div>
+                            <div class="selected-users-list">
+                              <span>MN</span>
                             </div>
                         </div>
                             <span id="required-field-big">
@@ -155,7 +161,7 @@ function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
   return `  <span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="moreInfomationOfContact(${index}); toggleContactSelect(event);" class="d_flex_c_c contacts-div first-letter-hover">
+            <div data-contact onclick="toggleContactSelect(event); moreInfomationOfContact(${index});" class="d_flex_c_c contacts-div first-letter-hover">
            <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
                 <div class="center-contacts">
                     <span id="contact-name-${index}">${name}</span>
