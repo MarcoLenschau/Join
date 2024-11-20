@@ -135,6 +135,7 @@ async function renderContacts(isCreateContact) {
     contacts = Object.entries(loadedContacts).map(([id, contact]) => {
       return { id, ...contact };
     });
+    console.log(contacts);
   }
 
   sortContacts();
@@ -203,7 +204,6 @@ async function deleteUser(numberOfContact, contactId) {
   showContactsData();
   organizeContacts();
   await deleteData(contactId, 'contacts');
-  renderContacts();
 }
 
 function emptyContent(content) {
