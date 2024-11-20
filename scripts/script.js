@@ -209,6 +209,7 @@ async function deleteUser(numberOfContact, contactId) {
 
   showContactsData();
   await deleteData(contactId, 'contacts');
+  renderContacts();
 }
 
 function emptyContent(content) {

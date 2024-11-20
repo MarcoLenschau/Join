@@ -57,24 +57,16 @@
     background-color: rgb(41, 171, 226);
   }
 
-  .big-content {
+  /* .big-content {
     position: absolute;
     top: 0;
     right: 0;
-    width: 0;
+    width: 456px;
     height: 100vh;
     background-color: white;
     transition: ease 2s;
     overflow: hidden;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 100vh;
-    background-color: white;
-    transition: ease 2s;
-    overflow: hidden;
-  }
+  } */
 
   .app-main {
     width: calc(100% - 200px);
