@@ -205,7 +205,7 @@ function getMoreInfomationTemplate(numberOfContact) {
                   </div>
               </div>
               <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div" style="justify-content: flex-end;">
-                  <div id="toggleMenu" class="d_none d_flex_column bg-blue" style="border-radius: 6px; padding: 24px 8px;  position: absolute; right: 0;">
+                  <div id="toggleMenu" class="d_none d_flex_column bg-blue" style="border-radius: 6px; position: absolute; right: 0;">
                       <a onclick="addContact('Edit', ${numberOfContact});">Edit</a>
                       <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}')">Delete</a>
                   </div>
