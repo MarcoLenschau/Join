@@ -197,14 +197,24 @@ a {
 
 .more-button {
   background-color: var(--color-blue);
-  width: 58px;
-  height: 58px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   border-radius: 32px;
   position: absolute;
   right: 0;
   bottom: 3%;
+
+  img {
+    width: 8px !important;
+  }
+}
+
+#toggleMenu {
+  transform: translateY(-170px);
+  row-gap: 24px;
+  padding: 12px;
 }
 
 .delete-and-edit:hover {

@@ -17,36 +17,77 @@ function showWhichSiteIsAktiv() {
   addClassToElement('contacts', 'active');
 }
 
-function moreInfomationOfContact(numberOfContact, isEditMode) {
 
-  const contactElement = document.getElementById('contact-name-' + numberOfContact).closest('[data-contact]');
+function moreInfomationOfContact(numberOfContact) {
+  // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
+  const selectedContactElement = document.querySelector('[data-contact].selected-contact');
 
-  // Überprüfen, ob das Kontakt-Element die Klasse 'selected-contact' hat
-  if (!contactElement || !contactElement.classList.contains('selected-contact')) {
-    return; // Funktion abbrechen, wenn der Kontakt nicht ausgewählt ist
+  // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
+  if (!selectedContactElement) {
+    document.getElementById('more-information').innerHTML = "";
+    return;
   }
 
-  if (currentContact === numberOfContact && !isEditMode) return;
-
+  // Loggt die Nummer des ausgewählten Kontakts (kann entfernt werden, wenn nicht mehr benötigt)
+  console.log(numberOfContact);
+  
+  // Den Kontakt anhand der numberOfContact-ID suchen
   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
   const jobTitle = checkJobAndColor(numberOfContact);
 
+  // Setze die 'more-information'-Sektion auf die Template-Daten des Kontakts
   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
 
-  // document.getElementById('more-button-div').classList.remove('d_none');
-
+  // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
 
+  // Füge den Jobtitel zur Anzeige der ersten Buchstaben hinzu
   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
 
-  if (isEditMode) {
-    contactNameElement.innerHTML = contacts[numberOfContact].name;
-    contactEmailElement.innerHTML = contacts[numberOfContact].email;
-  }
-  
+  // Aktualisiere den Namen und die E-Mail des Kontakts
+  contactNameElement.innerHTML = contacts[numberOfContact].name;
+  contactEmailElement.innerHTML = contacts[numberOfContact].email;
+
+  // Setze den aktuellen Kontakt auf die gegebene Nummer
   currentContact = numberOfContact;
 }
+
+
+
+
+
+
+// function moreInfomationOfContact(numberOfContact, isEditMode) {
+
+//   const contactElement = document.getElementById('contact-name-' + numberOfContact).closest('[data-contact]');
+
+//   // Überprüfen, ob das Kontakt-Element die Klasse 'selected-contact' hat
+//   if (!contactElement || !contactElement.classList.contains('selected-contact')) {
+//     return; // Funktion abbrechen, wenn der Kontakt nicht ausgewählt ist
+//   }
+
+//   if (currentContact === numberOfContact && !isEditMode) return;
+
+//   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
+//   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
+//   const jobTitle = checkJobAndColor(numberOfContact);
+
+//   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
+
+//   // document.getElementById('more-button-div').classList.remove('d_none');
+
+//   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+
+//   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
+
+//   if (isEditMode) {
+//     contactNameElement.innerHTML = contacts[numberOfContact].name;
+//     contactEmailElement.innerHTML = contacts[numberOfContact].email;
+//   }
+
+//   currentContact = numberOfContact;
+// }
 
 function getHiddenMoreInformation() {
   document.getElementById('big-content').style = '';
@@ -158,33 +199,41 @@ function sortContacts() {
   });
 }
 
-// function toggleContactSelect(event) {
+
+// function toggleContactSelect(event, index) {
 //   const contactElement = event.target.closest('[data-contact]');
 //   const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
 
-//   contactsList.forEach((contact) => {
-//     const isSelectedContact = contactElement === contact;
+//   // Wenn der Kontakt bereits 'selected-contact' hat, entfernen und abbrechen
+//   if (contactElement.classList.contains('selected-contact')) {
+//     contactElement.classList.remove('selected-contact');
+//     return; // Funktion beenden
+//   }
 
-//     if (!isSelectedContact) contact.classList.remove('selected-contact');
-//     if (isSelectedContact) contact.classList.add('selected-contact');
+//   // Andernfalls: Alle anderen Kontakte deselektieren
+//   contactsList.forEach((contact) => {
+//     contact.classList.remove('selected-contact');
 //   });
+
+//   // Nur dem angeklickten Kontakt 'selected-contact' hinzufügen
+//   contactElement.classList.add('selected-contact');
 // }
 
-function toggleContactSelect(event) {
+function toggleContactSelect(event, index) {
   const contactElement = event.target.closest('[data-contact]');
   const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
 
-  // Wenn der Kontakt bereits 'selected-contact' hat, entfernen und abbrechen
-  if (contactElement.classList.contains('selected-contact')) {
-    contactElement.classList.remove('selected-contact');
-    return; // Funktion beenden
-  }
-
-  // Andernfalls: Alle anderen Kontakte deselektieren
   contactsList.forEach((contact) => {
-    contact.classList.remove('selected-contact');
+    const isSelectedContact = contactElement === contact;
+
+    if (isSelectedContact) {
+      contact.classList.toggle('selected-contact');
+    } else {
+      contact.classList.remove('selected-contact');
+    }
   });
 
-  // Nur dem angeklickten Kontakt 'selected-contact' hinzufügen
-  contactElement.classList.add('selected-contact');
+  // Rufe die Funktion auf, um die Informationen des ausgewählten Kontakts zu laden
+  moreInfomationOfContact(index);
 }
+
