@@ -28,14 +28,11 @@
   .big-content {
     display: flex !important;
     padding: 30px;
-    display: flex !important;
-    padding: 30px;
   }
 }
 
 @media (max-width: 1250px) {
   .back-button-contacts {
-    display: flex !important;
     display: flex !important;
   }
 
@@ -44,7 +41,6 @@
   }
 
   .contact-separator {
-    display: none;
     display: none;
   }
 

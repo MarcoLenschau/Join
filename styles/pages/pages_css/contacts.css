@@ -54,13 +54,13 @@
 }
 
 #prime_title {
-font-size: 61px;
-font-weight: 700;
+  font-size: 61px;
+  font-weight: 700;
 }
 
 #second_title {
-font-size: 27px;
-font-weight: 400;
+  font-size: 27px;
+  font-weight: 400;
 }
 
 /* OVERLAY */
@@ -180,8 +180,9 @@ font-weight: 400;
   height: 78px;
   padding: 15px 24px 15px 24px;
   gap: 35px;
-  border-radius: 10px 0px 0px 0px;
+  border-radius: 10px;
   opacity: 0px;
+  margin-top: 12px;
 }
 
 .contacts-list > div {

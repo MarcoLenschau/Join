@@ -25,12 +25,6 @@ header {
   margin: 24px;
 }
 
-
-
-
-
-
-
 .sign-in {
   align-items: center;
   gap: 18px;
@@ -174,6 +168,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #fff;
 }
 
 .first-big-letter {
@@ -193,7 +188,7 @@ a {
 }
 
 .email {
-  color: var(--color-dark-blue);
+  color: var(--color-light-blue);
 }
 
 .email:hover {

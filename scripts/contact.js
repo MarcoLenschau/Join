@@ -23,12 +23,13 @@ function moreInfomationOfContact(numberOfContact, isEditMode) {
   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
   const jobTitle = checkJobAndColor(numberOfContact);
-  document.getElementById('big-content').style = ' padding: 30px;';
+
   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
-  document.getElementById('more-button-div').classList.remove('d_none');
-  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(
-    contactNameElement.innerText.split(' ')
-  );
+
+  // document.getElementById('more-button-div').classList.remove('d_none');
+
+  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+
   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
 
   if (isEditMode) {
@@ -48,7 +49,6 @@ function showContactsData() {
   const contactsList = document.querySelector('.contacts-list');
 
   contactsList.innerHTML = '';
-  console.log(contacts);
 
   for (let index = 0; index < contacts.length; index++) {
     contactsList.innerHTML += getContactsTemplate(index);
@@ -95,7 +95,6 @@ async function addNewContact(userData) {
 
   contacts.slice(-1);
   contacts.push({ ...userData, id: name });
-  console.log(contacts);
 }
 
 function saveContact(numberOfContact) {
@@ -148,5 +147,20 @@ function sortContacts() {
     if (nameA < nameB) return -1;
     if (nameA > nameB) return 1;
     return 0;
+  });
+}
+
+function toggleContactSelect(event) {
+  const contactElement = event.target.closest('[data-contact]');
+  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
+
+  contactsList.forEach((contact) => {
+    if (contact === contactElement) {
+      // Wenn der Kontakt bereits ausgewählt ist, entfernen wir die Klasse
+      contact.classList.toggle('selected-contact');
+    } else {
+      // Entferne die Klasse von allen anderen Kontakten
+      contact.classList.remove('selected-contact');
+    }
   });
 }
