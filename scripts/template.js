@@ -65,9 +65,6 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                                 </span>
                                 <div id="userlist" class="d_none"></div>
                             </div>
-                            <div class="selected-users-list">
-                              <span>MN</span>
-                            </div>
                         </div>
                             <span id="required-field-big">
                                 <span class="color-red">*</span>This field is required
