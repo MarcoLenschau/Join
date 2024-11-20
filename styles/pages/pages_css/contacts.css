@@ -7,6 +7,7 @@
 
 .container {
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 .list-of-contacts {
@@ -42,6 +43,10 @@
 .input-field_contacts {
   padding: 12px 55px;
   border-radius: 12px;
+}
+
+.big-content {
+  margin-top: 56px;
 }
 
 .title-of-contacts {

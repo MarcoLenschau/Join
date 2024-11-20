@@ -48,6 +48,7 @@ function showContactsData() {
   const contactsList = document.querySelector('.contacts-list');
 
   contactsList.innerHTML = '';
+  console.log(contacts);
 
   for (let index = 0; index < contacts.length; index++) {
     contactsList.innerHTML += getContactsTemplate(index);
@@ -86,16 +87,15 @@ function defineNewContact() {
 async function addNewContact(userData) {
   contacts.push(userData);
 
-  let numberOfNewContact = contacts.length - 1;
-
   sortContacts();
-
   showContactsData();
   hideAddContactMenu();
 
-  const { name } = await postDataAtBackend(contacts[numberOfNewContact], 'contacts');
+  const { name } = await postDataAtBackend(userData, 'contacts');
 
-  contacts.splice(numberOfNewContact, 1, { ...userData, id: name });
+  contacts.slice(-1);
+  contacts.push({ ...userData, id: name });
+  console.log(contacts);
 }
 
 function saveContact(numberOfContact) {

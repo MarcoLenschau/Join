@@ -275,10 +275,6 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     </form>
   </div>
   `;
-
-  /* <div onclick="hideAddContactMenu();" class="d_flex bold f_s_26 hide-contact-menu" style="justify-content: end; ${
-    content === 'Add' ? 'margin: 0 60px;' : 'margin 0'
-  }">X</div> */
 }
 
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {

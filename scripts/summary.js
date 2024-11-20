@@ -24,8 +24,6 @@ function greetUser() {
     }
 }
 
-/* icons ändern beim hovern */
-
 /* todo icon */
 const hoverTodo = document.getElementById('todo_div');
 const todo_img = document.getElementById('todo_img');
@@ -53,15 +51,10 @@ hoverDone.addEventListener('mouseleave', () => {
 });
 
 /* Lade die Daten vom Backand */
-
 async function loadDataForSummary() {
     tasksAsObj = await loadFromBackend('tasks');
     tasks = Object.values(tasksAsObj);
-    
-    console.log(tasks);
-
     renderDataInSummary();
-
     getEarliestTaskDate();
 }
 
@@ -88,12 +81,10 @@ function getEarliestTaskDate() {
         document.getElementById('deadline_date').innerHTML = "";
         return;
     }
-
     // Findet das früheste Datum
     const earliestTask = tasks.reduce((earliest, currentTask) => {
         // Vergleicht das aktuelle früheste Datum mit dem Datum des aktuellen Tasks
         return new Date(currentTask.date) < new Date(earliest.date) ? currentTask : earliest;
     });
-
     document.getElementById('deadline_date').innerHTML = earliestTask.date;
 }
