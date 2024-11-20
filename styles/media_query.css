@@ -97,17 +97,6 @@
     flex-direction: column-reverse;
   }
 
-  .add-contact {
-    width: 60px;
-    height: 60px;
-    border-radius: 30px !important;
-    color: transparent !important;
-    width: 60px;
-    height: 60px;
-    border-radius: 30px !important;
-    color: transparent !important;
-  }
-
   .add-contact-div {
     bottom: 15% !important;
     bottom: 15% !important;
@@ -215,6 +204,17 @@
     }
   }
 
+  .add-contact {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px !important;
+    color: transparent !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px !important;
+    color: transparent !important;
+  }
+
   .header {
     .logo-black {
       width: 50px;
@@ -302,6 +302,9 @@
     background-color: #f6f7f8;
     margin: 0;
     padding: 44px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
     [class='bold'] {
       font-size: 24px !important;
@@ -311,6 +314,14 @@
 
   .list-of-contacts {
     height: 90%;
+  }
+
+  .toggle-contact-menu {
+    display: block;
+  }
+
+  .list-of-contacts {
+    width: 100%;
   }
 }
 

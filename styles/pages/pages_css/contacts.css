@@ -17,6 +17,7 @@
   margin: 0;
   padding: 20px;
   overflow-y: auto;
+  z-index: 1;
 }
 
 .center-contacts > a:hover {
@@ -47,6 +48,8 @@
 
 .big-content {
   margin-top: 56px;
+  z-index: 10;
+  transition: all 0.2s ease-in-out;
 }
 
 .title-of-contacts {
@@ -75,9 +78,11 @@
   min-height: 500px;
   border-radius: 32px;
   color: white;
-  background-color: var(--color-blue);
+  background: linear-gradient(to right, #2a3647 50%, #ffffff 50%);
   overflow: hidden;
   padding-left: 32px;
+  z-index: 150;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   & > div {
     display: flex;
@@ -187,4 +192,16 @@
 .contacts-list > div {
   border-bottom: 1px solid var(--color-grey);
   padding: 12px;
+}
+
+.toggle-contact-menu {
+  position: absolute;
+  right: 10%;
+  transform: translateY(5px);
+  transition: scale 0.2s;
+  display: none;
+
+  &:hover {
+    scale: 1.1;
+  }
 }

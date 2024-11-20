@@ -161,7 +161,7 @@ function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
   return `  <span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="toggleContactSelect(event, ${index});" class="d_flex_c_c contacts-div first-letter-hover">
+            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
            <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
                 <div class="center-contacts">
                     <span id="contact-name-${index}">${name}</span>

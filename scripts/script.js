@@ -386,3 +386,7 @@ function toggleCheckMenu() {
   document.getElementById('userlist').classList.toggle('d_none');
   document.getElementById('required-field-big').classList.toggle('d_none');
 }
+
+function toggleContactMenu(method) {
+  document.querySelector('.big-content').classList[method]('show-modal');
+}

@@ -94,6 +94,7 @@
     transform: translate(-50%, -50%);
     max-width: 396px;
     height: 760px;
+    background: #2a3647;
 
     padding-left: 0;
 
@@ -191,6 +192,12 @@
   }
 
   .more-button {
-    bottom: 10%;
+    bottom: 15%;
+  }
+}
+
+@media (max-width: 600px) {
+  #prime_title {
+    font-size: 40px;
   }
 }
