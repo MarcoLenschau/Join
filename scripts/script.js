@@ -128,16 +128,6 @@ async function deleteTask(taskId, taskState) {
   await deleteData(taskId, 'tasks');
 }
 
-// function showContactsData() {
-//   let listOfContacts = document.getElementById('list-of-contacts');
-//   listOfContacts.innerHTML = getAddContactButtonTemplate();
-
-//   for (let index = 0; index < contacts.length; index++) {
-//     listOfContacts.innerHTML += getContactsTemplate(index);
-//     checkJobAndColor(index);
-//   }
-// }
-
 async function renderContacts(isCreateContact) {
   const loadedContacts = await loadFromBackend('contacts');
 
@@ -147,9 +137,12 @@ async function renderContacts(isCreateContact) {
     });
   }
 
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  sortContacts();
 
-  if (!isCreateContact) showContactsData();
+  if (!isCreateContact) {
+    showContactsData();
+    organizeContacts();
+  }
 }
 
 function extractTheFirstLetter(word) {
@@ -206,8 +199,9 @@ async function deleteUser(numberOfContact, contactId) {
   document.getElementById('big-content').style = '';
   contacts.splice(numberOfContact, 1);
   emptyContent('more-information');
-
+  sortContacts();
   showContactsData();
+  organizeContacts();
   await deleteData(contactId, 'contacts');
 }
 

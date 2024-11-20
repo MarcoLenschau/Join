@@ -154,7 +154,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
 function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
-  return `  <span>${firstLetter(name)}
+  return `  <span data-firstletter="${firstLetter(name)}">
             <div onclick="moreInfomationOfContact(${index})" class="d_flex_c_c contacts-div first-letter-hover">
            <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
                 <div class="center-contacts">
@@ -162,13 +162,6 @@ function getContactsTemplate(index) {
                     <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
                 </div>
             </div></span>`;
-}
-
-function getAddContactButtonTemplate() {
-  return `<div class="d_flex_c_c add-contact-div" style="margin: 24px;">
-                <button onclick="addContact('Add', null);" class="w-100 bg-blue add-contact">Add contact</button>
-                <img onclick="addContact('Add', null);" src="../assets/img/user_add.svg" alt="contact" class="overlay-image">
-            </div>`;
 }
 
 function getMoreInfomationTemplate(numberOfContact) {
