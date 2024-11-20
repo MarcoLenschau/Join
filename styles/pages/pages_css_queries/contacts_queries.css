@@ -77,6 +77,13 @@
   }
 }
 
+@media (max-width: 1300px) {
+  .title-of-contacts {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* ADD CONTACT OVERLAY MOBILE*/
 
 @media (max-width: 900px) {
