@@ -17,14 +17,13 @@ function showWhichSiteIsAktiv() {
   addClassToElement('contacts', 'active');
 }
 
-
 function moreInfomationOfContact(numberOfContact) {
   // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
   const selectedContactElement = document.querySelector('[data-contact].selected-contact');
 
   // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
   if (!selectedContactElement) {
-    document.getElementById('more-information').innerHTML = "";
+    document.getElementById('more-information').innerHTML = '';
     return;
   }
 
@@ -50,7 +49,9 @@ function renderInfoContainer(numberOfContact) {
 
 function renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact) {
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
-  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(
+    contactNameElement.innerText.split(' ')
+  );
 
   addClassToElement('first-big-letter-' + numberOfContact, jobTitle); // Fügt Jobtitle hinzu
   contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
@@ -90,13 +91,14 @@ async function saveAndCreate(event, content, numberOfContact) {
     await updateDataAtBackend(id, 'contacts', { ...contact, id: undefined });
   }
   renderContacts(true);
+  sortContacts();
 }
 
 function defineNewContact() {
   let userData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
     role: 'Tester',
   };
   return userData;
@@ -113,6 +115,7 @@ async function addNewContact(userData) {
 
   contacts.slice(-1);
   contacts.push({ ...userData, id: name });
+  sortContacts();
 }
 
 function saveContact(numberOfContact) {
@@ -159,8 +162,8 @@ function organizeContacts() {
 
 function sortContacts() {
   contacts.sort((a, b) => {
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
+    const nameA = a.name.charAt(0).toLowerCase();
+    const nameB = b.name.charAt(0).toLowerCase();
 
     if (nameA < nameB) return -1;
     if (nameA > nameB) return 1;
@@ -185,4 +188,3 @@ function toggleContactSelect(event, index) {
   // Rufe die Funktion auf, um die Informationen des ausgewählten Kontakts zu laden
   moreInfomationOfContact(index);
 }
-

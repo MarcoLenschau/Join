@@ -1,5 +1,5 @@
 function sidebarShow() {
-  return `<a href="../index.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
+  return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
           <div class="navigation">
               <div id="summary">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
@@ -131,7 +131,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
               <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
             </div>
             <ul class="subtask-list">
-              ${subTasks}
+              ${subTasks || ''}
             </ul>
             <div class="d_flex g_12">
                 <button onclick="clearFields();" class="clear-button clear-and-create-button ${
@@ -204,7 +204,7 @@ function getMoreInfomationTemplate(numberOfContact) {
               <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div" style="justify-content: flex-end;">
                   <div id="toggleMenu" class="d_none d_flex_column bg-blue" style="border-radius: 6px; position: absolute; right: 0;">
                       <a onclick="addContact('Edit', ${numberOfContact});">Edit</a>
-                      <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}')">Delete</a>
+                      <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu("remove");">Delete</a>
                   </div>
                   <div class="more-button">
                       <img src="../assets/img/show_more.svg" style="width: 12px;">            

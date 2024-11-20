@@ -122,7 +122,7 @@ async function allDataAreCorrect() {
   }, 1500);
 }
 
-function defindeUserObj() {
+function defindeUserObj(state) {
   let title = document.getElementById('title').value;
   let date = document.getElementById('date').value;
   let prio = document.getElementsByClassName('active-prio')[0].dataset.prio;
@@ -138,7 +138,7 @@ function defindeUserObj() {
     category,
     description,
     assignedTo,
-    state: 'todo',
+    state: state || 'todo',
     subTasks,
   };
 
@@ -204,6 +204,7 @@ function resetTaskValues() {
   document.getElementById('category').value = '';
   document.getElementById('description').value = '';
   document.querySelector('.subTask-input').value = '';
+  document.querySelector('.subtask-list').innerHTML = '';
   checkThePrioOfTask(2);
   Array.from(document.getElementById('userlist').children).forEach((label) => {
     const checbox = label.querySelector('input');
