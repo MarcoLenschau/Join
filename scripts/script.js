@@ -203,6 +203,7 @@ async function deleteUser(numberOfContact, contactId) {
   showContactsData();
   organizeContacts();
   await deleteData(contactId, 'contacts');
+  renderContacts();
 }
 
 function emptyContent(content) {

@@ -44,6 +44,20 @@
   border-radius: 12px;
 }
 
+.title-of-contacts {
+  align-items: center;
+}
+
+#prime_title {
+font-size: 61px;
+font-weight: 700;
+}
+
+#second_title {
+font-size: 27px;
+font-weight: 400;
+}
+
 /* OVERLAY */
 
 .add-contact-overlay {
