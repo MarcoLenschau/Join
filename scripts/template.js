@@ -294,6 +294,7 @@ function getCheckBoxList(index, contacts, shortcut, jobTitle) {
 }
 
 function getTaskPreviewTemplate(task) {
+  console.log(task);
   return `
     <div class="task-preview">
     <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
