@@ -107,8 +107,8 @@ async function allDataAreCorrect() {
 
   if (!isValidTaskInputs(taskObj.assignedTo)) return;
 
-  const newTaskId = await postDataAtBackend(taskObj, 'tasks');
-  tasks = [...tasks, { ...taskObj, id: newTaskId }];
+  const { name } = await postDataAtBackend(taskObj, 'tasks');
+  tasks = [...tasks, { ...taskObj, id: name }];
   displayTasks();
 
   const taskCreatedMessageElement = document.querySelector('.task-created-message');

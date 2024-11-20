@@ -343,7 +343,7 @@ async function updateCheckbox(event, taskId) {
 
 async function updateTaskState(taskId, newState) {
   const task = tasks.find((task) => task.id === taskId);
-  task.state = newState;
+  if (task) task.state = newState;
 
   await updateTask(taskId);
 }

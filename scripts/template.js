@@ -379,6 +379,8 @@ function getAssignedTemplate(assignedTo, previewTask) {
 }
 
 function getSubTasksTemplate(subTasks, taskId) {
+  if (!subTasks) return '';
+
   return subTasks
     .map(({ description, done }) => {
       return `
