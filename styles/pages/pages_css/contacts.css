@@ -167,8 +167,7 @@
 }
 
 #more-information {
-  width: 500px;
-  background-color: aqua;
+  max-width: 500px;
 }
 
 .contacts-div {

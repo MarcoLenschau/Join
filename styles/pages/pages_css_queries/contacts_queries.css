@@ -189,4 +189,8 @@
   #cancel_button {
     display: none;
   }
+
+  .more-button {
+    bottom: 10%;
+  }
 }

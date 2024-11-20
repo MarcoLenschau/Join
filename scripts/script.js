@@ -258,7 +258,7 @@ function defineUserData() {
  * This is a function for the post data at backend.
  * @param {object} userData - A Object with email and password from user.
  * @param {string} path - path to right data.
- * 
+ *
  */
 
 async function postDataAtBackend(userData, path) {
@@ -380,9 +380,9 @@ function toggleMenu() {
 }
 
 function toggleCheckMenu() {
-  const userListCtn = document.querySelector('.userlist-ctn');
+  const arrowDropDown = document.querySelector('.arrow-drop-down');
 
-  userListCtn.querySelector('span').classList.toggle('d_none');
+  arrowDropDown.classList.toggle('rotate-180-deg');
   document.getElementById('userlist').classList.toggle('d_none');
   document.getElementById('required-field-big').classList.toggle('d_none');
 }

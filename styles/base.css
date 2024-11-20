@@ -137,6 +137,7 @@ button {
     margin: 90px;
     max-width: 1440px;
     padding: 0 44px;
+    position: relative;
   }
 }
 
@@ -323,4 +324,8 @@ button {
 .selected-contact {
   background-color: #2a3647;
   color: #fff;
+}
+
+.rotate-180-deg {
+  transform: rotate(180deg);
 }
