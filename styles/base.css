@@ -319,3 +319,8 @@ button {
 .hide-overflow {
   overflow: hidden;
 }
+
+.selected-contact {
+  background-color: #2a3647;
+  color: #fff;
+}

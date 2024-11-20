@@ -48,7 +48,6 @@ function showContactsData() {
   const contactsList = document.querySelector('.contacts-list');
 
   contactsList.innerHTML = '';
-  console.log(contacts);
 
   for (let index = 0; index < contacts.length; index++) {
     contactsList.innerHTML += getContactsTemplate(index);
@@ -95,7 +94,6 @@ async function addNewContact(userData) {
 
   contacts.slice(-1);
   contacts.push({ ...userData, id: name });
-  console.log(contacts);
 }
 
 function saveContact(numberOfContact) {
@@ -148,5 +146,17 @@ function sortContacts() {
     if (nameA < nameB) return -1;
     if (nameA > nameB) return 1;
     return 0;
+  });
+}
+
+function toggleContactSelect(event) {
+  const contactElement = event.target.closest('[data-contact]');
+  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
+
+  contactsList.forEach((contact) => {
+    const isSelectedContact = contactElement === contact;
+
+    if (!isSelectedContact) contact.classList.remove('selected-contact');
+    if (isSelectedContact) contact.classList.add('selected-contact');
   });
 }
