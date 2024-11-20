@@ -17,28 +17,72 @@ function showWhichSiteIsAktiv() {
   addClassToElement('contacts', 'active');
 }
 
-function moreInfomationOfContact(numberOfContact, isEditMode) {
-  if (currentContact === numberOfContact && !isEditMode) return;
+function toggleContactSelect(event) {
+  const contactElement = event.target.closest('[data-contact]');
+  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
 
-  const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
-  const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
-  const jobTitle = checkJobAndColor(numberOfContact);
+  contactsList.forEach((contact) => {
+    if (contact === contactElement) {
+      contact.classList.toggle('selected-contact');
+      if (contact.classList.contains('selected-contact')) {
+        const contactId = contactElement.dataset.contactId;
+        moreInfomationOfContact(contactId, false);
+      } else {
+        clearContactInformation();
+      }
+    } else {
+      contact.classList.remove('selected-contact');
+    }
+  });
+}
 
-  document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
+function clearContactInformation() {
+  document.getElementById('more-information').innerHTML = ''; // Bereich leeren
+}
 
-  // document.getElementById('more-button-div').classList.remove('d_none');
+function moreInfomationOfContact(contactId, isEditMode) {
+  const contactData = contacts.find((contact) => contact.id === contactId);
+  if (!contactData) return;
 
-  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+  document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(contactId);
 
-  addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
+  const jobTitle = checkJobAndColor(contactId);
+  const firstBigLetter = document.getElementById('first-big-letter-' + contactId);
+
+  firstBigLetter.innerHTML = extractTheFirstLetter(contactData.name.split(' '));
+  addClassToElement('first-big-letter-' + contactId, jobTitle);
 
   if (isEditMode) {
-    contactNameElement.innerHTML = contacts[numberOfContact].name;
-    contactEmailElement.innerHTML = contacts[numberOfContact].email;
+    document.getElementById('contact-name-' + contactId).innerHTML = contactData.name;
+    document.getElementById('contact-email-' + contactId).innerHTML = contactData.email;
   }
 
-  currentContact = numberOfContact;
+  currentContact = contactId;
 }
+
+
+// function moreInfomationOfContact(numberOfContact, isEditMode) {
+//   if (currentContact === numberOfContact && !isEditMode) return;
+
+//   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
+//   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
+//   const jobTitle = checkJobAndColor(numberOfContact);
+
+//   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
+
+//   // document.getElementById('more-button-div').classList.remove('d_none');
+
+//   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+
+//   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
+
+//   if (isEditMode) {
+//     contactNameElement.innerHTML = contacts[numberOfContact].name;
+//     contactEmailElement.innerHTML = contacts[numberOfContact].email;
+//   }
+
+//   currentContact = numberOfContact;
+// }
 
 function getHiddenMoreInformation() {
   document.getElementById('big-content').style = '';
@@ -150,17 +194,18 @@ function sortContacts() {
   });
 }
 
-function toggleContactSelect(event) {
-  const contactElement = event.target.closest('[data-contact]');
-  const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
 
-  contactsList.forEach((contact) => {
-    if (contact === contactElement) {
-      // Wenn der Kontakt bereits ausgewählt ist, entfernen wir die Klasse
-      contact.classList.toggle('selected-contact');
-    } else {
-      // Entferne die Klasse von allen anderen Kontakten
-      contact.classList.remove('selected-contact');
-    }
-  });
-}
+// function toggleContactSelect(event) {
+//   const contactElement = event.target.closest('[data-contact]');
+//   const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
+
+//   contactsList.forEach((contact) => {
+//     if (contact === contactElement) {
+//       // Wenn der Kontakt bereits ausgewählt ist, entfernen wir die Klasse
+//       contact.classList.toggle('selected-contact');
+//     } else {
+//       // Entferne die Klasse von allen anderen Kontakten
+//       contact.classList.remove('selected-contact');
+//     }
+//   });
+// }
