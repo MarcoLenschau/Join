@@ -53,42 +53,6 @@ function moreInfomationOfContact(numberOfContact) {
   currentContact = numberOfContact;
 }
 
-
-
-
-
-
-// function moreInfomationOfContact(numberOfContact, isEditMode) {
-
-//   const contactElement = document.getElementById('contact-name-' + numberOfContact).closest('[data-contact]');
-
-//   // Überprüfen, ob das Kontakt-Element die Klasse 'selected-contact' hat
-//   if (!contactElement || !contactElement.classList.contains('selected-contact')) {
-//     return; // Funktion abbrechen, wenn der Kontakt nicht ausgewählt ist
-//   }
-
-//   if (currentContact === numberOfContact && !isEditMode) return;
-
-//   const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
-//   const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
-//   const jobTitle = checkJobAndColor(numberOfContact);
-
-//   document.getElementById('more-information').innerHTML = getMoreInfomationTemplate(numberOfContact);
-
-//   // document.getElementById('more-button-div').classList.remove('d_none');
-
-//   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
-
-//   addClassToElement('first-big-letter-' + numberOfContact, jobTitle);
-
-//   if (isEditMode) {
-//     contactNameElement.innerHTML = contacts[numberOfContact].name;
-//     contactEmailElement.innerHTML = contacts[numberOfContact].email;
-//   }
-
-//   currentContact = numberOfContact;
-// }
-
 function getHiddenMoreInformation() {
   document.getElementById('big-content').style = '';
   addClassToElement('more-button-div', 'd_none');
@@ -198,26 +162,6 @@ function sortContacts() {
     return 0;
   });
 }
-
-
-// function toggleContactSelect(event, index) {
-//   const contactElement = event.target.closest('[data-contact]');
-//   const contactsList = Array.from(document.querySelectorAll('[data-contact]'));
-
-//   // Wenn der Kontakt bereits 'selected-contact' hat, entfernen und abbrechen
-//   if (contactElement.classList.contains('selected-contact')) {
-//     contactElement.classList.remove('selected-contact');
-//     return; // Funktion beenden
-//   }
-
-//   // Andernfalls: Alle anderen Kontakte deselektieren
-//   contactsList.forEach((contact) => {
-//     contact.classList.remove('selected-contact');
-//   });
-
-//   // Nur dem angeklickten Kontakt 'selected-contact' hinzufügen
-//   contactElement.classList.add('selected-contact');
-// }
 
 function toggleContactSelect(event, index) {
   const contactElement = event.target.closest('[data-contact]');
