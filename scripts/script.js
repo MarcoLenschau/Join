@@ -135,7 +135,6 @@ async function renderContacts(isCreateContact) {
     contacts = Object.entries(loadedContacts).map(([id, contact]) => {
       return { id, ...contact };
     });
-    console.log(contacts);
   }
 
   sortContacts();
@@ -350,7 +349,9 @@ async function updateTaskState(taskId, newState) {
 }
 
 async function updateTaskFields(taskId) {
-  let newTask = { ...defindeUserObj(), id: taskId };
+  const state = tasks.find((task) => task.id === taskId).state;
+
+  let newTask = { ...defindeUserObj(state), id: taskId };
   const modal = document.querySelector('.add-task-modal');
 
   if (!isValidTaskInputs(newTask.assignedTo)) return;

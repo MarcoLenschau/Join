@@ -213,7 +213,7 @@ a {
 }
 
 #toggleMenu {
-  transform: translateY(-170px);
+  transform: translate(5px, -100px);
   row-gap: 24px;
   padding: 12px;
 }

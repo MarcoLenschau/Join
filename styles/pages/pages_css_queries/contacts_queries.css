@@ -194,6 +194,10 @@
   .more-button {
     bottom: 15%;
   }
+
+  #toggleMenu {
+    transform: translate(5px, -220px);
+  }
 }
 
 @media (max-width: 600px) {
