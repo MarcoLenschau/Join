@@ -1,6 +1,0 @@
-services:
-  web:
-    container_name: join
-    image: join:latest
-    ports:
-      - "80:80"

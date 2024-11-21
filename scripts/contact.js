@@ -16,10 +16,32 @@ function showWhichSiteIsAktiv() {
   addClassToElement('board', 'no-active');
   addClassToElement('contacts', 'active');
 }
+console.log(contacts);
+
+function renderMoreInformationContent(numberOfContact) {
+  // Den Kontakt anhand der numberOfContact-ID suchen
+  const contactNameElement = document.getElementById(
+    'contact-name-' + numberOfContact
+  );
+  const contactEmailElement = document.getElementById(
+    'contact-email-' + numberOfContact
+  );
+  const jobTitle = checkJobAndColor(numberOfContact);
+
+  renderInfoContainer(numberOfContact);
+  renderInfoContent(
+    contactNameElement,
+    contactEmailElement,
+    jobTitle,
+    numberOfContact
+  );
+}
 
 function moreInfomationOfContact(numberOfContact) {
   // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
-  const selectedContactElement = document.querySelector('[data-contact].selected-contact');
+  const selectedContactElement = document.querySelector(
+    '[data-contact].selected-contact'
+  );
 
   // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
   if (!selectedContactElement) {
@@ -29,28 +51,24 @@ function moreInfomationOfContact(numberOfContact) {
   renderMoreInformationContent(numberOfContact);
 }
 
-function renderMoreInformationContent(numberOfContact) {
-  // Den Kontakt anhand der numberOfContact-ID suchen
-  const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
-  const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
-  const jobTitle = checkJobAndColor(numberOfContact);
 
-  renderInfoContainer(numberOfContact);
-  renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact);
-}
 
 function renderInfoContainer(numberOfContact) {
   // Setze die 'more-information'-Sektion auf die Template-Daten des Kontakts
-  let infoDiv = document.getElementById('more-information');
+  const infoDiv = document.getElementById('more-information');
   infoDiv.innerHTML = getMoreInfomationTemplate(numberOfContact);
 }
 
-function renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact) {
+function renderInfoContent(
+  contactNameElement,
+  contactEmailElement,
+  jobTitle,
+  numberOfContact
+) {
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
-  document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(
-    contactNameElement.innerText.split(' ')
-  );
-  addClassToElement('first-big-letter-' + numberOfContact, jobTitle); // Fügt den Jobtitle hinzu
+  document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML =
+    extractTheFirstLetter(contactNameElement.innerText.split(' '));
+  addClassToElement(`first-big-letter-${numberOfContact}`, jobTitle); // Fügt den Jobtitle hinzu
   contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
   contactEmailElement.innerHTML = contacts[numberOfContact].email; // E-Mail aktualisieren
   currentContact = numberOfContact; // Setze den aktuellen Kontakt auf die gegebene Nummer
@@ -66,7 +84,7 @@ function showContactsData() {
 
   contactsList.innerHTML = '';
 
-  for (let index = 0; index < contacts.length; index++) {
+  for (let index = 0; index < contacts.length; index+=1) {
     contactsList.innerHTML += getContactsTemplate(index);
     checkJobAndColor(index);
   }
@@ -146,7 +164,9 @@ function organizeContacts() {
 
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
-    let divGroup = document.querySelector(`[data-firstletter="${firstLetter}"]`);
+    let divGroup = document.querySelector(
+      `[data-firstletter="${firstLetter}"]`
+    );
 
     if (!divGroup) {
       divGroup = document.createElement('div');

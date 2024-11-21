@@ -1,5 +1,5 @@
 function sidebarShow() {
-  return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
+  return /*html*/ `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
           <div class="navigation">
               <div id="summary">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
@@ -30,7 +30,7 @@ function sidebarShow() {
         <a href="privacy_policy.html">Privacy Policy</a>
         <a href="legal_notice.html">Legal notice</a>
       </div>
-          `;
+  `;
 }
 
 function getListTemplate(value, option) {
@@ -41,19 +41,21 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
-                    <h1 style="margin-bottom: 12px;" class=" ${isEditMode ? 'd_none' : ''}">Add Task</h1>
+                    <h1 style="margin-bottom: 12px;" class=" ${
+                      isEditMode ? "d_none" : ""
+                    }">Add Task</h1>
                     <div>
                         <div class="flex">
                             <span>Title<span class="color-red">*</span></span>
                             <input id="title" type="text" value="${
-                              isEditMode ? task.title : ''
+                              isEditMode ? task.title : ""
                             }" placeholder="Enter a title" class="input-task input-field" required/>
                         </div>
                         <div class="flex">
                             <span>Description</span>
                             <textarea id="description" 
                               " rows="5" cols="50" placeholder="Enter a Description">${
-                                isEditMode ? task.description : ''
+                                isEditMode ? task.description : ""
                               }</textarea>
                         </div>
                         <div class="flex">
@@ -118,9 +120,11 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
             <span>Category<span class="color-red">*</span></span>
             <select id="category" class="h-34 input-field">
            <option value="" selected disabled>Select task category</option>
-          <option ${task?.category === 'User Story' ? 'selected' : ''} value="User Story">User Story</option>
+          <option ${
+            task?.category === "User Story" ? "selected" : ""
+          } value="User Story">User Story</option>
            <option ${
-             task?.category === 'Technical Task' ? 'selected' : ''
+             task?.category === "Technical Task" ? "selected" : ""
            } value="Technical Task">Technical Task</option>
             </select>
           </div>
@@ -131,15 +135,17 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
               <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
             </div>
             <ul class="subtask-list">
-              ${subTasks || ''}
+              ${subTasks || ""}
             </ul>
             <div class="d_flex g_12">
                 <button onclick="clearFields();" class="clear-button clear-and-create-button ${
-                  isEditMode ? 'd_none' : ''
+                  isEditMode ? "d_none" : ""
                 }" style="color: black" formnovalidate> Clear X</button>
                 <button onclick="${
-                  isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
+                  isEditMode ? `updateTaskFields('${task.id}')` : " createNewTask();"
+                }" class="primary-button clear-and-create-button"> ${
+    isEditMode ? "Ok" : " Create Task"
+  }
                     <img src="../assets/img/check.svg" alt="check" />
                 </button>
             </div>
@@ -159,7 +165,9 @@ function getContactsTemplate(index) {
   const name = contact.name;
   return `  <span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
+           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${
+    name.split(" ")[1]?.at(0) || ""
+  }</span>
                 <div class="center-contacts">
                     <span id="contact-name-${index}">${name}</span>
                     <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
@@ -291,21 +299,22 @@ function getCheckBoxList(index, contacts, shortcut, jobTitle) {
 }
 
 function getTaskPreviewTemplate(task) {
-  console.log(task);
   return `
     <div class="task-preview">
     <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
        <img src="../assets/icon/close.png" alt="close icon">
        </button>
-        <span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${
-    task.category
-  }</span>
+        <span class="task-category bg-${
+          task.category === "User Story" ? "dark-blue" : "turquoise"
+        }">${task.category}</span>
         <h3 class="primary-title">${task.title}</h3>
         <p class="task-description">${task.description}</p>
         <span>Due: <span>${task.date}</span></span>
         <span
           >Priority:
-          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span
+          <span> ${task.prio} <img src="../assets/icon/prio-${
+    task.prio
+  }-transparent.png" alt="priority icon" /></span
         ></span>
         <span>Assigned To:</span>
         <ul>
@@ -340,12 +349,12 @@ function getTaskTemplate(task, doneSubTasksLength) {
     ontouchmove="handleTouchMove(event)"
     draggable="true"
     onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}');" data-id="${task.id}">
-     <span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${
+     <span class="task-category bg-${task.category === "User Story" ? "dark-blue" : "turquoise"}">${
     task.category
   }</span>
      <h3 class="task-title">${task.title}</h3>
      <p class="task-description">${task.description}</p>
-     <span class="progressbar ${!task.subTasks ? 'd_none' : ''}">
+     <span class="progressbar ${!task.subTasks ? "d_none" : ""}">
        <progress value="${doneSubTasksLength}" max="${task.subTasks?.length}"></progress>
        <span class="subtasks-text">${doneSubTasksLength}/${task.subTasks?.length} Subtasks</span>
      </span>
@@ -362,33 +371,35 @@ function getTaskTemplate(task, doneSubTasksLength) {
 
 function getAssignedTemplate(assignedTo, previewTask) {
   const assignedElements = assignedTo?.map(({ name, role }) => {
-    const initials = `${name?.charAt(0)}${name?.split(' ')[1]?.charAt(0) || ''}`;
+    const initials = `${name?.charAt(0)}${name?.split(" ")[1]?.charAt(0) || ""}`;
 
-    const elements = `<span class="${role.toLowerCase().split(' ').join('')}">${initials}</span> ${
-      previewTask ? `<span>${name}</span>` : ''
+    const elements = `<span class="${role.toLowerCase().split(" ").join("")}">${initials}</span> ${
+      previewTask ? `<span>${name}</span>` : ""
     }`;
 
     return previewTask ? `<li>${elements}</li>` : elements;
   });
 
   if (!previewTask && assignedElements.length > 4) {
-    return `${assignedElements?.slice(0, 4).join('')}...`;
+    return `${assignedElements?.slice(0, 4).join("")}...`;
   }
 
-  return assignedElements?.join('');
+  return assignedElements?.join("");
 }
 
 function getSubTasksTemplate(subTasks, taskId) {
-  if (!subTasks) return '';
+  if (!subTasks) return "";
 
   return subTasks
     .map(({ description, done }) => {
       return `
       <li>
-        <input type="checkbox" ${done ? 'checked' : ''}  onchange="updateCheckbox(event, '${taskId}')"/>
+        <input type="checkbox" ${
+          done ? "checked" : ""
+        }  onchange="updateCheckbox(event, '${taskId}')"/>
         <span>${description}</span>
       </li>
     `;
     })
-    .join('');
+    .join("");
 }

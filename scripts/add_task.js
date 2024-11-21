@@ -92,7 +92,7 @@ async function allDataAreCorrect() {
 
   const { name } = await postDataAtBackend(taskObj, 'tasks');
   tasks = [...tasks, { ...taskObj, id: name }];
-  displayTasks();
+
 
   const taskCreatedMessageElement = document.querySelector('.task-created-message');
   taskCreatedMessageElement.classList.add('show-task-created-message');
