@@ -24,14 +24,14 @@
 
 /** SIDEBAR QUERIES ** */
 
-@media (min-width: 1250px) {
+@media (min-width: 1300px) {
   .big-content {
     display: flex !important;
     padding: 30px;
   }
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1300px) {
   .back-button-contacts {
     display: flex !important;
   }
@@ -48,9 +48,7 @@
     height: 3px;
     width: 87px;
     background-color: rgb(41, 171, 226);
-    height: 3px;
-    width: 87px;
-    background-color: rgb(41, 171, 226);
+
   }
 
   /* .big-content {
