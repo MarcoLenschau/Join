@@ -21,10 +21,10 @@ console.log(contacts);
 function renderMoreInformationContent(numberOfContact) {
   // Den Kontakt anhand der numberOfContact-ID suchen
   const contactNameElement = document.getElementById(
-    'contact-name-' + numberOfContact
+    'contact-name-' + numberOfContact,
   );
   const contactEmailElement = document.getElementById(
-    'contact-email-' + numberOfContact
+    'contact-email-' + numberOfContact,
   );
   const jobTitle = checkJobAndColor(numberOfContact);
 
@@ -33,14 +33,14 @@ function renderMoreInformationContent(numberOfContact) {
     contactNameElement,
     contactEmailElement,
     jobTitle,
-    numberOfContact
+    numberOfContact,
   );
 }
 
 function moreInfomationOfContact(numberOfContact) {
   // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
   const selectedContactElement = document.querySelector(
-    '[data-contact].selected-contact'
+    '[data-contact].selected-contact',
   );
 
   // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
@@ -50,8 +50,6 @@ function moreInfomationOfContact(numberOfContact) {
   }
   renderMoreInformationContent(numberOfContact);
 }
-
-
 
 function renderInfoContainer(numberOfContact) {
   // Setze die 'more-information'-Sektion auf die Template-Daten des Kontakts
@@ -63,7 +61,7 @@ function renderInfoContent(
   contactNameElement,
   contactEmailElement,
   jobTitle,
-  numberOfContact
+  numberOfContact,
 ) {
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
   document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML =
@@ -84,13 +82,12 @@ function showContactsData() {
 
   contactsList.innerHTML = '';
 
-  for (let index = 0; index < contacts.length; index+=1) {
+  for (let index = 0; index < contacts.length; index += 1) {
     contactsList.innerHTML += getContactsTemplate(index);
     checkJobAndColor(index);
   }
 }
 
-// kürzen
 async function saveAndCreate(event, content, numberOfContact) {
   event.preventDefault();
 
@@ -101,13 +98,13 @@ async function saveAndCreate(event, content, numberOfContact) {
     const contact = contacts[numberOfContact];
     const id = contact.id;
     saveContact(numberOfContact);
+    sortContacts();
     showContactsData();
     moreInfomationOfContact(numberOfContact, true);
     organizeContacts();
     await updateDataAtBackend(id, 'contacts', { ...contact, id: undefined });
   }
   renderContacts(true);
-  sortContacts();
 }
 
 function defineNewContact() {
@@ -165,7 +162,7 @@ function organizeContacts() {
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
     let divGroup = document.querySelector(
-      `[data-firstletter="${firstLetter}"]`
+      `[data-firstletter="${firstLetter}"]`,
     );
 
     if (!divGroup) {

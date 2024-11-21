@@ -123,6 +123,7 @@ async function deleteTask(taskId, taskState) {
   const taskElement = Array.from(taskState.children).find((taskElement) => taskElement.dataset.id === taskId);
 
   taskElement?.remove();
+  tasks = tasks.filter((task) => task.id !== taskId);
   await deleteData(taskId, 'tasks');
 }
 
