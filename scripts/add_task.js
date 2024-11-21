@@ -20,7 +20,12 @@ async function loadContactsList() {
   for (let index = 0; index < contacts.length; index++) {
     let shortcut = extractTheFirstLetter(contacts[index].name.split(' '));
     let jobTitle = await createJobTitleClass(index);
-    document.getElementById('userlist').innerHTML += getCheckBoxList(index, contacts[index], shortcut, jobTitle);
+    document.getElementById('userlist').innerHTML += getCheckBoxList(
+      index,
+      contacts[index],
+      shortcut,
+      jobTitle,
+    );
   }
 }
 
@@ -92,8 +97,11 @@ async function allDataAreCorrect() {
 
   const { name } = await postDataAtBackend(taskObj, 'tasks');
   tasks = [...tasks, { ...taskObj, id: name }];
+  displayTasks();
 
-  const taskCreatedMessageElement = document.querySelector('.task-created-message');
+  const taskCreatedMessageElement = document.querySelector(
+    '.task-created-message',
+  );
   taskCreatedMessageElement.classList.add('show-task-created-message');
 
   resetTaskValues();
@@ -141,7 +149,9 @@ function assignedToDataExtract() {
 }
 
 function getSubtasks() {
-  const subtaskItems = Array.from(document.querySelector('.subtask-list').children);
+  const subtaskItems = Array.from(
+    document.querySelector('.subtask-list').children,
+  );
 
   return subtaskItems.map((subtaskItem) => {
     const description = subtaskItem.querySelector('input').value;
@@ -169,13 +179,17 @@ function toggleInvalidFields(assignedTo) {
 
   if (!assignedTo.length) {
     userListCtn.classList.add('invalid-input');
-    userListCtn.addEventListener('click', () => userListCtn.classList.remove('invalid-input'));
+    userListCtn.addEventListener('click', () =>
+      userListCtn.classList.remove('invalid-input'),
+    );
   }
 
   [titleInput, dateInput, categoryInput].forEach((field) => {
     if (!field.value) {
       field.classList.add('invalid-input');
-      field.addEventListener('focus', () => field.classList.remove('invalid-input'));
+      field.addEventListener('focus', () =>
+        field.classList.remove('invalid-input'),
+      );
     }
   });
 }

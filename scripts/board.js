@@ -23,7 +23,6 @@ async function renderTasks() {
     tasks = Object.entries(responeData).map(([id, task]) => {
       return { id, ...task };
     });
-
     displayTasks();
   }
 
@@ -34,7 +33,9 @@ function filterTasks() {
   const findTaskInput = document.querySelector('.board-search-input');
   const query = findTaskInput.value.toLowerCase();
 
-  const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(query));
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(query),
+  );
 
   displayTasks(query === '' ? tasks : filteredTasks);
   toggleEmptyMessage();
@@ -53,9 +54,12 @@ function displayTasks(filteredTasks) {
 
   tasksData.forEach((task) => {
     const listElement = document.getElementById(task.state);
-    const doneSubTasksLength = task.subTasks?.filter((subTask) => subTask.done)?.length;
+    const doneSubTasksLength = task.subTasks?.filter(
+      (subTask) => subTask.done,
+    )?.length;
 
-    listElement.innerHTML += getTaskTemplate(task, doneSubTasksLength);
+    if (listElement)
+      listElement.innerHTML += getTaskTemplate(task, doneSubTasksLength);
   });
 }
 
@@ -99,12 +103,14 @@ async function addElementToBoardList(event) {
 
 function toggleEmptyMessage() {
   const boardContent = document.querySelector('.board-content');
-  const listElements = boardContent.querySelectorAll('ul');
+  const listElements = boardContent?.querySelectorAll('ul');
+  if (listElements) {
+    listElements.forEach((element) => {
+      const emptyMessageElement = element.querySelector('.empty-message');
 
-  listElements.forEach((element) => {
-    const emptyMessageElement = element.querySelector('.empty-message');
-
-    if (element.children.length <= 1) emptyMessageElement.classList.add('d_flex');
-    else emptyMessageElement.classList.remove('d_flex');
-  });
+      if (element.children.length <= 1)
+        emptyMessageElement.classList.add('d_flex');
+      else emptyMessageElement.classList.remove('d_flex');
+    });
+  }
 }
