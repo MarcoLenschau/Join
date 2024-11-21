@@ -465,7 +465,6 @@ a {
   height: fit-content;
   max-height: 200px;
   flex-direction: column;
-  overflow-y: scroll;
 
   span {
     font-size: 18px;
@@ -481,6 +480,7 @@ a {
   width: 100%;
   height: 100%;
   margin-top: 8px;
+  overflow-y: scroll;
 
   label > div {
     display: flex;

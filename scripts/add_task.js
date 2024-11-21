@@ -85,23 +85,6 @@ function createNewTask() {
  *
  */
 
-// const obj = {
-//   name: 'Paul Black',
-//   email: 'paul.black@example.com',
-//   phone: '+491234567805',
-//   role: 'Developer',
-// };
-
-// async function test(params) {
-//   await fetch(`${BACKEND_URL}/contacts.json`, {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(obj),
-//   });
-// }
-
-// test();
-
 async function allDataAreCorrect() {
   let taskObj = defindeUserObj();
 

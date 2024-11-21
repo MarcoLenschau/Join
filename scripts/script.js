@@ -116,7 +116,6 @@ function deleteSubTask(event) {
   event.stopPropagation();
 
   const subTaskItem = event.target.closest('li');
-
   subTaskItem.remove();
 }
 
@@ -124,7 +123,6 @@ async function deleteTask(taskId, taskState) {
   const taskElement = Array.from(taskState.children).find((taskElement) => taskElement.dataset.id === taskId);
 
   taskElement?.remove();
-
   await deleteData(taskId, 'tasks');
 }
 
@@ -357,11 +355,10 @@ async function updateTaskFields(taskId) {
   if (!isValidTaskInputs(newTask.assignedTo)) return;
 
   const newTasks = tasks.map((task) => (task.id === taskId ? newTask : task));
-  tasks = newTasks;
 
+  tasks = newTasks;
   displayTasks();
   modal.classList.remove('show-modal');
-
   await updateDataAtBackend(taskId, 'tasks', newTask);
 }
 
@@ -372,7 +369,6 @@ function firstLetterBig(str) {
 async function loadFromBackend(path) {
   let response = await fetch(`${BACKEND_URL}/${path}.json`);
   let responeData = await response.json();
-
   return responeData;
 }
 
