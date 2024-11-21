@@ -465,6 +465,7 @@ a {
   height: fit-content;
   max-height: 200px;
   flex-direction: column;
+  cursor: pointer;
 
   span {
     font-size: 18px;
@@ -482,22 +483,30 @@ a {
   margin-top: 8px;
   overflow-y: scroll;
 
-  label > div {
-    display: flex;
-    align-items: center;
-    column-gap: 12px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    div {
-      margin-top: 12px;
-      font-size: 12px;
-      border: 1px solid #fff;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      color: #fff;
+  label {
+    cursor: pointer;
+
+    > div {
       display: flex;
-      justify-content: center;
       align-items: center;
+      column-gap: 12px;
+
+      div {
+        margin-top: 12px;
+        font-size: 12px;
+        border: 1px solid #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
