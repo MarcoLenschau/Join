@@ -26,9 +26,7 @@ function moreInfomationOfContact(numberOfContact) {
     document.getElementById('more-information').innerHTML = '';
     return;
   }
-
   renderMoreInformationContent(numberOfContact);
-
 }
 
 function renderMoreInformationContent(numberOfContact) {
@@ -52,8 +50,7 @@ function renderInfoContent(contactNameElement, contactEmailElement, jobTitle, nu
   document.getElementById('first-big-letter-' + numberOfContact).innerHTML = extractTheFirstLetter(
     contactNameElement.innerText.split(' ')
   );
-
-  addClassToElement('first-big-letter-' + numberOfContact, jobTitle); // Fügt Jobtitle hinzu
+  addClassToElement('first-big-letter-' + numberOfContact, jobTitle); // Fügt den Jobtitle hinzu
   contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
   contactEmailElement.innerHTML = contacts[numberOfContact].email; // E-Mail aktualisieren
   currentContact = numberOfContact; // Setze den aktuellen Kontakt auf die gegebene Nummer
@@ -75,6 +72,7 @@ function showContactsData() {
   }
 }
 
+// kürzen
 async function saveAndCreate(event, content, numberOfContact) {
   event.preventDefault();
 
@@ -139,6 +137,7 @@ function deleteAndCancel(content) {
   }
 }
 
+// kürzen
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
@@ -155,7 +154,6 @@ function organizeContacts() {
       divGroup.innerHTML = `<h3>${firstLetter}</h3>`; // H3 direkt hier hinzufügen
       listContactsElement.appendChild(divGroup);
     }
-
     divGroup.appendChild(contactEl);
   });
 }
@@ -184,7 +182,5 @@ function toggleContactSelect(event, index) {
       contact.classList.remove('selected-contact');
     }
   });
-
-  // Rufe die Funktion auf, um die Informationen des ausgewählten Kontakts zu laden
-  moreInfomationOfContact(index);
+  moreInfomationOfContact(index); // Kontaktinfo anzeigen
 }
