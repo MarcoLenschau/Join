@@ -183,6 +183,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid #fff;
 }
 
 .first-letter-hover:hover {
