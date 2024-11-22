@@ -162,7 +162,7 @@ function addContact(content, numberOfContact) {
   let { contentButton0, contentButton1 } = showTheRightButtonText(content);
   const elements = [content, contentButton0, contentButton1, numberOfContact];
 
-  document.getElementById('add-contact-menu').classList.remove('d_none');
+  document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
 
   document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(...elements);
   if (numberOfContact != null) {

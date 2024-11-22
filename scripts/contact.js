@@ -132,7 +132,7 @@ function saveContact(numberOfContact) {
 }
 
 function hideAddContactMenu() {
-  document.getElementById('add-contact-menu').classList.add('d_none');
+  document.getElementById('add-contact-menu-dialog').classList.remove('show-modal');
 }
 
 function deleteAndCancel(content) {
@@ -187,4 +187,11 @@ function toggleContactSelect(event, index) {
     }
   });
   moreInfomationOfContact(index); // Kontaktinfo anzeigen
+}
+
+function closeContactModal(event) {
+  const isTaskMenu = event.target.closest('.add-contact-overlay');
+  const modal = event.currentTarget;
+
+  if (!isTaskMenu) modal.classList.remove('show-modal');
 }

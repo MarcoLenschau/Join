@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Contacts</title>
-    <link
-      rel="shortcut icon"
-      href="../assets/img/logo-white.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/style.css" />
@@ -19,10 +15,7 @@
 
     <link rel="stylesheet" href="../styles/pages/pages_css/contacts.css" />
     <link rel="stylesheet" href="../styles/media_query.css" />
-    <link
-      rel="stylesheet"
-      href="../styles/pages/pages_css_queries/contacts_queries.css"
-    />
+    <link rel="stylesheet" href="../styles/pages/pages_css_queries/contacts_queries.css" />
 
     <script src="../scripts/db.js"></script>
     <script src="../scripts/contact.js"></script>
@@ -38,17 +31,9 @@
 
       <div class="container">
         <div class="d_flex g_12">
-          <div
-            id="list-of-contacts"
-            class="d_flex_column list-of-contacts bg-white"
-          >
+          <div id="list-of-contacts" class="d_flex_column list-of-contacts bg-white">
             <div class="d_flex_c_c add-contact-div" style="margin: 24px">
-              <button
-                onclick="addContact('Add', null);"
-                class="w-100 bg-blue add-contact"
-              >
-                Add contact
-              </button>
+              <button onclick="addContact('Add', null);" class="w-100 bg-blue add-contact">Add contact</button>
               <img
                 onclick="addContact('Add', null);"
                 src="../assets/img/user_add.svg"
@@ -61,25 +46,24 @@
           </div>
           <div id="big-content" class="d_flex_column big-content">
             <div class="d_flex title-of-contacts">
-              <button
-                class="toggle-contact-menu"
-                onclick="toggleContactMenu('remove'); toggleContactSelect(event)"
-              >
+              <button class="toggle-contact-menu" onclick="toggleContactMenu('remove'); toggleContactSelect(event)">
                 <img src="../assets/img/back.svg" />
               </button>
               <h1 id="prime_title">Contacts</h1>
               <div class="contact-separator"></div>
-              <h2 id="second_title" class="d_flex_c_c" style="height: 48px">
-                Better with a team
-              </h2>
+              <h2 id="second_title" class="d_flex_c_c" style="height: 48px">Better with a team</h2>
               <div class="responsive-separator"></div>
             </div>
             <div id="more-information"></div>
           </div>
         </div>
       </div>
+
+      <dialog onclick="closeContactModal(event);" id="add-contact-menu-dialog" open>
+        <div id="add-contact-menu" class="add-contact-overlay"></div>
+      </dialog>
     </main>
-    <div id="add-contact-menu" class="d_none add-contact-overlay"></div>
+
     <!-- <div id="load-animation" class="load-animation">
     <img src="../assets/img/logo-black.png" alt="logo" class="load-animation-img">
   </div> -->

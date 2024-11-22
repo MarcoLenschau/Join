@@ -220,3 +220,19 @@
     }
   }
 }
+
+#add-contact-menu-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  border: 0;
+  background-color: rgba(42, 54, 71, 0.3);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+}
