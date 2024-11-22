@@ -5,9 +5,6 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
-  // setTimeout(() => {
-  //   document.getElementById('load-animation').style = 'width: 0;';
-  // }, 500);
 }
 
 function showWhichSiteIsAktiv() {

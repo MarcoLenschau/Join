@@ -277,7 +277,9 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
           </div>
 
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
-          class="overlay_cancelbutton_mobile">X</a>
+          class="overlay_cancelbutton_mobile">
+             <img src="../assets/icon/close.png" alt="close icon">
+          </a>
           <div>
             <button class="primary-button clear-and-create-button ">${contentButton1}</button><img>
           </div>
