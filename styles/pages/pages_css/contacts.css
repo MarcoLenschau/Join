@@ -176,10 +176,6 @@
 }
 
 .contacts-div {
-  /* background-color: white;
-    padding: 22px 73px;
-    gap: 50px; */
-
   width: 352px;
   height: 78px;
   padding: 15px 24px 15px 24px;
@@ -187,6 +183,10 @@
   border-radius: 10px;
   opacity: 0px;
   margin-top: 12px;
+
+  &:hover {
+    background-color: rgb(209, 209, 209, 0.3);
+  }
 }
 
 .contacts-list > div {

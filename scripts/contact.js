@@ -49,7 +49,9 @@ function renderInfoContent(...elements) {
   const [contactNameElement, contactEmailElement, jobTitle, numberOfContact] = elements;
 
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
-  document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
+  document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML = extractTheFirstLetter(
+    contactNameElement.innerText.split(' '),
+  );
   addClassToElement(`first-big-letter-${numberOfContact}`, jobTitle); // Fügt den Jobtitle hinzu
   contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
   contactEmailElement.innerHTML = contacts[numberOfContact].email; // E-Mail aktualisieren

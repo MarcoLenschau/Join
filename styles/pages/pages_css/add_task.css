@@ -124,3 +124,41 @@ main {
   visibility: visible;
   z-index: 1000;
 }
+
+.assigned-list {
+  list-style: none;
+  display: flex;
+  column-gap: 8px;
+  margin-left: 4px;
+  overflow-x: scroll;
+  padding-bottom: 12px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 410px;
+
+  &::-webkit-scrollbar {
+    height: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #d1d1d1;
+    border-radius: 4px;
+  }
+
+  li {
+    & span:first-child {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--color-white);
+      font-size: 12px;
+    }
+
+    & span:nth-child(2) {
+      display: none;
+    }
+  }
+}

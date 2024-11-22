@@ -65,6 +65,9 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                                 </span>
                                 <div id="userlist" class="d_none"></div>
                             </div>
+                            <ul class="assigned-list">
+                            ${isEditMode ? assignedTemplate : ''}
+                            </ul>
                         </div>
                             <span id="required-field-big">
                                 <span class="color-red">*</span>This field is required
@@ -287,10 +290,10 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
 }
 
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {
-  return `<label onclick="event.stopPropagation()" for="checkbox${index}" style="display: flex; align-items: center; justify-content: space-between;">
+  return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}" style="display: flex; align-items: center; justify-content: space-between;">
               <div>
-                  <div class="${jobTitle}">${shortcut}</div>
-                  <span>${contacts.name}</span>
+                  <span class="${jobTitle}">${shortcut}</span>
+                  <span data-contact-name>${contacts.name}</span>
               </div>
               <input type="checkbox" id="checkbox${index}"/>
           </label>`;
@@ -376,7 +379,10 @@ function getAssignedTemplate(assignedTo, previewTask) {
     return getAssignedToString(assignedElements);
   }
 
-  return assignedElements?.join('');
+  const assignedTemplates = assignedElements?.join(' ');
+
+  assignedTemplate = assignedTemplates;
+  return assignedTemplates;
 }
 
 function getSubTasksTemplate(subTasks, taskId) {

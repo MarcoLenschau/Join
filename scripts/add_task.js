@@ -20,12 +20,7 @@ async function loadContactsList() {
   for (let index = 0; index < contacts.length; index++) {
     let shortcut = extractTheFirstLetter(contacts[index].name.split(' '));
     let jobTitle = await createJobTitleClass(index);
-    document.getElementById('userlist').innerHTML += getCheckBoxList(
-      index,
-      contacts[index],
-      shortcut,
-      jobTitle,
-    );
+    document.getElementById('userlist').innerHTML += getCheckBoxList(index, contacts[index], shortcut, jobTitle);
   }
 }
 
@@ -105,16 +100,7 @@ function defindeUserObj(state) {
   let assignedTo = assignedToDataExtract();
   let subTasks = getSubtasks();
 
-  return {
-    title,
-    date,
-    prio,
-    category,
-    description,
-    assignedTo,
-    state: state || 'todo',
-    subTasks,
-  };
+  return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks };
 }
 
 function assignedToDataExtract() {
@@ -131,9 +117,7 @@ function assignedToDataExtract() {
 }
 
 function getSubtasks() {
-  const subtaskItems = Array.from(
-    document.querySelector('.subtask-list').children,
-  );
+  const subtaskItems = Array.from(document.querySelector('.subtask-list').children);
 
   return subtaskItems.map((subtaskItem) => {
     const description = subtaskItem.querySelector('input').value;
@@ -157,9 +141,7 @@ function toggleInvalidFields(assignedTo) {
 
   if (!assignedTo.length) {
     userListCtn.classList.add('invalid-input');
-    userListCtn.addEventListener('click', () =>
-      userListCtn.classList.remove('invalid-input'),
-    );
+    userListCtn.addEventListener('click', () => userListCtn.classList.remove('invalid-input'));
   }
 
   addInvalidInput();
@@ -173,9 +155,7 @@ function addInvalidInput() {
   [titleInput, dateInput, categoryInput].forEach((field) => {
     if (!field.value) {
       field.classList.add('invalid-input');
-      field.addEventListener('focus', () =>
-        field.classList.remove('invalid-input'),
-      );
+      field.addEventListener('focus', () => field.classList.remove('invalid-input'));
     }
   });
 }
@@ -192,4 +172,18 @@ function resetTaskValues() {
     const checbox = label.querySelector('input');
     checbox.checked = false;
   });
+}
+
+function toggleAddTaskContact(event) {
+  const contactElement = event.currentTarget;
+  const contactsList = Array.from(document.getElementById('userlist').children);
+
+  contactsList.forEach((contact) => {
+    const isChecked = contact.querySelector('input').checked;
+
+    if (isChecked) return;
+    contactElement.classList.toggle('selected-contact');
+  });
+
+  updateAssignedUsers();
 }

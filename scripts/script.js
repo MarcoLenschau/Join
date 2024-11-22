@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
+const BACKEND_URL = 'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank';
 let allUserCredential = [];
 let currentUser = '';
 
@@ -65,8 +65,12 @@ function checkAssignedUsers(assignedTo) {
   assignedTo?.forEach(({ name }) => {
     userlist.forEach((label) => {
       const checkbox = label.querySelector('input');
-      const userName = label.querySelector('div span').innerHTML;
-      if (userName === name) checkbox.checked = true;
+
+      const userName = label.querySelector('span[data-contact-name]').innerHTML;
+      if (userName === name) {
+        checkbox.checked = true;
+        label.classList.add('selected-contact');
+      }
     });
   });
 }
@@ -329,12 +333,29 @@ function toggleCheckMenu() {
   const arrowDropDown = document.querySelector('.arrow-drop-down');
 
   arrowDropDown.classList.toggle('rotate-180-deg');
+  document.querySelector('.assigned-list').classList.toggle('d_none');
   document.getElementById('userlist').classList.toggle('d_none');
-  document.getElementById('required-field-big').classList.toggle('d_none');
 }
 
 function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
+}
+
+function updateAssignedUsers() {
+  const labels = Array.from(document.getElementById('userlist').children);
+  const assignedList = document.querySelector('.assigned-list');
+  assignedList.innerHTML = '';
+
+  labels.forEach((label) => {
+    const isChecked = label.querySelector('input').checked;
+
+    if (isChecked) {
+      const profileCircle = document.createElement('li');
+      const spanContent = label.querySelector('div span');
+      profileCircle.appendChild(spanContent.cloneNode(true));
+      assignedList.prepend(profileCircle);
+    }
+  });
 }
 
 function firstLetter(string) {

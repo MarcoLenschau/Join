@@ -37,6 +37,10 @@ input[type='checkbox'] {
   width: 15px;
   height: 15px;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 button {
@@ -322,7 +326,7 @@ button {
 }
 
 .selected-contact {
-  background-color: #2a3647;
+  background-color: #2a3647 !important;
   color: #fff;
 }
 
