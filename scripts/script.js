@@ -202,7 +202,7 @@ function emptyContent(content) {
 }
 
 function checkJobAndColor(numberOfContact) {
-  let job = contacts[numberOfContact].role.toLowerCase().split(' ');
+  let job = contacts[numberOfContact]?.role.toLowerCase().split(' ');
   let jobTitle = '';
 
   for (let index = 0; index < job.length; index++) {

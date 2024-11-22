@@ -24,12 +24,13 @@ function renderMoreInformationContent(numberOfContact) {
   renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact);
 }
 
-function moreInfomationOfContact(numberOfContact) {
+function moreInfomationOfContact(numberOfContact, isCreateOrUpdate) {
   // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
   const selectedContactElement = document.querySelector('[data-contact].selected-contact');
 
   // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
-  if (!selectedContactElement) {
+  if (!selectedContactElement && !isCreateOrUpdate) {
+    alert();
     document.getElementById('more-information').innerHTML = '';
     return;
   }
@@ -110,6 +111,7 @@ async function addNewContact(userData) {
 
   sortContacts();
   showContactsData();
+  moreInfomationOfContact(contacts.indexOf(userData), true);
   hideAddContactMenu();
 
   const { name } = await postDataAtBackend(userData, 'contacts');
