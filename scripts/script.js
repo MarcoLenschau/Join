@@ -1,4 +1,5 @@
-const BACKEND_URL = 'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
+const BACKEND_URL =
+  'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
 let allUserCredential = [];
 let currentUser = '';
 
@@ -26,18 +27,29 @@ function addClassToElement(element, aktiveClass) {
 }
 
 async function loadHeader() {
-  document.getElementById('header').innerHTML = await loadTemplateData('../template/header.html');
-  document.getElementById('first-letter-header').innerText = firstLetterBig(localStorage.getItem('currentUser'));
+  document.getElementById('header').innerHTML = await loadTemplateData(
+    '../template/header.html',
+  );
+  document.getElementById('first-letter-header').innerText = firstLetterBig(
+    localStorage.getItem('currentUser'),
+  );
 }
 
 async function loadModal(isEditMode, taskId) {
   const task = tasks.find((task) => task.id === taskId);
   const date = isEditMode ? task?.date.split('/').reverse().join('-') : '';
   const subTasks = isEditMode
-    ? task.subTasks?.map((subTask) => `${getSubTaskItemTemplate(subTask.description)}`).join('') || ''
+    ? task.subTasks
+        ?.map((subTask) => `${getSubTaskItemTemplate(subTask.description)}`)
+        .join('') || ''
     : '';
 
-  document.getElementById('add-task-modal').innerHTML = getAddTaskTemplate(isEditMode, task, date, subTasks);
+  document.getElementById('add-task-modal').innerHTML = getAddTaskTemplate(
+    isEditMode,
+    task,
+    date,
+    subTasks,
+  );
 
   checkThePrioOfTask(2);
 
@@ -53,7 +65,8 @@ async function loadModal(isEditMode, taskId) {
 function loadTaskPreview(taskId) {
   const task = tasks.find((task) => task.id == taskId);
 
-  document.getElementById('add-task-modal').innerHTML = getTaskPreviewTemplate(task);
+  document.getElementById('add-task-modal').innerHTML =
+    getTaskPreviewTemplate(task);
 }
 
 function toggleHeaderMenu() {
@@ -82,7 +95,11 @@ function toggleAddTaskModal(e) {
   const taskPreview = target?.closest('.task-preview');
   const deleteButton = target?.closest('[data-delete-button]');
 
-  if ((isModal && !closeButton) || (taskPreview && !deleteButton && !closeButton)) return;
+  if (
+    (isModal && !closeButton) ||
+    (taskPreview && !deleteButton && !closeButton)
+  )
+    return;
 
   const modal = document.querySelector('.add-task-modal');
   modal.classList.toggle('show-modal');
@@ -120,7 +137,9 @@ function deleteSubTask(event) {
 }
 
 async function deleteTask(taskId, taskState) {
-  const taskElement = Array.from(taskState.children).find((taskElement) => taskElement.dataset.id === taskId);
+  const taskElement = Array.from(taskState.children).find(
+    (taskElement) => taskElement.dataset.id === taskId,
+  );
 
   taskElement?.remove();
   tasks = tasks.filter((task) => task.id !== taskId);
@@ -159,12 +178,13 @@ function firstLetterOfWordBig(str) {
 function addContact(content, numberOfContact) {
   let { contentButton0, contentButton1 } = showTheRightButtonText(content);
   document.getElementById('add-contact-menu').classList.remove('d_none');
-  document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(
-    content,
-    contentButton0,
-    contentButton1,
-    numberOfContact
-  );
+  document.getElementById('add-contact-menu').innerHTML =
+    getAddContactsTemplate(
+      content,
+      contentButton0,
+      contentButton1,
+      numberOfContact,
+    );
   if (numberOfContact != null) {
     document.getElementById('name').value = contacts[numberOfContact].name;
     document.getElementById('email').value = contacts[numberOfContact].email;
@@ -324,7 +344,6 @@ async function updateTask(taskId) {
   const newTask = tasks.find((task) => task.id === taskId);
 
   displayTasks();
-
   await updateDataAtBackend(taskId, 'tasks', newTask);
 }
 

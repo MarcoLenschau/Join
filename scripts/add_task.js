@@ -74,41 +74,25 @@ function clearFields() {
   mediumPrio();
 }
 
-/**
- *
- *  The function check if all data input and create a new task.
- *
- */
-
-function createNewTask() {
-  allDataAreCorrect();
-}
-
-/**
- *
- *  The function run when all data is correct.
- *
- */
-
-async function allDataAreCorrect() {
+async function createNewTask() {
   let taskObj = defindeUserObj();
-
   if (!isValidTaskInputs(taskObj.assignedTo)) return;
 
   const { name } = await postDataAtBackend(taskObj, 'tasks');
   tasks = [...tasks, { ...taskObj, id: name }];
   displayTasks();
+  handleTaskCreatedMessage();
+}
 
-  const taskCreatedMessageElement = document.querySelector(
-    '.task-created-message',
-  );
-  taskCreatedMessageElement.classList.add('show-task-created-message');
+function handleTaskCreatedMessage() {
+  const taskCreatedMessage = document.querySelector('.task-created-message');
+  taskCreatedMessage.classList.add('show-task-created-message');
 
   resetTaskValues();
   toggleCheckMenu();
   toggleEmptyMessage();
   setTimeout(() => {
-    taskCreatedMessageElement.classList.remove('show-task-created-message');
+    taskCreatedMessage.classList.remove('show-task-created-message');
   }, 1500);
 }
 
@@ -121,7 +105,7 @@ function defindeUserObj(state) {
   let assignedTo = assignedToDataExtract();
   let subTasks = getSubtasks();
 
-  let taskObj = {
+  return {
     title,
     date,
     prio,
@@ -131,8 +115,6 @@ function defindeUserObj(state) {
     state: state || 'todo',
     subTasks,
   };
-
-  return taskObj;
 }
 
 function assignedToDataExtract() {
@@ -155,7 +137,6 @@ function getSubtasks() {
 
   return subtaskItems.map((subtaskItem) => {
     const description = subtaskItem.querySelector('input').value;
-
     return { description, done: false };
   });
 }
@@ -172,9 +153,6 @@ function isValidTaskInputs(assignedTo) {
 }
 
 function toggleInvalidFields(assignedTo) {
-  const titleInput = document.getElementById('title');
-  const dateInput = document.getElementById('date');
-  const categoryInput = document.getElementById('category');
   const userListCtn = document.querySelector('.userlist-ctn');
 
   if (!assignedTo.length) {
@@ -183,6 +161,14 @@ function toggleInvalidFields(assignedTo) {
       userListCtn.classList.remove('invalid-input'),
     );
   }
+
+  addInvalidInput();
+}
+
+function addInvalidInput() {
+  const titleInput = document.getElementById('title');
+  const dateInput = document.getElementById('date');
+  const categoryInput = document.getElementById('category');
 
   [titleInput, dateInput, categoryInput].forEach((field) => {
     if (!field.value) {

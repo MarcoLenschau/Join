@@ -16,32 +16,20 @@ function showWhichSiteIsAktiv() {
   addClassToElement('board', 'no-active');
   addClassToElement('contacts', 'active');
 }
-console.log(contacts);
 
 function renderMoreInformationContent(numberOfContact) {
   // Den Kontakt anhand der numberOfContact-ID suchen
-  const contactNameElement = document.getElementById(
-    'contact-name-' + numberOfContact,
-  );
-  const contactEmailElement = document.getElementById(
-    'contact-email-' + numberOfContact,
-  );
+  const contactNameElement = document.getElementById('contact-name-' + numberOfContact);
+  const contactEmailElement = document.getElementById('contact-email-' + numberOfContact);
   const jobTitle = checkJobAndColor(numberOfContact);
 
   renderInfoContainer(numberOfContact);
-  renderInfoContent(
-    contactNameElement,
-    contactEmailElement,
-    jobTitle,
-    numberOfContact,
-  );
+  renderInfoContent(contactNameElement, contactEmailElement, jobTitle, numberOfContact);
 }
 
 function moreInfomationOfContact(numberOfContact) {
   // Durchlaufe alle Kontakte und überprüfe, ob einer die Klasse 'selected-contact' hat
-  const selectedContactElement = document.querySelector(
-    '[data-contact].selected-contact',
-  );
+  const selectedContactElement = document.querySelector('[data-contact].selected-contact');
 
   // Wenn kein Kontakt mit der Klasse 'selected-contact' gefunden wurde, setze 'more-information' zurück
   if (!selectedContactElement) {
@@ -57,15 +45,11 @@ function renderInfoContainer(numberOfContact) {
   infoDiv.innerHTML = getMoreInfomationTemplate(numberOfContact);
 }
 
-function renderInfoContent(
-  contactNameElement,
-  contactEmailElement,
-  jobTitle,
-  numberOfContact,
-) {
+function renderInfoContent(...elements) {
+  const [contactNameElement, contactEmailElement, jobTitle, numberOfContact] = elements;
+
   // Extrahiere die ersten Buchstaben des Kontaktnamens und zeige sie an
-  document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML =
-    extractTheFirstLetter(contactNameElement.innerText.split(' '));
+  document.getElementById(`first-big-letter-${numberOfContact}`).innerHTML = extractTheFirstLetter(contactNameElement.innerText.split(' '));
   addClassToElement(`first-big-letter-${numberOfContact}`, jobTitle); // Fügt den Jobtitle hinzu
   contactNameElement.innerHTML = contacts[numberOfContact].name; // Name aktualisieren
   contactEmailElement.innerHTML = contacts[numberOfContact].email; // E-Mail aktualisieren
@@ -95,16 +79,21 @@ async function saveAndCreate(event, content, numberOfContact) {
     addNewContact(defineNewContact());
     organizeContacts();
   } else {
-    const contact = contacts[numberOfContact];
-    const id = contact.id;
-    saveContact(numberOfContact);
-    sortContacts();
-    showContactsData();
-    moreInfomationOfContact(numberOfContact, true);
-    organizeContacts();
-    await updateDataAtBackend(id, 'contacts', { ...contact, id: undefined });
+    await updateContact(numberOfContact);
   }
+
   renderContacts(true);
+}
+
+async function updateContact(numberOfContact) {
+  const contact = contacts[numberOfContact];
+  const { id } = contact;
+  saveContact(numberOfContact);
+  sortContacts();
+  showContactsData();
+  moreInfomationOfContact(numberOfContact, true);
+  organizeContacts();
+  await updateDataAtBackend(id, 'contacts', { ...contact, id: undefined });
 }
 
 function defineNewContact() {
@@ -152,18 +141,14 @@ function deleteAndCancel(content) {
   }
 }
 
-// kürzen
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
 
   listContactsElement.innerHTML = ''; // Alle Kontakte löschen
-
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
-    let divGroup = document.querySelector(
-      `[data-firstletter="${firstLetter}"]`,
-    );
+    let divGroup = document.querySelector(`[data-firstletter="${firstLetter}"]`);
 
     if (!divGroup) {
       divGroup = document.createElement('div');

@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Contacts</title>
-    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../assets/img/logo-white.png"
+      type="image/x-icon"
+    />
 
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/style.css" />
@@ -15,7 +19,10 @@
 
     <link rel="stylesheet" href="../styles/pages/pages_css/contacts.css" />
     <link rel="stylesheet" href="../styles/media_query.css" />
-    <link rel="stylesheet" href="../styles/pages/pages_css_queries/contacts_queries.css" />
+    <link
+      rel="stylesheet"
+      href="../styles/pages/pages_css_queries/contacts_queries.css"
+    />
 
     <script src="../scripts/db.js"></script>
     <script src="../scripts/contact.js"></script>
@@ -25,15 +32,21 @@
 
   <body onload="loadContact()">
     <aside id="sidebar" class="sidebar"></aside>
- 
+
     <main class="app-main">
       <header id="header" class="header"></header>
 
       <div class="container">
         <div class="d_flex g_12">
-          <div id="list-of-contacts" class="d_flex_column list-of-contacts bg-white">
+          <div
+            id="list-of-contacts"
+            class="d_flex_column list-of-contacts bg-white"
+          >
             <div class="d_flex_c_c add-contact-div" style="margin: 24px">
-              <button onclick="addContact('Add', null);" class="w-100 bg-blue add-contact">
+              <button
+                onclick="addContact('Add', null);"
+                class="w-100 bg-blue add-contact"
+              >
                 Add contact
               </button>
               <img
@@ -56,7 +69,9 @@
               </button>
               <h1 id="prime_title">Contacts</h1>
               <div class="contact-separator"></div>
-              <h2 id="second_title" class="d_flex_c_c" style="height: 48px">Better with a team</h2>
+              <h2 id="second_title" class="d_flex_c_c" style="height: 48px">
+                Better with a team
+              </h2>
               <div class="responsive-separator"></div>
             </div>
             <div id="more-information"></div>
