@@ -16,9 +16,38 @@
   background-color: white;
   margin: 0;
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 1;
 }
+
+
+
+/* Scrollbar-Styling für Webkit-Browser */
+#list-of-contacts::-webkit-scrollbar {
+  width: 12px; /* Breite der Scrollbar */
+  
+}
+
+#list-of-contacts::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1; /* Farbe der Scrollbalken */
+  border-radius: 10px; /* Abgerundete Ecken */
+}
+
+#list-of-contacts::-webkit-scrollbar-thumb:hover {
+  background-color: #2a3647; /* Etwas dunkler beim Hover */
+}
+
+#list-of-contacts::-webkit-scrollbar-track {
+  background-color: rgb(246, 247, 248); /* Hintergrund der Schiene */
+}
+
+#list-of-contacts::-webkit-scrollbar-button {
+  display: none; /* Entferne die Pfeile */
+}
+
+
+
 
 .center-contacts > a:hover {
   cursor: pointer;
