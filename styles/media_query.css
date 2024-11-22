@@ -238,10 +238,6 @@
     right: 5%;
   }
 
-  .delete-and-edit {
-    display: none !important;
-  }
-
   .container {
     width: 100%;
   }
@@ -308,6 +304,9 @@
       font-size: 24px !important;
       max-width: 300px;
     }
+  }
+  .delete-and-edit {
+    display: none !important;
   }
 
   .list-of-contacts {
