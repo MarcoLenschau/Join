@@ -1,5 +1,4 @@
-const BACKEND_URL =
-  'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
+const BACKEND_URL = 'https://join-mb-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
 let allUserCredential = [];
 let currentUser = '';
 
@@ -27,30 +26,18 @@ function addClassToElement(element, aktiveClass) {
 }
 
 async function loadHeader() {
-  document.getElementById('header').innerHTML = await loadTemplateData(
-    '../template/header.html',
-  );
-  document.getElementById('first-letter-header').innerText = firstLetterBig(
-    localStorage.getItem('currentUser'),
-  );
+  document.getElementById('header').innerHTML = await loadTemplateData('../template/header.html');
+  document.getElementById('first-letter-header').innerText = firstLetterBig(localStorage.getItem('currentUser'));
 }
 
 async function loadModal(isEditMode, taskId) {
   const task = tasks.find((task) => task.id === taskId);
   const date = isEditMode ? task?.date.split('/').reverse().join('-') : '';
   const subTasks = isEditMode
-    ? task.subTasks
-        ?.map((subTask) => `${getSubTaskItemTemplate(subTask.description)}`)
-        .join('') || ''
+    ? task.subTasks?.map((subTask) => `${getSubTaskItemTemplate(subTask.description)}`).join('') || ''
     : '';
 
-  document.getElementById('add-task-modal').innerHTML = getAddTaskTemplate(
-    isEditMode,
-    task,
-    date,
-    subTasks,
-  );
-
+  document.getElementById('add-task-modal').innerHTML = getAddTaskTemplate(isEditMode, task, date, subTasks);
   checkThePrioOfTask(2);
 
   if (task?.prio === 'high') checkThePrioOfTask(1);
@@ -58,15 +45,13 @@ async function loadModal(isEditMode, taskId) {
   if (task?.prio === 'low') checkThePrioOfTask(3);
 
   await loadContactsList();
-
   if (isEditMode) checkAssignedUsers(task?.assignedTo);
 }
 
 function loadTaskPreview(taskId) {
   const task = tasks.find((task) => task.id == taskId);
 
-  document.getElementById('add-task-modal').innerHTML =
-    getTaskPreviewTemplate(task);
+  document.getElementById('add-task-modal').innerHTML = getTaskPreviewTemplate(task);
 }
 
 function toggleHeaderMenu() {
@@ -95,11 +80,7 @@ function toggleAddTaskModal(e) {
   const taskPreview = target?.closest('.task-preview');
   const deleteButton = target?.closest('[data-delete-button]');
 
-  if (
-    (isModal && !closeButton) ||
-    (taskPreview && !deleteButton && !closeButton)
-  )
-    return;
+  if ((isModal && !closeButton) || (taskPreview && !deleteButton && !closeButton)) return;
 
   const modal = document.querySelector('.add-task-modal');
   modal.classList.toggle('show-modal');
@@ -137,9 +118,7 @@ function deleteSubTask(event) {
 }
 
 async function deleteTask(taskId, taskState) {
-  const taskElement = Array.from(taskState.children).find(
-    (taskElement) => taskElement.dataset.id === taskId,
-  );
+  const taskElement = Array.from(taskState.children).find((taskElement) => taskElement.dataset.id === taskId);
 
   taskElement?.remove();
   tasks = tasks.filter((task) => task.id !== taskId);
@@ -177,14 +156,11 @@ function firstLetterOfWordBig(str) {
 
 function addContact(content, numberOfContact) {
   let { contentButton0, contentButton1 } = showTheRightButtonText(content);
+  const elements = [content, contentButton0, contentButton1, numberOfContact];
+
   document.getElementById('add-contact-menu').classList.remove('d_none');
-  document.getElementById('add-contact-menu').innerHTML =
-    getAddContactsTemplate(
-      content,
-      contentButton0,
-      contentButton1,
-      numberOfContact,
-    );
+
+  document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(...elements);
   if (numberOfContact != null) {
     document.getElementById('name').value = contacts[numberOfContact].name;
     document.getElementById('email').value = contacts[numberOfContact].email;
@@ -195,6 +171,7 @@ function addContact(content, numberOfContact) {
 function showTheRightButtonText(content) {
   let contentButton0,
     contentButton1 = '';
+
   if (content === 'Edit') {
     contentButton0 = 'Cancel';
     contentButton1 = 'Save';
@@ -202,6 +179,7 @@ function showTheRightButtonText(content) {
     contentButton0 = 'Cancel';
     contentButton1 = `<span>Create contact</span> <img src="../assets/icon/check-light.png"/>`;
   }
+
   return { contentButton0, contentButton1 };
 }
 
@@ -222,54 +200,13 @@ function emptyContent(content) {
 function checkJobAndColor(numberOfContact) {
   let job = contacts[numberOfContact].role.toLowerCase().split(' ');
   let jobTitle = '';
+
   for (let index = 0; index < job.length; index++) {
     jobTitle += job[index];
   }
+
   addClassToElement('first-letter-' + numberOfContact, jobTitle);
   return jobTitle;
-}
-
-async function checkAllUserCredential() {
-  allUserCredential = [];
-  try {
-    for (let index = 0; index < 20; index++) {
-      await pullDataFromBackend(index);
-    }
-  } catch (error) {}
-}
-
-async function pullDataFromBackend(index) {
-  let respone = await fetch(`${BACKEND_URL}/users/.json`);
-  let responeData = await respone.json();
-  checkIfLoginDataCorrect(responeData);
-}
-
-function checkIfLoginDataCorrect({ email, password }) {
-  let mailInput = document.getElementById('email').value;
-  let pwInput = document.getElementById('password').value;
-  if (email === mailInput) {
-    if (password == pwInput) {
-      rightUserData(email);
-    }
-  }
-}
-
-function rightUserData(email) {
-  localStorage.setItem('currentUser', email);
-  window.location.href = '../pages/summary.html';
-}
-
-function defineUserData() {
-  let passwordConfirm = document.getElementById('passwordConfirm').value;
-  let checkBox = document.getElementById('checkBox').checked;
-  let userObj = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    password: document.getElementById('password').value,
-  };
-  if (checkBox && userObj.password === passwordConfirm) {
-    postDataAtBackend(userObj, 'user');
-  }
 }
 
 /**
@@ -321,10 +258,6 @@ function showLoadAnimation() {
 function guestLogin() {
   localStorage.setItem('currentUser', 'Guest');
   window.location.href = '../pages/summary.html';
-}
-
-function firstLetter(string) {
-  if (string) return string[0];
 }
 
 function toggleSignupError(errorMessage, method) {
@@ -382,10 +315,6 @@ async function updateTaskFields(taskId) {
   await updateDataAtBackend(taskId, 'tasks', newTask);
 }
 
-function firstLetterBig(str) {
-  if (str) return str[0].toUpperCase();
-}
-
 async function loadFromBackend(path) {
   let response = await fetch(`${BACKEND_URL}/${path}.json`);
   let responeData = await response.json();
@@ -406,4 +335,24 @@ function toggleCheckMenu() {
 
 function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
+}
+
+function firstLetter(string) {
+  if (string) return string[0];
+}
+
+function firstLetterBig(str) {
+  if (str) return str[0].toUpperCase();
+}
+
+function getRoleString(role) {
+  return role.toLowerCase().split(' ').join('');
+}
+
+function getAssignedToString(assignedElements) {
+  return `${assignedElements?.slice(0, 4).join('')}+${assignedElements.length - 4}`;
+}
+
+function getInitialsName(name) {
+  return `${name?.charAt(0)}${name?.split(' ')[1]?.charAt(0) || ''}`;
 }

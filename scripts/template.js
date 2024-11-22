@@ -41,9 +41,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
-                    <h1 style="margin-bottom: 12px;" class=" ${
-                      isEditMode ? 'd_none' : ''
-                    }">Add Task</h1>
+                    <h1 style="margin-bottom: 12px;" class=" ${isEditMode ? 'd_none' : ''}">Add Task</h1>
                     <div>
                         <div class="flex">
                             <span>Title<span class="color-red">*</span></span>
@@ -74,55 +72,59 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                     </div>
                 </div>
                 <div class="separator separator-max"></div>
-                <div class="media-w-300" style="margin: 46px 10px;">
-                    <div class="flex">
-                        <span>Due date<span class="color-red">*</span></span>
-                        <input id="date" type="date" value="${date}" class="input-task" required />
-                    </div>
-                    <div class="flex">
-                        <span>Prio</span>
-                        <div class="d_flex">
-                            <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
-                                <div class="d_flex_column">
-                                    <img id="urgent0" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
-                                    <img id="urgent1" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
-                                </div>
-                            </button>
+                ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}
+    `;
+}
 
-                            <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);">
-                              Medium
-                              <div class="d_flex_column">
-                                <img
-                                  id="medium0"
-                                  src="../assets/img/medium-white.svg"
-                                  alt="medium"
-                                  class="prio-button-image"
-                                />
-                                <img
-                                  id="medium1"
-                                  src="../assets/img/medium-white.svg"
-                                  alt="medium"
-                                  class="prio-button-image"
-                                />
-                              </div>
-                            </button>
+function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
+  return `
+    <div class="media-w-300" style="margin: 46px 10px;">
+                    <div class="flex">
+             <span>Due date<span class="color-red">*</span></span>
+             <input id="date" type="date" value="${date}" class="input-task" required />
+         </div>
+         <div class="flex">
+             <span>Prio</span>
+             <div class="d_flex">
+                 <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
+                     <div class="d_flex_column">
+                         <img id="urgent0" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
+                         <img id="urgent1" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
+                     </div>
+                 </button>
 
-                            <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);">
-                              Low
-                              <div class="d_flex_column">
-                                <img id="low0" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
-                                <img id="low1" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
-                              </div>
-                            </button>
-                          </div>
+                 <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);">
+                   Medium
+                   <div class="d_flex_column">
+                     <img
+                       id="medium0"
+                       src="../assets/img/medium-white.svg"
+                       alt="medium"
+                       class="prio-button-image"
+                     />
+                     <img
+                       id="medium1"
+                       src="../assets/img/medium-white.svg"
+                       alt="medium"
+                       class="prio-button-image"
+                     />
+                   </div>
+                 </button>
+
+                 <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);">
+                   Low
+                   <div class="d_flex_column">
+                     <img id="low0" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
+                     <img id="low1" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
+                   </div>
+                 </button>
+               </div>
                         </div>
           <div class="flex">
             <span>Category<span class="color-red">*</span></span>
             <select id="category" class="h-34 input-field">
            <option value="" selected disabled>Select task category</option>
-          <option ${
-            task?.category === 'User Story' ? 'selected' : ''
-          } value="User Story">User Story</option>
+          <option ${task?.category === 'User Story' ? 'selected' : ''} value="User Story">User Story</option>
            <option ${
              task?.category === 'Technical Task' ? 'selected' : ''
            } value="Technical Task">Technical Task</option>
@@ -142,12 +144,8 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                   isEditMode ? 'd_none' : ''
                 }" style="color: black" formnovalidate> Clear X</button>
                 <button onclick="${
-                  isEditMode
-                    ? `updateTaskFields('${task.id}')`
-                    : ' createNewTask();'
-                }" class="primary-button clear-and-create-button"> ${
-                  isEditMode ? 'Ok' : ' Create Task'
-                }
+                  isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
+                }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
                     <img src="../assets/img/check.svg" alt="check" />
                 </button>
             </div>
@@ -159,7 +157,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
        <img src="../assets/icon/close.png"  alt="close icon"/>
       </button>
       </div>
-    `;
+  `;
 }
 
 function getContactsTemplate(index) {
@@ -167,9 +165,7 @@ function getContactsTemplate(index) {
   const name = contact.name;
   return `  <span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${
-             name.split(' ')[1]?.at(0) || ''
-           }</span>
+           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
                 <div class="center-contacts">
                     <span id="contact-name-${index}">${name}</span>
                     <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
@@ -242,12 +238,7 @@ function getSubTaskItemTemplate(description) {
   `;
 }
 
-function getAddContactsTemplate(
-  content,
-  contentButton0,
-  contentButton1,
-  numberOfContact,
-) {
+function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -319,9 +310,7 @@ function getTaskPreviewTemplate(task) {
         <span>Due: <span>${task.date}</span></span>
         <span
           >Priority:
-          <span> ${task.prio} <img src="../assets/icon/prio-${
-            task.prio
-          }-transparent.png" alt="priority icon" /></span
+          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span
         ></span>
         <span>Assigned To:</span>
         <ul>
@@ -378,17 +367,13 @@ function getTaskTemplate(task, doneSubTasksLength) {
 
 function getAssignedTemplate(assignedTo, previewTask) {
   const assignedElements = assignedTo?.map(({ name, role }) => {
-    const initials = `${name?.charAt(0)}${name?.split(' ')[1]?.charAt(0) || ''}`;
-
-    const elements = `<span class="${role.toLowerCase().split(' ').join('')}">${initials}</span> ${
-      previewTask ? `<span>${name}</span>` : ''
-    }`;
+    const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
 
     return previewTask ? `<li>${elements}</li>` : elements;
   });
 
   if (!previewTask && assignedElements.length > 4) {
-    return `${assignedElements?.slice(0, 4).join('')}...`;
+    return getAssignedToString(assignedElements);
   }
 
   return assignedElements?.join('');
@@ -401,9 +386,7 @@ function getSubTasksTemplate(subTasks, taskId) {
     .map(({ description, done }) => {
       return `
       <li>
-        <input type="checkbox" ${
-          done ? 'checked' : ''
-        }  onchange="updateCheckbox(event, '${taskId}')"/>
+        <input type="checkbox" ${done ? 'checked' : ''}  onchange="updateCheckbox(event, '${taskId}')"/>
         <span>${description}</span>
       </li>
     `;

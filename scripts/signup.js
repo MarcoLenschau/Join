@@ -3,11 +3,16 @@ async function handleRegisterNewUser(event) {
   toggleLoadingSpinner('add');
 
   const { name, email, password, confirmPassword } = getFieldValues();
+
   if (password !== confirmPassword) {
     toggleLoadingSpinner('remove');
     return toggleSignupError('Confirmation code is invalid', 'add');
   }
 
+  await checkExistingUser(name, email, password);
+}
+
+async function checkExistingUser(name, email, password) {
   const users = Object.values(await loadFromBackend('users'));
   const existingUserName = users.find((user) => user.name === name);
   const existingUserEmail = users.find((user) => user.email === email);
