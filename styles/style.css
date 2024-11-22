@@ -138,6 +138,7 @@ a {
 
   a {
     color: #cdcdcd;
+    transition: all 0.2s;
 
     &:hover {
       color: #29abe2;
@@ -385,6 +386,7 @@ a {
   justify-content: center;
   align-items: center;
   transform: translateX(-35px);
+  transition: all 0.2s;
 
   &:hover {
     background-color: rgba(205, 205, 205, 0.3);
@@ -404,6 +406,7 @@ a {
     position: relative;
     display: flex;
     align-items: center;
+    transition: all 0.2s;
 
     &:hover {
       background-color: rgba(205, 205, 205, 0.3);
@@ -439,6 +442,7 @@ a {
 
       img {
         width: 17px;
+        transition: all 0.2s;
 
         &:hover {
           transform: translateY(2px);
@@ -492,6 +496,7 @@ a {
     padding: 8px 16px;
     border-radius: 12px;
     margin-top: 6px;
+    transition: all 0.2s;
 
     &:hover {
       background-color: rgb(209, 209, 209, 0.3);

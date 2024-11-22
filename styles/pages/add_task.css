@@ -69,6 +69,7 @@ main {
   border: none;
   font-size: 18px;
   cursor: pointer;
+  transform: all 0.2s;
 }
 
 .prio-button-image {

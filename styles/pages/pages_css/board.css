@@ -87,6 +87,7 @@
       img {
         transition: all 0.2s;
         cursor: pointer;
+        transition: all 0.2s;
 
         &:hover {
           scale: 1.08;
@@ -316,6 +317,15 @@
         column-gap: 8px;
         cursor: pointer;
         font-size: 16px;
+        transition: all 0.2s;
+
+        &:hover {
+          color: var(--color-light-blue);
+
+          & img {
+            scale: 1.1;
+          }
+        }
 
         img {
           width: 18px;
@@ -341,6 +351,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 
   &:hover {
     background-color: #e7e7e7;

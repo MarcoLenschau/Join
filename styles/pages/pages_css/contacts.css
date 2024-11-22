@@ -200,8 +200,23 @@
   transform: translateY(5px);
   transition: scale 0.2s;
   display: none;
+  transition: all 0.2s;
 
   &:hover {
     scale: 1.1;
+  }
+}
+
+.delete-and-edit {
+  &:hover {
+    & span {
+      transition: all 0.1s;
+      color: var(--color-light-blue);
+    }
+
+    & img {
+      transition: all 0.1s;
+      scale: 1.05;
+    }
   }
 }
