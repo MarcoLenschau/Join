@@ -17,5 +17,9 @@ body {
 .back-button-link {
   position: absolute;
   margin: 80px 18px;
-  transform: translateX(50px);
+  transform: translate(30px, -20px);
+}
+
+.singup-main{
+  margin: 0 12px;
 }

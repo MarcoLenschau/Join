@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Contacts</title>
-    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
-
+    <link rel="icon" href="../assets/img/logo-white.png">
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/flexbox.css" />
@@ -18,6 +17,7 @@
     <link rel="stylesheet" href="../styles/pages/pages_css_queries/contacts_queries.css" />
 
     <script src="../scripts/db.js"></script>
+    <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/contact.js"></script>
     <script src="../scripts/template.js"></script>
     <script src="../scripts/script.js"></script>
@@ -26,7 +26,7 @@
   <body onload="loadContact()">
     <aside id="sidebar" class="sidebar"></aside>
 
-    <main class="app-main">
+    <main class="app-main contact-main">
       <header id="header" class="header"></header>
 
       <div class="container">
@@ -44,7 +44,7 @@
 
             <div class="contacts-list"></div>
           </div>
-          <div id="big-content" class="d_flex_column big-content">
+          <div id="big-content" class="d_flex_column big-content" onclick="closeSmallMenu(event);">
             <div class="d_flex title-of-contacts">
               <button class="toggle-contact-menu" onclick="toggleContactMenu('remove'); toggleContactSelect(event)">
                 <img src="../assets/img/back.svg" />

@@ -19,14 +19,12 @@
   overflow-y: scroll;
   overflow-x: hidden;
   z-index: 1;
+  padding-bottom: 150px;
 }
-
-
 
 /* Scrollbar-Styling für Webkit-Browser */
 #list-of-contacts::-webkit-scrollbar {
   width: 12px; /* Breite der Scrollbar */
-  
 }
 
 #list-of-contacts::-webkit-scrollbar-thumb {
@@ -46,9 +44,6 @@
   display: none; /* Entferne die Pfeile */
 }
 
-
-
-
 .center-contacts > a:hover {
   cursor: pointer;
 }
@@ -66,8 +61,12 @@
   background-color: rgba(0, 0, 255, 0.5);
 }
 
-.more-button-div:hover {
-  cursor: pointer;
+.more-button-div {
+  justify-content: flex-end;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .input-field_contacts {
@@ -79,6 +78,16 @@
   margin-top: 56px;
   z-index: 10;
   transition: all 0.2s ease-in-out;
+  overflow-y:  scroll;
+  margin-left: 24px;
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+
+  & [data-contact-name]{
+    font-size: 34px;
+  }
 }
 
 .title-of-contacts {
@@ -206,6 +215,14 @@
 
 #more-information {
   max-width: 500px;
+
+  .contact-email-info{
+    margin-top: 40px;
+  }
+
+  .big-letter-ctn{
+    padding: 85px 25px;
+  }
 }
 
 .contacts-div {
@@ -216,6 +233,7 @@
   border-radius: 10px;
   opacity: 0px;
   margin-top: 12px;
+  user-select: none;
 
   &:hover {
     background-color: rgb(209, 209, 209, 0.3);
@@ -268,4 +286,13 @@
   visibility: hidden;
   pointer-events: none;
   transition: all 0.2s ease-in-out;
+}
+
+.contact-main{
+  padding-bottom: 100px !important;
+  overflow: hidden !important;
+}
+
+.contacts-list{
+  height: fit-content;
 }

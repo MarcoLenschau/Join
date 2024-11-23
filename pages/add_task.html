@@ -4,14 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Add Task</title>
-    <link
-      rel="shortcut icon"
-      href="../assets/img/logo-white.png"
-      type="image/x-icon"
-    />
-
+    <link rel="icon" href="../assets/img/logo-white.png">
     <link rel="stylesheet" href="../styles/fonts.css" />
-
     <link rel="stylesheet" href="../styles/job_title.css" />
     <link rel="stylesheet" href="../styles/flexbox.css" />
     <link rel="stylesheet" href="../styles/base.css" />
@@ -19,18 +13,11 @@
     <link rel="stylesheet" href="../styles/color.css" />
 
     <link rel="stylesheet" href="../styles/pages/pages_css/add_task.css" />
-    <link
-      rel="stylesheet"
-      href="../styles/pages/pages_css_queries/add_task_queries.css"
-    />
     <link rel="stylesheet" href="../styles/pages/pages_css/board.css" />
-    <link
-      rel="stylesheet"
-      href="../styles/pages/pages_css_queries/board_queries.css"
-    />
     <link rel="stylesheet" href="../styles/media_query.css" />
 
     <script src="../scripts/db.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/template.js" defer></script>
     <script src="../scripts/priority.js" defer></script>
     <script src="../scripts/script.js" defer></script>
@@ -38,7 +25,7 @@
     <script src="../scripts/add_task.js" defer></script>
   </head>
 
-  <body onload="loadTask();" class="d_flex">
+  <body onload="loadTask();" onclick="closeAssignList(event)" class="d_flex">
     <aside id="sidebar" class="sidebar"></aside>
 
     <main class="app-main" style="color: black">

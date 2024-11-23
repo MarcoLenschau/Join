@@ -89,6 +89,10 @@ main {
   padding: 12px;
 }
 
+.select-text{
+  margin: 0 !important;
+}
+
 #description {
   border: 1px solid #d1d1d1;
   resize: vertical;
@@ -161,4 +165,8 @@ main {
       display: none;
     }
   }
+}
+
+.add-task-right-form{
+  margin: 46px 10px;
 }

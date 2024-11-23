@@ -45,7 +45,6 @@ body {
 .formDiv {
   max-width: 400px;
   width: 400px;
-  margin: 24px 32px;
 
   img {
     width: 16px;
@@ -61,6 +60,8 @@ body {
   padding-top: 24px;
   align-items: center;
   gap: 14px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #checkboxContainer {
@@ -120,15 +121,6 @@ body {
   animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
 }
 
-.loader-image {
-  width: 274px;
-  height: 334px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: logoTransition 2s ease forwards;
-}
 
 @keyframes backgroundTransition {
   0% {
@@ -182,4 +174,16 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.auth-header{
+  height: fit-content !important;
+  margin-top: 16px;
+}
+
+.auth-main{
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
 }

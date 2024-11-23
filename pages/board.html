@@ -4,18 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Board</title>
-    <link rel="shortcut icon" href="../assets/img/logo-white.png" type="image/x-icon" />
-
+    <link rel="icon" href="../assets/img/logo-white.png">
     <link rel="stylesheet" href="../styles/fonts.css" />
-
     <link rel="shortcut icon" href="./assets/icon/icon.svg" type="image/x-icon" />
 
     <link rel="stylesheet" href="../styles/pages/pages_css/add_task.css" />
-    <link rel="stylesheet" href="../styles/pages/pages_css_queries/add_task_queries.css" />
     <link rel="stylesheet" href="../styles/pages/pages_css/board.css" />
-    <link rel="stylesheet" href="../styles/pages/pages_css_queries/board_queries.css" />
 
     <script src="../scripts/db.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/template.js" defer></script>
     <script src="../scripts/board.js" defer></script>
     <script src="../scripts/script.js" defer></script>
@@ -30,13 +27,13 @@
     <link rel="stylesheet" href="../styles/media_query.css" />
   </head>
 
-  <body class="body" onload="loadBoard();">
+  <body class="body" onload="loadBoard();" onclick="closeStatePopup(event);">
     <aside id="sidebar" class="sidebar"></aside>
 
     <main class="app-main">
       <header id="header" class="header"></header>
 
-      <div class="container">
+      <div class="container board-container">
         <div class="board-head">
           <h1>Board</h1>
           <div>
@@ -133,8 +130,18 @@
         </div>
       </div>
     </main>
+    <div class="drag-task-popup">
+      <img class="state-close-icon" onclick="toggleStatePopup(event);" src="../assets/icon/close.png" alt="close icon" />
+      <h2>Select task state</h2>
+      <div>
+        <button onclick="handleStateSelect('todo');" class="bg-blue">TODO</button>
+        <button onclick="handleStateSelect('progress');" class="bg-turquoise">IN PROGRESS</button>
+        <button onclick="handleStateSelect('await');" class="bg-orange">AWAIT FEEDBACK</button>
+        <button onclick="handleStateSelect('done');" class="bg-violet-light-2">DONE</button>
+      </div>
+    </div>
 
-    <dialog onclick="toggleAddTaskModal(event);" id="add-task-modal" class="add-task-modal"></dialog>
+    <dialog onclick="toggleAddTaskModal(event); closeAssignList(event);" id="add-task-modal" class="add-task-modal"></dialog>
     <span class="task-created-message">Task added to board</span>
   </body>
 </html>

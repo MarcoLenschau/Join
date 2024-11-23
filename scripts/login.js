@@ -1,44 +1,50 @@
 const loader = document.getElementById('loader');
 const loginLogo = document.getElementById('loginLogo');
 
+/**
+ * Loads and displays the loading screen based on the user's device screen width (mobile or desktop).
+ * 
+ * If the screen width is less than or equal to 600px, it displays a mobile loading screen.
+ * Otherwise, it shows a desktop loading screen. It also starts the loading animation.
+ * 
+ * @returns {void} This function does not return any value.
+ */
 function Loadingscreen() {
   if (window.innerWidth <= 600) {
     loader.innerHTML = getLoadingscreenMobile();
   } else {
     loader.innerHTML = getLoadingscreenDesktop();
   }
-
-  startAnimation();
 }
 
+/**
+ * Returns the HTML structure for the mobile loading screen, including a logo image.
+ * 
+ * @returns {string} The HTML string for the mobile loading screen.
+ */
 function getLoadingscreenMobile() {
   return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image" />
+    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
   `;
 }
 
+/**
+ * Returns the HTML structure for the desktop loading screen, including a logo image.
+ * 
+ * @returns {string} The HTML string for the desktop loading screen.
+ */
 function getLoadingscreenDesktop() {
   return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image" />
+    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
   `;
 }
 
-function startAnimation() {
-  // Verzögerung anwenden und Animation starten
-  setTimeout(() => {
-    // loader.classList.add('start-animation');
-  }, 2000);
-
-  // Inhalt anzeigen und Loader ausblenden, wenn die gesamte Animation abgeschlossen ist
-  loader.addEventListener('animationend', (event) => {
-    // Überprüfen, ob das loader-Element die Animation abgeschlossen hat
-    if (event.target === loader) {
-      // loader.style.display = 'none'; // Versteckt den Loader
-      // loginLogo.style.display = 'flex'; // Zeigt den Inhalt an
-    }
-  });
-}
-
+/**
+ * Handles user login by validating email and password.
+ * Redirects to the summary page on successful login.
+ * 
+ * @param {Event} event - The form submit event.
+ */
 async function handleLogin(event) {
   event.preventDefault();
   toggleLoadingSpinner('add');
@@ -46,11 +52,20 @@ async function handleLogin(event) {
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-
   const users = Object.values(await loadFromBackend('users'));
-
   const user = users.find((user) => user.email === email);
 
+  checkCredentials(user, password);
+}
+
+/**
+ * Checks if the user's email and password are correct.
+ * Redirects to the summary page if valid, otherwise shows an error.
+ * 
+ * @param {Object} user - The user object.
+ * @param {string} password - The entered password.
+ */
+function checkCredentials(user, password) {
   if (!user) {
     toggleLoadingSpinner('remove');
     toggleSignupError('No user with that email', 'add');

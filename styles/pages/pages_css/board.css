@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   & > div {
     display: flex;
@@ -63,15 +64,21 @@
   max-width: fit-content;
 }
 
+.drag-and-drop-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .board-content {
   display: flex;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 12px;
   margin-top: 50px;
 
   & > div {
     width: 290px;
+    min-width: 290px;
     height: fit-content;
 
     & > span {
@@ -99,9 +106,21 @@
       margin-top: 18px;
       list-style: none;
       border-radius: 20px;
-      padding: 0 12px 24px 12px;
+      padding: 0 8px 24px 8px;
       min-height: 300px;
       border: 2px dashed transparent;
+      width: 100%;
+
+
+    &::-webkit-scrollbar {
+     height: 8px;
+   }
+
+    &::-webkit-scrollbar-thumb {
+     background-color: #d1d1d1;
+     border-radius: 10px;
+   }
+
 
       li {
         margin-top: 24px;
@@ -360,5 +379,72 @@
 
   img {
     width: 15px;
+  }
+}
+
+.arrow-drop-down{
+  user-select: none;
+}
+
+.board-container{
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+.drag-task-popup{
+  max-width: 450px;
+  min-height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 3px #00000014;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 12px;
+  padding-top: 32px;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.2s;
+
+  & > div{
+    display: flex;
+    column-gap: 4px;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+  
+  button{
+   padding: 12px;
+   border-radius: 8px;
+   color: #fff;
+   font-weight: 700;
+  }
+
+  img{
+    position: absolute;
+    right: 5%;
+    top: 8%;
+    width: 12px;
+    cursor: pointer !important;
+  }
+}
+
+.drag-icon-ctn {
+  width: 70px;
+  height: 70px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  img{
+    transform: translate(10px, -4px);
   }
 }

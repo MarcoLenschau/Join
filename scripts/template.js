@@ -1,5 +1,5 @@
 function sidebarShow() {
-  return /*html*/ `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
+  return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
           <div class="navigation">
               <div id="summary">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
@@ -41,13 +41,13 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
-                    <h1 style="margin-bottom: 12px;" class=" ${isEditMode ? 'd_none' : ''}">Add Task</h1>
+                    <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
                     <div>
                         <div class="flex">
                             <span>Title<span class="color-red">*</span></span>
                             <input id="title" type="text" value="${
                               isEditMode ? task.title : ''
-                            }" placeholder="Enter a title" class="input-task input-field" required/>
+                            }" placeholder="Enter a title" class="input-task input-field task-input-field" required/>
                         </div>
                         <div class="flex">
                             <span>Description</span>
@@ -58,7 +58,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                         </div>
                         <div class="flex">
                             <span>Assigned to</span>
-                            <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn">
+                            <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
                                 <span class="select-text">
                                 <p>Select contacts to assign</p>
                                 <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
@@ -81,10 +81,10 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
 
 function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
   return `
-    <div class="media-w-300" style="margin: 46px 10px;">
+    <div class="media-w-300 add-task-right-form">
                     <div class="flex">
              <span>Due date<span class="color-red">*</span></span>
-             <input id="date" type="date" value="${date}" class="input-task" required />
+             <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
          </div>
          <div class="flex">
              <span>Prio</span>
@@ -95,7 +95,6 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                          <img id="urgent1" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
                      </div>
                  </button>
-
                  <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);">
                    Medium
                    <div class="d_flex_column">
@@ -113,7 +112,6 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                      />
                    </div>
                  </button>
-
                  <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);">
                    Low
                    <div class="d_flex_column">
@@ -125,7 +123,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                         </div>
           <div class="flex">
             <span>Category<span class="color-red">*</span></span>
-            <select id="category" class="h-34 input-field">
+            <select id="category" class="h-34 input-field task-input-field">
            <option value="" selected disabled>Select task category</option>
           <option ${task?.category === 'User Story' ? 'selected' : ''} value="User Story">User Story</option>
            <option ${
@@ -136,16 +134,16 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
           <div class="flex">
             <span>Subtasks</span>
             <div class="d_flex align-items-center">
-              <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field" />
+              <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
               <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
             </div>
             <ul class="subtask-list">
               ${subTasks || ''}
             </ul>
             <div class="d_flex g_12">
-                <button onclick="clearFields();" class="clear-button clear-and-create-button ${
+                <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
                   isEditMode ? 'd_none' : ''
-                }" style="color: black" formnovalidate> Clear X</button>
+                }" formnovalidate> Clear X</button>
                 <button onclick="${
                   isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
                 }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
@@ -155,7 +153,6 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
           </div>
           </div>
         </div>
-
        <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
        <img src="../assets/icon/close.png"  alt="close icon"/>
       </button>
@@ -178,11 +175,11 @@ function getContactsTemplate(index) {
 
 function getMoreInfomationTemplate(numberOfContact) {
   return `<div class="d_flex_c_c g_12">
-                <div style="padding: 85px 25px;">
+                <div class="big-letter-ctn">
                     <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
                 </div>
                 <div class="d_flex_column">
-                    <span class="bold" style="font-size: 34px;">${contacts[numberOfContact].name}</span>
+                    <span class="bold" data-contact-name>${contacts[numberOfContact].name}</span>
                     <div class="d_flex g_12">
                         <div onclick="addContact('Edit', ${numberOfContact});" class="d_flex_c_c delete-and-edit">
                             <img src="../assets/icon/edit.svg"></img>
@@ -197,7 +194,7 @@ function getMoreInfomationTemplate(numberOfContact) {
               </div>
               <div>
                   <span class="bold">Contact Information</span>
-                  <div class="d_flex_column" style="padding-top: 40px;">
+                  <div class="d_flex_column contact-email-info">
                       <span class="bold">Email</span>
                       <a href="mailto:${contacts[numberOfContact].email}" class="p_12"><span class="email">${contacts[numberOfContact].email}</span></a>
                   </div>
@@ -210,13 +207,13 @@ function getMoreInfomationTemplate(numberOfContact) {
                       <span class="p_12">${contacts[numberOfContact].role}</span>
                   </div>
               </div>
-              <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div" style="justify-content: flex-end;">
-                  <div id="toggleMenu" class="d_none d_flex_column bg-blue" style="border-radius: 6px; position: absolute; right: 0;">
+              <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div">
+                  <div id="toggleMenu" class="d_none d_flex_column bg-blue">
                       <a onclick="addContact('Edit', ${numberOfContact});">Edit</a>
-                      <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu("remove");">Delete</a>
+                      <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu('remove');">Delete</a>
                   </div>
                   <div class="more-button">
-                      <img src="../assets/img/show_more.svg" style="width: 12px;">            
+                      <img src="../assets/img/show_more.svg">            
                   </div>
               </div>`;
 }
@@ -256,18 +253,17 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       <div class="add-contact-img-div">
         <img src="../assets/icon/person-light.png" class="person-icon">
       </div>
-
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
-          <input id="name" placeholder="Name" class="default-border input-field_contacts" required>
+          <input id="name" type="text" placeholder="Name" class="default-border input-field_contacts" required>
           <img src="../assets/img/person.svg" class="overlay-image">
         </div>
         <div class="d_flex_c_c">
-          <input id="email" placeholder="Email" class="default-border input-field_contacts" required>
+          <input type="email" id="email" placeholder="Email" class="default-border input-field_contacts" required>
           <img src="../assets/img/mail.svg" class="overlay-image">
         </div>
         <div class="d_flex_c_c">
-          <input id="phone" placeholder="Phone" class="default-border input-field_contacts" required>
+          <input type="tel" id="phone" placeholder="Phone" class="default-border input-field_contacts" required>
           <img src="../assets/icon/phone.png" class="overlay-image">
         </div>
         <div class="d_flex_c contact-overlay-buttons">
@@ -275,24 +271,20 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
             <button type="button" onclick="deleteAndCancel('${content}', ${numberOfContact})"
                class="clear-button clear-and-create-button">${contentButton0}</button><img>
           </div>
-
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
-          class="overlay_cancelbutton_mobile">
-             <img src="../assets/icon/close.png" alt="close icon">
-          </a>
+          class="overlay_cancelbutton_mobile">X</a>
           <div>
             <button class="primary-button clear-and-create-button ">${contentButton1}</button><img>
           </div>
         </div>
       </div>
-
     </form>
   </div>
   `;
 }
 
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {
-  return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}" style="display: flex; align-items: center; justify-content: space-between;">
+  return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
               <div>
                   <span class="${jobTitle}">${shortcut}</span>
                   <span data-contact-name>${contacts.name}</span>
@@ -343,23 +335,17 @@ function getTaskPreviewTemplate(task) {
 
 function getTaskTemplate(task, doneSubTasksLength) {
   return `
-    <li
-    ondragstart="handleDragStart(event)"
-    ontouchstart="handleDragStart(event)"
-    ontouchend="addElementToBoardList(event)"
-    ontouchmove="handleTouchMove(event)"
+    <li ondragstart="handleDragStart(event)"
     draggable="true"
     onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}');" data-id="${task.id}">
-     <span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${
-       task.category
-     }</span>
+     <div class="drag-and-drop-ctn"><span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${task.category}</span>
+       <div onclick="toggleStatePopup(event)" class="drag-icon-ctn"><img data-drag-icon src="../assets/icon/drag-and-drop.png" alt="drag and drop icon" /></div></div
      <h3 class="task-title">${task.title}</h3>
      <p class="task-description">${task.description}</p>
      <span class="progressbar ${!task.subTasks ? 'd_none' : ''}">
        <progress value="${doneSubTasksLength}" max="${task.subTasks?.length}"></progress>
        <span class="subtasks-text">${doneSubTasksLength}/${task.subTasks?.length} Subtasks</span>
      </span>
-
      <div class="task-assigned-container">
        <div class="assigned-users">
         ${getAssignedTemplate(task.assignedTo)}
@@ -370,10 +356,13 @@ function getTaskTemplate(task, doneSubTasksLength) {
   `;
 }
 
+/**
+ * Generates a template string for assigned users.
+ * 
+ */
 function getAssignedTemplate(assignedTo, previewTask) {
   const assignedElements = assignedTo?.map(({ name, role }) => {
     const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
-
     return previewTask ? `<li>${elements}</li>` : elements;
   });
 
@@ -382,14 +371,16 @@ function getAssignedTemplate(assignedTo, previewTask) {
   }
 
   const assignedTemplates = assignedElements?.join(' ');
-
   assignedTemplate = assignedTemplates;
   return assignedTemplates;
 }
 
+/**
+ * Generates HTML template for a list of subtasks.
+ * 
+ */
 function getSubTasksTemplate(subTasks, taskId) {
   if (!subTasks) return '';
-
   return subTasks
     .map(({ description, done }) => {
       return `
@@ -399,5 +390,5 @@ function getSubTasksTemplate(subTasks, taskId) {
       </li>
     `;
     })
-    .join('');
+  .join('');
 }

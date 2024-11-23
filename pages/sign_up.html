@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Signup</title>
-    <link rel="shortcut icon" href="../assets/icon/icon.svg" type="image/x-icon">
-
+    <link rel="icon" href="../assets/img/logo-white.png">
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/base.css">
@@ -18,20 +17,21 @@
     <link rel="stylesheet" href="../styles/color.css">
     <link rel="stylesheet" href="../styles/media_query.css">
 
+    <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/script.js" defer></script>
     <script src="../scripts/signup.js" defer></script>
 </head>
 
 <body>
-    <header>
+    <header class="auth-header">
         <div>
             <img src="../assets/icon/icon.svg" class="join-icon" alt="Join">
         </div>
     </header>
-    <main class="d_flex_c">
+    <main class="d_flex_c singup-main">
         <div>
             <a href="../index.html" class="back-button-link">
-                <img src="../assets/img/back.svg" class="back-button"></img>
+                <img src="../assets/img/back.svg" class="back-button singup-back-button" />
             </a>
         </div> 
         <form class="formDiv" onsubmit="handleRegisterNewUser(event);">

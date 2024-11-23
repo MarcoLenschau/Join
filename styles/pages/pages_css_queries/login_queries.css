@@ -33,6 +33,12 @@
   }
 
   #loginLogo {
-    width: 80px;
+    width: 50px;
+  }
+
+  .login-logo{
+    width: 70px !important;
+    height: 70px !important;
+    transform: translateX(-50px) !important;
   }
 }

@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join Login</title>
-    <link
-      rel="shortcut icon"
-      href="../assets/img/logo-white.png"
-      type="image/x-icon"
-    />
-
+    <link rel="icon" href="./assets/img/logo-white.png">
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/base.css" />
     <link rel="stylesheet" href="./styles/flexbox.css" />
@@ -23,13 +18,14 @@
       href="./styles/pages/pages_css_queries/login_queries.css"
     />
 
+    <script src="./scripts/utils.js" defer></script>
     <script src="./scripts/script.js" defer></script>
     <script src="./scripts/login.js" defer></script>
   </head>
 
   <body onload="Loadingscreen()">
     <div id="content" class="d_flex_column">
-      <header>
+      <header class="auth-header">
         <div>
           <img
             src="./assets/icon/icon.svg"
@@ -46,7 +42,7 @@
           </a>
         </div>
       </header>
-      <main class="d_flex_c">
+      <main class="d_flex_c auth-main">
         <form onsubmit="handleLogin(event);" class="formDiv">
           <div class="text-center login-form w-100">
             <div class="d_flex_c" style="padding: 24px">
@@ -102,15 +98,16 @@
               </div>
             </div>
           </div>
-          <div class="hiddenMin d_flex notUser" style="padding-top: 24px">
-            <span>Not a Join user ?</span>
-            <a href="./pages/sign_up.html">
-              <button class="bg-blue color-white sign-up">Sign up</button>
-            </a>
-          </div>
         </form>
+        <div class="hiddenMin d_flex notUser" style="padding-top: 24px">
+          <span>Not a Join user ?</span>
+          <a href="./pages/sign_up.html">
+            <button class="bg-blue color-white sign-up">Sign up</button>
+          </a>
+        </div>
       </main>
-
+       
+     
       <footer>
         <div class="d_flex_c sign-in">
           <a><span>Privacy Policy</span></a>
@@ -121,7 +118,6 @@
 
     <!-- Ladeanimation -->
     <div id="loader" class="loader">
-      <!-- <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image" /> -->
     </div>
   </body>
 </html>
