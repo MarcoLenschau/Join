@@ -11,7 +11,7 @@ async function handleRegisterNewUser(event) {
   if(errorElement) errorElement.innerHTML = "";
   if (password !== confirmPassword) {
     toggleLoadingSpinner('remove');
-    return toggleSignupError('Confirmation code does not match', 'add');
+    return toggleSignupError('Not the same password', 'add');
   }
   await checkExistingUser(name, email, password);
 }
