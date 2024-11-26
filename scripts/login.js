@@ -18,28 +18,6 @@ function Loadingscreen() {
 }
 
 /**
- * Returns the HTML structure for the mobile loading screen, including a logo image.
- * 
- * @returns {string} The HTML string for the mobile loading screen.
- */
-function getLoadingscreenMobile() {
-  return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
-  `;
-}
-
-/**
- * Returns the HTML structure for the desktop loading screen, including a logo image.
- * 
- * @returns {string} The HTML string for the desktop loading screen.
- */
-function getLoadingscreenDesktop() {
-  return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
-  `;
-}
-
-/**
  * Handles user login by validating email and password.
  * Redirects to the summary page on successful login.
  * 

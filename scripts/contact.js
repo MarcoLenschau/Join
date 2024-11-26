@@ -274,12 +274,12 @@ function toggleContactSelect(event, index) {
       contact.classList.remove('selected-contact');
     }
   });
-  moreInfomationOfContact(index); // Kontaktinfo anzeigen
+  moreInfomationOfContact(index);
 }
 
 function closeSmallMenu(event){
   const moreButtonDiv = event.target.closest(".more-button-div")
-  if(moreButtonDiv)return
+  if(moreButtonDiv) return
   document.getElementById('toggleMenu')?.classList.add('d_none');
 }
 
@@ -290,7 +290,6 @@ function closeSmallMenu(event){
 function closeContactModal(event) {
   const isTaskMenu = event.target.closest('.add-contact-overlay');
   const modal = event.currentTarget;
-
   if (!isTaskMenu) modal.classList.remove('show-modal');
 }
 
