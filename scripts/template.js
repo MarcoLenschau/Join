@@ -1,3 +1,8 @@
+/**
+ * Generates the HTML template for the sidebar.
+ *
+ * @returns {string} The HTML string for the sidebar.
+ */
 function sidebarShow() {
   return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
           <div class="navigation">
@@ -33,10 +38,26 @@ function sidebarShow() {
   `;
 }
 
+/**
+ * Generates an HTML option element.
+ *
+ * @param {string} value - The value attribute of the option element.
+ * @param {string} option - The displayed text of the option element.
+ * @returns {string} The HTML string for the option element.
+ */
 function getListTemplate(value, option) {
   return `<option value="${value}">${option}</option>`;
 }
 
+/**
+ * Generates the HTML template for the "Add Task" modal.
+ *
+ * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
+ * @param {Object} task - The task object containing task details.
+ * @param {string} date - The due date of the task.
+ * @param {string} subTasks - The HTML string for the subtasks.
+ * @returns {string} The HTML string for the "Add Task" modal.
+ */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column" data-modal>
               <div class="d_flex_c main-div">
@@ -79,6 +100,15 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
     `;
 }
 
+/**
+ * Generates the right form section of the "Add Task" modal.
+ *
+ * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
+ * @param {string} date - The due date of the task.
+ * @param {string} subTasks - The HTML string for the subtasks.
+ * @param {Object} task - The task object containing task details.
+ * @returns {string} The HTML string for the right form section.
+ */
 function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
   return `
     <div class="media-w-300 add-task-right-form">
@@ -160,6 +190,12 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
   `;
 }
 
+/**
+ * Generates the HTML template for a contact.
+ *
+ * @param {number} index - The index of the contact in the contacts array.
+ * @returns {string} The HTML string for the contact.
+ */
 function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
@@ -173,6 +209,12 @@ function getContactsTemplate(index) {
             </div></span>`;
 }
 
+/**
+ * Generates the HTML template for an assigned contact.
+ *
+ * @param {Object} contact - The contact object containing contact details.
+ * @returns {string} The HTML string for the assigned contact.
+ */
 function getMoreInfomationTemplate(numberOfContact) {
   return `<div class="d_flex_c_c g_12">
                 <div class="big-letter-ctn">
@@ -218,6 +260,12 @@ function getMoreInfomationTemplate(numberOfContact) {
               </div>`;
 }
 
+/**
+ * Generates an HTML template for a subtask item.
+ *
+ * @param {string} description - The description of the subtask.
+ * @returns {string} The HTML string for the subtask item.
+ */
 function getSubTaskItemTemplate(description) {
   return `
    <li>
@@ -238,6 +286,15 @@ function getSubTaskItemTemplate(description) {
   `;
 }
 
+/**
+ * Generates an HTML template for the add/edit contacts modal.
+ *
+ * @param {string} content - The main content/title of the modal.
+ * @param {string} contentButton0 - The text for the cancel button.
+ * @param {string} contentButton1 - The text for the save button.
+ * @param {number} numberOfContact - The number of the contact.
+ * @returns {string} The HTML string for the add/edit contacts modal.
+ */
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
   return `
   <div>
@@ -283,6 +340,15 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
   `;
 }
 
+/**
+ * Generates an HTML template for a contact checkbox list item.
+ *
+ * @param {number} index - The index of the contact in the contacts array.
+ * @param {Object} contacts - The contact object containing contact details.
+ * @param {string} shortcut - The shortcut/initials of the contact.
+ * @param {string} jobTitle - The job title of the contact.
+ * @returns {string} The HTML string for the contact checkbox list item.
+ */
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {
   return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
               <div>
@@ -293,6 +359,12 @@ function getCheckBoxList(index, contacts, shortcut, jobTitle) {
           </label>`;
 }
 
+/**
+ * Generates an HTML template for the task preview.
+ *
+ * @param {Object} task - The task object containing task details.
+ * @returns {string} The HTML string for the task preview.
+ */
 function getTaskPreviewTemplate(task) {
   return `
     <div class="task-preview">
@@ -333,6 +405,13 @@ function getTaskPreviewTemplate(task) {
   `;
 }
 
+/**
+ * Generates an HTML template for a task item.
+ *
+ * @param {Object} task - The task object containing task details.
+ * @param {number} doneSubTasksLength - The number of completed subtasks.
+ * @returns {string} The HTML string for the task item.
+ */
 function getTaskTemplate(task, doneSubTasksLength) {
   return `
     <li ondragstart="handleDragStart(event)"

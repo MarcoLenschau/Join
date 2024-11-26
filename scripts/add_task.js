@@ -3,7 +3,6 @@
  *  The function load all templates if the page load.
  *
  */
-
 async function loadTask() {
   loadSidebar();
   showWhichSiteIsAktiv();
@@ -84,6 +83,12 @@ async function createNewTask() {
   handleTaskCreatedMessage();
 }
 
+/**
+ * Handles the display of a task created message.
+ * 
+ * This function shows a message indicating that a task has been created, resets task-related values, 
+ * toggles the check menu and empty message, and then hides the message after 1.5 seconds.
+ */
 function handleTaskCreatedMessage() {
   const taskCreatedMessage = document.querySelector('.task-created-message');
   taskCreatedMessage.classList.add('show-task-created-message');

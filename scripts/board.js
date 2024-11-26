@@ -1,6 +1,3 @@
-let dragElement = null;
-let draggableArea = null;
-
 /**
  * Loads and renders the necessary components for the board, such as the sidebar, header, modal, and task list.
  * It also indicates which board section is active.
@@ -27,6 +24,17 @@ function showWhichSiteIsAktivOfBoard() {
   addClassToElement('board', 'active');
   addClassToElement('contacts', 'no-active');
 }
+
+/**
+ * Asynchronously fetches and renders tasks from the backend.
+ *
+ * This function loads tasks from the backend, transforms the response data
+ * into an array of task objects, and displays them. It also toggles the
+ * empty message based on the presence of tasks.
+ *
+ * @async
+ * @function
+ */
 async function renderTasks() {
   let responeData = await loadFromBackend('tasks');
 

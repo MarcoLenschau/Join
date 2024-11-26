@@ -1,5 +1,3 @@
-let currentContact = null;
-
 /**
  * Loads the contact page by rendering the sidebar, header, and contact list,
  * and shows which site is active.

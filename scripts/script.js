@@ -271,6 +271,11 @@ async function deleteUser(numberOfContact, contactId) {
   await deleteData(contactId, 'contacts');
 }
 
+/**
+ * Empties the inner HTML content of a specified element.
+ *
+ * @param {string} content - The ID of the element to be emptied.
+ */
 function emptyContent(content) {
   document.getElementById(content).innerHTML = '';
 }
@@ -314,12 +319,27 @@ async function postDataAtBackend(userData, path) {
   }
 }
 
+/**
+ * Deletes data from the backend at a specified path and ID.
+ *
+ * @param {string} id - The ID of the data to be deleted.
+ * @param {string} path - The path where the data is stored.
+ * @returns {Promise<void>} A promise that resolves when the data is deleted.
+ */
 async function deleteData(id, path) {
   await fetch(`${BACKEND_URL}/${path}/${id}.json`, {
     method: 'DELETE',
   });
 }
 
+/**
+ * Updates data at the backend with new data at a specified path and ID.
+ *
+ * @param {string} id - The ID of the data to be updated.
+ * @param {string} path - The path where the data is stored.
+ * @param {Object} newData - The new data to be updated.
+ * @returns {Promise<void>} A promise that resolves when the data is updated.
+ */
 async function updateDataAtBackend(id, path, newData) {
   await fetch(`${BACKEND_URL}/${path}/${id}.json`, {
     method: 'PUT',
@@ -359,6 +379,11 @@ function toggleSignupError(errorMessage, method) {
   errorMessageElement.classList[method]('show-element');
 }
 
+/**
+ * Toggles the visibility of a loading spinner element.
+ *
+ * @param {string} method - The method to be used on the classList ('add', 'remove', or 'toggle').
+ */
 function toggleLoadingSpinner(method) {
   const loadingSpinner = document.querySelector('.auth-loading-spinner');
   loadingSpinner.classList[method]('show-element');
