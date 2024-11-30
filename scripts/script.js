@@ -364,7 +364,7 @@ function showLoadAnimation() {
  */
 function guestLogin() {
   localStorage.setItem('currentUser', 'Guest');
-  window.location.href = '../pages/summary.html';
+  window.location.href = './pages/summary.html';
 }
 
 /**
