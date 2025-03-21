@@ -8,7 +8,7 @@ Join is a task management app that allows users to create, track, and complete t
 
 ## 🔧 Development
 
-- **Technologies:** HTML5, CSS, JavaScript, API integration (e.g., real-time task updates)
+- **Technologies:** HTML5, CSS, JavaScript
 - **Key Features:**
   - Create, edit, and delete tasks
   - Mark tasks as completed
