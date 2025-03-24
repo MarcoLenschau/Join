@@ -1,4 +1,4 @@
-const BACKEND_URL = 'https://jointest-6cc29-default-rtdb.europe-west1.firebasedatabase.app/';
+const BACKEND_URL = 'https://join-3e9ec-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
 let allUserCredential = [];
 let currentUser = '';
 
