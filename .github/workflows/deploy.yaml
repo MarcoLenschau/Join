@@ -23,4 +23,3 @@ jobs:
       - name: Deploy via SSH
         run: |
           scp -r * github@marco-lenschau.de:/var/www/html/join/
-  
