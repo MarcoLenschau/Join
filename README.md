@@ -1,6 +1,7 @@
 # Join
 
 Join is an innovative front-end application designed to help you stay connected and organized. With intuitive features and seamless functionality, Join allows you to manage your tasks and collaborate with others effortlessly.
+![](https://raw.githubusercontent.com/SnowCoder404/Portfolio/refs/heads/main/public/assets/img/screenshots/join.png)
 
 ## ✨ About the Application
 
