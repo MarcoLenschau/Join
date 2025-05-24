@@ -148,6 +148,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 208px;
 }
 
 /* .contacts-div {
