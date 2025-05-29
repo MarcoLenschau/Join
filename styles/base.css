@@ -140,6 +140,7 @@ button {
 
   .container {
     display: flex;
+    flex-direction: column;
     margin: 25px 75px;
     max-width: 1440px;
     position: relative;

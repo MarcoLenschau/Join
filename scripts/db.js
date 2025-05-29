@@ -1,6 +1,7 @@
 let contacts = [];
 let tasks = [];
 let allSubTasks = [];
+let allFiles = [];
 let category = ['User Story', 'Technical Task'];
 let assignedTemplate = null;
 let currentContact = null;

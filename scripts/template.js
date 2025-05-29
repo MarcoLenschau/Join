@@ -132,6 +132,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
           </span>
         </div>
         <div class="separator separator-max"></div>
+        ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}
       </div>
     </div>
     <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
@@ -139,7 +140,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
     </button>
     </div>            
   </div>
-  ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}`;
+  `;
 }
 
 /**
@@ -159,11 +160,11 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="delete-container">
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
-                        <img src="/assets/img/delete.svg" alt="delete"> 
-                        <span>Delete all</span>                              
+                        <img onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
+                        <span onclick="deleteFiles('all')">Delete all</span>                              
                       </div>
                   </div>
-                  <img src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                  <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
                   <input type="file" id="filepicker" class="d_none">
                   <div id="image-container"></div>
                   <span>Subtasks</span>

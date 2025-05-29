@@ -539,6 +539,7 @@ a {
   width: 96.5%;
 
   img {
-    width: 8px;
+    width: 8px !important;
+    height: 8px !important;
   }
 }

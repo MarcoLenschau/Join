@@ -81,6 +81,7 @@ async function createNewTask() {
   tasks = [...tasks, { ...taskObj, id: name }];
   displayTasks();
   handleTaskCreatedMessage();
+  allFiles = [];
 }
 
 /**
@@ -124,8 +125,8 @@ function defindeUserObj(state) {
   let description = document.getElementById('description').value;
   let assignedTo = assignedToDataExtract();
   let subTasks = getSubtasks();
-
-  return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks };
+  let files = allFiles
+  return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
 
@@ -267,8 +268,9 @@ function resetTaskValues() {
   document.getElementById('description').value = '';
   document.querySelector('.subTask-input').value = '';
   document.querySelector('.subtask-list').innerHTML = '';
-  document.querySelector(".assigned-list").innerHTML = ""
+  document.querySelector('.assigned-list').innerHTML = ""
   document.getElementById('userlist').classList.add('d_none');
+  document.getElementById('image-container').innerHTML = '';
   checkThePrioOfTask(2);
   removeInvalidClass();
 
@@ -388,6 +390,27 @@ async function imageCreate(file) {
   const blob = new Blob([file], { type: file.type });
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
-  img.src = URL.createObjectURL(blob);
+  const base64 = await blobToBase64(blob);
+  img.src = base64;
   imageContainer.appendChild(img);
+  allFiles.push({
+    filename: file.name,
+    type: file.type,
+    base64: base64
+  });
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+
+function deleteFiles(whichFile) {
+  const imageContainer = document.getElementById('image-container')
+  if (whichFile === 'all') {
+    imageContainer.innerHTML = '';
+  } 
 }
