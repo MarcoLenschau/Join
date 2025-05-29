@@ -77,52 +77,12 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                                 isEditMode ? task.description : ''
                               }</textarea>
                         </div>
-                        <div class="flex">
-                            <span>Assigned to</span>
-                            <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
-                                <span class="select-text">
-                                <p>Select contacts to assign</p>
-                                <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
-                                </span>
-                                <div id="userlist" class="d_none"></div>
-                            </div>
-                            <ul class="assigned-list">
-                            ${isEditMode ? assignedTemplate : ''}
-                            </ul>
-                        </div>
-                        <div class="file-upload"> 
-                          <div id="image-container"></div>
-                          <img src="/assets/img/file-upload.png" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
-                          <input type="file" id="filepicker" class="d_none">
-                        
-                        </div>
-                        <span id="required-field-big">
-                            <span class="color-red">*</span>This field is required
-                        </span>
                     </div>
-                </div>
-                <div class="separator separator-max"></div>
-                ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}
-    `;
-}
-
-/**
- * Generates the right form section of the "Add Task" modal.
- *
- * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
- * @param {string} date - The due date of the task.
- * @param {string} subTasks - The HTML string for the subtasks.
- * @param {Object} task - The task object containing task details.
- * @returns {string} The HTML string for the right form section.
- */
-function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
-  return `
-    <div class="media-w-300 add-task-right-form">
                     <div class="flex">
-             <span>Due date<span class="color-red">*</span></span>
-             <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
-         </div>
-         <div class="flex">
+                      <span>Due date<span class="color-red">*</span></span>
+                      <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
+                    </div>
+          <div class="flex">
              <span>Prio</span>
              <div class="d_flex">
                  <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
@@ -156,7 +116,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                    </div>
                  </button>
                </div>
-                        </div>
+          </div>
           <div class="flex">
             <span>Category<span class="color-red">*</span></span>
             <select id="category" class="h-34 input-field task-input-field">
@@ -167,33 +127,78 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
            } value="Technical Task">Technical Task</option>
             </select>
           </div>
-          <div class="flex">
-            <span>Subtasks</span>
-            <div class="d_flex align-items-center">
-              <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
-              <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
-            </div>
-            <ul class="subtask-list">
-              ${subTasks || ''}
-            </ul>
-            <div class="d_flex g_12">
-                <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
-                  isEditMode ? 'd_none' : ''
-                }" formnovalidate> Clear X</button>
-                <button onclick="${
-                  isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
-                    <img src="../assets/img/check.svg" alt="check" />
-                </button>
-            </div>
-          </div>
-          </div>
+          <span id="required-field-big">
+            <span class="color-red">*</span>This field is required
+          </span>
         </div>
-       <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
-       <img src="../assets/icon/close.png"  alt="close icon"/>
-      </button>
+        <div class="separator separator-max"></div>
       </div>
-  `;
+    </div>
+    <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
+      <img src="../assets/icon/close.png"  alt="close icon"/>
+    </button>
+    </div>            
+  </div>
+  ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}`;
+}
+
+/**
+ * Generates the right form section of the "Add Task" modal.
+ *
+ * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
+ * @param {string} date - The due date of the task.
+ * @param {string} subTasks - The HTML string for the subtasks.
+ * @param {Object} task - The task object containing task details.
+ * @returns {string} The HTML string for the right form section.
+ */
+function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
+  return `<div class="media-w-300 add-task-right-form">
+              <div class="main-container">
+                <div class="file-upload"> 
+                  <h3>Attachments</h3>  
+                  <div class="delete-container">
+                      <span>Allowed file types are JPEG and PNG</span>
+                      <div>
+                        <img src="/assets/img/delete.svg" alt="delete"> 
+                        <span>Delete all</span>                              
+                      </div>
+                  </div>
+                  <img src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                  <input type="file" id="filepicker" class="d_none">
+                  <div id="image-container"></div>
+                  <span>Subtasks</span>
+                    <div class="d_flex align-items-center">
+                       <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
+                       <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
+                    </div>
+                    <ul class="subtask-list">
+                      ${subTasks || ''}
+                    </ul>
+                    <span>Assigned to</span>
+                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
+                        <span class="select-text">
+                        <p>Select contacts to assign</p>
+                        <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
+                        </span>
+                        <div id="userlist" class="d_none"></div>
+                    </div>
+                    <ul class="assigned-list">
+                    ${isEditMode ? assignedTemplate : ''}
+                    </ul>
+                  </div>
+                  
+                  
+                  <div class="d_flex g_12">
+                    <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
+                      isEditMode ? 'd_none' : ''
+                    }" formnovalidate> Clear X</button>
+                    <button onclick="${
+                      isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
+                    }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
+                        <img src="../assets/img/check.svg" alt="check" />
+                    </button>
+                </div>
+              </div>`;
 }
 
 /**
