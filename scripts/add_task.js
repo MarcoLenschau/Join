@@ -371,3 +371,23 @@ function toggleCheckMenu() {
   document.querySelector('.assigned-list').classList.toggle('d_none');
   document.getElementById('userlist').classList.toggle('d_none');
 }
+
+function fileDefine() {
+  const filepicker = document.getElementById("filepicker");
+  filepicker.addEventListener("change", () => {
+    const files = Array.from(filepicker.files);
+    if (files.length > 0) {
+      files.forEach(file => {
+        imageCreate(file);
+      })
+    };
+  }); 
+}
+
+async function imageCreate(file) {
+  const blob = new Blob([file], { type: file.type });
+  const imageContainer = document.getElementById("image-container");
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(blob);
+  imageContainer.appendChild(img);
+}

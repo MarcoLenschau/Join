@@ -90,9 +90,15 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                             ${isEditMode ? assignedTemplate : ''}
                             </ul>
                         </div>
-                            <span id="required-field-big">
-                                <span class="color-red">*</span>This field is required
-                            </span>
+                        <div class="file-upload"> 
+                          <div id="image-container"></div>
+                          <img src="/assets/img/file-upload.png" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                          <input type="file" id="filepicker" class="d_none">
+                        
+                        </div>
+                        <span id="required-field-big">
+                            <span class="color-red">*</span>This field is required
+                        </span>
                     </div>
                 </div>
                 <div class="separator separator-max"></div>
