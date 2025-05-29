@@ -6,10 +6,17 @@ Join is an innovative front-end application designed to help you stay connected 
 
 Join is a task management app that allows users to create, track, and complete tasks. The app integrates real-time collaboration features, helping you stay on top of your tasks, whether you are working solo or with a team.
 
-## 🔧 Development
+## 🔧 Technologies: 
 
-- **Technologies:** HTML5, CSS, JavaScript
-- **Key Features:**
+<div style="display: flex;">
+   <img src="https://skillicons.dev/icons?i=js" height="75" style="margin-right: 6px;" alt="JavaScript"/>
+   <img src="https://skillicons.dev/icons?i=css" height="75" style="margin-right: 6px;" alt="CSS"/>
+   <img src="https://skillicons.dev/icons?i=html" height="75" style="margin-right: 6px;" alt="HTML5"/>
+   <img src="https://skillicons.dev/icons?i=firebase" height="75" alt="Firebase"/>
+</div>
+
+## ⭐ Features
+
   - Create, edit, and delete tasks
   - Mark tasks as completed
   - Real-time collaboration (if applicable)
