@@ -81,7 +81,6 @@ function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
                         height = maxHeight;
                     }
                 }
-
                 canvas.width = width;
                 canvas.height = height;
                 ctx.drawImage(img, 0, 0, width, height);
