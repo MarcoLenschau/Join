@@ -380,10 +380,24 @@ function fileDefine() {
     const files = Array.from(filepicker.files);
     if (files.length > 0) {
       files.forEach(file => {
-        imageCreate(file);
+        checkFormatOfFile(file)
       })
     };
   }); 
+}
+
+function extractFileExtension(file) {
+  let filename = file.split('.');
+  return filename[filename.length - 1];
+}
+
+function checkFormatOfFile(file) {
+  const fileExtension = extractFileExtension(file.name).toLocaleLowerCase();
+  if (fileExtension === 'svg' || fileExtension === 'jpeg' || fileExtension === 'png') {
+    imageCreate(file);
+  } else {
+    alert("Wrong data format")
+  }
 }
 
 async function imageCreate(file) {

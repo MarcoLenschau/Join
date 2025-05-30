@@ -108,7 +108,7 @@ function checkAssignedUsers(assignedTo) {
  * Toggles the visibility of the "Add Task" modal.
  * 
 */
-function toggleAddTaskModal(e) {
+function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
 
   const target = e?.target;
@@ -422,4 +422,15 @@ async function loadFromBackend(path) {
   let response = await fetch(`${BACKEND_URL}/${path}.json`);
   let responeData = await response.json();
   return responeData;
+}
+
+async function loadFiles(id) {
+  const container = document.getElementById('files-container');
+  const tasks = await loadFromBackend('/tasks');
+  const files = tasks[id].files;
+  files.forEach(file => {
+    const img = document.createElement("img");
+    img.src = file.base64;
+    container.appendChild(img);
+  });
 }

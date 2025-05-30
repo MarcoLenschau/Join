@@ -380,7 +380,7 @@ function getCheckBoxList(index, contacts, shortcut, jobTitle) {
 function getTaskPreviewTemplate(task) {
   return `
     <div class="task-preview">
-    <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
+    <button onclick="toggleAddTaskModal(event); loadFiles('${task}');" class="button-close-modal">
        <img src="../assets/icon/close.png" alt="close icon">
        </button>
         <span class="task-category bg-${
@@ -401,14 +401,19 @@ function getTaskPreviewTemplate(task) {
         <ul>
          ${getSubTasksTemplate(task.subTasks, task.id)}
         </ul>
+
+        <div>
+          <span>Files</span>
+          <div id='files-container' class='files'></div>
+        </div>
         <div>
           <span onclick="deleteTask('${task.id}', ${
             task.state
-          }); toggleAddTaskModal(event); toggleEmptyMessage(event)" data-delete-button>
+          }); toggleAddTaskModal(event); toggleEmptyMessage(event); loadFiles('${task}');" data-delete-button>
             <img src="../assets/icon/delete.svg" alt="delete icon" />
             Delete
           </span>
-          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}');">
+          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}'); loadFiles('${task}');">
             <img src="../assets/icon/edit.svg" alt="edit icon" />
             Edit
           </span>
@@ -428,7 +433,7 @@ function getTaskTemplate(task, doneSubTasksLength) {
   return `
     <li ondragstart="handleDragStart(event)"
     draggable="true"
-    onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}');" data-id="${task.id}">
+    onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}'); loadFiles('${task.id}');" data-id="${task.id}">
      <div class="drag-and-drop-ctn"><span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${task.category}</span>
        <div onclick="toggleStatePopup(event)" class="drag-icon-ctn"><img data-drag-icon src="../assets/icon/drag-and-drop.png" alt="drag and drop icon" /></div></div
      <h3 class="task-title">${task.title}</h3>
