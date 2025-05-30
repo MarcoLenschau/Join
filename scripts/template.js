@@ -229,8 +229,9 @@ function getContactsTemplate(index) {
  */
 function getMoreInfomationTemplate(numberOfContact) {
   return `<div class="d_flex_c_c g_12">
-                <div class="big-letter-ctn">
+                <div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
                     <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
+                    <input type="file" id="imagepicker" style='display: none'>
                 </div>
                 <div class="d_flex_column">
                     <span class="bold" data-contact-name>${contacts[numberOfContact].name}</span>
@@ -319,8 +320,9 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div">
+      <div class="add-contact-img-div" onclick='imagepicker.click(); userImgDefine(${numberOfContact});'>
         <img src="../assets/icon/person-light.png" class="person-icon">
+        <input type="file" id="imagepicker" style="display: none">
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
