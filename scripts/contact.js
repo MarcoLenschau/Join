@@ -225,7 +225,6 @@ function hideAddContactMenu() {
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
-
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
@@ -309,21 +308,54 @@ function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
 }
 
-function userImgDefine(userId) {
-  const imagepicker = document.getElementById("imagepicker");
-  imagepicker.addEventListener("change", () => {
-    const image = imagepicker.files;
-    if (image.length > 0 && checkFormatOfFile(image[0])) {
-      // userImageCreate(image, userId);
-    };
-  }); 
+function userImgDefine(userId, dialog="") {
+  if (imagepickerDefine) {
+    const imagepicker = document.getElementById("imagepicker");
+    imagepicker.addEventListener("change", () => {
+      const image = imagepicker.files;
+      imagepickerDefine = false;      
+      if (image.length > 0 && checkFormatOfFile(image[0])) {
+        if (dialog != "") {
+            userImageDialog(image);
+        } else {
+          userImageCreate(image, userId);
+        }
+      };
+    }); 
+  }
 }
 
 async function userImageCreate(file, numberOfContact) {
   const imageContainer = document.getElementById("first-big-letter-" + numberOfContact);
-  const base64 = await compressImage(file);
+  const litleImageContainer = document.getElementById("first-letter-" + numberOfContact);
+  const base64 = await compressImage(file[0]);
   const userObj = {...contacts[numberOfContact], img: base64};
+  const img = document.createElement("img"); 
+  const img2 = document.createElement("img"); 
   imageContainer.innerHTML = "";
-  imageContainer.classList.remove("first-big-letter");
-  updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj)
+  litleImageContainer.innerHTML = "";
+
+  imageContainer.classList.forEach(userClass => {
+    imageContainer.classList.remove(userClass);
+  })
+  litleImageContainer.classList.forEach(userClass => {
+    litleImageContainer.classList.remove(userClass);
+  })
+  img.src = base64;
+  img2.src = base64;
+  img.classList.add("profile-picture");
+  img2.classList.add("profile-picture-litle");
+
+  imageContainer.appendChild(img);
+  litleImageContainer.appendChild(img2);
+  updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+}
+
+async function userImageDialog(file) {
+  const imageContainer = document.querySelector(".person-icon");
+  document.querySelector(".add-contact-img-div").classList.add("no-padding");
+  const base64 = await compressImage(file[0]);
+  imageContainer.src = base64;
+  imageContainer.classList.add("profile-picture")
+  
 }

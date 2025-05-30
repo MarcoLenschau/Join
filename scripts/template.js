@@ -320,7 +320,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div" onclick='imagepicker.click(); userImgDefine(${numberOfContact});'>
+      <div class="add-contact-img-div" onclick='imagepicker.click(); userImgDefine(${numberOfContact}, "dialog");'>
         <img src="../assets/icon/person-light.png" class="person-icon">
         <input type="file" id="imagepicker" style="display: none">
       </div>
@@ -343,7 +343,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
                class="clear-button clear-and-create-button">${contentButton0}</button><img>
           </div>
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
-          class="overlay_cancelbutton_mobile">X</a>
+          class="overlay_cancel button_mobile">X</a>
           <div>
             <button class="primary-button clear-and-create-button ">${contentButton1}</button><img>
           </div>

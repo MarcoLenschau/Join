@@ -209,3 +209,12 @@ main {
   width: 400px;
   height: 50px;
 }
+
+#image-container {
+  display: flex;
+  gap: 8px;
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
