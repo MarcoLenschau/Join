@@ -389,10 +389,9 @@ function fileDefine() {
 }
 
 async function imageCreate(file) {
-  const blob = new Blob([file], { type: file.type });
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
-  const base64 = await blobToBase64(blob);
+  const base64 = await compressImage(file);
   img.src = base64;
   imageContainer.appendChild(img);
   allFiles.push({

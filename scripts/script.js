@@ -427,6 +427,9 @@ async function loadFromBackend(path) {
 async function loadFiles(id) {
   const container = document.getElementById('files-container');
   const tasks = await loadFromBackend('/tasks');
+  if (!tasks[id].files) { 
+    return false 
+  }
   const files = tasks[id].files;
   files.forEach(file => {
     const img = document.createElement("img");

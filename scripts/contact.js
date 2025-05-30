@@ -314,15 +314,14 @@ function userImgDefine(userId) {
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
     if (image.length > 0 && checkFormatOfFile(image[0])) {
-      imageCreate(image, userId);
+      // userImageCreate(image, userId);
     };
   }); 
 }
 
-async function imageCreate(file, numberOfContact) {
-  const blob = new Blob([file], { type: file.type });
+async function userImageCreate(file, numberOfContact) {
   const imageContainer = document.getElementById("first-big-letter-" + numberOfContact);
-  const base64 = await blobToBase64(blob);
+  const base64 = await compressImage(file);
   const userObj = {...contacts[numberOfContact], img: base64};
   imageContainer.innerHTML = "";
   imageContainer.classList.remove("first-big-letter");
