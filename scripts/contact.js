@@ -356,6 +356,5 @@ async function userImageDialog(file) {
   document.querySelector(".add-contact-img-div").classList.add("no-padding");
   const base64 = await compressImage(file[0]);
   imageContainer.src = base64;
-  imageContainer.classList.add("profile-picture")
-  
+  imageContainer.classList.add("profile-picture");
 }
