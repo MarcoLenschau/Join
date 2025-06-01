@@ -125,7 +125,7 @@ function defindeUserObj(state) {
   let description = document.getElementById('description').value;
   let assignedTo = assignedToDataExtract();
   let subTasks = getSubtasks();
-  let files = allFiles
+  let files = allFiles;
   return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
@@ -375,17 +375,20 @@ function toggleCheckMenu() {
 }
 
 function fileDefine() {
-  const filepicker = document.getElementById("filepicker");
-  filepicker.addEventListener("change", () => {
-    const files = Array.from(filepicker.files);
-    if (files.length > 0) {
-      files.forEach(file => {
-        if (checkFormatOfFile(file)) {
-          imageCreate(file);
-        }
-      })
-    };
-  }); 
+  if (filepickerDefine) {
+    const filepicker = document.getElementById("filepicker");
+    filepicker.addEventListener("change", () => {
+      filepickerDefine = false;
+      const files = Array.from(filepicker.files);
+      if (files.length > 0) {
+        files.forEach(file => {
+          if (checkFormatOfFile(file)) {
+            imageCreate(file);
+          }
+        })
+      };
+    }); 
+  }
 }
 
 async function imageCreate(file) {

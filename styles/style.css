@@ -549,9 +549,7 @@ a {
   justify-content: flex-start !important;
   margin-top: 12px;
   img {
-    background-color: rgba(0, 0, 0, 0.3);
-    height: 50px;
-    width: 50px;
-    border-radius: 18px;
+    height:80px;
+    width: 80px;
   }
 }
