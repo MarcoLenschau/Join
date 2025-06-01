@@ -397,7 +397,6 @@ async function imageCreate(file) {
   const base64 = await compressImage(file);
   img.src = base64;
   imageContainer.appendChild(img);
-  console.log(img)
   allFiles.push({
     filename: file.name,
     type: file.type,
