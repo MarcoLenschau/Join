@@ -9,6 +9,7 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
+  
 }
 
 /**
@@ -225,6 +226,7 @@ function hideAddContactMenu() {
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
+
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
@@ -316,7 +318,7 @@ function userImgDefine(userId, dialog="") {
       imagepickerDefine = false;      
       if (image.length > 0 && checkFormatOfFile(image[0])) {
         if (dialog != "") {
-            userImageDialog(image);
+          userImageDialog(image);
         } else {
           userImageCreate(image, userId);
         }
@@ -326,29 +328,13 @@ function userImgDefine(userId, dialog="") {
 }
 
 async function userImageCreate(file, numberOfContact) {
-  const imageContainer = document.getElementById("first-big-letter-" + numberOfContact);
-  const litleImageContainer = document.getElementById("first-letter-" + numberOfContact);
+  const imageContainer = document.getElementById("first-letter-" + numberOfContact);
+  console.log(imageContainer)
   const base64 = await compressImage(file[0]);
   const userObj = {...contacts[numberOfContact], img: base64};
-  const img = document.createElement("img"); 
-  const img2 = document.createElement("img"); 
-  imageContainer.innerHTML = "";
-  litleImageContainer.innerHTML = "";
-
-  imageContainer.classList.forEach(userClass => {
-    imageContainer.classList.remove(userClass);
-  })
-  litleImageContainer.classList.forEach(userClass => {
-    litleImageContainer.classList.remove(userClass);
-  })
-  img.src = base64;
-  img2.src = base64;
-  img.classList.add("profile-picture");
-  img2.classList.add("profile-picture-litle");
-
-  imageContainer.appendChild(img);
-  litleImageContainer.appendChild(img2);
+  imageContainer.innerHTML = getMoreInfoWithPicute(numberOfContact);
   updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+  
 }
 
 async function userImageDialog(file) {

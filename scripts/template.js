@@ -211,14 +211,33 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
 function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
-  return `  <span data-firstletter="${firstLetter(name)}">
+  if (contact.img) {
+    return getContactsWithPicture(name, index, contact);
+  } else {
+    return getContactsWithFirstLetter(name, index, contact);
+  }
+}
+
+function getContactsWithFirstLetter(name, index, contact) {
+    return `<span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
-                <div class="center-contacts">
-                    <span id="contact-name-${index}">${name}</span>
-                    <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-                </div>
+            <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
+              <div class="center-contacts">
+                  <span id="contact-name-${index}">${name}</span>
+                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
+              </div>
             </div></span>`;
+}
+
+function getContactsWithPicture(name, index, contact) {
+    return `<span data-firstletter="${firstLetter(name)}">
+            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+            <img id="first-letter-${index}" src="${contact.img}" class="profile-picture-list">
+              <div class="center-contacts">
+                  <span id="contact-name-${index}">${name}</span>
+                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
+              </div>
+            </div></span>`; 
 }
 
 /**
@@ -229,10 +248,7 @@ function getContactsTemplate(index) {
  */
 function getMoreInfomationTemplate(numberOfContact) {
   return `<div class="d_flex_c_c g_12">
-                <div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
-                    <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-                    <input type="file" id="imagepicker" style='display: none'>
-                </div>
+                ${contacts[numberOfContact].img ?  getMoreInfoWithPicute(numberOfContact) : getMoreInfoWithBigLetter(numberOfContact)}
                 <div class="d_flex_column">
                     <span class="bold" data-contact-name>${contacts[numberOfContact].name}</span>
                     <div class="d_flex g_12">
@@ -271,6 +287,20 @@ function getMoreInfomationTemplate(numberOfContact) {
                       <img src="../assets/img/show_more.svg">            
                   </div>
               </div>`;
+}
+
+function getMoreInfoWithBigLetter(numberOfContact) {
+  return `<div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
+              <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
+              <input type="file" id="imagepicker" style='display: none'>
+          </div>`;
+}
+
+function getMoreInfoWithPicute(numberOfContact) {
+  return `<div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
+              <img id="first-big-letter-${numberOfContact}" class="first-big-letter" src="${contacts[numberOfContact].img}">
+              <input type="file" id="imagepicker" style='display: none'>
+          </div>`;
 }
 
 /**

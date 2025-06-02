@@ -311,3 +311,9 @@
 .no-padding {
   padding: 0;
 }
+
+.profile-picture-list {
+  height: 50px;
+  width: 50px;
+  border-radius: 24px;
+}
