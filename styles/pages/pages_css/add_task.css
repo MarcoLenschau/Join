@@ -219,3 +219,12 @@ main {
     height: 100px;
   }
 }
+
+.distance-data {
+  margin-bottom: 12px;
+}
+
+.image-overflow {
+  overflow-x: scroll;
+  width: 430px;
+}

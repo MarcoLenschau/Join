@@ -59,7 +59,7 @@ function getListTemplate(value, option) {
  * @returns {string} The HTML string for the "Add Task" modal.
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
-  return `<div class="d_flex_column" data-modal>
+  return `<div class="d_flex_column responsive-margin" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
@@ -420,16 +420,15 @@ function getTaskPreviewTemplate(task) {
         }">${task.category}</span>
         <h3 class="primary-title">${task.title}</h3>
         <p class="task-description">${task.description}</p>
-        <span>Due: <span>${task.date}</span></span>
-        <span
-          >Priority:
-          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span
-        ></span>
-        <span>Assigned To:</span>
+        <span class="distance-data">Due: <span>${task.date}</span></span>
+        <span class="distance-data">Priority:
+          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span>
+        </span>
+        <span class="distance-data">Assigned To:</span>
         <ul>
          ${getAssignedTemplate(task.assignedTo, true)}
         </ul>
-        <span>Subtasks</span>
+        <span class="distance-data">Subtasks</span>
         <ul>
          ${getSubTasksTemplate(task.subTasks, task.id)}
         </ul>

@@ -397,7 +397,10 @@ async function imageCreate(file) {
   const base64 = await compressImage(file);
   img.src = base64;
   imageContainer.appendChild(img);
-  console.log(img)
+  if (imageContainer.children.length > 5) {
+    console.log(imageContainer.children.length > 5)
+    imageContainer.classList.add("image-overflow");
+  }
   allFiles.push({
     filename: file.name,
     type: file.type,

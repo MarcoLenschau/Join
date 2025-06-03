@@ -260,10 +260,6 @@
   .add-task-modal {
     padding-top: 200px;
   }
-
-  .task-preview {
-    margin-top: -150px;
-  }
 }
 
 @media (min-width: 1150px) {
