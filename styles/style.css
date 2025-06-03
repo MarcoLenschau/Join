@@ -553,3 +553,11 @@ a {
     width: 80px;
   }
 }
+
+.container {
+  padding: 0 26px;
+}
+
+#add-task > .responsive-add-task-dialog {
+  margin-top: 0px !important;
+}

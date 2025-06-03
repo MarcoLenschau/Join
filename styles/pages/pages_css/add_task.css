@@ -185,6 +185,7 @@ main {
 
 .delete-container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   color: grey;
   div {
@@ -206,7 +207,7 @@ main {
 }
 
 .upload-file {
-  width: 400px;
+  width: 102% !important;
   height: 50px;
 }
 

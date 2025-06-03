@@ -398,7 +398,6 @@ async function imageCreate(file) {
   img.src = base64;
   imageContainer.appendChild(img);
   if (imageContainer.children.length > 5) {
-    console.log(imageContainer.children.length > 5)
     imageContainer.classList.add("image-overflow");
   }
   allFiles.push({

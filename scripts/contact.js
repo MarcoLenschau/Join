@@ -328,10 +328,13 @@ function userImgDefine(userId, dialog="") {
 }
 
 async function userImageCreate(file, numberOfContact) {
+  const bigPicture = document.getElementById("first-big-letter-" + numberOfContact);
+  const picture =   document.getElementById("first-letter-" + numberOfContact);
   const base64 = await compressImage(file[0]);
   const userObj = {...contacts[numberOfContact], img: base64};
-  document.getElementById("first-big-letter-" + numberOfContact).src = base64;
-  document.getElementById("first-letter-" + numberOfContact).src = base64;
+  bigPicture.src = base64;
+  picture.src = base64;
+  bigPicture.classList.add("transparent");
   await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
 }
 

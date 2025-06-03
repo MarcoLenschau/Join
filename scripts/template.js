@@ -59,7 +59,7 @@ function getListTemplate(value, option) {
  * @returns {string} The HTML string for the "Add Task" modal.
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
-  return `<div class="d_flex_column responsive-margin" data-modal>
+  return `<div class="d_flex_column responsive-margin responsive-add-task-dialog" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
@@ -298,7 +298,7 @@ function getMoreInfoWithBigLetter(numberOfContact) {
 
 function getMoreInfoWithPicute(numberOfContact) {
   return `<div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
-              <img id="first-big-letter-${numberOfContact}" class="first-big-letter" src="${contacts[numberOfContact].img}">
+              <img id="first-big-letter-${numberOfContact}" class="first-big-letter transparent" src="${contacts[numberOfContact].img}">
               <input type="file" id="imagepicker" style='display: none'>
           </div>`;
 }

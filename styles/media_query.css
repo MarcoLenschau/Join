@@ -217,6 +217,18 @@
 
 /** Task QUERIES ** */
 
+@media(max-width: 1375px) AND (min-width: 1050px) {
+  .main-container {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 1375px) AND (min-width: 900px) {
+  .responsive-add-task-dialog {
+    margin-top: 250px !important;
+  }
+}
+
 @media (max-width: 1375px) {
   .more-button-div {
     position: fixed;
@@ -259,6 +271,11 @@
 
   .add-task-modal {
     padding-top: 200px;
+  }
+
+  .main-container {
+    align-items: center;
+    width: 100%;
   }
 }
 
@@ -455,6 +472,18 @@
 }
 
 @media (max-width: 500px) {
+  .add-task-modal > [data-modal] { 
+    padding: 0 !important;
+  }
+
+  .file-upload {
+    width: 100%;
+  }
+
+  span {
+    font-size: 13px;
+  }
+  
   .add-contact-div {
     padding: 0;
     right: 12%;
@@ -483,6 +512,7 @@
         width: 250px;
       }
     }
+  
  }
 
 @media(max-width: 400px){
@@ -496,7 +526,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-}
+  }
+
+  .upload-file {
+    width: 350px;
+  }
 }
 
 
