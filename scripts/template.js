@@ -165,7 +165,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       </div>
                   </div>
                   <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
-                  <input type="file" id="filepicker" class="d_none" accept="image/*">
+                  <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
                   <div id="image-container"></div>
                   <span>Subtasks</span>
                     <div class="d_flex align-items-center">

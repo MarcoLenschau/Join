@@ -328,13 +328,11 @@ function userImgDefine(userId, dialog="") {
 }
 
 async function userImageCreate(file, numberOfContact) {
-  const imageContainer = document.getElementById("first-letter-" + numberOfContact);
-  console.log(imageContainer)
   const base64 = await compressImage(file[0]);
   const userObj = {...contacts[numberOfContact], img: base64};
-  imageContainer.innerHTML = getMoreInfoWithPicute(numberOfContact);
-  updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
-  
+  document.getElementById("first-big-letter-" + numberOfContact).src = base64;
+  document.getElementById("first-letter-" + numberOfContact).src = base64;
+  await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
 }
 
 async function userImageDialog(file) {
@@ -342,6 +340,5 @@ async function userImageDialog(file) {
   document.querySelector(".add-contact-img-div").classList.add("no-padding");
   const base64 = await compressImage(file[0]);
   imageContainer.src = base64;
-  imageContainer.classList.add("profile-picture")
-  
+  imageContainer.classList.add("profile-picture");
 }
