@@ -292,16 +292,18 @@ function getMoreInfomationTemplate(numberOfContact) {
 }
 
 function getMoreInfoWithBigLetter(numberOfContact) {
-  return `<div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
+  const imagepicker = `imagepicker${numberOfContact}`;
+  return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
               <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-              <input type="file" id="imagepicker" style='display: none'>
+              <input type="file" id="imagepicker${numberOfContact}" style='display: none'>
           </div>`;
 }
 
 function getMoreInfoWithPicute(numberOfContact) {
-  return `<div class="big-letter-ctn" onclick="imagepicker.click();  userImgDefine(${numberOfContact});">
+  const imagepicker = `imagepicker${numberOfContact}`;
+  return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
               <img id="first-big-letter-${numberOfContact}" class="first-big-letter transparent" src="${contacts[numberOfContact].img}">
-              <input type="file" id="imagepicker" style='display: none'>
+              <input type="file" id="${imagepicker}" style='display: none'>
           </div>`;
 }
 
