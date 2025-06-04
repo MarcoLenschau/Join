@@ -9,6 +9,7 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
+  
 }
 
 /**
@@ -307,4 +308,37 @@ function toggleMenu() {
 */
 function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
+}
+
+function userImgDefine(userId, dialog="") {
+  if (imagepickerDefine) {
+    const imagepicker = document.getElementById("imagepicker");
+    imagepicker.addEventListener("change", () => {
+      const image = imagepicker.files;
+      imagepickerDefine = false;      
+      if (image.length > 0 && checkFormatOfFile(image[0])) {
+        if (dialog != "") {
+          userImageDialog(image);
+        } else {
+          userImageCreate(image, userId);
+        }
+      };
+    }); 
+  }
+}
+
+async function userImageCreate(file, numberOfContact) {
+  const base64 = await compressImage(file[0]);
+  const userObj = {...contacts[numberOfContact], img: base64};
+  document.getElementById("first-big-letter-" + numberOfContact).src = base64;
+  document.getElementById("first-letter-" + numberOfContact).src = base64;
+  await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+}
+
+async function userImageDialog(file) {
+  const imageContainer = document.querySelector(".person-icon");
+  document.querySelector(".add-contact-img-div").classList.add("no-padding");
+  const base64 = await compressImage(file[0]);
+  imageContainer.src = base64;
+  imageContainer.classList.add("profile-picture");
 }

@@ -81,6 +81,7 @@ async function createNewTask() {
   tasks = [...tasks, { ...taskObj, id: name }];
   displayTasks();
   handleTaskCreatedMessage();
+  allFiles = [];
 }
 
 /**
@@ -124,8 +125,8 @@ function defindeUserObj(state) {
   let description = document.getElementById('description').value;
   let assignedTo = assignedToDataExtract();
   let subTasks = getSubtasks();
-
-  return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks };
+  let files = allFiles;
+  return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
 
@@ -267,8 +268,9 @@ function resetTaskValues() {
   document.getElementById('description').value = '';
   document.querySelector('.subTask-input').value = '';
   document.querySelector('.subtask-list').innerHTML = '';
-  document.querySelector(".assigned-list").innerHTML = ""
+  document.querySelector('.assigned-list').innerHTML = ""
   document.getElementById('userlist').classList.add('d_none');
+  document.getElementById('image-container').innerHTML = '';
   checkThePrioOfTask(2);
   removeInvalidClass();
 
@@ -370,4 +372,44 @@ function toggleCheckMenu() {
   arrowDropDown.classList.toggle('rotate-180-deg');
   document.querySelector('.assigned-list').classList.toggle('d_none');
   document.getElementById('userlist').classList.toggle('d_none');
+}
+
+function fileDefine() {
+  if (filepickerDefine) {
+    const filepicker = document.getElementById("filepicker");
+    filepicker.addEventListener("change", () => {
+      filepickerDefine = false;
+      const files = Array.from(filepicker.files);
+      if (files.length > 0) {
+        files.forEach(file => {
+          if (checkFormatOfFile(file)) {
+            imageCreate(file);
+          }
+        })
+      };
+    }); 
+  }
+}
+
+async function imageCreate(file) {
+  const imageContainer = document.getElementById("image-container");
+  const img = document.createElement("img");
+  const base64 = await compressImage(file);
+  img.src = base64;
+  imageContainer.appendChild(img);
+  if (imageContainer.children.length > 5) {
+    imageContainer.classList.add("image-overflow");
+  }
+  allFiles.push({
+    filename: file.name,
+    type: file.type,
+    base64: base64
+  });
+}
+
+function deleteFiles(whichFile) {
+  const imageContainer = document.getElementById('image-container')
+  if (whichFile === 'all') {
+    imageContainer.innerHTML = '';
+  } 
 }

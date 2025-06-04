@@ -217,6 +217,12 @@
 
 /** Task QUERIES ** */
 
+@media (max-width: 1375px) AND (min-width: 900px) {
+  .responsive-add-task-dialog {
+    margin-top: 465px !important;
+  }
+}
+
 @media (max-width: 1375px) {
   .more-button-div {
     position: fixed;
@@ -242,6 +248,7 @@
   .main-div {
     flex-direction: column;
     align-items: center;
+    margin-top: 52px;
   }
 
   .media-w-300 {
@@ -257,12 +264,10 @@
     display: none !important;
   }
 
-  .add-task-modal {
-    padding-top: 200px;
-  }
-
-  .task-preview {
-    margin-top: -150px;
+  .main-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
 
@@ -272,7 +277,6 @@
   }
 
   .more-button-div {
-    display: none;
     display: none;
   }
 }
@@ -459,6 +463,30 @@
 }
 
 @media (max-width: 500px) {
+  .add-task-modal > [data-modal] { 
+    padding: 0 !important;
+  }
+
+  .file-upload {
+    width: 100%;
+  }
+
+  .clear-and-create-button {
+    width: 150px;
+  }
+
+  .delete-all {
+    width: 60px;
+  }
+
+  .image-container-div {
+    width: 420px;
+  }
+
+  span {
+    font-size: 13px;
+  }
+  
   .add-contact-div {
     padding: 0;
     right: 12%;
@@ -487,7 +515,14 @@
         width: 250px;
       }
     }
+  
  }
+
+@media (max-width: 440px) {
+  .image-container-div {
+    width: 330px;
+  }
+}
 
 @media(max-width: 400px){
   .drag-task-popup{
@@ -500,7 +535,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-}
+  }
+
+  .upload-file {
+    width: 350px;
+  }
 }
 
 

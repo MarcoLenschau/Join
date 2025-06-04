@@ -539,6 +539,30 @@ a {
   width: 96.5%;
 
   img {
-    width: 8px;
+    width: 8px !important;
+    height: 8px !important;
   }
+}
+
+.files {
+  display: flex;
+  justify-content: flex-start !important;
+  margin-top: 12px;
+  img {
+    height:80px;
+    width: 80px;
+  }
+}
+
+.container {
+  padding: 0 26px;
+}
+
+#add-task > .responsive-add-task-dialog {
+  margin-top: 0px !important;
+}
+
+.edit-mode-padding {
+  margin-top: 250px;
+  padding: 12px !important;
 }
