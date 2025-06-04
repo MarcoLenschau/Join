@@ -310,21 +310,37 @@ function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
 }
 
-function userImgDefine(userId, dialog="") {
-  if (imagepickerDefine) {
-    const imagepicker = document.getElementById("imagepicker");
+function userImgDefine(numberOfContact, dialog="") {
+  blockMultiplySameUser(numberOfContact) ? "" : createUserImage(numberOfContact, dialog);
+}
+
+function createUserImage(numberOfContact, dialog) {
+   const imagepicker = document.getElementById("imagepicker" + numberOfContact);
     imagepicker.addEventListener("change", () => {
       const image = imagepicker.files;
-      imagepickerDefine = false;      
+      imagepickerDefine.push(numberOfContact);      
       if (image.length > 0 && checkFormatOfFile(image[0])) {
-        if (dialog != "") {
-          userImageDialog(image);
-        } else {
-          userImageCreate(image, userId);
-        }
+        checkIsDialog(image, numberOfContact, dialog);
       };
     }); 
+}
+
+function checkIsDialog(image, numberOfContact, dialog) {
+  if (dialog != "") {
+    userImageDialog(image);
+  } else {
+    userImageCreate(image, numberOfContact);
   }
+}
+
+function blockMultiplySameUser(numberOfContact) {
+  imagepickerDefine.forEach((imagepicker) => {
+    if (imagepicker == numberOfContact) {
+      return false;
+    } else {
+      return true;
+    }
+  })
 }
 
 async function userImageCreate(file, numberOfContact) {

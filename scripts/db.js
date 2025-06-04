@@ -8,4 +8,4 @@ let currentContact = null;
 let dragElement = null;
 let draggableArea = null;
 let filepickerDefine = true;
-let imagepickerDefine = true;
+let imagepickerDefine = [];
