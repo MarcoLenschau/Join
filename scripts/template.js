@@ -59,7 +59,7 @@ function getListTemplate(value, option) {
  * @returns {string} The HTML string for the "Add Task" modal.
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
-  return `<div class="d_flex_column responsive-margin responsive-add-task-dialog" data-modal>
+  return `<div class="d_flex_column responsive-margin responsive-add-task-dialog ${isEditMode ? 'edit-mode-padding' : ''}" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
@@ -161,12 +161,14 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
                         <img onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
-                        <span onclick="deleteFiles('all')">Delete all</span>                              
+                        <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
                       </div>
                   </div>
                   <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
                   <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
-                  <div id="image-container"></div>
+                  <div class="d_flex_c image-container-div">
+                    <div id="image-container"></div>
+                  </div>
                   <span>Subtasks</span>
                     <div class="d_flex align-items-center">
                        <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
@@ -195,7 +197,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     }" formnovalidate> Clear X</button>
                     <button onclick="${
                       isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                    }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
+                    }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
                         <img src="../assets/img/check.svg" alt="check" />
                     </button>
                 </div>
@@ -440,11 +442,11 @@ function getTaskPreviewTemplate(task) {
         <div>
           <span onclick="deleteTask('${task.id}', ${
             task.state
-          }); toggleAddTaskModal(event); toggleEmptyMessage(event); loadFiles('${task}');" data-delete-button>
+          }); toggleAddTaskModal(event); toggleEmptyMessage(event); loadFiles('${task.id}');" data-delete-button>
             <img src="../assets/icon/delete.svg" alt="delete icon" />
             Delete
           </span>
-          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}'); loadFiles('${task}');">
+          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}'); loadFiles('${task.id}');">
             <img src="../assets/icon/edit.svg" alt="edit icon" />
             Edit
           </span>

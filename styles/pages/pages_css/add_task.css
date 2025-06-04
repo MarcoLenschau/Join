@@ -203,6 +203,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
 }
 
@@ -227,5 +228,14 @@ main {
 
 .image-overflow {
   overflow-x: scroll;
-  width: 430px;
+}
+
+.image-container-div {
+  width: 420px;
+}
+
+.ok-button-edit-mode {
+  position: absolute;
+  bottom: 31px;
+  left: 38%;
 }

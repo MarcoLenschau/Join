@@ -561,3 +561,8 @@ a {
 #add-task > .responsive-add-task-dialog {
   margin-top: 0px !important;
 }
+
+.edit-mode-padding {
+  margin-top: 250px;
+  padding: 12px !important;
+}

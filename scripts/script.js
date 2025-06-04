@@ -425,7 +425,8 @@ async function loadFromBackend(path) {
 }
 
 async function loadFiles(id) {
-  const container = document.getElementById('files-container');
+  const filesContainer = document.getElementById('files-container');
+  const imageContainer = document.getElementById('image-container');
   const tasks = await loadFromBackend('/tasks');
   if (!tasks[id].files) { 
     return false 
@@ -434,6 +435,10 @@ async function loadFiles(id) {
   files.forEach(file => {
     const img = document.createElement("img");
     img.src = file.base64;
-    container.appendChild(img);
+    if (filesContainer == null) {
+      imageContainer.appendChild(img);
+    } else {
+      filesContainer.appendChild(img);
+    }
   });
 }

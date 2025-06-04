@@ -249,10 +249,10 @@
     position: relative;
     width: fit-content;
     min-height: fit-content;
-    border-radius: 25px;
+    border-radius: 24px;
     margin: 0 80px;
     background-color: var(--color-white);
-    padding: 44px;
+    padding: 24px;
   }
 
   .task-preview {
@@ -266,8 +266,6 @@
     padding: 35px;
     overflow-y: scroll;
     z-index: 100;
-    top: 5%;
-    bottom: 5%;
 
     &::-webkit-scrollbar {
       display: none;
