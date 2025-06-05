@@ -60,6 +60,11 @@ function moreInfomationOfContact(numberOfContact, isCreateOrUpdate) {
   renderMoreInformationContent(numberOfContact);
 }
 
+/**
+ * Updates the "more-information" container with details about a contact.
+ *
+ * @param {number} numberOfContact - The number that identifies which contact to show.
+ */
 function renderInfoContainer(numberOfContact) {
   const infoDiv = document.getElementById('more-information');
   infoDiv.innerHTML = getMoreInfomationTemplate(numberOfContact);
@@ -112,7 +117,6 @@ function showContactsData() {
   }
 }
 
-
 /**
  * Handles the form submission to save or create a contact.
  * 
@@ -122,14 +126,12 @@ function showContactsData() {
  */
 async function saveAndCreate(event, content, numberOfContact) {
   event.preventDefault();
-
   if (content === 'Add') {
     addNewContact(defineNewContact());
     organizeContacts();
   } else {
     await updateContact(numberOfContact);
   }
-
   renderContacts(true);
 }
 
@@ -171,14 +173,11 @@ function defineNewContact() {
  */
 async function addNewContact(userData) {
   contacts.push(userData);
-
   sortContacts();
   showContactsData();
   moreInfomationOfContact(contacts.indexOf(userData), true);
   hideAddContactMenu();
-
   const { name } = await postDataAtBackend(userData, 'contacts');
-
   contacts.slice(-1);
   contacts.push({ ...userData, id: name });
   sortContacts();
@@ -189,7 +188,6 @@ async function addNewContact(userData) {
  * 
  * @param {number} numberOfContact - The index of the contact in the `contacts` array to update.
  */
-
 function saveContact(numberOfContact) {
   if (numberOfContact != null) {
     contacts[numberOfContact].name = document.getElementById('name').value;
@@ -226,7 +224,6 @@ function hideAddContactMenu() {
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
-
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
@@ -278,6 +275,11 @@ function toggleContactSelect(event, index) {
   moreInfomationOfContact(index);
 }
 
+/**
+ * Closes the small menu if the user clicks outside the menu button area.
+ *
+ * @param {Event} event - The event triggered by the user's click.
+ */
 function closeSmallMenu(event){
   const moreButtonDiv = event.target.closest(".more-button-div")
   if(moreButtonDiv) return
@@ -346,6 +348,8 @@ function blockMultiplySameUser(numberOfContact) {
 async function userImageCreate(file, numberOfContact) {
   const base64 = await compressImage(file[0]);
   const userObj = {...contacts[numberOfContact], img: base64};
+  contacts[numberOfContact] = userObj;
+  console.log(contacts[numberOfContact] === userObj)
   document.getElementById("first-big-letter-" + numberOfContact).src = base64;
   document.getElementById("first-letter-" + numberOfContact).src = base64;
   await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
