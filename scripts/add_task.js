@@ -374,32 +374,48 @@ function toggleCheckMenu() {
   document.getElementById('userlist').classList.toggle('d_none');
 }
 
+/**
+ * Sets up a file input listener to allow users to upload images.
+ * Converts files to base64 and shows them in the image container.
+ */
 function fileDefine() {
   if (filepickerDefine) {
     const filepicker = document.getElementById("filepicker");
     filepicker.addEventListener("change", () => {
       filepickerDefine = false;
       const files = Array.from(filepicker.files);
+
       if (files.length > 0) {
         files.forEach(file => {
           if (checkFormatOfFile(file)) {
             imageCreate(file);
           }
-        })
-      };
-    }); 
+        });
+      }
+    });
   }
 }
 
+/**
+ * Converts an image file to base64 and displays it in the image container.
+ * Also adds the file info to the global file list.
+ *
+ * @param {File} file - The image file selected by the user.
+ */
 async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
   const base64 = await compressImage(file);
+
   img.src = base64;
   imageContainer.appendChild(img);
+
+  // If more than 5 images are added, apply special styling
   if (imageContainer.children.length > 5) {
     imageContainer.classList.add("image-overflow");
   }
+
+  // Save file details to the global list
   allFiles.push({
     filename: file.name,
     type: file.type,
@@ -407,9 +423,14 @@ async function imageCreate(file) {
   });
 }
 
+/**
+ * Deletes files from the image container.
+ *
+ * @param {string} whichFile - If set to 'all', all images will be removed.
+ */
 function deleteFiles(whichFile) {
-  const imageContainer = document.getElementById('image-container')
+  const imageContainer = document.getElementById('image-container');
   if (whichFile === 'all') {
     imageContainer.innerHTML = '';
-  } 
+  }
 }

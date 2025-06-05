@@ -4,10 +4,8 @@
 async function handleRegisterNewUser(event) {
   event.preventDefault();
   toggleLoadingSpinner('add');
-
   const { name, email, password, confirmPassword } = getFieldValues();
   const errorElement = document.getElementById("auth-error-message");
-
   if(errorElement) errorElement.innerHTML = "";
   if (password !== confirmPassword) {
     toggleLoadingSpinner('remove');
@@ -27,15 +25,12 @@ async function checkExistingUser(name, email, password) {
   const users = Object.values(await loadFromBackend('users'));
   const existingUserName = users.find((user) => user.name === name);
   const existingUserEmail = users.find((user) => user.email === email);
-
   if (existingUserEmail || existingUserName) {
     toggleLoadingSpinner('remove');
     return toggleSignupError(existingUserName ? 'Username already exists' : 'Email address  already exists', 'add');
   }
-
   await postUser({ name, email, password }, name);
 }
-
 
 /**
  * Retrieves user input values (name, email, password, confirm password).
@@ -52,7 +47,6 @@ function getFieldValues() {
   return { name, email, password, confirmPasswordInput, confirmPassword };
 }
 
-
 /**
  * Posts the new user's data to the backend, stores username in localStorage, and redirects to the summary page.
  * 
@@ -65,7 +59,6 @@ function getFieldValues() {
 async function postUser(user, name) {
   await postDataAtBackend(user, 'users');
   toggleLoadingSpinner('remove');
-
   localStorage.setItem('currentUser', name);
   window.location.href = '../pages/summary.html';
 }

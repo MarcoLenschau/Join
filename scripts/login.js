@@ -9,13 +9,13 @@ const loginLogo = document.getElementById('loginLogo');
  * 
  * @returns {void} This function does not return any value.
  */
-// function Loadingscreen() {
-//   if (window.innerWidth <= 600) {
-//     loader.innerHTML = getLoadingscreenMobile();
-//   } else {
-//     loader.innerHTML = getLoadingscreenDesktop();
-//   }
-// }
+function Loadingscreen() {
+  if (window.innerWidth <= 600) {
+    loader.innerHTML = getLoadingscreenMobile();
+  } else {
+    loader.innerHTML = getLoadingscreenDesktop();
+  }
+}
 
 /**
  * Handles user login by validating email and password.

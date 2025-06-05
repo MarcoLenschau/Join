@@ -424,12 +424,18 @@ async function loadFromBackend(path) {
   return responeData;
 }
 
+/**
+ * Loads and displays image files that are saved with a specific task.
+ *
+ * @param {number} id - The ID of the task whose files should be loaded.
+ * @returns {boolean|void} Returns false if the task has no files.
+ */
 async function loadFiles(id) {
   const filesContainer = document.getElementById('files-container');
   const imageContainer = document.getElementById('image-container');
   const tasks = await loadFromBackend('/tasks');
-  if (!tasks[id].files) { 
-    return false 
+  if (!tasks[id].files) {
+    return false;
   }
   const files = tasks[id].files;
   files.forEach(file => {

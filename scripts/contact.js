@@ -312,49 +312,82 @@ function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
 }
 
+/**
+ * Adds a user image if it is not already shown multiple times.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} [dialog=""] - Optional text or dialog to include with the user image.
+ */
 function userImgDefine(numberOfContact, dialog="") {
   blockMultiplySameUser(numberOfContact) ? "" : createUserImage(numberOfContact, dialog);
 }
 
+/**
+ * Adds a change event listener to an image input element.
+ * When a file is selected, it checks the file format and handles it based on the dialog setting.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} dialog - Optional dialog type (used to decide how to show the image).
+ */
 function createUserImage(numberOfContact, dialog) {
-   const imagepicker = document.getElementById("imagepicker" + numberOfContact);
-    imagepicker.addEventListener("change", () => {
-      const image = imagepicker.files;
-      imagepickerDefine.push(numberOfContact);      
-      if (image.length > 0 && checkFormatOfFile(image[0])) {
-        checkIsDialog(image, numberOfContact, dialog);
-      };
-    }); 
+  const imagepicker = document.getElementById("imagepicker" + numberOfContact);
+  imagepicker.addEventListener("change", () => {
+    const image = imagepicker.files;
+    imagepickerDefine.push(numberOfContact);
+    if (image.length > 0 && checkFormatOfFile(image[0])) {
+      checkIsDialog(image, numberOfContact, dialog);
+    }
+  });
 }
 
+/**
+ * Decides whether to show the image in a dialog or directly for the contact.
+ *
+ * @param {FileList} image - The image files selected by the user.
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} dialog - If not empty, the image will be shown in a dialog.
+ */
 function checkIsDialog(image, numberOfContact, dialog) {
-  if (dialog != "") {
+  if (dialog !== "") {
     userImageDialog(image);
   } else {
     userImageCreate(image, numberOfContact);
   }
 }
 
+/**
+ * Checks if the image input has already been used for this contact.
+ * Prevents adding the same image picker multiple times.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @returns {boolean} True if image picker for this user already exists, otherwise false.
+ */
 function blockMultiplySameUser(numberOfContact) {
-  imagepickerDefine.forEach((imagepicker) => {
-    if (imagepicker == numberOfContact) {
-      return false;
-    } else {
-      return true;
-    }
-  })
+  return imagepickerDefine.includes(numberOfContact);
 }
 
+/**
+ * Compresses the image and adds it to the user’s contact.
+ * Also updates the contact in the backend.
+ *
+ * @param {FileList} file - The image file selected by the user.
+ * @param {number} numberOfContact - The number that identifies the user.
+ */
 async function userImageCreate(file, numberOfContact) {
   const base64 = await compressImage(file[0]);
-  const userObj = {...contacts[numberOfContact], img: base64};
+  const userObj = { ...contacts[numberOfContact], img: base64 };
   contacts[numberOfContact] = userObj;
-  console.log(contacts[numberOfContact] === userObj)
+  console.log(contacts[numberOfContact] === userObj);
   document.getElementById("first-big-letter-" + numberOfContact).src = base64;
   document.getElementById("first-letter-" + numberOfContact).src = base64;
   await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
 }
 
+/**
+ * Compresses the image and shows it in a contact dialog preview.
+ *
+ * @param {FileList} file - The image file selected by the user.
+ */
 async function userImageDialog(file) {
   const imageContainer = document.querySelector(".person-icon");
   document.querySelector(".add-contact-img-div").classList.add("no-padding");

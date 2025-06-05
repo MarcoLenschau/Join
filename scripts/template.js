@@ -220,26 +220,51 @@ function getContactsTemplate(index) {
   }
 }
 
+/**
+ * Creates an HTML string for a contact that does not have a profile picture.
+ * Shows the first letter(s) of the contact’s name instead.
+ *
+ * @param {string} name - The full name of the contact.
+ * @param {number} index - The contact's position in the list.
+ * @param {Object} contact - The contact object containing email and other info.
+ * @param {string} contact.email - The email address of the contact.
+ * @returns {string} HTML string representing the contact without a picture.
+ */
 function getContactsWithFirstLetter(name, index, contact) {
-    return `<span data-firstletter="${firstLetter(name)}">
+  return `<span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-            <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
+              <span id="first-letter-${index}" class="first-letter">
+                ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
+              </span>
               <div class="center-contacts">
                   <span id="contact-name-${index}">${name}</span>
                   <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
               </div>
-            </div></span>`;
+            </div>
+          </span>`;
 }
 
+/**
+ * Creates an HTML string for a contact that has a profile picture.
+ * Displays the contact's name, email, and picture.
+ *
+ * @param {string} name - The full name of the contact.
+ * @param {number} index - The contact's position in the list.
+ * @param {Object} contact - The contact object containing image and email.
+ * @param {string} contact.img - The base64 image of the contact.
+ * @param {string} contact.email - The email address of the contact.
+ * @returns {string} HTML string representing the contact with a picture.
+ */
 function getContactsWithPicture(name, index, contact) {
-    return `<span data-firstletter="${firstLetter(name)}">
+  return `<span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-            <img id="first-letter-${index}" src="${contact.img}" class="profile-picture-list">
+              <img id="first-letter-${index}" src="${contact.img}" class="profile-picture-list">
               <div class="center-contacts">
                   <span id="contact-name-${index}">${name}</span>
                   <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
               </div>
-            </div></span>`; 
+            </div>
+          </span>`;
 }
 
 /**
@@ -291,6 +316,13 @@ function getMoreInfomationTemplate(numberOfContact) {
               </div>`;
 }
 
+/**
+ * Creates an HTML string for showing a big letter placeholder for a contact.
+ * When clicked, it triggers the hidden file input and starts user image selection.
+ *
+ * @param {number} numberOfContact - The index or ID of the contact.
+ * @returns {string} HTML string for the big letter input area.
+ */
 function getMoreInfoWithBigLetter(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
   return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
@@ -299,6 +331,13 @@ function getMoreInfoWithBigLetter(numberOfContact) {
           </div>`;
 }
 
+/**
+ * Creates an HTML string for showing a contact's profile picture.
+ * When clicked, it triggers the hidden file input and starts user image selection.
+ *
+ * @param {number} numberOfContact - The index or ID of the contact.
+ * @returns {string} HTML string for the profile picture input area.
+ */
 function getMoreInfoWithPicute(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
   return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
@@ -329,8 +368,7 @@ function getSubTaskItemTemplate(description) {
      <img  onclick="toggleEditMode(event)" src="../assets/icon/check.png" alt="check icon" />
       </div>
     </div>
-   </li>
-  `;
+   </li>`;
 }
 
 /**

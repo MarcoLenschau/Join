@@ -81,7 +81,6 @@ async function renderDataInSummary() {
   renderSummaryAllTasks();
 }
 
-
 /**
  * Renders the number of tasks based on a given object key and value.
  * Updates the specified element with the count of matching tasks.
@@ -98,7 +97,6 @@ function renderSummaryAllTasks() {
   document.getElementById('all_tasks_amount').innerHTML = tasks.length;
 }
 
-
 /**
  * Finds the earliest task date and displays it in the summary.
  */
@@ -107,7 +105,6 @@ function getEarliestTaskDate() {
     document.getElementById('deadline_date').innerHTML = '';
     return;
   }
-
   const earliestTask = tasks.reduce((earliest, currentTask) => {
     return new Date(currentTask.date) < new Date(earliest.date) ? currentTask : earliest;
   });
