@@ -327,7 +327,7 @@ function getMoreInfoWithBigLetter(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
   return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
               <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-              <input type="file" id="imagepicker${numberOfContact}" style='display: none'>
+              <input type="file" id="${imagepicker}" style='display: none'>
           </div>`;
 }
 
@@ -382,6 +382,7 @@ function getSubTaskItemTemplate(description) {
  */
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
   const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicke" + numberOfContact;
+  const userPicture = numberOfContact != null ?  contacts[numberOfContact].img : "../assets/icon/person-light.png";
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -394,7 +395,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
       <div class="add-contact-img-div" onclick='${imagepicker}.click(); userImgDefine(${numberOfContact}, "dialog");'>
-        <img src="../assets/icon/person-light.png" class="person-icon">
+        <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' }">
         <input type="file" id="${imagepicker}" style="display: none">
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">

@@ -300,6 +300,7 @@
   height: 80px;
   width: 80px;
   border-radius: 50%;
+  background-color: gray;
 }
 
 .profile-picture-litle {
@@ -323,4 +324,14 @@
 .transparent {
   border: 0;
   background-color: transparent !important;
+}
+
+.profile-picture-span {
+  height: 85px;
+  width: 85px;
+}
+
+.person-icon {
+  height: 50px;
+  width: 50px;
 }

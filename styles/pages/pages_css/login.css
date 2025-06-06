@@ -106,7 +106,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
+  animation: backgroundTransition 2s ease forwards;
 }
 
 .loader::before {

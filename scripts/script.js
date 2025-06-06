@@ -433,7 +433,9 @@ async function loadFiles(id) {
   const filesContainer = document.getElementById('files-container');
   const imageContainer = document.getElementById('image-container');
   const tasks = await loadFromBackend('/tasks');
-  if (!tasks[id].files) {
+  if (!tasks[id]) {
+    return false;
+  } else if(!tasks[id]) {
     return false;
   }
   loadAllFiles(filesContainer, imageContainer, tasks, id);

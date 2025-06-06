@@ -157,13 +157,14 @@ async function updateContact(numberOfContact) {
  * @returns {Object} An object representing the new contact with name, email, phone, and a default role.
  */
 function defineNewContact() {
-  let userData = {
-    name: document.getElementById('name').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    phone: document.getElementById('phone').value.trim(),
-    role: 'Tester',
-  };
-  return userData;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (document.querySelector('.profile-picture')) {
+    return { name,email, phone, img: img, role: 'Tester' };
+  } else {
+    return { name,email, phone, role: 'Tester' };
+  }
 }
 
 /**
@@ -382,9 +383,28 @@ async function userImageCreate(file, numberOfContact) {
   const base64 = await compressImage(file[0]);
   const userObj = { ...contacts[numberOfContact], img: base64 };
   contacts[numberOfContact] = userObj;
-  document.getElementById("first-big-letter-" + numberOfContact).src = base64;
-  document.getElementById("first-letter-" + numberOfContact).src = base64;
+  checkIfImg(base64, numberOfContact);
   await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+}
+
+function checkIfImg(base64, numberOfContact) {
+  const bigLetter = document.getElementById("first-big-letter-" + numberOfContact);
+  const firstLetter = document.getElementById("first-letter-" + numberOfContact);
+  if (bigLetter.tagName.toLowerCase() === "img") {
+    bigLetter.src = base64;
+    firstLetter.src = base64;
+  } else {
+    createImage(base64, firstLetter, "profile-picture-list");
+    createImage(base64, bigLetter, "profile-picture-span");
+  }
+}
+
+function createImage(base64, letter, group) {
+  const img = document.createElement("img");
+  img.src = base64;
+  img.classList.add(group);
+  letter.appendChild(img);
+  letter.classList.add("transparent");
 }
 
 /**
