@@ -258,7 +258,7 @@ function getContactsWithFirstLetter(name, index, contact) {
 function getContactsWithPicture(name, index, contact) {
   return `<span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-              <img id="first-letter-${index}" src="${contact.img}" class="profile-picture-list">
+              <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
               <div class="center-contacts">
                   <span id="contact-name-${index}">${name}</span>
                   <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
@@ -381,6 +381,7 @@ function getSubTaskItemTemplate(description) {
  * @returns {string} The HTML string for the add/edit contacts modal.
  */
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
+  const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicke" + numberOfContact;
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -392,9 +393,9 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div" onclick='imagepicker.click(); userImgDefine(${numberOfContact}, "dialog");'>
+      <div class="add-contact-img-div" onclick='${imagepicker}.click(); userImgDefine(${numberOfContact}, "dialog");'>
         <img src="../assets/icon/person-light.png" class="person-icon">
-        <input type="file" id="imagepicker" style="display: none">
+        <input type="file" id="${imagepicker}" style="display: none">
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">

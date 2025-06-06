@@ -330,7 +330,12 @@ function userImgDefine(numberOfContact, dialog="") {
  * @param {string} dialog - Optional dialog type (used to decide how to show the image).
  */
 function createUserImage(numberOfContact, dialog) {
-  const imagepicker = document.getElementById("imagepicker" + numberOfContact);
+  let imagepicker;
+  if (numberOfContact === null) {
+    imagepicker = document.getElementById("imagepicker");
+  } else {
+    imagepicker = document.getElementById("imagepicker" + numberOfContact);
+  }
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
     imagepickerDefine.push(numberOfContact);
@@ -377,7 +382,6 @@ async function userImageCreate(file, numberOfContact) {
   const base64 = await compressImage(file[0]);
   const userObj = { ...contacts[numberOfContact], img: base64 };
   contacts[numberOfContact] = userObj;
-  console.log(contacts[numberOfContact] === userObj);
   document.getElementById("first-big-letter-" + numberOfContact).src = base64;
   document.getElementById("first-letter-" + numberOfContact).src = base64;
   await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);

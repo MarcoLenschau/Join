@@ -321,6 +321,6 @@
 }
 
 .transparent {
-  border: 1;
+  border: 0;
   background-color: transparent !important;
 }

@@ -408,14 +408,12 @@ async function imageCreate(file) {
   const base64 = await compressImage(file);
 
   img.src = base64;
+  img.id = file.name;
+  img.onclick = () => bigPicture("image-container");
   imageContainer.appendChild(img);
-
-  // If more than 5 images are added, apply special styling
   if (imageContainer.children.length > 5) {
     imageContainer.classList.add("image-overflow");
   }
-
-  // Save file details to the global list
   allFiles.push({
     filename: file.name,
     type: file.type,
