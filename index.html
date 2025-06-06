@@ -23,7 +23,7 @@
     <script src="./scripts/login.js" defer></script>
   </head>
 
-  <body>
+  <body onload="logoAnimation();">
     <div id="content" class="d_flex_column">
       <header class="auth-header">
         <div>
@@ -115,9 +115,11 @@
         </div>
       </footer>
     </div>
-
+      
+    </div>
     <!-- Ladeanimation -->
     <div id="loader" class="loader">
+      <img src="./assets/img/logo-black.svg" class="loader-image" alt="logo">
     </div>
   </body>
 </html>
