@@ -437,6 +437,19 @@ async function loadFiles(id) {
   if (!tasks[id].files) {
     return false;
   }
+  loadAllFiles(filesContainer, imageContainer, tasks);
+}
+
+/**
+ * Loads all file images from a task and appends them to the appropriate container.
+ *
+ * @param {HTMLElement|null} filesContainer - The container where images should be appended. If null, `imageContainer` will be used instead.
+ * @param {HTMLElement} imageContainer - Fallback container for images if `filesContainer` is null.
+ * @param {Object[]} tasks - An array of task objects containing files.
+ *
+ * @throws {ReferenceError} If `id` is not defined in the current scope.
+ */
+function loadAllFiles(filesContainer, imageContainer, tasks) {
   const files = tasks[id].files;
   files.forEach(file => {
     const img = document.createElement("img");

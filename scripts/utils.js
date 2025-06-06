@@ -85,14 +85,15 @@ function extractFileExtension(file) {
  * @returns {Promise<string>} A promise that resolves to a base64 string of the compressed image.
  */
 function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          imageCreate(maxWidth, maxHeight, resolve, event, quality);
-        };
-        reader.onerror = () => reject('Error reading file.');
-        reader.readAsDataURL(file);
-   });
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      let options = { maxWidth, maxHeight, quality, resolve, event };
+      imageLoad(options);
+    };
+    reader.onerror = () => reject('Error reading file.');
+    reader.readAsDataURL(file);
+  });
 }
 
 /**
@@ -104,16 +105,11 @@ function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
  * @param {ProgressEvent<FileReader>} event - The load event from FileReader containing the base64 image data.
  * @param {number} quality - Compression quality from 0 to 1.
  */
-function imageCreate(maxWidth, maxHeight, resolve, event, quality){
+function imageLoad({maxWidth, maxHeight, quality, resolve, event}){
   const img = new Image();
   img.onload = () => {
-    const imageLoadOptions = {
-      maxWidth: maxWidth,
-      maxHeight: maxHeight,
-      quality: quality,
-      img: img,
-    }
-    imageLoad(imageLoadOptions, resolve);
+    const imageLoadOptions = { maxWidth, maxHeight, quality, img };
+    compressImageCreate(imageLoadOptions, resolve);
   };
   img.onerror = () => reject('Error loading image.');
   img.src = event.target.result;
@@ -151,7 +147,7 @@ function checkSize(maxWidth, maxHeight, width, height) {
  * @param {HTMLImageElement} options.img - The image to process.
  * @param {Function} resolve - Function to call with the base64 result.
  */
-function imageLoad({ maxWidth, maxHeight, quality, img}, resolve) {
+function compressImageCreate({ maxWidth, maxHeight, quality, img}, resolve) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   let width = img.width;
