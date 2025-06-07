@@ -20,13 +20,12 @@ async function loadTask() {
  */
 async function loadContactsList() {
   contacts = Object.values(await loadFromBackend('contacts'));
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
-  
-  for (let index = 0; index < contacts.length; index++) {
-    let shortcut = extractTheFirstLetter(contacts[index].name.split(' '));
+  contacts.sort((a, b) => a.name.localeCompare(b.name));  
+  contacts.forEach(async(contact, index) => {
+    let shortcut = extractTheFirstLetter(contact.name.split(' '));
     let jobTitle = await createJobTitleClass(index);
-    document.getElementById('userlist').innerHTML += getCheckBoxList(index, contacts[index], shortcut, jobTitle);
-  }
+    document.getElementById('userlist').innerHTML += getCheckBoxList(index, contact, shortcut, jobTitle);
+  })
 }
 
 /**
@@ -49,7 +48,6 @@ async function createJobTitleClass(index) {
  *  The function is for the sidebar and show which page is current.
  *
  */
-
 function showWhichSiteIsAktiv() {
   addClassToElement('summary', 'no-active');
   addClassToElement('task', 'active');
@@ -63,7 +61,6 @@ function showWhichSiteIsAktiv() {
  * @param {string} item - The element that add the background color.
  * @param {string} color - The background color that add to element.
  */
-
 function changeTheColor(item, color) {
   document.getElementById(item).style = `background-color: ${color}`;
 }
@@ -76,7 +73,6 @@ function changeTheColor(item, color) {
 async function createNewTask() {
   let taskObj = defindeUserObj();
   if (!isValidTaskInputs(taskObj.assignedTo)) return;
-
   const { name } = await postDataAtBackend(taskObj, 'tasks');
   tasks = [...tasks, { ...taskObj, id: name }];
   displayTasks();
@@ -93,7 +89,6 @@ async function createNewTask() {
 function handleTaskCreatedMessage() {
   const taskCreatedMessage = document.querySelector('.task-created-message');
   taskCreatedMessage.classList.add('show-task-created-message');
-
   resetTaskValues();
   toggleCheckMenu();
   toggleEmptyMessage();
@@ -101,7 +96,6 @@ function handleTaskCreatedMessage() {
     taskCreatedMessage.classList.remove('show-task-created-message');
   }, 1500);
 }
-
 
 /**
  * Creates a user object representing a task with various properties.
@@ -129,7 +123,6 @@ function defindeUserObj(state) {
   return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
-
 /**
  * Displays a message indicating a task has been created and resets relevant task-related UI elements.
  *
@@ -138,7 +131,6 @@ function defindeUserObj(state) {
 function handleTaskCreatedMessage() {
   const taskCreatedMessage = document.querySelector('.task-created-message');
   taskCreatedMessage.classList.add('show-task-created-message');
-
   resetTaskValues();
   toggleEmptyMessage();
   setTimeout(() => {
@@ -171,7 +163,6 @@ function assignedToDataExtract() {
  */
 function getSubtasks() {
   const subtaskItems = Array.from(document.querySelector('.subtask-list').children);
-
   return subtaskItems.map((subtaskItem) => {
     const description = subtaskItem.querySelector('input').value;
     return { description, done: false };
@@ -189,9 +180,7 @@ function isValidTaskInputs(assignedTo) {
   const tittle = document.getElementById('title').value;
   const date = document.getElementById('date').value;
   const category = document.getElementById('category').value;
-
   if (tittle && date && category && assignedTo.length) return true;
-
   toggleInvalidFields(assignedTo);
   return false;
 }
@@ -204,12 +193,10 @@ function isValidTaskInputs(assignedTo) {
  */
 function toggleInvalidFields(assignedTo) {
   const userListCtn = document.querySelector('.userlist-ctn');
-
   if (!assignedTo.length) {
     userListCtn.classList.add('invalid-input');
     userListCtn.addEventListener('click', () => userListCtn.classList.remove('invalid-input'));
   }
-
   addInvalidInput();
 }
 
@@ -223,7 +210,6 @@ function addInvalidInput() {
   const titleInput = document.getElementById('title');
   const dateInput = document.getElementById('date');
   const categoryInput = document.getElementById('category');
-
   [titleInput, dateInput, categoryInput].forEach((field) => {
     if (!field.value) {
       field.classList.add('invalid-input');
@@ -241,10 +227,8 @@ function updateAssignedUsers() {
   const labels = Array.from(document.getElementById('userlist').children);
   const assignedList = document.querySelector('.assigned-list');
   assignedList.innerHTML = '';
-
   labels.forEach((label) => {
     const isChecked = label.querySelector('input').checked;
-
     if (isChecked) {
       const profileCircle = document.createElement('li');
       const spanContent = label.querySelector('div span');
@@ -254,14 +238,30 @@ function updateAssignedUsers() {
   });
 }
 
-
-
 /**
  * Resets the task input fields, clears the subtask list, and sets default values for task properties.
  * It also unchecks all checkboxes in the user list and resets the task priority.
  *
  */
 function resetTaskValues() {
+  resetValue();
+  checkThePrioOfTask(2);
+  removeInvalidClass();
+  Array.from(document.getElementById('userlist').children).forEach((label) => {
+    const checbox = label.querySelector('input');
+    label.classList.remove("selected-contact");
+    checbox.checked = false;
+  });
+}
+
+/**
+ * Clears all form fields and resets UI elements related to task creation.
+ *
+ * This function resets the values of input fields for title, date, category,
+ * and description. It also clears the subtask input, assigned users list,
+ * the subtask list, and the image container. Additionally, it hides the user list.
+ */
+function resetValue() {
   document.getElementById('title').value = '';
   document.getElementById('date').value = '';
   document.getElementById('category').value = '';
@@ -271,14 +271,6 @@ function resetTaskValues() {
   document.querySelector('.assigned-list').innerHTML = ""
   document.getElementById('userlist').classList.add('d_none');
   document.getElementById('image-container').innerHTML = '';
-  checkThePrioOfTask(2);
-  removeInvalidClass();
-
-  Array.from(document.getElementById('userlist').children).forEach((label) => {
-    const checbox = label.querySelector('input');
-    label.classList.remove("selected-contact");
-    checbox.checked = false;
-  });
 }
 
 /**
@@ -288,14 +280,10 @@ function resetTaskValues() {
 */
 async function updateTaskFields(taskId) {
   const state = tasks.find((task) => task.id === taskId).state;
-
   let newTask = { ...defindeUserObj(state), id: taskId };
   const modal = document.querySelector('.add-task-modal');
-
   if (!isValidTaskInputs(newTask.assignedTo)) return;
-
   const newTasks = tasks.map((task) => (task.id === taskId ? newTask : task));
-
   tasks = newTasks;
   displayTasks();
   modal.classList.remove('show-modal');
@@ -311,14 +299,11 @@ async function updateTaskFields(taskId) {
 function toggleAddTaskContact(event) {
   const contactElement = event.currentTarget;
   const contactsList = Array.from(document.getElementById('userlist').children);
-
   contactsList.forEach((contact) => {
     const isChecked = contact.querySelector('input').checked;
-
     if (isChecked) return;
     contactElement.classList.toggle('selected-contact');
   });
-
   updateAssignedUsers();
 }
 
@@ -331,7 +316,6 @@ function removeInvalidClass(){
   inputFields.forEach(input => input.classList.remove("invalid-input"))
 }
 
-
 /**
  * Updates the status of subtasks based on checkbox selection and syncs with the backend.
  * 
@@ -341,14 +325,12 @@ function removeInvalidClass(){
 async function updateCheckbox(event, taskId) {
   const ulList = Array.from(event.target.closest('ul').children);
   const task = tasks.find((task) => task.id === taskId);
-
   ulList.forEach((listItem, index) => {
     const checkbox = listItem.querySelector('input');
     task.subTasks[index].done = checkbox.checked;
   });
   await updateTask(taskId);
 }
-
 
 /**
  * Closes the user assignment list if clicked outside the list container.
@@ -406,19 +388,32 @@ async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
   const base64 = await compressImage(file);
-
   img.src = base64;
   img.id = file.name;
   img.onclick = () => bigPicture("image-container");
   imageContainer.appendChild(img);
-  if (imageContainer.children.length > 5) {
-    imageContainer.classList.add("image-overflow");
-  }
+  addScrollbar(imageContainer);
   allFiles.push({
     filename: file.name,
     type: file.type,
     base64: base64
   });
+}
+
+/**
+ * Adds or removes a scrollbar class to the image container based on the number of child elements.
+ *
+ * If the container has more than 5 child elements, a scrollbar-related class (`image-overflow`)
+ * is added to enable scrolling. Otherwise, the class is removed.
+ *
+ * @param {HTMLElement} imageContainer - The container element holding the image elements.
+ */
+function addScrollbar(imageContainer) {
+  if (imageContainer.children.length > 5) {
+    imageContainer.classList.add("image-overflow");
+  } else {
+    imageContainer.classList.remove("image-overflow");
+  } 
 }
 
 /**
