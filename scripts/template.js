@@ -381,8 +381,10 @@ function getSubTaskItemTemplate(description) {
  * @returns {string} The HTML string for the add/edit contacts modal.
  */
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
-  const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicke" + numberOfContact;
+  const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicker" + numberOfContact;
+  const editpicker =  "editpicker" + numberOfContact;
   const userPicture = numberOfContact != null ?  contacts[numberOfContact].img : "../assets/icon/person-light.png";
+  const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact})` : `userImgDefine(${numberOfContact})`}`;
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -394,9 +396,9 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div" onclick='${imagepicker}.click(); userImgDefine(${numberOfContact}, "dialog");'>
+      <div class="add-contact-img-div" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
         <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' }">
-        <input type="file" id="${imagepicker}" style="display: none">
+        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none">
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">

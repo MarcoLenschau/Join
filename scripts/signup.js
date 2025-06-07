@@ -22,14 +22,27 @@ async function handleRegisterNewUser(event) {
  * @param {String} password - The password entered by the user.
  */
 async function checkExistingUser(name, email, password) {
-  const users = Object.values(await loadFromBackend('users'));
+  let users = await loadFromBackend('users');
+  if (isDatabaseEmpty(name, email, password)) {
+    return false;
+  }
   const existingUserName = users.find((user) => user.name === name);
   const existingUserEmail = users.find((user) => user.email === email);
+
   if (existingUserEmail || existingUserName) {
     toggleLoadingSpinner('remove');
     return toggleSignupError(existingUserName ? 'Username already exists' : 'Email address  already exists', 'add');
   }
   await postUser({ name, email, password }, name);
+}
+
+async function isDatabaseEmpty() {
+    if (users != null) {
+    users = Object.values(users);
+  } else {
+    await postUser({ name, email, password }, name);
+    return true;
+  }
 }
 
 /**

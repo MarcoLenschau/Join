@@ -451,19 +451,26 @@ async function loadFiles(id) {
  * @throws {ReferenceError} If `id` is not defined in the current scope.
  */
 function loadAllFiles(filesContainer, imageContainer, tasks, id) {
-  const files = tasks[id].files;
-  files.forEach(file => {
-    const img = document.createElement("img");
-    img.src = file.base64;
-    img.onclick = () => {
-      bigPicture("files-container");
-    }
-    if (filesContainer == null) {
-      imageContainer.appendChild(img);
-    } else {
-      filesContainer.appendChild(img);
-    }
-  });
+  if (tasks[id].files) {
+    const files = tasks[id].files;
+    allFiles = files;
+    files.forEach(file => {
+      createFilesImage(filesContainer, imageContainer, file);
+    });
+  }
+}
+
+function createFilesImage(filesContainer, imageContainer, file) {
+  const img = document.createElement("img");
+  img.src = file.base64;
+  img.onclick = () => {
+    showBigPicture(filesContainer);
+  }
+  filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(img); 
+}
+
+function showBigPicture(filesContainer) {
+  filesContainer == null ? bigPicture("image-container") : bigPicture("files-container");
 }
 
 function stopPropagation(e) {

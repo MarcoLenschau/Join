@@ -161,6 +161,7 @@ function defineNewContact() {
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
   if (document.querySelector('.profile-picture')) {
+    const img = document.querySelector('.profile-picture').src;
     return { name,email, phone, img: img, role: 'Tester' };
   } else {
     return { name,email, phone, role: 'Tester' };
@@ -191,9 +192,13 @@ async function addNewContact(userData) {
  */
 function saveContact(numberOfContact) {
   if (numberOfContact != null) {
+    console.log(contacts[numberOfContact].img)
     contacts[numberOfContact].name = document.getElementById('name').value;
     contacts[numberOfContact].email = document.getElementById('email').value;
     contacts[numberOfContact].phone = document.getElementById('phone').value;
+    if (document.querySelector(".profile-picture-span")) {
+      contacts[numberOfContact].img = document.querySelector(".profile-picture-span").src;
+    }
     hideAddContactMenu();
   }
 }
@@ -337,8 +342,11 @@ function createUserImage(numberOfContact, dialog) {
   } else {
     imagepicker = document.getElementById("imagepicker" + numberOfContact);
   }
+  console.log(imagepicker)
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
+
+    console.log(image)
     imagepickerDefine.push(numberOfContact);
     if (image.length > 0 && checkFormatOfFile(image[0])) {
       checkIsDialog(image, numberOfContact, dialog);
@@ -417,5 +425,14 @@ async function userImageDialog(file) {
   document.querySelector(".add-contact-img-div").classList.add("no-padding");
   const base64 = await compressImage(file[0]);
   imageContainer.src = base64;
-  imageContainer.classList.add("profile-picture");
+  imageContainer.classList.add("profile-picture");  
+}
+
+function userImageEdit(numberOfContact) {
+  const editpicker = document.getElementById("editpicker" + numberOfContact);
+  editpicker.addEventListener("change", async() => {
+    const imageContainer = document.querySelector(".profile-picture-span");
+    const base64 = await compressImage(editpicker.files[0]);
+    imageContainer.src = base64;
+  });  
 }
