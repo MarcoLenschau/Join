@@ -327,7 +327,7 @@ function toggleContactMenu(method) {
  * @param {string} [dialog=""] - Optional text or dialog to include with the user image.
  */
 function userImgDefine(numberOfContact, dialog="") {
-  blockMultiplySameUser(numberOfContact) ? "" : createUserImage(numberOfContact, dialog);
+  createUserImage(numberOfContact, dialog);
 }
 
 /**
@@ -350,7 +350,7 @@ function createUserImage(numberOfContact, dialog) {
     if (image.length > 0 && checkFormatOfFile(image[0])) {
       checkIsDialog(image, numberOfContact, dialog);
     }
-  });
+  },{ once: true });
 }
 
 /**
@@ -474,5 +474,5 @@ function userImageEdit(numberOfContact) {
     const imageContainer = document.querySelector(".profile-picture-span");
     const base64 = await compressImage(editpicker.files[0]);
     imageContainer.src = base64;
-  });  
+  });
 }

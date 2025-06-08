@@ -22,6 +22,7 @@ Join is a task management app that allows users to create, track, and complete t
   - Real-time collaboration (if applicable)
   - User authentication (optional)
   - Responsive design for all devices
+  - File upload support
 
 ## 📸 Screenshots
 
