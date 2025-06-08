@@ -160,8 +160,10 @@ function defineNewContact() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  if (document.querySelector('.profile-picture')) {
-    const img = document.querySelector('.profile-picture').src;
+  console.log(document.querySelector('.person-icon'))
+  if (document.querySelector('.person-icon')) {
+    const img = document.querySelector('.person-icon').src;
+    console.log(img)
     return { name,email, phone, img: img, role: 'Tester' };
   } else {
     return { name,email, phone, role: 'Tester' };
@@ -342,11 +344,8 @@ function createUserImage(numberOfContact, dialog) {
   } else {
     imagepicker = document.getElementById("imagepicker" + numberOfContact);
   }
-  console.log(imagepicker)
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
-
-    console.log(image)
     imagepickerDefine.push(numberOfContact);
     if (image.length > 0 && checkFormatOfFile(image[0])) {
       checkIsDialog(image, numberOfContact, dialog);
@@ -392,12 +391,40 @@ async function userImageCreate(file, numberOfContact) {
   const userObj = { ...contacts[numberOfContact], img: base64 };
   contacts[numberOfContact] = userObj;
   checkIfImg(base64, numberOfContact);
-  await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+  if (numberOfContact != null) {
+    await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+  }
 }
 
+/**
+ * Checks if the contact has an image element and updates it with the provided base64 image.
+ * If not, it updates a dialog person icon image if present.
+ *
+ * @param {string} base64 - The base64-encoded image string.
+ * @param {number} numberOfContact - The index of the contact.
+ */
 function checkIfImg(base64, numberOfContact) {
-  const bigLetter = document.getElementById("first-big-letter-" + numberOfContact);
-  const firstLetter = document.getElementById("first-letter-" + numberOfContact);
+  let firstLetter, bigLetter;
+  firstLetter = document.getElementById("first-letter-" + numberOfContact);
+  if (document.getElementById("first-big-letter-" + numberOfContact)) {
+    changeBigLetterToPicture(firstLetter, bigLetter, numberOfContact, base64);
+  } else if (document.querySelector(".person-icon")) {
+    document.querySelector(".person-icon").src = base64;
+  }
+}
+
+/**
+ * Replaces the big and small letter representations with images for a specific contact.
+ * If the element is already an <img>, it simply updates the source.
+ * Otherwise, it creates and appends new image elements.
+ *
+ * @param {HTMLElement} firstLetter - The element representing the small contact letter.
+ * @param {HTMLElement} bigLetter - The element representing the big contact letter.
+ * @param {number} numberOfContact - The index of the contact.
+ * @param {string} base64 - The base64-encoded image string.
+ */
+function changeBigLetterToPicture(firstLetter, bigLetter, numberOfContact, base64) {
+  bigLetter = document.getElementById("first-big-letter-" + numberOfContact);
   if (bigLetter.tagName.toLowerCase() === "img") {
     bigLetter.src = base64;
     firstLetter.src = base64;
@@ -407,6 +434,13 @@ function checkIfImg(base64, numberOfContact) {
   }
 }
 
+/**
+ * Creates an <img> element with the given base64 string and appends it to a given element.
+ *
+ * @param {string} base64 - The base64-encoded image string.
+ * @param {HTMLElement} letter - The container element to append the image to.
+ * @param {string} group - A CSS class to assign to the image (e.g., for styling).
+ */
 function createImage(base64, letter, group) {
   const img = document.createElement("img");
   img.src = base64;
@@ -428,6 +462,12 @@ async function userImageDialog(file) {
   imageContainer.classList.add("profile-picture");  
 }
 
+/**
+ * Adds an event listener to the file input for editing a user's profile image.
+ * When a file is selected, it compresses the image and updates the user's displayed profile picture.
+ *
+ * @param {number} numberOfContact - The index of the contact whose image is being edited.
+ */
 function userImageEdit(numberOfContact) {
   const editpicker = document.getElementById("editpicker" + numberOfContact);
   editpicker.addEventListener("change", async() => {

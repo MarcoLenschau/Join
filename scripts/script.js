@@ -461,12 +461,29 @@ function loadAllFiles(filesContainer, imageContainer, tasks, id) {
 }
 
 function createFilesImage(filesContainer, imageContainer, file) {
+  const wrapper = document.createElement("div");
   const img = document.createElement("img");
+  const span = document.createElement("span");
+  styleImage(img, span, file, filesContainer)
+  styleWrapper(img, span, wrapper);
+  filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(wrapper); 
+}
+
+function styleWrapper(img, span, wrapper) {
+  wrapper.classList.add("d_flex_column");
+  wrapper.style.alignItems = "center";
+  wrapper.style.gap = "8px";
+  wrapper.appendChild(img);
+  wrapper.appendChild(span);
+}
+
+function styleImage(img, span, file, filesContainer) {
+  span.textContent = file.filename;
+  span.classList.add("file-name");
   img.src = file.base64;
   img.onclick = () => {
     showBigPicture(filesContainer);
-  }
-  filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(img); 
+  };
 }
 
 function showBigPicture(filesContainer) {
