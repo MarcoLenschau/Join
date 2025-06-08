@@ -49,14 +49,13 @@ function getInitialsName(name) {
 }
 
 /**
- * Checks if the file format is one of the allowed image types: svg, jpeg, or png.
+ * Checks if the file a image.
  *
  * @param {File} file - The file to check.
  * @returns {boolean} Returns true if the file is svg, jpeg, or png; otherwise false.
  */
 function checkFormatOfFile(file) {
-  const fileExtension = extractFileExtension(file.name).toLocaleLowerCase();
-  if (fileExtension === 'svg' || fileExtension === 'jpeg' || fileExtension === 'png') {
+  if (file.type.startsWith('image/')) {
     return true;
   } else {
     return false;
