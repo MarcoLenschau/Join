@@ -460,6 +460,14 @@ function loadAllFiles(filesContainer, imageContainer, tasks, id) {
   }
 }
 
+/**
+ * Creates and appends an image preview with filename to the appropriate container.
+ * Displays the image and wraps it with styling and filename span.
+ *
+ * @param {HTMLElement|null} filesContainer - The container for file previews; if null, imageContainer is used.
+ * @param {HTMLElement} imageContainer - Fallback container if filesContainer is null.
+ * @param {{ filename: string, base64: string }} file - The file object containing the image data and filename.
+ */
 function createFilesImage(filesContainer, imageContainer, file) {
   const wrapper = document.createElement("div");
   const img = document.createElement("img");
@@ -469,6 +477,13 @@ function createFilesImage(filesContainer, imageContainer, file) {
   filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(wrapper); 
 }
 
+/**
+ * Styles and arranges the image and filename span inside a flex column wrapper.
+ *
+ * @param {HTMLImageElement} img - The image element to be displayed.
+ * @param {HTMLSpanElement} span - The span containing the filename.
+ * @param {HTMLDivElement} wrapper - The wrapper element that holds the image and span.
+ */
 function styleWrapper(img, span, wrapper) {
   wrapper.classList.add("d_flex_column");
   wrapper.style.alignItems = "center";
@@ -477,6 +492,14 @@ function styleWrapper(img, span, wrapper) {
   wrapper.appendChild(span);
 }
 
+/**
+ * Sets the source and click behavior of the image, and applies styling to the filename span.
+ *
+ * @param {HTMLImageElement} img - The image element to be configured.
+ * @param {HTMLSpanElement} span - The span element for displaying the filename.
+ * @param {{ filename: string, base64: string }} file - The file object.
+ * @param {HTMLElement|null} filesContainer - Determines which container context to use for click behavior.
+ */
 function styleImage(img, span, file, filesContainer) {
   span.textContent = file.filename;
   span.classList.add("file-name");
@@ -486,10 +509,20 @@ function styleImage(img, span, file, filesContainer) {
   };
 }
 
+/**
+ * Displays a larger view of the image based on the container context.
+ *
+ * @param {HTMLElement|null} filesContainer - Determines whether to show image from image-container or files-container.
+ */
 function showBigPicture(filesContainer) {
   filesContainer == null ? bigPicture("image-container") : bigPicture("files-container");
 }
 
+/**
+ * Prevents an event from bubbling up the DOM tree.
+ *
+ * @param {Event} e - The event to stop.
+ */
 function stopPropagation(e) {
   e.stopPropagation();
 }

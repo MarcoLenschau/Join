@@ -28,7 +28,6 @@ async function checkExistingUser(name, email, password) {
   }
   const existingUserName = users.find((user) => user.name === name);
   const existingUserEmail = users.find((user) => user.email === email);
-
   if (existingUserEmail || existingUserName) {
     toggleLoadingSpinner('remove');
     return toggleSignupError(existingUserName ? 'Username already exists' : 'Email address  already exists', 'add');
@@ -36,7 +35,15 @@ async function checkExistingUser(name, email, password) {
   await postUser({ name, email, password }, name);
 }
 
-async function isDatabaseEmpty() {
+/**
+ * Checks if the user database is empty. If empty, adds the first user.
+ *
+ * @param {string} name - Name of the user to register if DB is empty.
+ * @param {string} email - Email of the user to register if DB is empty.
+ * @param {string} password - Password of the user to register if DB is empty.
+ * @returns {Promise<boolean>} - Returns true if a user was added (i.e., DB was empty), false otherwise.
+ */
+async function isDatabaseEmpty(name, email, password) {
     if (users != null) {
     users = Object.values(users);
   } else {
@@ -56,7 +63,6 @@ function getFieldValues() {
   const password = document.getElementById('password').value;
   const confirmPasswordInput = document.getElementById('passwordConfirm');
   const confirmPassword = confirmPasswordInput.value;
-
   return { name, email, password, confirmPasswordInput, confirmPassword };
 }
 
