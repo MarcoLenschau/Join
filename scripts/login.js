@@ -59,4 +59,5 @@ function checkCredentials(user, password) {
   localStorage.setItem('currentUser', user.name);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
+  signup
 }

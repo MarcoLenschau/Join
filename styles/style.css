@@ -547,7 +547,7 @@ a {
   justify-content: flex-start !important;
   margin-top: 12px;
   img {
-    height:80px;
+    height: 80px;
     width: 80px;
   }
 }
@@ -569,4 +569,13 @@ a {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 32px;
   padding: 2px 8px;
+  font-size: 14px !important;  
+}
+
+.files {
+  padding: 18px 0;
+}
+
+.subtasks {
+  padding-top: 10px;
 }

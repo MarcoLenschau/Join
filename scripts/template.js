@@ -474,12 +474,12 @@ function getTaskPreviewTemplate(task) {
         <ul>
          ${getAssignedTemplate(task.assignedTo, true)}
         </ul>
-        <span class="distance-data">Subtasks</span>
+        <span class="distance-data subtasks">Subtasks</span>
         <ul>
          ${getSubTasksTemplate(task.subTasks, task.id)}
         </ul>
 
-        <div>
+        <div class="files">
           <span>Files</span>
           <div id='files-container' class='files'></div>
         </div>
