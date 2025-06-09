@@ -410,7 +410,7 @@ async function imageCreate(file) {
  * @param {HTMLElement} imageContainer - The container element holding the image elements.
  */
 function addScrollbar(imageContainer) {
-  if (imageContainer.children.length > 3) {
+  if (imageContainer.children.length > 2) {
     imageContainer.classList.add("image-overflow");
   } else {
     imageContainer.classList.remove("image-overflow");
