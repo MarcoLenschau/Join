@@ -366,11 +366,12 @@ function fileDefine() {
     filepicker.addEventListener("change", () => {
       filepickerDefine = false;
       const files = Array.from(filepicker.files);
-
       if (files.length > 0) {
         files.forEach(file => {
           if (checkFormatOfFile(file)) {
             imageCreate(file);
+          } else {
+            showErrorMessage();
           }
         });
       }
@@ -409,7 +410,7 @@ async function imageCreate(file) {
  * @param {HTMLElement} imageContainer - The container element holding the image elements.
  */
 function addScrollbar(imageContainer) {
-  if (imageContainer.children.length > 5) {
+  if (imageContainer.children.length > 3) {
     imageContainer.classList.add("image-overflow");
   } else {
     imageContainer.classList.remove("image-overflow");

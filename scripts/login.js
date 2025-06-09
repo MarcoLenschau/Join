@@ -49,15 +49,12 @@ function checkCredentials(user, password) {
     toggleSignupError('No user with that email', 'add');
     return;
   }
-
   if (user.password !== password) {
     toggleLoadingSpinner('remove');
     toggleSignupError('Email or password is invalid', 'add');
     return;
   }
-
   localStorage.setItem('currentUser', user.name);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
-  signup
 }

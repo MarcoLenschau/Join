@@ -519,6 +519,19 @@ function showBigPicture(filesContainer) {
 }
 
 /**
+ * Displays an error message by removing the "hidden-error-message" class from the element
+ * with the "error" class, then hides it again after 5 seconds by re-adding the class.
+ */
+function showErrorMessage() {
+  document.querySelectorAll(".error").forEach(errorMessage => {
+    errorMessage.classList.remove("hidden-error-message");
+    setTimeout(()=> {
+      errorMessage.classList.add("hidden-error-message");
+    }, 5000);
+  });
+}
+
+/**
  * Prevents an event from bubbling up the DOM tree.
  *
  * @param {Event} e - The event to stop.

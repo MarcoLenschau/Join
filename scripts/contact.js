@@ -349,6 +349,8 @@ function createUserImage(numberOfContact, dialog) {
     imagepickerDefine.push(numberOfContact);
     if (image.length > 0 && checkFormatOfFile(image[0])) {
       checkIsDialog(image, numberOfContact, dialog);
+    } else if(!checkFormatOfFile(image[0])) {
+      showErrorMessage();
     }
   },{ once: true });
 }

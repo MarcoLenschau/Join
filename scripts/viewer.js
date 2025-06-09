@@ -9,9 +9,6 @@ function bigPicture(element) {
       inline: false, 
       toolbar: true,      
       tooltip: false,     
-      viewed() {
-        viewer.zoomTo(1);  
-      },
       hidden() {
         viewer.destroy();
       },

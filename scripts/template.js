@@ -164,8 +164,11 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                         <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
                       </div>
                   </div>
-                  <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
-                  <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
+                  <div class="file-upload-container"> 
+                    <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                    <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
+                    <span class="error hidden-error-message">Only image allowed</span>
+                  </div>
                   <div class="d_flex_c image-container-div">
                     <div id="image-container"></div>
                   </div>
@@ -325,9 +328,10 @@ function getMoreInfomationTemplate(numberOfContact) {
  */
 function getMoreInfoWithBigLetter(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
-  return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
               <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-              <input type="file" id="${imagepicker}" style='display: none'>
+              <input type="file" id="${imagepicker}" style='display: none' accept="image/*">
+              <span class="error hidden-error-message">Only image allowed</span>          
           </div>`;
 }
 
@@ -340,9 +344,10 @@ function getMoreInfoWithBigLetter(numberOfContact) {
  */
 function getMoreInfoWithPicute(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
-  return `<div class="big-letter-ctn" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
               <img id="first-big-letter-${numberOfContact}" class="first-big-letter transparent" src="${contacts[numberOfContact].img}">
-              <input type="file" id="${imagepicker}" style='display: none'>
+              <input type="file" id="${imagepicker}" style="display: none" accept="image/*">
+              <span class="error hidden-error-message">Only image allowed</span>
           </div>`;
 }
 
@@ -396,9 +401,10 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
+      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
         <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' }">
-        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none">
+        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
+        <span class="error hidden-error-message">Only image allowed</span>
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
