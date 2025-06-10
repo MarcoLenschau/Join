@@ -23,15 +23,17 @@ async function handleRegisterNewUser(event) {
  */
 async function checkExistingUser(name, email, password) {
   let users = await loadFromBackend('users');
-  if (users != null) { return false; }
-  users = Object.values(users);
-  const existingUserName = users.find((user) => user.name === name);
-  const existingUserEmail = users.find((user) => user.email === email);
-  if (existingUserEmail || existingUserName) {
-    toggleLoadingSpinner('remove');
-    return toggleSignupError(existingUserName ? 'Username already exists' : 'Email address  already exists', 'add');
+  if (users != null) { 
+    users = Object.values(users);
+    const existingUserName = users.find((user) => user.name === name);
+    const existingUserEmail = users.find((user) => user.email === email);
+    if (existingUserEmail || existingUserName) {
+      toggleLoadingSpinner('remove');
+      return toggleSignupError(existingUserName ? 'Username already exists' : 'Email address  already exists', 'add');
+    }
   }
   await postUser({ name, email, password }, name);
+
 }
 
 /**
