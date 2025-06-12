@@ -63,5 +63,5 @@ async function postUser(user, name) {
   await postDataAtBackend(user, 'users');
   toggleLoadingSpinner('remove');
   localStorage.setItem('currentUser', name);
-  window.location.href = '../pages/summary.html';
+  window.location.href = '../index.html';
 }

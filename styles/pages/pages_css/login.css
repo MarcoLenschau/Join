@@ -42,10 +42,14 @@ body {
   height: 40px;
 }
 
-.formDiv {
+.login-form-container {
+  margin-top: -150px !important;
+}
+
+.formDiv {    
+  margin-top: -32px;
   max-width: 400px;
   width: 400px;
-
   img {
     width: 16px;
   }
