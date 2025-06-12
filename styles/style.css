@@ -1,6 +1,3 @@
-/* STYLE FOR TEMPLATES */
-
-/* HEADER STYLE FOR ALL PAGES */
 header {
   height: 170px;
   width: 100%;
@@ -261,14 +258,12 @@ a {
   transition: all 3s !important;
 }
 
-/* Login Loadingscreen */
-
 #loginLogo {
-  /* Versteckt den Inhalt der Seite, bis die Animation fertig ist */
-  display: none;
+  animation: fadeInLogo 3s ease forwards;
+  width: 100px;
+  height: 122px;
 }
 
-/* Loader-Stil */
 .loader {
   position: fixed;
   top: 0;
@@ -279,11 +274,10 @@ a {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
+  animation: backgroundTransition 2s ease forwards;
   pointer-events: none;
 }
 
-/* Pseudoelement für Hintergrund */
 .loader::before {
   content: '';
   position: absolute;
@@ -291,25 +285,22 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 1); /* Start: Weiß */
-  z-index: -1; /* Hintergrund liegt hinter dem Bild */
-  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
+  background-color: rgba(255, 255, 255, 1); 
+  z-index: -1; 
+  animation: backgroundTransition 2s ease forwards; 
 }
 
-/* Loader-Logo */
 .loader-image {
   width: 50px;
   height: 50px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Zentriert das Bild */
-  /* opacity: 1; */
-  /* z-index: 1; */
-  animation: logoTransition 2s ease forwards;
+  transform: translate(-50%, -50%); 
+  animation: logoTransition 2s ease forwards, fadeOutWhite 3s ease forwards;
 }
 
-/* Keyframe für Opazitätsübergang */
+
 @keyframes backgroundTransition {
   0% {
     background-color: rgba(255, 255, 255, 1); /* Anfangs weiß */
@@ -319,7 +310,6 @@ a {
   }
 }
 
-/* Keyframe für Logo-Animation */
 @keyframes logoTransition {
   0% {
     top: 50%;
@@ -329,17 +319,12 @@ a {
     transform: translate(-50%, -50%);
   }
   100% {
-    top: 24px; /* Endposition oben links */
-    left: 88px;
+    top: 32px;
+    left: 58px;
     width: 100px;
     height: 122px;
-    transform: none; /* Entfernt die Transformation */
+    transform: none;
   }
-}
-
-/* Anwenden der Animationen für kleine Bildschirme */
-#loader.start-animation #loader-image-white {
-  animation: fadeOutWhite 1s ease forwards; /* Weißes Bild ausblenden */
 }
 
 /* Weißes Bild wird transparent */
@@ -352,12 +337,6 @@ a {
   }
 }
 
-#loader.start-animation #loader-image-black {
-  animation: fadeInBlack 1s ease forwards; /* Schwarzes Bild einblenden */
-  display: none;
-}
-
-/* Fade-In und Fade-Out für das schwarze Bild (bleibt sichtbar) */
 @keyframes fadeInBlack {
   0% {
     opacity: 0;
@@ -595,4 +574,10 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.auth-header-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }

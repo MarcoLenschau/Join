@@ -18,22 +18,20 @@
   </head>
   <body>
     <div id="content" class="d_flex_column">
-      <header class="auth-header">
-        <div>
-          <img src="./assets/icon/icon.svg"
-            id="loginLogo"
-            style="display: none"
-            class="join-icon"
-            alt="Join"
-          />
-        </div>
-        <div class="d_flex_c sign-in hidden">
-          <span>Not a Join user ?</span>
-          <a href="./pages/sign_up.html">
-            <button class="primary-button">Sign up</button>
-          </a>
-        </div>
-      </header>
+      <div class="auth-header-container">
+        <header class="auth-header">
+          <div>
+            <img src="./assets/img/logo-black.svg" id="loginLogo" class="join-icon" alt="Join"/>
+          </div>
+          <div class="d_flex_c sign-in hidden">
+            <span>Not a Join user ?</span>
+            <a href="./pages/sign_up.html">
+              <button class="primary-button">Sign up</button>
+            </a>
+          </div>
+        </header>
+      </div>
+
       <main class="d_flex_c auth-main">
         <form onsubmit="handleLogin(event);" class="formDiv">
           <div class="text-center login-form w-100">

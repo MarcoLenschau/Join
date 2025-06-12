@@ -29,6 +29,27 @@
     display: flex !important;
     padding: 30px;
   }
+
+  header {
+    width: 1920px;
+  }
+
+  @keyframes logoTransition {
+    0% {
+      top: 50%;
+      left: 50%;
+      width: 274px;
+      height: 334px;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      top: 24px;
+      left: 128px;
+      width: 100px;
+      height: 122px;
+      transform: none;
+    }
+  }
 }
 
 @media (max-width: 1300px) {
@@ -347,6 +368,12 @@
   #add-task span {
     margin-top: 12px;
   }
+
+  #loginLogo {
+    position: fixed;
+    top: -40px;
+    left: 18px;
+  }
 }
 
 @media (min-width: 600px) {
@@ -535,6 +562,11 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+  } 
+
+  .loader-image {
+    width: 85px !important; 
+    height: 85px !important;
   }
 
   .upload-file {
