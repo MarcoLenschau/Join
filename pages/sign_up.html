@@ -36,7 +36,7 @@
                 <img src="../assets/img/back.svg" class="back-button singup-back-button" />
             </a>
         </div> 
-        <form class="formDiv" onsubmit="handleRegisterNewUser(event);">
+        <form class="formDiv" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
             <div class="text-center login-form w-100">
                 <div class="d_flex" style="padding: 24px; justify-content: flex-start;">
                     <div class="text-center" style="width: 280px;">
@@ -46,22 +46,26 @@
                 </div>
                 <div class="register-container">
                     <div class="d_flex">
-                        <input id="name" type="text" placeholder="Name" class="w-100 default-border input-font" required>
+                        <input id="name" type="text" placeholder="Name" 
+                        class="w-100 default-border input-font" onclick="validate(userValidateEvent, 'name')" required>
                         <img src="../assets/img/person.svg" alt="name" class="overlay-image">
                     </div>
                 
                     <div class="d_flex">
-                        <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" required>
+                        <input id="email" type="email" placeholder="E-Mail" 
+                        class="w-100 default-border input-font" onclick="validate(emailValidateEvent, 'email')" required>
                         <img src="../assets/img/mail.svg" alt="E-Mail" class="overlay-image">
                    </div>
                   
                    <div class="d_flex">
-                        <input id="password" type="password" placeholder="Password" minlength="5" class="w-100 default-border input-font" required>
+                        <input id="password" type="password" placeholder="Password" minlength="5" 
+                        class="w-100 default-border input-font" onclick="validate(passwordValidateEvent, 'password')" required>
                         <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
                     </div>
                     
                     <div class="d_flex">
-                        <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" class="w-100 default-border input-font" required>
+                        <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" 
+                        class="w-100 default-border input-font" onclick="validate(passwordConfirmValidateEvent, 'passwordConfirm')" required>
                         <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
                     </div>
                       <span id="auth-error-message">User name already</span>
