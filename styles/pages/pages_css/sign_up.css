@@ -15,8 +15,8 @@ body {
 }
 
 .back-button-link {
-  position: absolute;
-  margin: 52px 278px;
+  position: relative;
+  left: 330px;
   transform: translate(30px, -20px);
 }
 
@@ -32,4 +32,12 @@ body {
 
 .error-validate {
   border: red 1px solid;
+}
+
+.red {
+  color: red !important;
+}
+
+.transparent {
+  color: transparent;
 }

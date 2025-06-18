@@ -41,9 +41,14 @@ function whichValidateField(event, element) {
  */
 function errorValidate(method, element) {
   const inputField = document.getElementById(element);
-  method === "add"
-    ? inputField.classList.add("error-validate")
-    : inputField.classList.remove("error-validate");
+  const errorField = document.getElementById(element + "-error");
+  if (method === "add") {
+    inputField.classList.add("error-validate");
+    errorField.classList.add("red");
+  } else {
+    inputField.classList.remove("error-validate");
+    errorField.classList.remove("red");
+  }
 }
 
 /**

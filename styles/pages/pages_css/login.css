@@ -8,7 +8,8 @@ body {
   align-items: center;
   row-gap: 12px;
   margin-top: 24px;
-
+  margin-bottom: 8px;
+  
   button {
     padding: 12px 24px;
     border-radius: 10px;
@@ -28,7 +29,6 @@ body {
   flex-direction: column;
   gap: 12px;
   background-color: #ffffff;
-  padding: 32px;
   border-radius: 18px;
 }
 
