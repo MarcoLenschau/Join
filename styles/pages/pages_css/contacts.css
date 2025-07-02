@@ -295,3 +295,44 @@
 .contacts-list{
   height: fit-content;
 }
+
+.profile-picture {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.profile-picture-litle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.profile-picture-list {
+  height: 50px;
+  width: 50px;
+  border: 0;
+  border-radius: 24px;
+  background-color: transparent !important;
+}
+
+.transparent {
+  border: 0;
+  background-color: transparent !important;
+}
+
+.profile-picture-span {
+  height: 85px;
+  width: 85px;
+  border-radius: 50%;
+}
+
+.person-icon {
+  height: 50px;
+  width: 50px;
+}

@@ -8,7 +8,8 @@ body {
   align-items: center;
   row-gap: 12px;
   margin-top: 24px;
-
+  margin-bottom: 8px;
+  
   button {
     padding: 12px 24px;
     border-radius: 10px;
@@ -28,7 +29,6 @@ body {
   flex-direction: column;
   gap: 12px;
   background-color: #ffffff;
-  padding: 32px;
   border-radius: 18px;
 }
 
@@ -42,10 +42,14 @@ body {
   height: 40px;
 }
 
-.formDiv {
+.login-form-container {
+  margin-top: -150px !important;
+}
+
+.formDiv {    
+  margin-top: -32px;
   max-width: 400px;
   width: 400px;
-
   img {
     width: 16px;
   }
@@ -89,96 +93,6 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-/* Login Loadingscreen */
-#loginLogo {
-  display: none;
-}
-
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
-}
-
-.loader::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 1);
-  z-index: -1;
-  animation: backgroundTransition 2s ease forwards; /* Animiert Hintergrund */
-}
-
-
-@keyframes backgroundTransition {
-  0% {
-    background-color: rgba(255, 255, 255, 1);
-  }
-  100% {
-    background-color: rgba(255, 255, 255, 0);
-  }
-}
-
-@keyframes logoTransition {
-  0% {
-    top: 50%;
-    left: 50%;
-    width: 274px;
-    height: 334px;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    top: 24px;
-    left: 88px;
-    width: 100px;
-    height: 122px;
-    transform: none;
-  }
-}
-
-/* Anwenden der Animationen für kleine Bildschirme */
-#loader.start-animation #loader-image-white {
-  animation: fadeOutWhite 1s ease forwards;
-}
-
-@keyframes fadeOutWhite {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-#loader.start-animation #loader-image-black {
-  animation: fadeInBlack 1s ease forwards;
-  display: none;
-}
-
-@keyframes fadeInBlack {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.auth-header{
-  height: fit-content !important;
-  margin-top: 16px;
 }
 
 .auth-main{

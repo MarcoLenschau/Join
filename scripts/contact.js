@@ -9,6 +9,7 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
+  
 }
 
 /**
@@ -59,6 +60,11 @@ function moreInfomationOfContact(numberOfContact, isCreateOrUpdate) {
   renderMoreInformationContent(numberOfContact);
 }
 
+/**
+ * Updates the "more-information" container with details about a contact.
+ *
+ * @param {number} numberOfContact - The number that identifies which contact to show.
+ */
 function renderInfoContainer(numberOfContact) {
   const infoDiv = document.getElementById('more-information');
   infoDiv.innerHTML = getMoreInfomationTemplate(numberOfContact);
@@ -111,7 +117,6 @@ function showContactsData() {
   }
 }
 
-
 /**
  * Handles the form submission to save or create a contact.
  * 
@@ -121,14 +126,12 @@ function showContactsData() {
  */
 async function saveAndCreate(event, content, numberOfContact) {
   event.preventDefault();
-
   if (content === 'Add') {
     addNewContact(defineNewContact());
     organizeContacts();
   } else {
     await updateContact(numberOfContact);
   }
-
   renderContacts(true);
 }
 
@@ -154,13 +157,17 @@ async function updateContact(numberOfContact) {
  * @returns {Object} An object representing the new contact with name, email, phone, and a default role.
  */
 function defineNewContact() {
-  let userData = {
-    name: document.getElementById('name').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    phone: document.getElementById('phone').value.trim(),
-    role: 'Tester',
-  };
-  return userData;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  console.log(document.querySelector('.person-icon'))
+  if (document.querySelector('.person-icon')) {
+    const img = document.querySelector('.person-icon').src;
+    console.log(img)
+    return { name,email, phone, img: img, role: 'Tester' };
+  } else {
+    return { name,email, phone, role: 'Tester' };
+  }
 }
 
 /**
@@ -170,14 +177,11 @@ function defineNewContact() {
  */
 async function addNewContact(userData) {
   contacts.push(userData);
-
   sortContacts();
   showContactsData();
   moreInfomationOfContact(contacts.indexOf(userData), true);
   hideAddContactMenu();
-
   const { name } = await postDataAtBackend(userData, 'contacts');
-
   contacts.slice(-1);
   contacts.push({ ...userData, id: name });
   sortContacts();
@@ -188,12 +192,15 @@ async function addNewContact(userData) {
  * 
  * @param {number} numberOfContact - The index of the contact in the `contacts` array to update.
  */
-
 function saveContact(numberOfContact) {
   if (numberOfContact != null) {
+    console.log(contacts[numberOfContact].img)
     contacts[numberOfContact].name = document.getElementById('name').value;
     contacts[numberOfContact].email = document.getElementById('email').value;
     contacts[numberOfContact].phone = document.getElementById('phone').value;
+    if (document.querySelector(".profile-picture-span")) {
+      contacts[numberOfContact].img = document.querySelector(".profile-picture-span").src;
+    }
     hideAddContactMenu();
   }
 }
@@ -225,7 +232,6 @@ function hideAddContactMenu() {
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
-
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
     const firstLetter = contactEl.dataset.firstletter;
@@ -277,6 +283,11 @@ function toggleContactSelect(event, index) {
   moreInfomationOfContact(index);
 }
 
+/**
+ * Closes the small menu if the user clicks outside the menu button area.
+ *
+ * @param {Event} event - The event triggered by the user's click.
+ */
 function closeSmallMenu(event){
   const moreButtonDiv = event.target.closest(".more-button-div")
   if(moreButtonDiv) return
@@ -307,4 +318,163 @@ function toggleMenu() {
 */
 function toggleContactMenu(method) {
   document.querySelector('.big-content').classList[method]('show-modal');
+}
+
+/**
+ * Adds a user image if it is not already shown multiple times.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} [dialog=""] - Optional text or dialog to include with the user image.
+ */
+function userImgDefine(numberOfContact, dialog="") {
+  createUserImage(numberOfContact, dialog);
+}
+
+/**
+ * Adds a change event listener to an image input element.
+ * When a file is selected, it checks the file format and handles it based on the dialog setting.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} dialog - Optional dialog type (used to decide how to show the image).
+ */
+function createUserImage(numberOfContact, dialog) {
+  let imagepicker;
+  if (numberOfContact === null) {
+    imagepicker = document.getElementById("imagepicker");
+  } else {
+    imagepicker = document.getElementById("imagepicker" + numberOfContact);
+  }
+  imagepicker.addEventListener("change", () => {
+    const image = imagepicker.files;
+    imagepickerDefine.push(numberOfContact);
+    if (image.length > 0 && checkFormatOfFile(image[0])) {
+      checkIsDialog(image, numberOfContact, dialog);
+    } else if(!checkFormatOfFile(image[0])) {
+      showErrorMessage();
+    }
+  },{ once: true });
+}
+
+/**
+ * Decides whether to show the image in a dialog or directly for the contact.
+ *
+ * @param {FileList} image - The image files selected by the user.
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @param {string} dialog - If not empty, the image will be shown in a dialog.
+ */
+function checkIsDialog(image, numberOfContact, dialog) {
+  if (dialog !== "") {
+    userImageDialog(image);
+  } else {
+    userImageCreate(image, numberOfContact);
+  }
+}
+
+/**
+ * Checks if the image input has already been used for this contact.
+ * Prevents adding the same image picker multiple times.
+ *
+ * @param {number} numberOfContact - The number that identifies the user.
+ * @returns {boolean} True if image picker for this user already exists, otherwise false.
+ */
+function blockMultiplySameUser(numberOfContact) {
+  return imagepickerDefine.includes(numberOfContact);
+}
+
+/**
+ * Compresses the image and adds it to the user’s contact.
+ * Also updates the contact in the backend.
+ *
+ * @param {FileList} file - The image file selected by the user.
+ * @param {number} numberOfContact - The number that identifies the user.
+ */
+async function userImageCreate(file, numberOfContact) {
+  const base64 = await compressImage(file[0]);
+  const userObj = { ...contacts[numberOfContact], img: base64 };
+  contacts[numberOfContact] = userObj;
+  checkIfImg(base64, numberOfContact);
+  if (numberOfContact != null) {
+    await updateDataAtBackend(contacts[numberOfContact].id, "/contacts", userObj);
+  }
+}
+
+/**
+ * Checks if the contact has an image element and updates it with the provided base64 image.
+ * If not, it updates a dialog person icon image if present.
+ *
+ * @param {string} base64 - The base64-encoded image string.
+ * @param {number} numberOfContact - The index of the contact.
+ */
+function checkIfImg(base64, numberOfContact) {
+  let firstLetter, bigLetter;
+  firstLetter = document.getElementById("first-letter-" + numberOfContact);
+  if (document.getElementById("first-big-letter-" + numberOfContact)) {
+    changeBigLetterToPicture(firstLetter, bigLetter, numberOfContact, base64);
+  } else if (document.querySelector(".person-icon")) {
+    document.querySelector(".person-icon").src = base64;
+  }
+}
+
+/**
+ * Replaces the big and small letter representations with images for a specific contact.
+ * If the element is already an <img>, it simply updates the source.
+ * Otherwise, it creates and appends new image elements.
+ *
+ * @param {HTMLElement} firstLetter - The element representing the small contact letter.
+ * @param {HTMLElement} bigLetter - The element representing the big contact letter.
+ * @param {number} numberOfContact - The index of the contact.
+ * @param {string} base64 - The base64-encoded image string.
+ */
+function changeBigLetterToPicture(firstLetter, bigLetter, numberOfContact, base64) {
+  bigLetter = document.getElementById("first-big-letter-" + numberOfContact);
+  if (bigLetter.tagName.toLowerCase() === "img") {
+    bigLetter.src = base64;
+    firstLetter.src = base64;
+  } else {
+    createImage(base64, firstLetter, "profile-picture-list");
+    createImage(base64, bigLetter, "profile-picture-span");
+  }
+}
+
+/**
+ * Creates an <img> element with the given base64 string and appends it to a given element.
+ *
+ * @param {string} base64 - The base64-encoded image string.
+ * @param {HTMLElement} letter - The container element to append the image to.
+ * @param {string} group - A CSS class to assign to the image (e.g., for styling).
+ */
+function createImage(base64, letter, group) {
+  const img = document.createElement("img");
+  img.src = base64;
+  img.classList.add(group);
+  letter.appendChild(img);
+  letter.classList.add("transparent");
+}
+
+/**
+ * Compresses the image and shows it in a contact dialog preview.
+ *
+ * @param {FileList} file - The image file selected by the user.
+ */
+async function userImageDialog(file) {
+  const imageContainer = document.querySelector(".person-icon");
+  document.querySelector(".add-contact-img-div").classList.add("no-padding");
+  const base64 = await compressImage(file[0]);
+  imageContainer.src = base64;
+  imageContainer.classList.add("profile-picture");  
+}
+
+/**
+ * Adds an event listener to the file input for editing a user's profile image.
+ * When a file is selected, it compresses the image and updates the user's displayed profile picture.
+ *
+ * @param {number} numberOfContact - The index of the contact whose image is being edited.
+ */
+function userImageEdit(numberOfContact) {
+  const editpicker = document.getElementById("editpicker" + numberOfContact);
+  editpicker.addEventListener("change", async() => {
+    const imageContainer = document.querySelector(".profile-picture-span");
+    const base64 = await compressImage(editpicker.files[0]);
+    imageContainer.src = base64;
+  });
 }

@@ -1,16 +1,16 @@
 .flex {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 8px;
   margin-bottom: 12px;
   font-size: 24px;
 }
 
 .separator {
-  height: 330px;
+  height: 516px;
   width: 3px;
   margin: 60px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 main {
@@ -169,4 +169,73 @@ main {
 
 .add-task-right-form{
   margin: 46px 10px;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: -18px;
+  margin-bottom: 18px;
+  width: 400px;
+  h3 {
+    font-weight: normal;
+  }
+}
+
+.delete-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: grey;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  img {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.upload-file {
+  width: 102% !important;
+  height: 50px;
+}
+
+#image-container {
+  display: flex;
+  gap: 8px;
+  img {
+    border-radius: 24px;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.distance-data {
+  margin-bottom: 12px;
+}
+
+.image-overflow {
+  overflow-x: scroll;
+}
+
+.image-container-div {
+  width: 420px;
+}
+
+.ok-button-edit-mode {
+  position: absolute;
+  bottom: 31px;
+  left: 38%;
 }

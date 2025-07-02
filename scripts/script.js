@@ -2,7 +2,6 @@ const BACKEND_URL = 'https://join-3e9ec-default-rtdb.europe-west1.firebasedataba
 let allUserCredential = [];
 let currentUser = '';
 
-
 /**
  * Loads the HTML template data from a given URL.
  *
@@ -108,7 +107,7 @@ function checkAssignedUsers(assignedTo) {
  * Toggles the visibility of the "Add Task" modal.
  * 
 */
-function toggleAddTaskModal(e) {
+function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
 
   const target = e?.target;
@@ -422,4 +421,121 @@ async function loadFromBackend(path) {
   let response = await fetch(`${BACKEND_URL}/${path}.json`);
   let responeData = await response.json();
   return responeData;
+}
+
+/**
+ * Loads and displays image files that are saved with a specific task.
+ *
+ * @param {number} id - The ID of the task whose files should be loaded.
+ * @returns {boolean|void} Returns false if the task has no files.
+ */
+async function loadFiles(id) {
+  const filesContainer = document.getElementById('files-container');
+  const imageContainer = document.getElementById('image-container');
+  const tasks = await loadFromBackend('/tasks');
+  if (!tasks[id]) {
+    return false;
+  } else if(!tasks[id]) {
+    return false;
+  }
+  loadAllFiles(filesContainer, imageContainer, tasks, id);
+}
+
+/**
+ * Loads all file images from a task and appends them to the appropriate container.
+ *
+ * @param {HTMLElement|null} filesContainer - The container where images should be appended. If null, `imageContainer` will be used instead.
+ * @param {HTMLElement} imageContainer - Fallback container for images if `filesContainer` is null.
+ * @param {Object[]} tasks - An array of task objects containing files.
+ *
+ * @throws {ReferenceError} If `id` is not defined in the current scope.
+ */
+function loadAllFiles(filesContainer, imageContainer, tasks, id) {
+  if (tasks[id].files) {
+    const files = tasks[id].files;
+    allFiles = files;
+    files.forEach(file => {
+      createFilesImage(filesContainer, imageContainer, file);
+    });
+  }
+}
+
+/**
+ * Creates and appends an image preview with filename to the appropriate container.
+ * Displays the image and wraps it with styling and filename span.
+ *
+ * @param {HTMLElement|null} filesContainer - The container for file previews; if null, imageContainer is used.
+ * @param {HTMLElement} imageContainer - Fallback container if filesContainer is null.
+ * @param {{ filename: string, base64: string }} file - The file object containing the image data and filename.
+ */
+function createFilesImage(filesContainer, imageContainer, file) {
+  const wrapper = document.createElement("div");
+  const img = document.createElement("img");
+  const span = document.createElement("span");
+  styleImage(img, span, file, filesContainer)
+  styleWrapper(img, span, wrapper);
+  filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(wrapper); 
+}
+
+/**
+ * Styles and arranges the image and filename span inside a flex column wrapper.
+ *
+ * @param {HTMLImageElement} img - The image element to be displayed.
+ * @param {HTMLSpanElement} span - The span containing the filename.
+ * @param {HTMLDivElement} wrapper - The wrapper element that holds the image and span.
+ */
+function styleWrapper(img, span, wrapper) {
+  wrapper.classList.add("d_flex_column");
+  wrapper.style.alignItems = "center";
+  wrapper.style.gap = "8px";
+  wrapper.appendChild(img);
+  wrapper.appendChild(span);
+}
+
+/**
+ * Sets the source and click behavior of the image, and applies styling to the filename span.
+ *
+ * @param {HTMLImageElement} img - The image element to be configured.
+ * @param {HTMLSpanElement} span - The span element for displaying the filename.
+ * @param {{ filename: string, base64: string }} file - The file object.
+ * @param {HTMLElement|null} filesContainer - Determines which container context to use for click behavior.
+ */
+function styleImage(img, span, file, filesContainer) {
+  span.textContent = file.filename;
+  span.classList.add("file-name");
+  img.src = file.base64;
+  img.onclick = () => {
+    showBigPicture(filesContainer);
+  };
+}
+
+/**
+ * Displays a larger view of the image based on the container context.
+ *
+ * @param {HTMLElement|null} filesContainer - Determines whether to show image from image-container or files-container.
+ */
+function showBigPicture(filesContainer) {
+  filesContainer == null ? bigPicture("image-container") : bigPicture("files-container");
+}
+
+/**
+ * Displays an error message by removing the "hidden-error-message" class from the element
+ * with the "error" class, then hides it again after 5 seconds by re-adding the class.
+ */
+function showErrorMessage() {
+  document.querySelectorAll(".error").forEach(errorMessage => {
+    errorMessage.classList.remove("hidden-error-message");
+    setTimeout(()=> {
+      errorMessage.classList.add("hidden-error-message");
+    }, 5000);
+  });
+}
+
+/**
+ * Prevents an event from bubbling up the DOM tree.
+ *
+ * @param {Event} e - The event to stop.
+ */
+function stopPropagation(e) {
+  e.stopPropagation();
 }

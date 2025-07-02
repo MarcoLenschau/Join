@@ -59,7 +59,7 @@ function getListTemplate(value, option) {
  * @returns {string} The HTML string for the "Add Task" modal.
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
-  return `<div class="d_flex_column" data-modal>
+  return `<div class="d_flex_column responsive-margin responsive-add-task-dialog ${isEditMode ? 'edit-mode-padding' : ''}" data-modal>
               <div class="d_flex_c main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
@@ -77,46 +77,12 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                                 isEditMode ? task.description : ''
                               }</textarea>
                         </div>
-                        <div class="flex">
-                            <span>Assigned to</span>
-                            <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
-                                <span class="select-text">
-                                <p>Select contacts to assign</p>
-                                <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
-                                </span>
-                                <div id="userlist" class="d_none"></div>
-                            </div>
-                            <ul class="assigned-list">
-                            ${isEditMode ? assignedTemplate : ''}
-                            </ul>
-                        </div>
-                            <span id="required-field-big">
-                                <span class="color-red">*</span>This field is required
-                            </span>
                     </div>
-                </div>
-                <div class="separator separator-max"></div>
-                ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}
-    `;
-}
-
-/**
- * Generates the right form section of the "Add Task" modal.
- *
- * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
- * @param {string} date - The due date of the task.
- * @param {string} subTasks - The HTML string for the subtasks.
- * @param {Object} task - The task object containing task details.
- * @returns {string} The HTML string for the right form section.
- */
-function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
-  return `
-    <div class="media-w-300 add-task-right-form">
                     <div class="flex">
-             <span>Due date<span class="color-red">*</span></span>
-             <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
-         </div>
-         <div class="flex">
+                      <span>Due date<span class="color-red">*</span></span>
+                      <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
+                    </div>
+          <div class="flex">
              <span>Prio</span>
              <div class="d_flex">
                  <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
@@ -150,7 +116,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                    </div>
                  </button>
                </div>
-                        </div>
+          </div>
           <div class="flex">
             <span>Category<span class="color-red">*</span></span>
             <select id="category" class="h-34 input-field task-input-field">
@@ -161,33 +127,84 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
            } value="Technical Task">Technical Task</option>
             </select>
           </div>
-          <div class="flex">
-            <span>Subtasks</span>
-            <div class="d_flex align-items-center">
-              <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
-              <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
-            </div>
-            <ul class="subtask-list">
-              ${subTasks || ''}
-            </ul>
-            <div class="d_flex g_12">
-                <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
-                  isEditMode ? 'd_none' : ''
-                }" formnovalidate> Clear X</button>
-                <button onclick="${
-                  isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                }" class="primary-button clear-and-create-button"> ${isEditMode ? 'Ok' : ' Create Task'}
-                    <img src="../assets/img/check.svg" alt="check" />
-                </button>
-            </div>
-          </div>
-          </div>
+          <span id="required-field-big">
+            <span class="color-red">*</span>This field is required
+          </span>
         </div>
-       <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
-       <img src="../assets/icon/close.png"  alt="close icon"/>
-      </button>
+        <div class="separator separator-max"></div>
+        ${getAddTaskRightFormTemplate(isEditMode, date, subTasks, task)}
       </div>
+    </div>
+    <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
+      <img src="../assets/icon/close.png"  alt="close icon"/>
+    </button>
+    </div>            
+  </div>
   `;
+}
+
+/**
+ * Generates the right form section of the "Add Task" modal.
+ *
+ * @param {boolean} isEditMode - Indicates if the modal is in edit mode.
+ * @param {string} date - The due date of the task.
+ * @param {string} subTasks - The HTML string for the subtasks.
+ * @param {Object} task - The task object containing task details.
+ * @returns {string} The HTML string for the right form section.
+ */
+function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
+  return `<div class="media-w-300 add-task-right-form">
+              <div class="main-container">
+                <div class="file-upload"> 
+                  <h3>Attachments</h3>  
+                  <div class="delete-container">
+                      <span>Allowed file types are JPEG and PNG</span>
+                      <div>
+                        <img onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
+                        <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
+                      </div>
+                  </div>
+                  <div class="file-upload-container"> 
+                    <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                    <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
+                    <span class="error hidden-error-message">Only image allowed</span>
+                  </div>
+                  <div class="d_flex_c image-container-div">
+                    <div id="image-container"></div>
+                  </div>
+                  <span>Subtasks</span>
+                    <div class="d_flex align-items-center">
+                       <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
+                       <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
+                    </div>
+                    <ul class="subtask-list">
+                      ${subTasks || ''}
+                    </ul>
+                    <span>Assigned to</span>
+                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
+                        <span class="select-text">
+                        <p>Select contacts to assign</p>
+                        <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
+                        </span>
+                        <div id="userlist" class="d_none"></div>
+                    </div>
+                    <ul class="assigned-list">
+                    ${isEditMode ? assignedTemplate : ''}
+                    </ul>
+                  </div>
+                  
+                  
+                  <div class="d_flex g_12">
+                    <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
+                      isEditMode ? 'd_none' : ''
+                    }" formnovalidate> Clear X</button>
+                    <button onclick="${
+                      isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
+                    }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
+                        <img src="../assets/img/check.svg" alt="check" />
+                    </button>
+                </div>
+              </div>`;
 }
 
 /**
@@ -199,14 +216,58 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
 function getContactsTemplate(index) {
   const contact = contacts[index];
   const name = contact.name;
-  return `  <span data-firstletter="${firstLetter(name)}">
+  if (contact.img) {
+    return getContactsWithPicture(name, index, contact);
+  } else {
+    return getContactsWithFirstLetter(name, index, contact);
+  }
+}
+
+/**
+ * Creates an HTML string for a contact that does not have a profile picture.
+ * Shows the first letter(s) of the contact’s name instead.
+ *
+ * @param {string} name - The full name of the contact.
+ * @param {number} index - The contact's position in the list.
+ * @param {Object} contact - The contact object containing email and other info.
+ * @param {string} contact.email - The email address of the contact.
+ * @returns {string} HTML string representing the contact without a picture.
+ */
+function getContactsWithFirstLetter(name, index, contact) {
+  return `<span data-firstletter="${firstLetter(name)}">
             <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-           <span id="first-letter-${index}" class="first-letter">${name.at(0)}${name.split(' ')[1]?.at(0) || ''}</span>
-                <div class="center-contacts">
-                    <span id="contact-name-${index}">${name}</span>
-                    <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-                </div>
-            </div></span>`;
+              <span id="first-letter-${index}" class="first-letter">
+                ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
+              </span>
+              <div class="center-contacts">
+                  <span id="contact-name-${index}">${name}</span>
+                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
+              </div>
+            </div>
+          </span>`;
+}
+
+/**
+ * Creates an HTML string for a contact that has a profile picture.
+ * Displays the contact's name, email, and picture.
+ *
+ * @param {string} name - The full name of the contact.
+ * @param {number} index - The contact's position in the list.
+ * @param {Object} contact - The contact object containing image and email.
+ * @param {string} contact.img - The base64 image of the contact.
+ * @param {string} contact.email - The email address of the contact.
+ * @returns {string} HTML string representing the contact with a picture.
+ */
+function getContactsWithPicture(name, index, contact) {
+  return `<span data-firstletter="${firstLetter(name)}">
+            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+              <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
+              <div class="center-contacts">
+                  <span id="contact-name-${index}">${name}</span>
+                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
+              </div>
+            </div>
+          </span>`;
 }
 
 /**
@@ -217,9 +278,7 @@ function getContactsTemplate(index) {
  */
 function getMoreInfomationTemplate(numberOfContact) {
   return `<div class="d_flex_c_c g_12">
-                <div class="big-letter-ctn">
-                    <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-                </div>
+                ${contacts[numberOfContact].img ?  getMoreInfoWithPicute(numberOfContact) : getMoreInfoWithBigLetter(numberOfContact)}
                 <div class="d_flex_column">
                     <span class="bold" data-contact-name>${contacts[numberOfContact].name}</span>
                     <div class="d_flex g_12">
@@ -261,6 +320,38 @@ function getMoreInfomationTemplate(numberOfContact) {
 }
 
 /**
+ * Creates an HTML string for showing a big letter placeholder for a contact.
+ * When clicked, it triggers the hidden file input and starts user image selection.
+ *
+ * @param {number} numberOfContact - The index or ID of the contact.
+ * @returns {string} HTML string for the big letter input area.
+ */
+function getMoreInfoWithBigLetter(numberOfContact) {
+  const imagepicker = `imagepicker${numberOfContact}`;
+  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+              <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
+              <input type="file" id="${imagepicker}" style='display: none' accept="image/*">
+              <span class="error hidden-error-message">Only image allowed</span>          
+          </div>`;
+}
+
+/**
+ * Creates an HTML string for showing a contact's profile picture.
+ * When clicked, it triggers the hidden file input and starts user image selection.
+ *
+ * @param {number} numberOfContact - The index or ID of the contact.
+ * @returns {string} HTML string for the profile picture input area.
+ */
+function getMoreInfoWithPicute(numberOfContact) {
+  const imagepicker = `imagepicker${numberOfContact}`;
+  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+              <img id="first-big-letter-${numberOfContact}" class="first-big-letter transparent" src="${contacts[numberOfContact].img}">
+              <input type="file" id="${imagepicker}" style="display: none" accept="image/*">
+              <span class="error hidden-error-message">Only image allowed</span>
+          </div>`;
+}
+
+/**
  * Generates an HTML template for a subtask item.
  *
  * @param {string} description - The description of the subtask.
@@ -282,8 +373,7 @@ function getSubTaskItemTemplate(description) {
      <img  onclick="toggleEditMode(event)" src="../assets/icon/check.png" alt="check icon" />
       </div>
     </div>
-   </li>
-  `;
+   </li>`;
 }
 
 /**
@@ -296,6 +386,10 @@ function getSubTaskItemTemplate(description) {
  * @returns {string} The HTML string for the add/edit contacts modal.
  */
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
+  const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicker" + numberOfContact;
+  const editpicker =  "editpicker" + numberOfContact;
+  const userPicture = numberOfContact != null ?  contacts[numberOfContact].img : "../assets/icon/person-light.png";
+  const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact})` : `userImgDefine(${numberOfContact})`}`;
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -307,8 +401,10 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div">
-        <img src="../assets/icon/person-light.png" class="person-icon">
+      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
+        <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' }">
+        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
+        <span class="error hidden-error-message">Only image allowed</span>
       </div>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
@@ -329,7 +425,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
                class="clear-button clear-and-create-button">${contentButton0}</button><img>
           </div>
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
-          class="overlay_cancelbutton_mobile">X</a>
+          class="overlay_cancel button_mobile">X</a>
           <div>
             <button class="primary-button clear-and-create-button ">${contentButton1}</button><img>
           </div>
@@ -368,7 +464,7 @@ function getCheckBoxList(index, contacts, shortcut, jobTitle) {
 function getTaskPreviewTemplate(task) {
   return `
     <div class="task-preview">
-    <button onclick="toggleAddTaskModal(event);" class="button-close-modal">
+    <button onclick="toggleAddTaskModal(event); loadFiles('${task}');" class="button-close-modal">
        <img src="../assets/icon/close.png" alt="close icon">
        </button>
         <span class="task-category bg-${
@@ -376,27 +472,31 @@ function getTaskPreviewTemplate(task) {
         }">${task.category}</span>
         <h3 class="primary-title">${task.title}</h3>
         <p class="task-description">${task.description}</p>
-        <span>Due: <span>${task.date}</span></span>
-        <span
-          >Priority:
-          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span
-        ></span>
-        <span>Assigned To:</span>
+        <span class="distance-data">Due: <span>${task.date}</span></span>
+        <span class="distance-data">Priority:
+          <span> ${task.prio} <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" /></span>
+        </span>
+        <span class="distance-data">Assigned To:</span>
         <ul>
          ${getAssignedTemplate(task.assignedTo, true)}
         </ul>
-        <span>Subtasks</span>
+        <span class="distance-data subtasks">Subtasks</span>
         <ul>
          ${getSubTasksTemplate(task.subTasks, task.id)}
         </ul>
+
+        <div class="files">
+          <span>Files</span>
+          <div id='files-container' class='files'></div>
+        </div>
         <div>
           <span onclick="deleteTask('${task.id}', ${
             task.state
-          }); toggleAddTaskModal(event); toggleEmptyMessage(event)" data-delete-button>
+          }); toggleAddTaskModal(event); toggleEmptyMessage(event); loadFiles('${task.id}');" data-delete-button>
             <img src="../assets/icon/delete.svg" alt="delete icon" />
             Delete
           </span>
-          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}');">
+          <span onclick="toggleAddTaskModal(event); loadModal(true, '${task.id}'); loadFiles('${task.id}');">
             <img src="../assets/icon/edit.svg" alt="edit icon" />
             Edit
           </span>
@@ -416,7 +516,7 @@ function getTaskTemplate(task, doneSubTasksLength) {
   return `
     <li ondragstart="handleDragStart(event)"
     draggable="true"
-    onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}');" data-id="${task.id}">
+    onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}'); loadFiles('${task.id}');" data-id="${task.id}">
      <div class="drag-and-drop-ctn"><span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${task.category}</span>
        <div onclick="toggleStatePopup(event)" class="drag-icon-ctn"><img data-drag-icon src="../assets/icon/drag-and-drop.png" alt="drag and drop icon" /></div></div
      <h3 class="task-title">${task.title}</h3>
@@ -470,26 +570,4 @@ function getSubTasksTemplate(subTasks, taskId) {
     `;
     })
   .join('');
-}
-
-/**
- * Returns the HTML structure for the mobile loading screen, including a logo image.
- * 
- * @returns {string} The HTML string for the mobile loading screen.
- */
-function getLoadingscreenMobile() {
-  return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
-  `;
-}
-
-/**
- * Returns the HTML structure for the desktop loading screen, including a logo image.
- * 
- * @returns {string} The HTML string for the desktop loading screen.
- */
-function getLoadingscreenDesktop() {
-  return `
-    <img src="assets/img/logo-black.svg" alt="Logo" id="loader-image-black" class="loader-image login-logo" />
-  `;
 }

@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="../styles/base.css" />
     <link rel="stylesheet" href="../styles/color.css" />
     <link rel="stylesheet" href="../styles/job_title.css" />
-
     <link rel="stylesheet" href="../styles/pages/pages_css/contacts.css" />
     <link rel="stylesheet" href="../styles/media_query.css" />
     <link rel="stylesheet" href="../styles/pages/pages_css_queries/contacts_queries.css" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/viewerjs/dist/viewer.min.js"></script>
+    <script src="../scripts/viewer.js" defer></script>
     <script src="../scripts/db.js"></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/contact.js"></script>
@@ -34,12 +35,7 @@
           <div id="list-of-contacts" class="d_flex_column list-of-contacts bg-white">
             <div class="d_flex_c_c add-contact-div" style="margin: 24px">
               <button onclick="addContact('Add', null);" class="w-100 bg-blue add-contact">Add contact</button>
-              <img
-                onclick="addContact('Add', null);"
-                src="../assets/img/user_add.svg"
-                alt="contact"
-                class="overlay-image"
-              />
+              <img onclick="addContact('Add', null);" src="../assets/img/user_add.svg" alt="contact" class="overlay-image"/>
             </div>
 
             <div class="contacts-list"></div>

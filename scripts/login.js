@@ -9,13 +9,13 @@ const loginLogo = document.getElementById('loginLogo');
  * 
  * @returns {void} This function does not return any value.
  */
-// function Loadingscreen() {
-//   if (window.innerWidth <= 600) {
-//     loader.innerHTML = getLoadingscreenMobile();
-//   } else {
-//     loader.innerHTML = getLoadingscreenDesktop();
-//   }
-// }
+function Loadingscreen() {
+  if (window.innerWidth <= 600) {
+    loader.innerHTML = getLoadingscreenMobile();
+  } else {
+    loader.innerHTML = getLoadingscreenDesktop();
+  }
+}
 
 /**
  * Handles user login by validating email and password.
@@ -49,13 +49,11 @@ function checkCredentials(user, password) {
     toggleSignupError('No user with that email', 'add');
     return;
   }
-
   if (user.password !== password) {
     toggleLoadingSpinner('remove');
     toggleSignupError('Email or password is invalid', 'add');
     return;
   }
-
   localStorage.setItem('currentUser', user.name);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');

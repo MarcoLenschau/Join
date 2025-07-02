@@ -249,21 +249,20 @@
     position: relative;
     width: fit-content;
     min-height: fit-content;
-    border-radius: 25px;
+    border-radius: 24px;
     margin: 0 80px;
     background-color: var(--color-white);
-    padding: 44px;
+    padding: 24px;
   }
 
   .task-preview {
-    position: relative;
+    position: absolute;
     width: 500px;
-    height: 800px;
+    height: 90%;
     background-color: var(--color-white);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
     padding: 35px;
     overflow-y: scroll;
     z-index: 100;
