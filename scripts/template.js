@@ -9,25 +9,25 @@ function sidebarShow() {
               <div id="summary">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/summary.png" alt="summary icon"/>    
-                      <span>Summary</span>
+                      <span class="sidebar-link">Summary</span>
                   </a>
                </div>   
               <div id="task">
                   <a href="../pages/add_task.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/addTask.png" alt="task icon"/>    
-                      <span>Add Task</span>
+                      <span class="sidebar-link">Add Task</span>
                   </a>
               </div> 
               <div id="board">
                   <a href="../pages/board.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/board.png" alt="board icon"/>    
-                      <span>Board</span>
+                      <span class="sidebar-link">Board</span>
                   </a>
               </div>   
               <div id="contacts">
                   <a href="../pages/contacts.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/contacts.png" alt="contacts icon"/>    
-                      <span>Contacts</span>
+                      <span class="sidebar-link">Contacts</span>
                   </a>
               </div> 
           </div>

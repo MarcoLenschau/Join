@@ -122,7 +122,6 @@ span {
 }
 
 a {
-  color: var(--color-white);
   font-size: 15px;
 }
 
@@ -541,4 +540,8 @@ a {
   img {
     width: 8px;
   }
+}
+
+.sidebar-link {
+  color: #fff;
 }
