@@ -160,7 +160,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="delete-container">
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
-                        <img onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
+                        <img class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
                         <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
                       </div>
                   </div>
@@ -172,15 +172,19 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="d_flex_c image-container-div">
                     <div id="image-container"></div>
                   </div>
-                  <span>Subtasks</span>
-                    <div class="d_flex align-items-center">
-                       <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
-                       <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
+                  <div class="subtasks-container">
+                    <span>Subtasks</span>
+                    <div>
+                      <div class="d_flex align-items-center">
+                         <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
+                         <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
+                      </div>
+                      <ul class="subtask-list">
+                        ${subTasks || ''}
+                      </ul>                      
                     </div>
-                    <ul class="subtask-list">
-                      ${subTasks || ''}
-                    </ul>
-                    <span>Assigned to</span>
+                  </div>
+                   <span>Assigned to</span>
                     <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
                         <span class="select-text">
                         <p>Select contacts to assign</p>
@@ -190,8 +194,8 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     </div>
                     <ul class="assigned-list">
                     ${isEditMode ? assignedTemplate : ''}
-                    </ul>
-                  </div>
+                    </ul> 
+                </div>
                   
                   
                   <div class="d_flex g_12">

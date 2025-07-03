@@ -82,6 +82,7 @@ main {
   font-size: 18px;
   border-radius: 8px;
   border: 1px solid #d1d1d1;
+  width: 102%;
 }
 
 .input-field:not(select) {
@@ -208,6 +209,7 @@ main {
 }
 
 .upload-file {
+  cursor: pointer;
   width: 102% !important;
   height: 50px;
 }

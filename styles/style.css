@@ -450,6 +450,8 @@ a {
   max-height: 200px;
   flex-direction: column;
   cursor: pointer;
+  height: 34px;
+  justify-content: center;
 
   span {
     font-size: 18px;
@@ -585,4 +587,16 @@ a {
   width: 100vw;
   display: flex;
   justify-content: center;
+}
+
+.subtasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 107%;
+  margin-top: -22px;
+}
+
+.delete-icon, .delete-all {
+  cursor: pointer;
 }

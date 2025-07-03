@@ -14,11 +14,26 @@
     align-items: center;
     width: 100% !important;
   }
+
+  .responsive-register-form {
+    width: 300px !important;
+    margin: 0 -16px;
+  }
+
+  footer {
+    opacity: 0;
+  }
 }
 
 @media (min-width: 600px) {
   .hiddenMin {
     display: none !important;
+  }
+  
+  footer {
+    position: absolute;
+    bottom: 18px;
+    width: 100vw;
   }
 }
 
@@ -552,6 +567,10 @@
 }
 
 @media(max-width: 400px){
+  .back-button-link  {
+    left: 280px;
+  }
+  
   .drag-task-popup{
     width: 300px;
     padding-bottom: 24px;
