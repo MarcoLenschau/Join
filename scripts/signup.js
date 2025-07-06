@@ -10,6 +10,11 @@ async function handleRegisterNewUser(event) {
   toggleLoadingSpinner('add');
   const { name, email, password, confirmPassword } = getFieldValues();
   const errorElement = document.getElementById("auth-error-message");
+  const checkBox = document.getElementById('checkBox');
+  if (!checkBox.checked) {
+    toggleLoadingSpinner('remove');
+    return toggleSignupError('Please accept the terms and conditions', 'add');
+  }
   if(errorElement) errorElement.innerHTML = "";
   if (password !== confirmPassword) {
     toggleLoadingSpinner('remove');
