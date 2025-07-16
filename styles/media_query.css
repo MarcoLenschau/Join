@@ -37,6 +37,64 @@
   }
 }
 
+@media (min-width: 1400px) {
+  .upload-file {
+    object-fit: fill !important;
+  }
+}
+
+@media (min-width: 1180px) {
+  .file-upload {
+    width: 44vw;
+  }
+
+  .subTask-input {
+    width: 94% !important;
+  }
+
+  .input-field {
+    width: 101%;
+  }
+}
+
+@media (min-width: 901px) {
+  .file-upload {
+    width: 541px;
+  }
+
+  .upload-file {
+    height: 6.5vw;
+  }
+}
+
+@media (min-width: 570px) AND (max-width: 900px) {
+  .file-upload {
+    width: 82vw;
+  }
+
+  .upload-file {
+    object-fit: cover;
+    height: 9.5vw;
+  }
+
+  .subTask-input {
+    width: 95% !important;
+  }
+}
+
+
+@media (min-width: 500px) AND (max-width: 569px) {
+  .file-upload {
+    width: 78vw;
+  }
+
+  .upload-file {
+    object-fit: cover;
+    height: 9.5vw;
+  }
+}
+
+
 /** SIDEBAR QUERIES ** */
 
 @media (min-width: 1300px) {
