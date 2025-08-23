@@ -160,8 +160,8 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="delete-container">
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
-                        <img class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
-                        <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
+                        <img tabindex=0 class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
+                        <span tabindex=0 class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
                       </div>
                   </div>
                   <div class="file-upload-container"> 
@@ -185,28 +185,26 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     </div>
                   </div>
                    <span>Assigned to</span>
-                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts">
+                    <div tabindex=0 onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts">
                         <span class="select-text">
-                        <p>Select contacts to assign</p>
-                        <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
+                          <p>Select contacts to assign</p>
+                          <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
                         </span>
                         <div id="userlist" class="d_none"></div>
                     </div>
                     <ul class="assigned-list">
-                    ${isEditMode ? assignedTemplate : ''}
+                      ${isEditMode ? assignedTemplate : ''}
                     </ul> 
                 </div>
-                  
-                  
-                  <div class="d_flex g_12">
-                    <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
-                      isEditMode ? 'd_none' : ''
-                    }" formnovalidate> Clear X</button>
-                    <button onclick="${
-                      isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                    }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
-                        <img src="../assets/img/check.svg" alt="check" />
-                    </button>
+                <div class="d_flex g_12">
+                  <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
+                    isEditMode ? 'd_none' : ''
+                  }" formnovalidate> Clear X</button>
+                  <button onclick="${
+                    isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
+                  }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
+                      <img src="../assets/img/check.svg" alt="check" />
+                  </button>
                 </div>
               </div>`;
 }
