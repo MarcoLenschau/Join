@@ -448,13 +448,23 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
  * @returns {string} The HTML string for the contact checkbox list item.
  */
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {
-  return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
+  if (contacts.img) {
+    return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
               <div>
-                  <span class="${jobTitle}">${shortcut}</span>
+                  <img class="profile-picture-list" src="${contacts.img}" alt="profile picture"/>
                   <span data-contact-name>${contacts.name}</span>
               </div>
               <input type="checkbox" id="checkbox${index}"/>
-          </label>`;
+            </label>`;
+  } else {
+    return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
+                <div>
+                    <span class="${jobTitle}">${shortcut}</span>
+                    <span data-contact-name>${contacts.name}</span>
+                </div>
+                <input type="checkbox" id="checkbox${index}"/>
+            </label>`;
+    }
 }
 
 /**
