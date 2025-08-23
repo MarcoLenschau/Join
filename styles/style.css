@@ -603,3 +603,7 @@ a {
 .upload-file:focus { 
   outline: 2px solid #000000;   
 }
+
+.assigned-user-img {
+  width: 30px;
+}

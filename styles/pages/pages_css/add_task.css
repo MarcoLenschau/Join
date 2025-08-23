@@ -87,7 +87,7 @@ main {
 
 .input-field:not(select) {
   font-size: 18px;
-  padding: 12px;
+  padding: 20px 12px;
 }
 
 .select-text{

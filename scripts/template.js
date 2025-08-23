@@ -160,12 +160,12 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="delete-container">
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
-                        <img tabindex=0 class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
-                        <span tabindex=0 class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
+                        <img tabindex=0 class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete" onkeydown="if(event.key === 'Enter') this.click();"> 
+                        <span tabindex=0 class="delete-all" onclick="deleteFiles('all')" onkeydown="if(event.key === 'Enter') this.click();">Delete all</span>                              
                       </div>
                   </div>
                   <div class="file-upload-container"> 
-                    <img tabindex=0 class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                    <img tabindex=0 class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();" onkeydown="if(event.key === 'Enter') this.click();">
                     <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
                     <span class="error hidden-error-message">Only image allowed</span>
                   </div>
@@ -176,7 +176,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     <span>Subtasks</span>
                     <div>
                       <div class="d_flex align-items-center">
-                         <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width" />
+                         <input type="text" placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width" />
                          <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
                       </div>
                       <ul class="subtask-list">
@@ -185,7 +185,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     </div>
                   </div>
                    <span>Assigned to</span>
-                    <div tabindex=0 onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts">
+                    <div tabindex=0 onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts" onkeydown="if(event.key === 'Enter') this.click();">
                         <span class="select-text">
                           <p>Select contacts to assign</p>
                           <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />

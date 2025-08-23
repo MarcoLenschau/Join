@@ -230,17 +230,29 @@ function updateAssignedUsers() {
   labels.forEach((label) => {
     const isChecked = label.querySelector('input').checked;
     if (isChecked) {
-      const profileCircle = document.createElement('li');
-      const imgContent = label.querySelector('div img');
-      const spanContent = label.querySelector('div span');
-      if (imgContent != null) {
-        profileCircle.appendChild(imgContent.cloneNode(true));
-      } else {
-        profileCircle.appendChild(spanContent.cloneNode(true));
-      }
-      assignedList.prepend(profileCircle);
+      createAssignedUser(assignedList, label);
     }
   });
+}
+
+/**
+ * Creates a new list item representing an assigned user and prepends it to the assigned users list.
+ * The function clones either the user's profile image or initials from the provided label element.
+ *
+ * @param {HTMLElement} assignedList - The list element to which the assigned user will be prepended.
+ * @param {HTMLElement} label - The label element containing the user's profile image or initials.
+ */
+function createAssignedUser(assignedList, label) {
+  const profileCircle = document.createElement('li');
+  const imgContent = label.querySelector('div img');
+  const spanContent = label.querySelector('div span');
+  if (imgContent != null) {
+    imgContent.classList.add('assigned-user-img');
+    profileCircle.appendChild(imgContent.cloneNode(true));
+  } else {
+    profileCircle.appendChild(spanContent.cloneNode(true));
+  }
+  assignedList.prepend(profileCircle);
 }
 
 /**
