@@ -601,3 +601,6 @@ a {
   cursor: pointer;
 }
 
+.upload-file:focus { 
+  outline: 2px solid #000000;  
+}

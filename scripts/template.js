@@ -165,7 +165,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       </div>
                   </div>
                   <div class="file-upload-container"> 
-                    <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                    <img tabindex=0 class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
                     <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
                     <span class="error hidden-error-message">Only image allowed</span>
                   </div>
