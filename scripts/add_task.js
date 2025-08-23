@@ -231,8 +231,13 @@ function updateAssignedUsers() {
     const isChecked = label.querySelector('input').checked;
     if (isChecked) {
       const profileCircle = document.createElement('li');
+      const imgContent = label.querySelector('div img');
       const spanContent = label.querySelector('div span');
-      profileCircle.appendChild(spanContent.cloneNode(true));
+      if (imgContent != null) {
+        profileCircle.appendChild(imgContent.cloneNode(true));
+      } else {
+        profileCircle.appendChild(spanContent.cloneNode(true));
+      }
       assignedList.prepend(profileCircle);
     }
   });
