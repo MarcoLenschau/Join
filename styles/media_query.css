@@ -1,3 +1,21 @@
+@media (max-width: 1500px) AND (min-width: 901px) {
+  .subtasks-width {
+    width: 95%;
+  }
+
+  .select-contacts {
+    width: 102%;
+  }
+
+  .file-upload {
+    width: 100%;
+  }
+
+  .upload-file {
+    height: 12vh;
+  }
+}
+
 @media (max-width: 600px) {
   .hidden {
     display: none !important;
@@ -44,26 +62,12 @@
 }
 
 @media (min-width: 1180px) {
-  .file-upload {
-    width: 44vw;
-  }
-
   .subTask-input {
     width: 94% !important;
   }
 
   .input-field {
     width: 101%;
-  }
-}
-
-@media (min-width: 901px) {
-  .file-upload {
-    width: 541px;
-  }
-
-  .upload-file {
-    height: 6.5vw;
   }
 }
 

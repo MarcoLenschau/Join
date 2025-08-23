@@ -176,7 +176,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     <span>Subtasks</span>
                     <div>
                       <div class="d_flex align-items-center">
-                         <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field" />
+                         <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width" />
                          <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
                       </div>
                       <ul class="subtask-list">
@@ -185,7 +185,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     </div>
                   </div>
                    <span>Assigned to</span>
-                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field">
+                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts">
                         <span class="select-text">
                         <p>Select contacts to assign</p>
                         <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
