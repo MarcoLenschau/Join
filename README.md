@@ -26,11 +26,11 @@ Join is a task management app that allows users to create, track, and complete t
 
 ## 📸 Screenshots
 
-![](https://raw.githubusercontent.com/SnowCoder404/Portfolio/refs/heads/main/public/assets/img/screenshots/join.png)
+![](https://raw.githubusercontent.com/MarcoLenschau/Portfolio/refs/heads/main/public/assets/img/screenshots/join.png)
 
 ## 💬 Feedback & Support
 
-If you have any suggestions, encounter bugs, or want to contribute to the development of Join, please create an issue or pull request on [GitHub](https://github.com/SnowCoder404/Join). Your feedback helps improve the application!
+If you have any suggestions, encounter bugs, or want to contribute to the development of Join, please create an issue or pull request on [GitHub](https://github.com/MarcoLenschau/Join). Your feedback helps improve the application!
 
 
 
