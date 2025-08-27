@@ -65,34 +65,31 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
                     <div>
                         <div class="flex">
-                            <span>Title<span class="color-red">*</span></span>
+                            <span class="headline-span">Title <span class="color-red">*</span></span>
                             <input id="title" type="text" value="${
                               isEditMode ? task.title : ''
-                            }" placeholder="Enter a title" class="input-task input-field task-input-field" required/>
+                            }" placeholder="Enter a title" class="input-task input-field task-input-field input-font-size-size" required/>
                         </div>
                         <div class="flex">
-                            <span>Description</span>
-                            <textarea id="description" 
-                              " rows="5" cols="50" placeholder="Enter a Description">${
-                                isEditMode ? task.description : ''
-                              }</textarea>
+                            <span class="headline-span">Description</span>
+                            <textarea id="description" rows="5" cols="50" placeholder="Enter a Description" class="input-width input-font-size-size">${isEditMode ? task.description : ''}</textarea>
                         </div>
                     </div>
                     <div class="flex">
-                      <span>Due date<span class="color-red">*</span></span>
-                      <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
+                      <span class="headline-span">Due date <span class="color-red">*</span></span>
+                      <input id="date" type="date" value="${date}" class="input-task task-input-field input-width input-font-size-size" required />
                     </div>
           <div class="flex">
-             <span>Prio</span>
+             <span class="headline-span">Prio</span>
              <div class="d_flex">
-                 <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
+                 <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);" class="input-font-size-size"> Urgent
                      <div class="d_flex_column">
                          <img id="urgent0" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
                          <img id="urgent1" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
                      </div>
                  </button>
-                 <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);">
-                   Medium
+                 <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);" class="input-font-size-size">
+                  Medium
                    <div class="d_flex_column">
                      <img
                        id="medium0"
@@ -108,7 +105,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                      />
                    </div>
                  </button>
-                 <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);">
+                 <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);" class="input-font-size-size">
                    Low
                    <div class="d_flex_column">
                      <img id="low0" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
@@ -118,8 +115,8 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                </div>
           </div>
           <div class="flex">
-            <span>Category<span class="color-red">*</span></span>
-            <select id="category" class="h-34 input-field task-input-field">
+            <span class="headline-span">Category <span class="color-red">*</span></span>
+            <select id="category" class="h-34 input-field task-input-field input-font-size">
            <option value="" selected disabled>Select task category</option>
           <option ${task?.category === 'User Story' ? 'selected' : ''} value="User Story">User Story</option>
            <option ${
@@ -173,10 +170,10 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     <div id="image-container"></div>
                   </div>
                   <div class="subtasks-container">
-                    <span>Subtasks</span>
+                    <span class="headline-span">Subtasks</span>
                     <div>
                       <div class="d_flex align-items-center">
-                         <input type="text" placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width" />
+                         <input type="text" placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width input-font-size" />
                          <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
                       </div>
                       <ul class="subtask-list">
@@ -184,10 +181,10 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       </ul>                      
                     </div>
                   </div>
-                   <span>Assigned to</span>
+                   <span class="headline-span">Assigned to</span>
                     <div tabindex=0 onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts" onkeydown="if(event.key === 'Enter') this.click();">
                         <span class="select-text">
-                          <p>Select contacts to assign</p>
+                          <p class="input-font-size">Select contacts to assign</p>
                           <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
                         </span>
                         <div id="userlist" class="d_none"></div>
