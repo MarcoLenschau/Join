@@ -72,12 +72,12 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                         </div>
                         <div class="flex">
                             <span class="headline-span">Description</span>
-                            <textarea id="description" rows="5" cols="50" placeholder="Enter a Description" class="input-width input-font-size-size">${isEditMode ? task.description : ''}</textarea>
+                            <textarea id="description" rows="5" cols="50" placeholder="Enter a Description" class="${isEditMode ? '' :  "input-width" } input-font-size-size">${isEditMode ? task.description : ''}</textarea>
                         </div>
                     </div>
                     <div class="flex">
                       <span class="headline-span">Due date <span class="color-red">*</span></span>
-                      <input id="date" type="date" value="${date}" class="input-task task-input-field input-width input-font-size-size" required />
+                      <input id="date" type="date" value="${date}" class="${isEditMode ? '' : "input-width" } input-task task-input-field input-font-size-size" required />
                     </div>
           <div class="flex">
              <span class="headline-span">Prio</span>

@@ -233,11 +233,35 @@ main {
 }
 
 .image-container-div {
-  width: 420px;
+  width: 100%;
 }
 
 .ok-button-edit-mode {
   position: absolute;
   bottom: 31px;
   left: 38%;
+}
+
+@media (min-width: 1800) {
+  .main-div {
+    flex-direction: column;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .input-width {
+    width: 1405px;
+  }
+}
+
+@media (min-width: 1375px) {
+  .main-div {
+    flex-direction: column;
+  }
+
+  .separator {
+    display: none;
+  }
 }
