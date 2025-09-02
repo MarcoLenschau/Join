@@ -400,7 +400,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
+      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? "" : imagepicker }.click(); ${onclickHandler};'>
         <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
         <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
         <span class="error hidden-error-message">Only image allowed</span>

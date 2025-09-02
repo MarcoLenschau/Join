@@ -16,6 +16,15 @@
   }
 }
 
+@media (min-width: 901px) {
+  .profile-picture-span {
+    height: 194px;
+    width: 214px;
+    position: absolute;
+    margin-top: -134px;
+  }
+}
+
 @media (max-width: 600px) {
   .hidden {
     display: none !important;
@@ -40,6 +49,10 @@
 
   footer {
     opacity: 0;
+  }
+  
+  .contact-initials {
+    margin-bottom: 56px;
   }
 }
 
@@ -248,6 +261,22 @@
     .privacy-container {
       display: none;
     }
+  }
+
+  .contact-initials {
+    font-size: 32px;
+  }
+
+  .person-icon {
+    margin-top: 48px;
+  }
+}
+
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .contact-initials {
+    margin-bottom: 106px;
+    font-size: 32px;
   }
 }
 
