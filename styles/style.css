@@ -619,3 +619,18 @@ a {
 .input-font-size { 
   font-size: 18px !important;
 }
+
+.hidden {
+  opacity: 0;
+  height: 0px !important;
+  width: 0px !important;
+}
+
+.contact-initials {
+  margin-bottom: 59px;
+  font-size: 48px;
+}
+
+.no-profile-picture {
+  background-color: var(--color-violet-light) !important;
+}
