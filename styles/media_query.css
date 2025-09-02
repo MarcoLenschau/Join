@@ -315,12 +315,6 @@
 
 /** Task QUERIES ** */
 
-@media (max-width: 1375px) AND (min-width: 900px) {
-  .responsive-add-task-dialog {
-    margin-top: 465px !important;
-  }
-}
-
 @media (max-width: 1375px) {
   .more-button-div {
     position: fixed;

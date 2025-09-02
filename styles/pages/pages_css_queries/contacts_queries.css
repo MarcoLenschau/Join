@@ -31,7 +31,7 @@
       align-items: center;
       column-gap: 48px;
       width: 65%;
-      height: 500px;
+      height: 700px;
 
       flex-direction: column;
 
@@ -174,11 +174,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-
-    img {
-      height: 40px;
-      width: 40px;
-    }
   }
 
   .hide-contact-menu {
