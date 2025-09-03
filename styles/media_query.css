@@ -188,6 +188,14 @@
   }
 }
 
+@media (min-width: 901px) {
+  .add-contact-overlay {
+    .form-ctn {
+      column-gap: 132px;
+    }
+  }
+}
+
 @media (max-width: 900px) {
   .body {
     display: flex;
@@ -269,6 +277,16 @@
 
   .person-icon {
     margin-top: 48px;
+  }
+
+  .camera-container {
+    padding: 32px;
+    position: absolute;
+    margin: -36px 4px;
+  }
+
+  .picture-section {
+    margin-bottom: 48px;
   }
 }
 

@@ -638,3 +638,33 @@ a {
 .edit-mode-margin {
   margin-top: 3vh;
 }
+
+.content-limited {
+  width: 1920px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picture-section {
+  display: flex;
+  align-items: flex-end;
+}
+
+.camera-container {
+  background-color: grey;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  background-image: url(../assets/img/camera.svg);
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  background-position: center;
+  padding: 36px;
+  margin: 0 -58px;
+
+  img {
+    width: 38px;
+  }
+}

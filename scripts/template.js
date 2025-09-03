@@ -60,7 +60,7 @@ function getListTemplate(value, option) {
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column responsive-margin responsive-add-task-dialog ${isEditMode ? 'edit-mode-padding' : ''}" data-modal>
-              <div class="d_flex_c main-div">
+              <div class="d_flex main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
                     <div>
@@ -400,11 +400,16 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? "" : imagepicker }.click(); ${onclickHandler};'>
-        <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
-        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
-        <span class="error hidden-error-message">Only image allowed</span>
-      </div>
+      <section class="picture-section">
+        <div class="add-contact-img-div file-upload-container">
+          <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
+          <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
+          <span class="error hidden-error-message">Only image allowed</span>
+        </div>
+        <div class="camera-container">
+          <img src="../assets/img/camera.svg">
+        </div>
+      </section>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
           <input id="name" type="text" placeholder="Name" class="default-border input-field_contacts" required>
