@@ -406,7 +406,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
           <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
           <span class="error hidden-error-message">Only image allowed</span>
         </div>
-        <div class="camera-container">
+        <div class="camera-container" onclick="${ content === "Edit" ? editpicker : imagepicker }.click();">
           <img src="../assets/img/camera.svg">
         </div>
       </section>

@@ -184,6 +184,9 @@
   border-radius: 50%;
   border: 1px solid var(--color-white);
   box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
+  justify-content: flex-end;
+  height: 180px;
+  width: 180px;
 }
 
 .hide-contact-menu:hover {
@@ -335,6 +338,13 @@
 }
 
 .person-icon {
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
+}
+
+@media (max-width: 900px) {
+  .person-icon {
+    height: 50px;
+    width: 50px;
+  }
 }
