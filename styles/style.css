@@ -672,3 +672,10 @@ a {
 .p-24 {
   padding: 24px;
 }
+
+.login-signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}

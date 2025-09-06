@@ -30,6 +30,11 @@
     display: none !important;
   }
 
+  .join-icon {
+    width: 60px;
+    height: 60px;
+  }
+
   .buttonDiv {
     flex-direction: column;
     align-items: center;
@@ -48,7 +53,11 @@
   }
 
   footer {
-    opacity: 0;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
   
   .contact-initials {
@@ -290,6 +299,18 @@
   }
 }
 
+@media (max-width: 600px) {
+  .hiddenMax {
+    display: none !important;
+  }
+
+  @media (max-width: 600px) {
+  .hiddenMax {
+    display: none !important;
+  }
+}
+}
+
 
 @media (max-width: 900px) and (min-width: 601px) {
   .contact-initials {
@@ -491,6 +512,10 @@
     position: fixed;
     top: -40px;
     left: 18px;
+  }
+
+  .hiddenMax {
+    display: none !important;
   }
 }
 
@@ -699,13 +724,5 @@
 
   .board-container{
     padding: 0 24px !important;
-  }
-}
-
-/* SIGN UP */
-@media (max-width: 600px) {
-  .join-icon {
-    width: 60px;
-    height: 60px;
   }
 }
