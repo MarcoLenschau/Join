@@ -475,8 +475,13 @@ async function userImageDialog(file) {
 function userImageEdit(numberOfContact) {
   const editpicker = document.getElementById("editpicker" + numberOfContact);
   editpicker.addEventListener("change", async() => {
+    if (!contacts[numberOfContact].img) {
+      document.querySelector(".contact-initials").classList.add("hidden");
+      document.querySelector(".add-contact-img-div").classList.remove("no-profile-picture");
+    }
     const imageContainer = document.querySelector(".profile-picture-span");
     const base64 = await compressImage(editpicker.files[0]);
+    imageContainer.classList.remove("hidden");
     imageContainer.src = base64;
   });
 }

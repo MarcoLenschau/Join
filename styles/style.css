@@ -663,7 +663,8 @@ a {
   background-position: center;
   padding: 36px;
   margin: 0 -58px;
-
+  z-index: 1;
+  
   img {
     width: 38px;
   }

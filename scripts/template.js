@@ -403,7 +403,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       <section class="picture-section">
         <div class="add-contact-img-div file-upload-container">
           <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
-          <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
+          <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*" onclick="${onclickHandler}">
           <span class="error hidden-error-message">Only image allowed</span>
         </div>
         <div class="camera-container" onclick="${ content === "Edit" ? editpicker : imagepicker }.click();">

@@ -241,34 +241,3 @@ main {
   bottom: 31px;
   left: 38%;
 }
-
-@media (min-width: 1800) {
-  .main-div {
-    flex-direction: column;
-  }
-
-  .separator {
-    display: none;
-  }
-
-  .input-width {
-    width: 1405px;
-  }
-}
-
-@media (min-width: 2500px) {
-  .main-div {
-    width: 80vw;
-    gap: 154px;
-  }
-}
-
-@media (max-width: 2500px) AND (min-width: 1375px) {
-  .main-div {
-    flex-direction: column;
-  }
-
-  .separator {
-    display: none;
-  }
-}
