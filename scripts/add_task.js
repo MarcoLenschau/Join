@@ -405,15 +405,22 @@ function fileDefine() {
 async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
+  const div = document.createElement("div");
+  const span = document.createElement("span");
   const base64 = await compressImage(file);
   img.src = base64;
   img.id = file.name;
   img.onclick = () => bigPicture("image-container");
+  span.innerText = file.name;
   imageContainer.appendChild(img);
+  imageContainer.appendChild(div);
+  div.appendChild(span);
+  div.classList.add("w-100");
   addScrollbar(imageContainer);
   allFiles.push({
     filename: file.name,
     type: file.type,
+    size: file.size,
     base64: base64
   });
 }
