@@ -3,6 +3,7 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 64px;
   z-index: 1;
 
@@ -266,14 +267,6 @@ a {
 }
 
 .loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
   animation: backgroundTransition 2s ease forwards;
   pointer-events: none;
@@ -301,7 +294,6 @@ a {
   animation: logoTransition 2s ease forwards, fadeOutWhite 3s ease forwards;
 }
 
-
 @keyframes backgroundTransition {
   0% {
     background-color: rgba(255, 255, 255, 1); /* Anfangs weiß */
@@ -320,6 +312,7 @@ a {
     transform: translate(-50%, -50%);
   }
   100% {
+    width: 1920px;
     top: 32px;
     left: 58px;
     width: 100px;
@@ -331,10 +324,10 @@ a {
 /* Weißes Bild wird transparent */
 @keyframes fadeOutWhite {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
@@ -476,14 +469,19 @@ a {
   label {
     cursor: pointer;
     padding: 8px 16px;
-    border-radius: 12px;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #FFFFFF;
 
     &:hover {
       background-color: rgb(209, 209, 209, 0.3);
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
     }
 
     > div {

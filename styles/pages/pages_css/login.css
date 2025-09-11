@@ -1,5 +1,6 @@
 body {
-  display: block !important;
+  display: flex;
+  justify-content: center;
 }
 
 .buttonDiv {
