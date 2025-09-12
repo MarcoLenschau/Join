@@ -550,8 +550,15 @@ function getTaskTemplate(task, doneSubTasksLength) {
 }
 
 /**
- * Generates a template string for assigned users.
- * 
+ * Generates HTML templates for users assigned to a task.
+ *
+ * Filters the global `contacts` array to find users matching the `assignedTo` list,
+ * then creates HTML elements for each assigned user, with or without a profile picture.
+ * If not in preview mode and more than four users are assigned, returns a summarized string.
+ *
+ * @param {Array<Object>} assignedTo - Array of user objects assigned to the task. Each object should have at least a `name` property.
+ * @param {boolean} previewTask - Flag indicating if the function is called in preview mode.
+ * @returns {string} HTML string representing the assigned users, or a summarized string if not in preview mode and more than four users are assigned.
  */
 function getAssignedTemplate(assignedTo, previewTask) {
   let assignedElements;
@@ -572,11 +579,27 @@ function getAssignedTemplate(assignedTo, previewTask) {
   return assignedTemplates;
 }
 
+/**
+ * Generates an HTML string representing a user's picture and optionally their name.
+ *
+ * @param {string} name - The name of the user to display.
+ * @param {string} img - The URL of the user's image.
+ * @param {boolean} previewTask - If true, wraps the content in a <li> and includes the user's name.
+ * @returns {string} The generated HTML string.
+ */
 function assignedToWithPicture(name, img, previewTask) {
   const elements = `<img src="${img}"> ${previewTask ? `<span>${name}</span>` : ''}`;
   return previewTask ? `<li>${elements}</li>` : elements;
 }
 
+/**
+ * Generates an HTML string representing a user assignment without a picture.
+ *
+ * @param {string} name - The name of the assigned user.
+ * @param {string} role - The role of the assigned user, used to determine CSS class.
+ * @param {boolean} previewTask - If true, wraps the output in a <li> and includes the full name.
+ * @returns {string} The generated HTML string for the assigned user.
+ */
 function assignedToWithoutPicture(name, role, previewTask) {
   const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
   return previewTask ? `<li>${elements}</li>` : elements;
