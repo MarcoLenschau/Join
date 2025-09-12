@@ -450,5 +450,6 @@ function deleteFiles(whichFile) {
   const imageContainer = document.getElementById('image-container');
   if (whichFile === 'all') {
     imageContainer.innerHTML = '';
+    document.getElementById("filepicker").value = "";
   }
 }
