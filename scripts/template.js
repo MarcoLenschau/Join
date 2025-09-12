@@ -161,7 +161,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                         <span tabindex=0 class="delete-all" onclick="deleteFiles('all')" onkeydown="if(event.key === 'Enter') this.click();">Delete all</span>                              
                       </div>
                   </div>
-                  <div class="file-upload-container"> 
+                  <div id="dropzone" class="file-upload-container"> 
                     <img tabindex=0 class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();" onkeydown="if(event.key === 'Enter') this.click();">
                     <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
                     <span class="error hidden-error-message">Only image allowed</span>

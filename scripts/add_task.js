@@ -10,6 +10,7 @@ async function loadTask() {
   document.getElementById('add-task').innerHTML = getAddTaskTemplate();
   mediumPrio();
   await loadContactsList();
+  defineDropFunction();
 }
 
 /**
@@ -395,6 +396,17 @@ function fileDefine() {
     });
   }
 }
+
+function defineDropFunction() {
+  window.addEventListener("dragover", e => e.preventDefault());
+  window.addEventListener("drop", e => e.preventDefault());
+  const dropzone = document.getElementById("dropzone");
+  console.log(dropzone)
+  dropzone.addEventListener("drop", () => {
+    console.log("ja")
+  });
+}
+
 
 /**
  * Converts an image file to base64 and displays it in the image container.
