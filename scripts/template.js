@@ -554,18 +554,32 @@ function getTaskTemplate(task, doneSubTasksLength) {
  * 
  */
 function getAssignedTemplate(assignedTo, previewTask) {
-  const assignedElements = assignedTo?.map(({ name, role }) => {
-    const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
-    return previewTask ? `<li>${elements}</li>` : elements;
-  });
+  let assignedElements;
+  const assignedToUsers = contacts.filter(contact =>
+    assignedTo.some(user => user.name === contact.name)
+  );
 
+  assignedElements = assignedToUsers?.map(({ name, role, img }) => {
+    return img ? assignedToWithPicture(name, img, previewTask) : assignedToWithoutPicture(name, role, previewTask);
+  });
+  
   if (!previewTask && assignedElements.length > 4) {
     return getAssignedToString(assignedElements);
   }
-
+  
   const assignedTemplates = assignedElements?.join(' ');
   assignedTemplate = assignedTemplates;
   return assignedTemplates;
+}
+
+function assignedToWithPicture(name, img, previewTask) {
+  const elements = `<img src="${img}"> ${previewTask ? `<span>${name}</span>` : ''}`;
+  return previewTask ? `<li>${elements}</li>` : elements;
+}
+
+function assignedToWithoutPicture(name, role, previewTask) {
+  const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
+  return previewTask ? `<li>${elements}</li>` : elements;
 }
 
 /**
