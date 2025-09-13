@@ -561,11 +561,11 @@ function getTaskTemplate(task, doneSubTasksLength) {
  * @returns {string} HTML string representing the assigned users, or a summarized string if not in preview mode and more than four users are assigned.
  */
 function getAssignedTemplate(assignedTo, previewTask) {
-  let assignedElements;
+  let assignedElements;  
   const assignedToUsers = contacts.filter(contact =>
     assignedTo.some(user => user.name === contact.name)
   );
-
+  
   assignedElements = assignedToUsers?.map(({ name, role, img }) => {
     return img ? assignedToWithPicture(name, img, previewTask) : assignedToWithoutPicture(name, role, previewTask);
   });
@@ -573,7 +573,6 @@ function getAssignedTemplate(assignedTo, previewTask) {
   if (!previewTask && assignedElements.length > 4) {
     return getAssignedToString(assignedElements);
   }
-  
   const assignedTemplates = assignedElements?.join(' ');
   assignedTemplate = assignedTemplates;
   return assignedTemplates;
