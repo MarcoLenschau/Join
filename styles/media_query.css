@@ -1,4 +1,4 @@
-@media (max-width: 1500px) AND (min-width: 901px) {
+@media (max-width: 2500px) AND (min-width: 901px) {
   .subtasks-width {
     width: 95%;
   }
@@ -16,9 +16,22 @@
   }
 }
 
+@media (min-width: 901px) {
+  .profile-picture-span {
+    height: 210px;
+    width: 210px;
+    position: absolute;
+  }
+}
+
 @media (max-width: 600px) {
   .hidden {
     display: none !important;
+  }
+
+  .join-icon {
+    width: 60px;
+    height: 60px;
   }
 
   .buttonDiv {
@@ -39,7 +52,15 @@
   }
 
   footer {
-    opacity: 0;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .contact-initials {
+    margin-bottom: 56px;
   }
 }
 
@@ -110,23 +131,6 @@
   header {
     width: 1920px;
   }
-
-  @keyframes logoTransition {
-    0% {
-      top: 50%;
-      left: 50%;
-      width: 274px;
-      height: 334px;
-      transform: translate(-50%, -50%);
-    }
-    100% {
-      top: 24px;
-      left: 128px;
-      width: 100px;
-      height: 122px;
-      transform: none;
-    }
-  }
 }
 
 @media (max-width: 1300px) {
@@ -171,6 +175,14 @@
     a img:not(.logo) {
       width: 22px;
       height: 22px;
+    }
+  }
+}
+
+@media (min-width: 901px) {
+  .add-contact-overlay {
+    .form-ctn {
+      column-gap: 132px;
     }
   }
 }
@@ -249,6 +261,44 @@
       display: none;
     }
   }
+
+  .contact-initials {
+    font-size: 32px;
+  }
+
+  .person-icon {
+    margin-top: 48px;
+  }
+
+  .camera-container {
+    padding: 32px;
+    position: absolute;
+    margin: -36px 4px;
+  }
+
+  .picture-section {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hiddenMax {
+    display: none !important;
+  }
+
+  @media (max-width: 600px) {
+  .hiddenMax {
+    display: none !important;
+  }
+}
+}
+
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .contact-initials {
+    margin-bottom: 106px;
+    font-size: 32px;
+  }
 }
 
 @media (min-width: 550px) {
@@ -314,12 +364,6 @@
 }
 
 /** Task QUERIES ** */
-
-@media (max-width: 1375px) AND (min-width: 900px) {
-  .responsive-add-task-dialog {
-    margin-top: 465px !important;
-  }
-}
 
 @media (max-width: 1375px) {
   .more-button-div {
@@ -450,6 +494,10 @@
     position: fixed;
     top: -40px;
     left: 18px;
+  }
+
+  .hiddenMax {
+    display: none !important;
   }
 }
 
@@ -658,13 +706,5 @@
 
   .board-container{
     padding: 0 24px !important;
-  }
-}
-
-/* SIGN UP */
-@media (max-width: 600px) {
-  .join-icon {
-    width: 60px;
-    height: 60px;
   }
 }

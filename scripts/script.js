@@ -227,10 +227,21 @@ function addContact(content, numberOfContact) {
 
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
   document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(...elements);
+  
   if (numberOfContact != null) {
     document.getElementById('name').value = contacts[numberOfContact].name;
     document.getElementById('email').value = contacts[numberOfContact].email;
     document.getElementById('phone').value = contacts[numberOfContact].phone;
+    if (contacts[numberOfContact].img === undefined) {
+      const nameParts = contacts[numberOfContact].name.split(' ');
+      const initials = nameParts.map(part => part[0].toUpperCase()).join('');
+      const initialsSpan = document.createElement('span');
+      initialsSpan.textContent = initials;
+      initialsSpan.classList.add('contact-initials');
+      const imgDiv = document.querySelector(".add-contact-img-div");
+      imgDiv.appendChild(initialsSpan);
+      imgDiv.classList.add('no-profile-picture');
+    }
   }
 }
 

@@ -60,39 +60,36 @@ function getListTemplate(value, option) {
  */
 function getAddTaskTemplate(isEditMode, task, date, subTasks) {
   return `<div class="d_flex_column responsive-margin responsive-add-task-dialog ${isEditMode ? 'edit-mode-padding' : ''}" data-modal>
-              <div class="d_flex_c main-div">
+              <div class="d_flex main-div">
                 <div class="media-w-300">
                     <h1 class="${isEditMode ? 'd_none' : ''} add-task-title">Add Task</h1>
                     <div>
                         <div class="flex">
-                            <span>Title<span class="color-red">*</span></span>
+                            <span class="headline-span">Title <span class="color-red">*</span></span>
                             <input id="title" type="text" value="${
                               isEditMode ? task.title : ''
-                            }" placeholder="Enter a title" class="input-task input-field task-input-field" required/>
+                            }" placeholder="Enter a title" class="input-task input-field task-input-field input-font-size-size" required/>
                         </div>
                         <div class="flex">
-                            <span>Description</span>
-                            <textarea id="description" 
-                              " rows="5" cols="50" placeholder="Enter a Description">${
-                                isEditMode ? task.description : ''
-                              }</textarea>
+                            <span class="headline-span">Description</span>
+                            <textarea id="description" rows="5" cols="50" placeholder="Enter a Description" class="input-font-size-size input-field">${isEditMode ? task.description : ''}</textarea>
                         </div>
                     </div>
                     <div class="flex">
-                      <span>Due date<span class="color-red">*</span></span>
-                      <input id="date" type="date" value="${date}" class="input-task task-input-field" required />
+                      <span class="headline-span">Due date <span class="color-red">*</span></span>
+                      <input id="date" type="date" value="${date}" class="input-task task-input-field input-font-size-size input-field" required />
                     </div>
           <div class="flex">
-             <span>Prio</span>
+             <span class="headline-span">Prio</span>
              <div class="d_flex">
-                 <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);"> Urgent
+                 <button id="urgent" data-prio="high" class="d_flex_c prio-button" onclick="checkThePrioOfTask(1);" class="input-font-size-size"> Urgent
                      <div class="d_flex_column">
                          <img id="urgent0" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
                          <img id="urgent1" src="../assets/img/urgent.svg" alt="urgent" class="prio-button-image"/>
                      </div>
                  </button>
-                 <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);">
-                   Medium
+                 <button id="medium" data-prio="medium" class="d_flex_c prio-button" onclick="checkThePrioOfTask(2);" class="input-font-size-size">
+                  Medium
                    <div class="d_flex_column">
                      <img
                        id="medium0"
@@ -108,7 +105,7 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                      />
                    </div>
                  </button>
-                 <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);">
+                 <button id="low" data-prio="low" class="d_flex_c prio-button" onclick="checkThePrioOfTask(3);" class="input-font-size-size">
                    Low
                    <div class="d_flex_column">
                      <img id="low0" src="../assets/img/low.svg" alt="low" class="prio-button-image" />
@@ -118,8 +115,8 @@ function getAddTaskTemplate(isEditMode, task, date, subTasks) {
                </div>
           </div>
           <div class="flex">
-            <span>Category<span class="color-red">*</span></span>
-            <select id="category" class="h-34 input-field task-input-field">
+            <span class="headline-span">Category <span class="color-red">*</span></span>
+            <select id="category" class="h-34 input-field task-input-field input-font-size">
            <option value="" selected disabled>Select task category</option>
           <option ${task?.category === 'User Story' ? 'selected' : ''} value="User Story">User Story</option>
            <option ${
@@ -160,12 +157,12 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                   <div class="delete-container">
                       <span>Allowed file types are JPEG and PNG</span>
                       <div>
-                        <img class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete"> 
-                        <span class="delete-all" onclick="deleteFiles('all')">Delete all</span>                              
+                        <img tabindex=0 class="delete-icon" onclick="deleteFiles('all')" src="/assets/img/delete.svg" alt="delete" onkeydown="if(event.key === 'Enter') this.click();"> 
+                        <span tabindex=0 class="delete-all" onclick="deleteFiles('all')" onkeydown="if(event.key === 'Enter') this.click();">Delete all</span>                              
                       </div>
                   </div>
-                  <div class="file-upload-container"> 
-                    <img class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();">
+                  <div id="dropzone" class="file-upload-container"> 
+                    <img tabindex=0 class="upload-file" src="/assets/img/upload.svg" alt="file-upload-image" onclick="filepicker.click(); fileDefine();" onkeydown="if(event.key === 'Enter') this.click();">
                     <input type="file" id="filepicker" class="d_none" accept="image/*" multiple>
                     <span class="error hidden-error-message">Only image allowed</span>
                   </div>
@@ -173,10 +170,10 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                     <div id="image-container"></div>
                   </div>
                   <div class="subtasks-container">
-                    <span>Subtasks</span>
+                    <span class="headline-span">Subtasks</span>
                     <div>
                       <div class="d_flex align-items-center">
-                         <input type="text"  placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width" />
+                         <input type="text" placeholder="Add new subtask" class="subTask-input w-100 h-34 input-field task-input-field subtasks-width input-font-size" />
                          <img class="add-subTask-icon"  onclick="addSubTask()" src="../assets/img/plus.svg" />
                       </div>
                       <ul class="subtask-list">
@@ -184,29 +181,27 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       </ul>                      
                     </div>
                   </div>
-                   <span>Assigned to</span>
-                    <div onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts">
+                   <span class="headline-span">Assigned to</span>
+                    <div tabindex=0 onclick="toggleCheckMenu();" class="d_flex input-field userlist-ctn task-input-field select-contacts" onkeydown="if(event.key === 'Enter') this.click();">
                         <span class="select-text">
-                        <p>Select contacts to assign</p>
-                        <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
+                          <p class="input-font-size">Select contacts to assign</p>
+                          <img class="arrow-drop-down" src="../assets/icon/arrow_drop_down.png" />
                         </span>
                         <div id="userlist" class="d_none"></div>
                     </div>
                     <ul class="assigned-list">
-                    ${isEditMode ? assignedTemplate : ''}
+                      ${isEditMode ? assignedTemplate : ''}
                     </ul> 
                 </div>
-                  
-                  
-                  <div class="d_flex g_12">
-                    <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
-                      isEditMode ? 'd_none' : ''
-                    }" formnovalidate> Clear X</button>
-                    <button onclick="${
-                      isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                    }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
-                        <img src="../assets/img/check.svg" alt="check" />
-                    </button>
+                <div class="d_flex g_12">
+                  <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
+                    isEditMode ? 'd_none' : ''
+                  }" formnovalidate> Clear X</button>
+                  <button onclick="${
+                    isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
+                  }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
+                      <img src="../assets/img/check.svg" alt="check" />
+                  </button>
                 </div>
               </div>`;
 }
@@ -405,11 +400,16 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
       </div>
     </div>
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
-      <div class="add-contact-img-div file-upload-container" onclick='${ content === "Edit" ? editpicker : imagepicker }.click(); ${onclickHandler};'>
-        <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' }">
-        <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*">
-        <span class="error hidden-error-message">Only image allowed</span>
-      </div>
+      <section class="picture-section">
+        <div class="add-contact-img-div file-upload-container">
+          <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
+          <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*" onclick="${onclickHandler}">
+          <span class="error hidden-error-message">Only image allowed</span>
+        </div>
+        <div class="camera-container" onclick="${ content === "Edit" ? editpicker : imagepicker }.click();">
+          <img src="../assets/img/camera.svg">
+        </div>
+      </section>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
           <input id="name" type="text" placeholder="Name" class="default-border input-field_contacts" required>
@@ -431,7 +431,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
           class="overlay_cancel button_mobile">X</a>
           <div>
-            <button class="primary-button clear-and-create-button ">${contentButton1}</button><img>
+            <button class="primary-button clear-and-create-button">${contentButton1}</button><img>
           </div>
         </div>
       </div>
@@ -450,13 +450,23 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
  * @returns {string} The HTML string for the contact checkbox list item.
  */
 function getCheckBoxList(index, contacts, shortcut, jobTitle) {
-  return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
+  if (contacts.img) {
+    return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
               <div>
-                  <span class="${jobTitle}">${shortcut}</span>
+                  <img class="profile-picture-list" src="${contacts.img}" alt="profile picture"/>
                   <span data-contact-name>${contacts.name}</span>
               </div>
               <input type="checkbox" id="checkbox${index}"/>
-          </label>`;
+            </label>`;
+  } else {
+    return `<label onclick="event.stopPropagation(); toggleAddTaskContact(event);" for="checkbox${index}">
+                <div>
+                    <span class="${jobTitle}">${shortcut}</span>
+                    <span data-contact-name>${contacts.name}</span>
+                </div>
+                <input type="checkbox" id="checkbox${index}"/>
+            </label>`;
+    }
 }
 
 /**
@@ -540,22 +550,58 @@ function getTaskTemplate(task, doneSubTasksLength) {
 }
 
 /**
- * Generates a template string for assigned users.
- * 
+ * Generates HTML templates for users assigned to a task.
+ *
+ * Filters the global `contacts` array to find users matching the `assignedTo` list,
+ * then creates HTML elements for each assigned user, with or without a profile picture.
+ * If not in preview mode and more than four users are assigned, returns a summarized string.
+ *
+ * @param {Array<Object>} assignedTo - Array of user objects assigned to the task. Each object should have at least a `name` property.
+ * @param {boolean} previewTask - Flag indicating if the function is called in preview mode.
+ * @returns {string} HTML string representing the assigned users, or a summarized string if not in preview mode and more than four users are assigned.
  */
 function getAssignedTemplate(assignedTo, previewTask) {
-  const assignedElements = assignedTo?.map(({ name, role }) => {
-    const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
-    return previewTask ? `<li>${elements}</li>` : elements;
+  let assignedElements;  
+  const assignedToUsers = contacts.filter(contact =>
+    assignedTo.some(user => user.name === contact.name)
+  );
+  
+  assignedElements = assignedToUsers?.map(({ name, role, img }) => {
+    return img ? assignedToWithPicture(name, img, previewTask) : assignedToWithoutPicture(name, role, previewTask);
   });
-
+  
   if (!previewTask && assignedElements.length > 4) {
     return getAssignedToString(assignedElements);
   }
-
   const assignedTemplates = assignedElements?.join(' ');
   assignedTemplate = assignedTemplates;
   return assignedTemplates;
+}
+
+/**
+ * Generates an HTML string representing a user's picture and optionally their name.
+ *
+ * @param {string} name - The name of the user to display.
+ * @param {string} img - The URL of the user's image.
+ * @param {boolean} previewTask - If true, wraps the content in a <li> and includes the user's name.
+ * @returns {string} The generated HTML string.
+ */
+function assignedToWithPicture(name, img, previewTask) {
+  const elements = `<img src="${img}" class="assigned-to-picture"> ${previewTask ? `<span>${name}</span>` : ''}`;
+  return previewTask ? `<li>${elements}</li>` : elements;
+}
+
+/**
+ * Generates an HTML string representing a user assignment without a picture.
+ *
+ * @param {string} name - The name of the assigned user.
+ * @param {string} role - The role of the assigned user, used to determine CSS class.
+ * @param {boolean} previewTask - If true, wraps the output in a <li> and includes the full name.
+ * @returns {string} The generated HTML string for the assigned user.
+ */
+function assignedToWithoutPicture(name, role, previewTask) {
+  const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
+  return previewTask ? `<li>${elements}</li>` : elements;
 }
 
 /**

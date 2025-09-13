@@ -160,10 +160,12 @@ function defineNewContact() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  console.log(document.querySelector('.person-icon'))
-  if (document.querySelector('.person-icon')) {
+  let imgElement = document.querySelector(".person-icon");
+  let imgSrc = imgElement.src;  // Vollständige URL, die der Browser automatisch auflöst
+  let url = new URL(imgSrc);    // Erzeugt eine URL-Instanz
+  let path = url.pathname;      // Extrahiert den Pfadteil
+  if (path != '/assets/icon/person-light.png') {
     const img = document.querySelector('.person-icon').src;
-    console.log(img)
     return { name,email, phone, img: img, role: 'Tester' };
   } else {
     return { name,email, phone, role: 'Tester' };
@@ -473,8 +475,13 @@ async function userImageDialog(file) {
 function userImageEdit(numberOfContact) {
   const editpicker = document.getElementById("editpicker" + numberOfContact);
   editpicker.addEventListener("change", async() => {
+    if (!contacts[numberOfContact].img) {
+      document.querySelector(".contact-initials").classList.add("hidden");
+      document.querySelector(".add-contact-img-div").classList.remove("no-profile-picture");
+    }
     const imageContainer = document.querySelector(".profile-picture-span");
     const base64 = await compressImage(editpicker.files[0]);
+    imageContainer.classList.remove("hidden");
     imageContainer.src = base64;
   });
 }

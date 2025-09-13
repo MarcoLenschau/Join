@@ -10,6 +10,7 @@ async function loadTask() {
   document.getElementById('add-task').innerHTML = getAddTaskTemplate();
   mediumPrio();
   await loadContactsList();
+  defineDropFunction();
 }
 
 /**
@@ -230,12 +231,29 @@ function updateAssignedUsers() {
   labels.forEach((label) => {
     const isChecked = label.querySelector('input').checked;
     if (isChecked) {
-      const profileCircle = document.createElement('li');
-      const spanContent = label.querySelector('div span');
-      profileCircle.appendChild(spanContent.cloneNode(true));
-      assignedList.prepend(profileCircle);
+      createAssignedUser(assignedList, label);
     }
   });
+}
+
+/**
+ * Creates a new list item representing an assigned user and prepends it to the assigned users list.
+ * The function clones either the user's profile image or initials from the provided label element.
+ *
+ * @param {HTMLElement} assignedList - The list element to which the assigned user will be prepended.
+ * @param {HTMLElement} label - The label element containing the user's profile image or initials.
+ */
+function createAssignedUser(assignedList, label) {
+  const profileCircle = document.createElement('li');
+  const imgContent = label.querySelector('div img');
+  const spanContent = label.querySelector('div span');
+  if (imgContent != null) {
+    imgContent.classList.add('assigned-user-img');
+    profileCircle.appendChild(imgContent.cloneNode(true));
+  } else {
+    profileCircle.appendChild(spanContent.cloneNode(true));
+  }
+  assignedList.prepend(profileCircle);
 }
 
 /**
@@ -365,18 +383,58 @@ function fileDefine() {
     const filepicker = document.getElementById("filepicker");
     filepicker.addEventListener("change", () => {
       filepickerDefine = false;
-      const files = Array.from(filepicker.files);
-      if (files.length > 0) {
-        files.forEach(file => {
-          if (checkFormatOfFile(file)) {
-            imageCreate(file);
-          } else {
-            showErrorMessage();
-          }
-        });
+        addFiles(filepicker.files);
+    });
+  }
+}
+
+/**
+ * Sets up drag-and-drop functionality for a dropzone element.
+ * Prevents default browser behavior for dragover and drop events on the window.
+ * Handles file drops on the element with ID "dropzone".
+ * For each dropped file:
+ * Checks if the file format is valid using `checkFormatOfFile`.
+ * If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
+ * If invalid, displays an error message using `showErrorMessage`.
+ */
+function defineDropFunction() {
+  window.addEventListener("dragover", e => e.preventDefault());
+  window.addEventListener("drop", e => e.preventDefault());
+  const dropzone = document.getElementById("dropzone");
+  dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));  
+}
+
+/**
+ * Processes an array-like list of files by checking their format and uniqueness,
+ * then creates an image for each valid and new file. Shows an error message for invalid files.
+ *
+ * @param {FileList|Array<File>} files - The list of files to be processed.
+ */
+function addFiles(files) {
+  files = Array.from(files);
+  if (files.length > 0) {
+    files.forEach(file => {
+      if (checkFormatOfFile(file)) {
+        checkIfFileNew(file) ? imageCreate(file) : "";
+      } else {
+        showErrorMessage();
       }
     });
   }
+}
+
+/**
+ * Checks if the given file is new by comparing its name with the filenames in the allFiles array.
+ *
+ * @param {File} file - The file object to check.
+ * @returns {boolean} Returns true if the file is new (not found in allFiles), otherwise false.
+ */
+function checkIfFileNew(file) {
+  let error = false;
+  allFiles.forEach((allFile) => {
+      allFile.filename === file.name ? error = true : "";
+  })
+  return !error;
 }
 
 /**
@@ -388,15 +446,22 @@ function fileDefine() {
 async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
   const img = document.createElement("img");
+  const div = document.createElement("div");
+  const span = document.createElement("span");
   const base64 = await compressImage(file);
   img.src = base64;
   img.id = file.name;
   img.onclick = () => bigPicture("image-container");
+  span.innerText = file.name;
   imageContainer.appendChild(img);
+  imageContainer.appendChild(div);
+  div.appendChild(span);
+  div.classList.add("w-100");
   addScrollbar(imageContainer);
   allFiles.push({
     filename: file.name,
     type: file.type,
+    size: file.size,
     base64: base64
   });
 }
@@ -426,5 +491,6 @@ function deleteFiles(whichFile) {
   const imageContainer = document.getElementById('image-container');
   if (whichFile === 'all') {
     imageContainer.innerHTML = '';
+    document.getElementById("filepicker").value = "";
   }
 }

@@ -29,15 +29,15 @@
         </header>
     </div>
     <main class="d_flex_c singup-main">
-        <div>
+        <div class="back-button-container">
             <a href="../index.html" class="back-button-link">
                 <img src="../assets/img/back.svg" class="back-button singup-back-button" />
             </a>
         </div> 
-        <form class="formDiv" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
+        <form class="formDiv-signup" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
             <div class="text-center login-form w-100">
-                <div class="d_flex_c" style="padding: 24px;">
-                    <div class="text-center" style="width: 280px;">
+                <div class="d_flex_c p-24">
+                    <div class="text-center login-signup-container">
                         <h1>Sign up</h1>
                         <div class="separator"></div>
                     </div>
@@ -50,8 +50,7 @@
                             <img src="../assets/img/person.svg" alt="name" class="overlay-image">
                         </div>
                         <span id="name-error" class="transparent">Name to short</span>
-                    </div>
-    
+                    </div>    
                     <div class="d_flex_column">
                         <div class="d_flex_c responsive-register-form" style="width: 330px;">
                              <input id="email" type="email" placeholder="E-Mail" 
@@ -60,9 +59,7 @@
                         </div>
                         <span id="email-error" class="transparent">Email not validate</span>
                     </div>
-
-                  
-                   <div class="d_flex_column">
+                    <div class="d_flex_column">
                         <div class="d_flex_c responsive-register-form" style="width: 330px;">
                             <input id="password" type="password" placeholder="Password" minlength="5" 
                             class="w-100 default-border input-font" onclick="validate(passwordValidateEvent, 'password')" required>
@@ -70,7 +67,6 @@
                         </div>
                         <span id="password-error" class="transparent">Password to short</span>
                     </div>
-
                     <div class="d_flex_column">
                         <div class="d_flex_c responsive-register-form" style="width: 330px;">
                             <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" 
@@ -79,13 +75,11 @@
                         </div>
                         <span id="passwordConfirm-error" class="transparent">Password not same</span>
                     </div>
-
                     <span id="auth-error-message">User name already</span>
                     <div id="checkboxContainer">
                         <input id="checkBox" type="checkbox" required>
                         <span>I accept the Privacy policy</span>
                     </div>
-
                     <div class="buttonDiv">
                         <img class="auth-loading-spinner" src="../assets/icon/loading.png" alt="loading icon" />
                         <button class="primary-button">Sign up</button>

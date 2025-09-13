@@ -110,7 +110,7 @@ function imageLoad({maxWidth, maxHeight, quality, resolve, event}){
     const imageLoadOptions = { maxWidth, maxHeight, quality, img };
     compressImageCreate(imageLoadOptions, resolve);
   };
-  img.onerror = () => reject('Error loading image.');
+  // img.onerror = () => reject('Error loading image.');
   img.src = event.target.result;
 }
 

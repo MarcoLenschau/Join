@@ -3,6 +3,7 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 64px;
   z-index: 1;
 
@@ -171,8 +172,8 @@ a {
 
 .first-big-letter {
   display: inline-block;
-  height: 80px;
-  width: 80px;
+  height: 145px;
+  width: 158px;
   border-radius: 50%;
   font-size: 22px;
   color: white;
@@ -266,14 +267,6 @@ a {
 }
 
 .loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 1000;
   animation: backgroundTransition 2s ease forwards;
   pointer-events: none;
@@ -294,47 +287,43 @@ a {
 .loader-image {
   width: 50px;
   height: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%); 
-  animation: logoTransition 2s ease forwards, fadeOutWhite 3s ease forwards;
-}
-
-
-@keyframes backgroundTransition {
-  0% {
-    background-color: rgba(255, 255, 255, 1); /* Anfangs weiß */
-  }
-  100% {
-    background-color: rgba(255, 255, 255, 0); /* Am Ende transparent */
-  }
+  animation: logoTransition 2s ease forwards;
 }
 
 @keyframes logoTransition {
   0% {
+    position: absolute;
     top: 50%;
     left: 50%;
     width: 274px;
     height: 334px;
     transform: translate(-50%, -50%);
   }
+
   100% {
-    top: 32px;
-    left: 58px;
-    width: 100px;
-    height: 122px;
+    position: relative;
+    width: 200px;
+    height: 150px;
     transform: none;
   }
 }
 
-/* Weißes Bild wird transparent */
-@keyframes fadeOutWhite {
+@keyframes backgroundTransition {
   0% {
-    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
   }
   100% {
+    background-color: rgba(255, 255, 255, 0); 
+  }
+}
+
+@keyframes fadeOutWhite {
+  0% {
     opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -467,7 +456,6 @@ a {
   width: 100%;
   height: 100%;
   margin-top: 8px;
-  overflow-y: scroll;
   user-select: none;
 
   &::-webkit-scrollbar {
@@ -477,14 +465,19 @@ a {
   label {
     cursor: pointer;
     padding: 8px 16px;
-    border-radius: 12px;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #FFFFFF;
 
     &:hover {
       background-color: rgb(209, 209, 209, 0.3);
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
     }
 
     > div {
@@ -601,3 +594,89 @@ a {
   cursor: pointer;
 }
 
+.upload-file:focus { 
+  outline: 2px solid #000000;   
+}
+
+.assigned-user-img {
+  width: 30px;
+}
+
+.input-width {
+  width: 69vw;
+}
+
+.headline-span {
+  font-size: 20px !important;
+}
+
+.input-font-size { 
+  font-size: 18px !important;
+}
+
+.hidden {
+  opacity: 0;
+  height: 0px !important;
+  width: 0px !important;
+}
+
+.contact-initials {
+  margin-bottom: 27px;
+  font-size: 48px;
+}
+
+.no-profile-picture {
+  background-color: var(--color-violet-light) !important;
+}
+
+.edit-mode-margin {
+  margin-top: 3vh;
+}
+
+.content-limited {
+  width: 1920px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picture-section {
+  display: flex;
+  align-items: flex-end;
+}
+
+.camera-container {
+  background-color: grey;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  background-image: url(../assets/img/camera.svg);
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  background-position: center;
+  padding: 36px;
+  margin: 0 -58px;
+  z-index: 1;
+  
+  img {
+    width: 38px;
+  }
+}
+
+.p-24 {
+  padding: 24px;
+}
+
+.login-signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.assigned-to-picture {
+  width: 42px;
+  height: 48px;
+  border-radius: 50%;
+}
