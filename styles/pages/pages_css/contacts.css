@@ -318,10 +318,10 @@
 }
 
 .profile-picture-list {
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 62px;
   border: 0;
-  border-radius: 24px;
+  border-radius: 50%;
   background-color: transparent !important;
 }
 
@@ -339,13 +339,17 @@
 }
 
 .person-icon {
-  height: 80px;
-  width: 80px;
+  height: 174px;
+  width: 178px;
+  border-radius: 50%;
+  margin: -60px;
 }
 
 @media (max-width: 900px) {
   .person-icon {
-    height: 50px;
-    width: 50px;
+    height: 118px;
+    width: 122px;
+    border-radius: 50%;
+    margin: 0;
   }
 }

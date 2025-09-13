@@ -588,7 +588,7 @@ function getAssignedTemplate(assignedTo, previewTask) {
  * @returns {string} The generated HTML string.
  */
 function assignedToWithPicture(name, img, previewTask) {
-  const elements = `<img src="${img}"> ${previewTask ? `<span>${name}</span>` : ''}`;
+  const elements = `<img src="${img}" class="assigned-to-picture"> ${previewTask ? `<span>${name}</span>` : ''}`;
   return previewTask ? `<li>${elements}</li>` : elements;
 }
 

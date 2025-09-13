@@ -172,8 +172,8 @@ a {
 
 .first-big-letter {
   display: inline-block;
-  height: 80px;
-  width: 80px;
+  height: 145px;
+  width: 158px;
   border-radius: 50%;
   font-size: 22px;
   color: white;
@@ -673,4 +673,10 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 6px;
+}
+
+.assigned-to-picture {
+  width: 42px;
+  height: 48px;
+  border-radius: 50%;
 }

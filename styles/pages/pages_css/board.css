@@ -199,8 +199,15 @@
           }
 
           img {
-            width: 17px;
+            width: 32px;
+            height: 36px;
             transform: translateX(-6px);
+            border-radius: 50%;             
+          }
+
+          img:last-child {
+            width: 26px;
+            height: 26px;
           }
         }
       }
