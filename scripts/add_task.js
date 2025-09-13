@@ -383,30 +383,59 @@ function fileDefine() {
     const filepicker = document.getElementById("filepicker");
     filepicker.addEventListener("change", () => {
       filepickerDefine = false;
-      const files = Array.from(filepicker.files);
-      if (files.length > 0) {
-        files.forEach(file => {
-          if (checkFormatOfFile(file)) {
-            imageCreate(file);
-          } else {
-            showErrorMessage();
-          }
-        });
+        addFiles(filepicker.files);
+    });
+  }
+}
+
+/**
+ * Sets up drag-and-drop functionality for a dropzone element.
+ * Prevents default browser behavior for dragover and drop events on the window.
+ * Handles file drops on the element with ID "dropzone".
+ * For each dropped file:
+ * Checks if the file format is valid using `checkFormatOfFile`.
+ * If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
+ * If invalid, displays an error message using `showErrorMessage`.
+ */
+function defineDropFunction() {
+  window.addEventListener("dragover", e => e.preventDefault());
+  window.addEventListener("drop", e => e.preventDefault());
+  const dropzone = document.getElementById("dropzone");
+  dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));  
+}
+
+/**
+ * Processes an array-like list of files by checking their format and uniqueness,
+ * then creates an image for each valid and new file. Shows an error message for invalid files.
+ *
+ * @param {FileList|Array<File>} files - The list of files to be processed.
+ */
+function addFiles(files) {
+  files = Array.from(files);
+  if (files.length > 0) {
+    files.forEach(file => {
+      if (checkFormatOfFile(file)) {
+        checkIfFileNew(file) ? imageCreate(file) : "";
+      } else {
+        showErrorMessage();
       }
     });
   }
 }
 
-function defineDropFunction() {
-  window.addEventListener("dragover", e => e.preventDefault());
-  window.addEventListener("drop", e => e.preventDefault());
-  const dropzone = document.getElementById("dropzone");
-  console.log(dropzone)
-  dropzone.addEventListener("drop", () => {
-    console.log("ja")
-  });
+/**
+ * Checks if the given file is new by comparing its name with the filenames in the allFiles array.
+ *
+ * @param {File} file - The file object to check.
+ * @returns {boolean} Returns true if the file is new (not found in allFiles), otherwise false.
+ */
+function checkIfFileNew(file) {
+  let error = false;
+  allFiles.forEach((allFile) => {
+      allFile.filename === file.name ? error = true : "";
+  })
+  return !error;
 }
-
 
 /**
  * Converts an image file to base64 and displays it in the image container.
