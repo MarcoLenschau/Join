@@ -680,3 +680,13 @@ a {
   height: 48px;
   border-radius: 50%;
 }
+
+.overflow {
+  overflow-y: scroll;
+  width: 675px;
+}
+
+.prio-img {
+  width: 26px !important;
+  height: 26px !important;          
+}

@@ -445,18 +445,9 @@ function checkIfFileNew(file) {
  */
 async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
-  const img = document.createElement("img");
-  const div = document.createElement("div");
-  const span = document.createElement("span");
   const base64 = await compressImage(file);
-  img.src = base64;
-  img.id = file.name;
-  img.onclick = () => bigPicture("image-container");
-  span.innerText = file.name;
-  imageContainer.appendChild(img);
-  imageContainer.appendChild(div);
-  div.appendChild(span);
-  div.classList.add("w-100");
+  imageContainer.clientWidth > 700 ? imageContainer.classList.add("overflow") : imageContainer.classList.remove("overflow");
+  createImageContainer(file, base64, imageContainer);
   addScrollbar(imageContainer);
   allFiles.push({
     filename: file.name,
@@ -464,6 +455,27 @@ async function imageCreate(file) {
     size: file.size,
     base64: base64
   });
+}
+
+/**
+ * Creates an image container element with an image and filename label,
+ * and appends it to the global `imageContainer` element.
+ * The created image will have an `onclick` handler that calls `bigPicture("image-container")`.
+ */
+function createImageContainer(file, base64, imageContainer) {
+  const img = document.createElement("img");
+  const container = document.createElement("div");
+  const div = document.createElement("div");
+  const span = document.createElement("span");
+  img.src = base64;
+  img.id = file.name;
+  img.onclick = () => bigPicture("image-container");
+  span.innerText = file.name;
+  container.appendChild(img);
+  container.appendChild(div);
+  imageContainer.appendChild(container);
+  div.appendChild(span);
+  div.classList.add("w-100");
 }
 
 /**
