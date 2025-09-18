@@ -690,3 +690,9 @@ a {
   width: 26px !important;
   height: 26px !important;          
 }
+
+.profile-picture-list {
+  border-radius: 50%;
+  width: 42px;
+  aspect-ratio: 1 / 1;
+}
