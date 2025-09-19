@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "viewerjs": "^1.11.7"
+  },
+  "devDependencies": {
+    "eslint": "^9.36.0",
+    "eslint-plugin-jsdoc": "^59.0.2"
   }
 }
