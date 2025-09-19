@@ -161,15 +161,13 @@ function defineNewContact() {
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
   let imgElement = document.querySelector(".person-icon");
-  let imgSrc = imgElement.src;  // Vollständige URL, die der Browser automatisch auflöst
-  let url = new URL(imgSrc);    // Erzeugt eine URL-Instanz
-  let path = url.pathname;      // Extrahiert den Pfadteil
+  let imgSrc = imgElement.src;  
+  let url = new URL(imgSrc);    
+  let path = url.pathname;   
   if (path != '/assets/icon/person-light.png') {
     const img = document.querySelector('.person-icon').src;
     return { name,email, phone, img: img, role: 'Tester' };
-  } else {
-    return { name,email, phone, role: 'Tester' };
-  }
+  } else { return { name,email, phone, role: 'Tester' }; }
 }
 
 /**
@@ -196,7 +194,7 @@ async function addNewContact(userData) {
  */
 function saveContact(numberOfContact) {
   if (numberOfContact != null) {
-    console.log(contacts[numberOfContact].img)
+    console.log(contacts[numberOfContact].img);
     contacts[numberOfContact].name = document.getElementById('name').value;
     contacts[numberOfContact].email = document.getElementById('email').value;
     contacts[numberOfContact].phone = document.getElementById('phone').value;
@@ -228,24 +226,39 @@ function hideAddContactMenu() {
 }
 
 /**
- * Organizes the contacts by grouping them based on the first letter of their name.
- * 
+ * Organizes contact elements in the DOM by grouping them according to their first letter.
+ *
+ * This function retrieves all contact elements from the contacts list, clears the list,
+ * and re-appends each contact into a div group based on its first letter using `createDivGroup`.
  */
 function organizeContacts() {
   const listContactsElement = document.querySelector('.contacts-list');
   const listOfContacts = Array.from(listContactsElement.children);
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
-    const firstLetter = contactEl.dataset.firstletter;
-    let divGroup = document.querySelector(`[data-firstletter="${firstLetter}"]`);
-    if (!divGroup) {
-      divGroup = document.createElement('div');
-      divGroup.setAttribute('data-firstletter', firstLetter);
-      divGroup.innerHTML = `<h3>${firstLetter}</h3>`; // H3 direkt hier hinzufügen
-      listContactsElement.appendChild(divGroup);
-    }
-    divGroup.appendChild(contactEl);
+    createDivGroup(contactEl);
   });
+}
+
+/**
+ * Creates or retrieves a div group for a contact based on the first letter of the contact's name.
+ *
+ * If a div group for the given first letter does not exist, it creates a new one,
+ * sets the appropriate data attribute, adds a heading, and appends it to the contact list.
+ * The contact element is then appended to the corresponding div group.
+ *
+ * @param {HTMLElement} contactEl - The contact element to be added to the grouped div.
+ */
+function createDivGroup(contactEl) {
+  const firstLetter = contactEl.dataset.firstletter;
+  let divGroup = document.querySelector(`[data-firstletter="${firstLetter}"]`);
+  if (!divGroup) {
+    divGroup = document.createElement('div');
+    divGroup.setAttribute('data-firstletter', firstLetter);
+    divGroup.innerHTML = `<h3>${firstLetter}</h3>`; // H3 direkt hier hinzufügen
+    listContactsElement.appendChild(divGroup);
+  }
+  divGroup.appendChild(contactEl);
 }
 
 /**
@@ -291,8 +304,8 @@ function toggleContactSelect(event, index) {
  * @param {Event} event - The event triggered by the user's click.
  */
 function closeSmallMenu(event){
-  const moreButtonDiv = event.target.closest(".more-button-div")
-  if(moreButtonDiv) return
+  const moreButtonDiv = event.target.closest(".more-button-div");
+  if (moreButtonDiv) return;
   document.getElementById('toggleMenu')?.classList.add('d_none');
 }
 
@@ -333,19 +346,18 @@ function userImgDefine(numberOfContact, dialog="") {
 }
 
 /**
- * Adds a change event listener to an image input element.
- * When a file is selected, it checks the file format and handles it based on the dialog setting.
+ * Creates an image picker for a user and handles image selection.
  *
- * @param {number} numberOfContact - The number that identifies the user.
- * @param {string} dialog - Optional dialog type (used to decide how to show the image).
+ * This function creates an image input element, listens for a file selection,
+ * and processes the chosen image. It validates the file format, updates the
+ * user’s contact image, and optionally displays an error message if the format
+ * is not supported.
+ *
+ * @param {number} numberOfContact - The index or ID of the contact associated with the image.
+ * @param {Object} dialog - A dialog object (used for handling UI updates or confirmations).
  */
 function createUserImage(numberOfContact, dialog) {
-  let imagepicker;
-  if (numberOfContact === null) {
-    imagepicker = document.getElementById("imagepicker");
-  } else {
-    imagepicker = document.getElementById("imagepicker" + numberOfContact);
-  }
+  const imagepicker = createImagePicker();
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
     document.querySelector(".person-icon").classList.remove("person-icon-without-picture");
@@ -356,6 +368,25 @@ function createUserImage(numberOfContact, dialog) {
       showErrorMessage();
     }
   },{ once: true });
+}
+
+/**
+ * Creates or retrieves an image input element from the DOM.
+ *
+ * Depending on whether a specific contact number is provided, this function
+ * returns either the default image picker element or a contact-specific one.
+ *
+ * @param {number|null} numberOfContact - The ID or index of the contact. If null, the default image picker is used.
+ * @returns {HTMLInputElement} The image input element from the DOM.
+ */
+function createImagePicker() {
+  let imagepicker;
+  if (numberOfContact === null) {
+    imagepicker = document.getElementById("imagepicker");
+  } else {
+    imagepicker = document.getElementById("imagepicker" + numberOfContact);
+  }
+  return imagepicker;
 }
 
 /**

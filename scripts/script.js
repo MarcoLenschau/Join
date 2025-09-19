@@ -1,14 +1,14 @@
 const BACKEND_URL = 'https://join-3e9ec-default-rtdb.europe-west1.firebasedatabase.app/datenBank/';
-let allUserCredential = [];
-let currentUser = '';
+const allUserCredential = [];
+const currentUser = '';
 
 /**
  * Loads the HTML template data from a given URL.
  *
 */
 async function loadTemplateData(url) {
-  let response = await fetch(url);
-  let template = await response.text();
+  const response = await fetch(url);
+  const template = await response.text();
   return template;
 }
 
@@ -114,7 +114,7 @@ function toggleAddTaskModal(e, tasks) {
   const closeButton = target?.closest('.button-close-modal');
   const taskPreview = target?.closest('.task-preview');
   const deleteButton = target?.closest('[data-delete-button]');
-  const dragIcon = target?.closest(".drag-icon-ctn")
+  const dragIcon = target?.closest(".drag-icon-ctn");
   
   if ((isModal && !closeButton) || (taskPreview && !deleteButton && !closeButton) || dragIcon) return;
   const modal = document.querySelector('.add-task-modal');
@@ -210,16 +210,23 @@ function extractTheFirstLetter(word) {
   return shortcut;
 }
 
+/**
+ * Capitalizes the first letter of the given string.
+ *
+ * @param {string} str - The input string.
+ * @returns {string} The input string with the first letter capitalized.
+ */
 function firstLetterOfWordBig(str) {
   return str[0].toUpperCase() + str.substr(1);
 }
 
 /**
- * Displays the "Add Contact" form and pre-fills it if editing an existing contact.
- * 
- * @param {string} content - The content to display on the form.
- * @param {number} [numberOfContact] - The index of the contact to edit (optional).
-*/
+ * Displays the add contact modal dialog and populates the form fields.
+ * If a contact index is provided, pre-fills the form with the contact's data for editing.
+ *
+ * @param {string} content - The content or context for the add contact menu.
+ * @param {number|null} numberOfContact - The index of the contact to edit, or null to add a new contact.
+ */
 function addContact(content, numberOfContact) {
   let { contentButton0, contentButton1 } = showTheRightButtonText(content);
   const elements = [content, contentButton0, contentButton1, numberOfContact];
@@ -232,16 +239,26 @@ function addContact(content, numberOfContact) {
     document.getElementById('email').value = contacts[numberOfContact].email;
     document.getElementById('phone').value = contacts[numberOfContact].phone;
     if (contacts[numberOfContact].img === undefined) {
-      const nameParts = contacts[numberOfContact].name.split(' ');
-      const initials = nameParts.map(part => part[0].toUpperCase()).join('');
-      const initialsSpan = document.createElement('span');
-      initialsSpan.textContent = initials;
-      initialsSpan.classList.add('contact-initials');
-      const imgDiv = document.querySelector(".add-contact-img-div");
-      imgDiv.appendChild(initialsSpan);
-      imgDiv.classList.add('no-profile-picture');
+      createContact(numberOfContact);
     }
   }
+}
+
+/**
+ * Creates and displays the initials of a contact in the designated image container.
+ * If the contact does not have a profile picture, their initials are shown instead.
+ *
+ * @param {number} numberOfContact - The index of the contact in the `contacts` array.
+ */
+function createContact(numberOfContact) {
+  const nameParts = contacts[numberOfContact].name.split(' ');
+  const initials = nameParts.map(part => part[0].toUpperCase()).join('');
+  const initialsSpan = document.createElement('span');
+  initialsSpan.textContent = initials;
+  initialsSpan.classList.add('contact-initials');
+  const imgDiv = document.querySelector(".add-contact-img-div");
+  imgDiv.appendChild(initialsSpan);
+  imgDiv.classList.add('no-profile-picture');
 }
 
 /**
@@ -296,7 +313,7 @@ function emptyContent(content) {
  * @returns {string} The formatted job title.
 */
 function checkJobAndColor(numberOfContact) {
-  let job = contacts[numberOfContact]?.role.toLowerCase().split(' ');
+  const job = contacts[numberOfContact]?.role.toLowerCase().split(' ');
   let jobTitle = '';
 
   for (let index = 0; index < job.length; index++) {
@@ -361,7 +378,7 @@ async function updateDataAtBackend(id, path, newData) {
  * Displays a loading animation and hides it after 3 seconds.
 */
 function showLoadAnimation() {
-  let loadAnimation = document.getElementById('load-animation');
+  const loadAnimation = document.getElementById('load-animation');
   loadAnimation.classList.add('load-animation-move');
   setTimeout(() => {
     document.getElementById('load-animation-div').classList.add('d_none');
@@ -428,8 +445,8 @@ async function updateTaskState(taskId, newState) {
  * @param {string} path - The path to fetch data from.
 */
 async function loadFromBackend(path) {
-  let response = await fetch(`${BACKEND_URL}/${path}.json`);
-  let responeData = await response.json();
+  const response = await fetch(`${BACKEND_URL}/${path}.json`);
+  const responeData = await response.json();
   return responeData;
 }
 
@@ -482,7 +499,7 @@ function createFilesImage(filesContainer, imageContainer, file) {
   const wrapper = document.createElement("div");
   const img = document.createElement("img");
   const span = document.createElement("span");
-  styleImage(img, span, file, filesContainer)
+  styleImage(img, span, file, filesContainer);
   styleWrapper(img, span, wrapper);
   filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(wrapper); 
 }
@@ -514,6 +531,9 @@ function styleImage(img, span, file, filesContainer) {
   span.textContent = file.filename;
   span.classList.add("file-name");
   img.src = file.base64;
+  /**
+   * Display image in full screen mode.
+   */
   img.onclick = () => {
     showBigPicture(filesContainer);
   };

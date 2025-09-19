@@ -23,10 +23,10 @@ async function loadContactsList() {
   contacts = Object.values(await loadFromBackend('contacts'));
   contacts.sort((a, b) => a.name.localeCompare(b.name));  
   contacts.forEach(async(contact, index) => {
-    let shortcut = extractTheFirstLetter(contact.name.split(' '));
-    let jobTitle = await createJobTitleClass(index);
+    const shortcut = extractTheFirstLetter(contact.name.split(' '));
+    const jobTitle = await createJobTitleClass(index);
     document.getElementById('userlist').innerHTML += getCheckBoxList(index, contact, shortcut, jobTitle);
-  })
+  });
 }
 
 /**
@@ -72,7 +72,7 @@ function changeTheColor(item, color) {
  * @returns {Promise<void>} Resolves when the task is created and displayed.
  */
 async function createNewTask() {
-  let taskObj = defindeUserObj();
+  const taskObj = defindeUserObj();
   if (!isValidTaskInputs(taskObj.assignedTo)) return;
   const { name } = await postDataAtBackend(taskObj, 'tasks');
   tasks = [...tasks, { ...taskObj, id: name }];
@@ -124,20 +124,20 @@ function defindeUserObj(state) {
   return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
-/**
- * Displays a message indicating a task has been created and resets relevant task-related UI elements.
- *
- * @returns {void} This function does not return any value.
- */
-function handleTaskCreatedMessage() {
-  const taskCreatedMessage = document.querySelector('.task-created-message');
-  taskCreatedMessage.classList.add('show-task-created-message');
-  resetTaskValues();
-  toggleEmptyMessage();
-  setTimeout(() => {
-    taskCreatedMessage.classList.remove('show-task-created-message');
-  }, 1500);
-}
+// /**
+//  * Displays a message indicating a task has been created and resets relevant task-related UI elements.
+//  *
+//  * @returns {void} This function does not return any value.
+//  */
+// function handleTaskCreatedMessage() {
+//   const taskCreatedMessage = document.querySelector('.task-created-message');
+//   taskCreatedMessage.classList.add('show-task-created-message');
+//   resetTaskValues();
+//   toggleEmptyMessage();
+//   setTimeout(() => {
+//     taskCreatedMessage.classList.remove('show-task-created-message');
+//   }, 1500);
+// }
 
 /**
  * Extracts the list of users assigned to a task by checking which checkboxes are selected.
@@ -286,7 +286,7 @@ function resetValue() {
   document.getElementById('description').value = '';
   document.querySelector('.subTask-input').value = '';
   document.querySelector('.subtask-list').innerHTML = '';
-  document.querySelector('.assigned-list').innerHTML = ""
+  document.querySelector('.assigned-list').innerHTML = "";
   document.getElementById('userlist').classList.add('d_none');
   document.getElementById('image-container').innerHTML = '';
 }
@@ -331,7 +331,7 @@ function toggleAddTaskContact(event) {
 function removeInvalidClass(){
   const addTaskModal = document.querySelector("[data-modal]");
   const inputFields =  Array.from(addTaskModal.querySelectorAll(".task-input-field"));
-  inputFields.forEach(input => input.classList.remove("invalid-input"))
+  inputFields.forEach(input => input.classList.remove("invalid-input"));
 }
 
 /**
@@ -358,7 +358,7 @@ async function updateCheckbox(event, taskId) {
 function closeAssignList(event){
   const userListCtn = event.target?.closest(".userlist-ctn");
 
-  if(userListCtn) return
+  if (userListCtn) return;
 
   document.querySelector('.assigned-list')?.classList.remove('d_none');
   document.getElementById('userlist')?.classList.add('d_none');
@@ -417,7 +417,7 @@ function checkIfFileNew(file) {
   let error = false;
   allFiles.forEach((allFile) => {
       allFile.filename === file.name ? error = true : "";
-  })
+  });
   return !error;
 }
 
