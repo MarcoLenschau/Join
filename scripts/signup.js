@@ -1,7 +1,8 @@
-let emailValidateEvent = false;
-let userValidateEvent = false;
-let passwordValidateEvent = false;
-let passwordConfirmValidateEvent = false;
+const emailValidateEvent = false;
+const userValidateEvent = false;
+const passwordValidateEvent = false;
+const passwordConfirmValidateEvent = false;
+
 /**
  * Handles user registration form submission, checks if passwords match, and verifies if user exists.
  */
@@ -11,16 +12,26 @@ async function handleRegisterNewUser(event) {
   const { name, email, password, confirmPassword } = getFieldValues();
   const errorElement = document.getElementById("auth-error-message");
   const checkBox = document.getElementById('checkBox');
-  if (!checkBox.checked) {
-    toggleLoadingSpinner('remove');
-    return toggleSignupError('Please accept the terms and conditions', 'add');
-  }
+  if (!checkBox.checked) { return checkBoxIsNotChecked(); }
   if(errorElement) errorElement.innerHTML = "";
   if (password !== confirmPassword) {
     toggleLoadingSpinner('remove');
     return toggleSignupError('Not the same password', 'add');
   }
   await checkExistingUser(name, email, password);
+}
+
+/**
+ * Handles the case when the terms and conditions checkbox is not checked.
+ *
+ * This function removes the loading spinner and displays a signup error message
+ * prompting the user to accept the terms and conditions.
+ *
+ * @returns {*} The result of `toggleSignupError`, typically used to manage error state in the UI.
+ */
+function checkBoxIsNotChecked() {
+  toggleLoadingSpinner('remove');
+  return toggleSignupError('Please accept the terms and conditions', 'add');
 }
 
 /**

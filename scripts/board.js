@@ -36,7 +36,7 @@ function showWhichSiteIsAktivOfBoard() {
  * @function
  */
 async function renderTasks() {
-  let responeData = await loadFromBackend('tasks');
+  const responeData = await loadFromBackend('tasks');
 
   if (responeData) {
     tasks = Object.entries(responeData).map(([id, task]) => {
@@ -67,26 +67,40 @@ function filterTasks() {
 }
 
 /**
- * Displays tasks in the respective task lists based on their state.
- * Clears the previous tasks and renders the filtered or all tasks.
+ * Clears the current task display and shows tasks on the board.
  *
- * @param {Array} filteredTasks - The list of tasks to be displayed, which may be filtered tasks or all tasks.
- * @returns {void} This function does not return any value.
+ * This function clears all existing task elements from the board lists,
+ * including the assigned list, while preserving any "empty message" elements.
+ * After clearing, it calls `showTasks` to render the provided filtered tasks.
+ *
+ * @param {Array<Object>} filteredTasks - The array of tasks to display.
  */
 function displayTasks(filteredTasks) {
   const listElements = document.querySelectorAll('.board-content ul');
-  const assignedList = document.querySelector(".assigned-list")
+  const assignedList = document.querySelector(".assigned-list");
 
- if(assignedList) assignedList.innerHTML = ""
+  if(assignedList) assignedList.innerHTML = "";
 
   listElements.forEach((list) => {
     Array.from(list.children).forEach((child) => {
       if (!child.className.includes('empty-message')) child.remove();
     });
   });
+  showTasks(filteredTasks);
+}
 
+/**
+ * Displays tasks in the DOM based on their state.
+ *
+ * This function iterates over either the filtered tasks or all tasks, determines the number
+ * of completed subtasks for each task, and appends the task HTML template to the corresponding
+ * list element based on the task's state.
+ *
+ * @param {Array<Object>} [filteredTasks] - Optional filtered list of tasks to display. Defaults to the full tasks array if not provided.
+ * @param {Array<Object>} tasks - The full array of tasks.
+ */
+function showTasks(filteredTasks) {
   const tasksData = filteredTasks || tasks;
-
   tasksData.forEach((task) => {
     const listElement = document.getElementById(task.state);
     const doneSubTasksLength = task.subTasks?.filter(
@@ -103,9 +117,9 @@ function displayTasks(filteredTasks) {
  * 
 */
 function closeStatePopup(event){
-  const statePopup = event.target.closest(".drag-task-popup")
-  if(statePopup)return
-  document.querySelector(".drag-task-popup").classList.remove("show-modal")
+  const statePopup = event.target.closest(".drag-task-popup");
+  if (statePopup) return;
+  document.querySelector(".drag-task-popup").classList.remove("show-modal");
 }
 
 /**
@@ -151,7 +165,7 @@ function handleDragLeave(event) {
  * @param {string} state - The ID of the selected state element.
 */
 function handleStateSelect(state){
-  const stateElement = document.getElementById(state)
+  const stateElement = document.getElementById(state);
   draggableArea = stateElement;
   addElementToBoardList();
   document.querySelector(".drag-task-popup").classList.remove("show-modal");
@@ -166,7 +180,7 @@ function handleStateSelect(state){
  */
 async function addElementToBoardList(event) {
   const listElement = draggableArea || event.target.closest('ul');
-  const taskElement = event?.target.closest("li")
+  const taskElement = event?.target.closest("li");
   const isTouchEvent = taskElement && event?.type === "touchend";
   const newState = listElement?.id;
 
@@ -205,9 +219,9 @@ function toggleEmptyMessage() {
 */
 function toggleStatePopup(event){
   const taskElement = event?.target.closest("li");
-  const closeIcon = event?.target.closest(".state-close-icon")
+  const closeIcon = event?.target.closest(".state-close-icon");
 
-  if(!taskElement && !closeIcon)return
-  dragElement = taskElement
-  document.querySelector(".drag-task-popup").classList.toggle("show-modal")
+  if (!taskElement && !closeIcon) return;
+  dragElement = taskElement;
+  document.querySelector(".drag-task-popup").classList.toggle("show-modal");
 }
