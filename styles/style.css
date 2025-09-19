@@ -150,24 +150,17 @@ a {
   width: 208px;
 }
 
-/* .contacts-div {
-  background-color: white;
-  padding: 22px 73px;
-  gap: 50px;
-} */
-
 .first-letter {
   font-weight: bold;
   color: white;
   font-size: 22px;
-  padding: 12px;
+  padding: -5px;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 62px;
+  height: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #fff;
 }
 
 .first-big-letter {
@@ -175,7 +168,7 @@ a {
   height: 145px;
   width: 158px;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 58px;
   color: white;
   display: flex;
   align-items: center;
@@ -236,52 +229,63 @@ a {
   column-gap: 24px;
 }
 
-.load-animation {
-  position: absolute;
-  right: 0;
-  top: 0;
+/* Loader Overlay */
+.loader {
+  position: fixed;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transition: ease 2s;
+  background: white;
+  z-index: 1000;
+  animation: fadeOutLoader 2s ease forwards;
 }
 
-.load-animation-img {
-  height: 350px;
-  width: 350px;
+/* Logo zuerst groß & zentriert */
+#loginLogo.loader-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 274px;
+  height: 334px;
+  transform: translate(-50%, -50%);
+  animation: logoFly 2s ease forwards;
 }
 
-.load-animation-move {
-  margin: -31% -32%;
-  transition: all 3s !important;
-}
-
-#loginLogo {
-  animation: fadeInLogo 3s ease forwards;
+/* Nach der Animation -> normale Headergröße */
+.join-icon {
   width: 100px;
   height: 122px;
+  margin: 24px 0;
+  z-index: 2000;
+}
+
+/* Keyframes */
+@keyframes logoFly {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 274px;
+    height: 334px;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    width: 100px;
+    height: 122px;
+    transform: none;
+    background-color: rgba(255, 255, 255, 0); 
+  }
+}
+
+@keyframes fadeOutLoader {
+  0% { background: white; opacity: 1; }
+  100% { background: transparent; opacity: 0; visibility: hidden; }
 }
 
 .loader {
   z-index: 1000;
-  animation: backgroundTransition 2s ease forwards;
+  animation: logoFly 2s ease forwards;
   pointer-events: none;
-}
-
-.loader::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 1); 
-  z-index: -1; 
-  animation: backgroundTransition 2s ease forwards; 
 }
 
 .loader-image {
@@ -302,7 +306,6 @@ a {
   }
 
   100% {
-    position: relative;
     width: 200px;
     height: 150px;
     transform: none;
@@ -315,24 +318,6 @@ a {
   }
   100% {
     background-color: rgba(255, 255, 255, 0); 
-  }
-}
-
-@keyframes fadeOutWhite {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInBlack {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -457,6 +442,7 @@ a {
   height: 100%;
   margin-top: 8px;
   user-select: none;
+  z-index: 1;
 
   &::-webkit-scrollbar {
     display: none;
@@ -486,15 +472,16 @@ a {
       column-gap: 12px;
 
       & span:first-child {
-        font-size: 12px;
+        font-size: 16px;
         border: 2px solid #fff;
-        width: 32px;
-        height: 32px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
         color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0px -3px;
       }
     }
   }
@@ -537,11 +524,6 @@ a {
 
 #add-task > .responsive-add-task-dialog {
   margin-top: 0px !important;
-}
-
-.edit-mode-padding {
-  margin-top: 250px;
-  padding: 12px !important;
 }
 
 .file-name {
@@ -692,7 +674,7 @@ a {
 }
 
 .profile-picture-list {
+  width: 38px;
   border-radius: 50%;
-  width: 42px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1; 
 }

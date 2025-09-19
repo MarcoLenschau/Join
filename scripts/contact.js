@@ -348,6 +348,7 @@ function createUserImage(numberOfContact, dialog) {
   }
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
+    document.querySelector(".person-icon").classList.remove("person-icon-without-picture");
     imagepickerDefine.push(numberOfContact);
     if (image.length > 0 && checkFormatOfFile(image[0])) {
       checkIsDialog(image, numberOfContact, dialog);
