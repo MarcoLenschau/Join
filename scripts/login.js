@@ -54,7 +54,16 @@ function checkCredentials(user, password) {
     toggleSignupError('Email or password is invalid', 'add');
     return;
   }
-  localStorage.setItem('currentUser', user.name);
+  userLogIn(user.name);
+}
+
+/**
+ * Logs in a user by storing their username in local storage and redirecting to the summary page.
+ *
+ * @param {string} username - The username of the user to log in.
+ */
+function userLogIn(username) {
+  localStorage.setItem('currentUser', username);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
 }
