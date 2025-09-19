@@ -109,7 +109,6 @@ function checkAssignedUsers(assignedTo) {
 */
 function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
-
   const target = e?.target;
   const isModal = target?.closest('[data-modal]');
   const closeButton = target?.closest('.button-close-modal');
@@ -549,4 +548,20 @@ function showErrorMessage() {
  */
 function stopPropagation(e) {
   e.stopPropagation();
+}
+
+/**
+ * Sets up drag-and-drop functionality for a dropzone element.
+ * Prevents default browser behavior for dragover and drop events on the window.
+ * Handles file drops on the element with ID "dropzone".
+ * For each dropped file:
+ * Checks if the file format is valid using `checkFormatOfFile`.
+ * If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
+ * If invalid, displays an error message using `showErrorMessage`.
+ */
+function defineDropFunction() {
+  window.addEventListener("dragover", e => e.preventDefault());
+  window.addEventListener("drop", e => e.preventDefault());
+  const dropzone = document.getElementById("dropzone");
+  dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));  
 }

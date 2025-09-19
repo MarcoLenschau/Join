@@ -383,25 +383,9 @@ function fileDefine() {
     const filepicker = document.getElementById("filepicker");
     filepicker.addEventListener("change", () => {
       filepickerDefine = false;
-        addFiles(filepicker.files);
+      addFiles(filepicker.files);
     });
   }
-}
-
-/**
- * Sets up drag-and-drop functionality for a dropzone element.
- * Prevents default browser behavior for dragover and drop events on the window.
- * Handles file drops on the element with ID "dropzone".
- * For each dropped file:
- * Checks if the file format is valid using `checkFormatOfFile`.
- * If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
- * If invalid, displays an error message using `showErrorMessage`.
- */
-function defineDropFunction() {
-  window.addEventListener("dragover", e => e.preventDefault());
-  window.addEventListener("drop", e => e.preventDefault());
-  const dropzone = document.getElementById("dropzone");
-  dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));  
 }
 
 /**
@@ -445,18 +429,9 @@ function checkIfFileNew(file) {
  */
 async function imageCreate(file) {
   const imageContainer = document.getElementById("image-container");
-  const img = document.createElement("img");
-  const div = document.createElement("div");
-  const span = document.createElement("span");
   const base64 = await compressImage(file);
-  img.src = base64;
-  img.id = file.name;
-  img.onclick = () => bigPicture("image-container");
-  span.innerText = file.name;
-  imageContainer.appendChild(img);
-  imageContainer.appendChild(div);
-  div.appendChild(span);
-  div.classList.add("w-100");
+  mobileDevices(imageContainer) ? imageContainer.classList.add("overflow") : imageContainer.classList.remove("overflow");
+  createImageContainer(file, base64, imageContainer);
   addScrollbar(imageContainer);
   allFiles.push({
     filename: file.name,
@@ -464,6 +439,49 @@ async function imageCreate(file) {
     size: file.size,
     base64: base64
   });
+}
+
+/**
+ * Determines if the given image container is considered a mobile device based on its width.
+ *
+ * @param {HTMLElement} imageContainer - The container element whose width is to be checked.
+ * @returns {boolean} Returns true if the container's width is greater than 700 pixels, indicating a non-mobile device; otherwise, false.
+ */
+function mobileDevices(imageContainer) {
+  return imageContainer.clientWidth > 700;
+}
+
+/**
+ * Creates an image container element with an image and filename label,
+ * and appends it to the global `imageContainer` element.
+ * The created image will have an `onclick` handler that calls `bigPicture("image-container")`.
+ */
+function createImageContainer(file, base64, imageContainer) {
+  const container = document.createElement("div");
+  const div = document.createElement("div");
+  const span = document.createElement("span");
+  const img = createImage(base64, file);
+  span.innerText = file.name;
+  container.appendChild(img);
+  container.appendChild(div);
+  imageContainer.appendChild(container);
+  div.appendChild(span);
+  div.classList.add("w-100");
+}
+
+/**
+ * Creates an image element from a base64 string and a file object.
+ *
+ * @param {string} base64 - The base64-encoded image data to use as the image source.
+ * @param {File} file - The file object representing the image, used to set the image's id.
+ * @returns {HTMLImageElement} The created image element with the specified source and id.
+ */
+function createImage(base64, file) {
+  const img = document.createElement("img");
+  img.src = base64;
+  img.id = file.name;
+  img.onclick = () => bigPicture("image-container");
+  return img;
 }
 
 /**
@@ -490,6 +508,7 @@ function addScrollbar(imageContainer) {
 function deleteFiles(whichFile) {
   const imageContainer = document.getElementById('image-container');
   if (whichFile === 'all') {
+    allFiles = [];
     imageContainer.innerHTML = '';
     document.getElementById("filepicker").value = "";
   }

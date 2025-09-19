@@ -193,7 +193,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       ${isEditMode ? assignedTemplate : ''}
                     </ul> 
                 </div>
-                <div class="d_flex g_12">
+                             <div class="d_flex g_12">
                   <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
                     isEditMode ? 'd_none' : ''
                   }" formnovalidate> Clear X</button>
@@ -327,7 +327,7 @@ function getMoreInfomationTemplate(numberOfContact) {
  */
 function getMoreInfoWithBigLetter(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
-  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+  return `<div class="big-letter-ctn file-upload-container">
               <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
               <input type="file" id="${imagepicker}" style='display: none' accept="image/*">
               <span class="error hidden-error-message">Only image allowed</span>          
@@ -343,7 +343,7 @@ function getMoreInfoWithBigLetter(numberOfContact) {
  */
 function getMoreInfoWithPicute(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
-  return `<div class="big-letter-ctn file-upload-container" onclick="${imagepicker}.click();  userImgDefine(${numberOfContact});">
+  return `<div class="big-letter-ctn file-upload-container">
               <img id="first-big-letter-${numberOfContact}" class="first-big-letter transparent" src="${contacts[numberOfContact].img}">
               <input type="file" id="${imagepicker}" style="display: none" accept="image/*">
               <span class="error hidden-error-message">Only image allowed</span>
@@ -402,7 +402,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
       <section class="picture-section">
         <div class="add-contact-img-div file-upload-container">
-          <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon' } ${userPicture  === undefined ? "hidden" : "" }">
+          <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon person-icon-without-picture' } ${userPicture  === undefined ? "hidden" : "" }">
           <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*" onclick="${onclickHandler}">
           <span class="error hidden-error-message">Only image allowed</span>
         </div>
@@ -543,7 +543,7 @@ function getTaskTemplate(task, doneSubTasksLength) {
        <div class="assigned-users">
         ${getAssignedTemplate(task.assignedTo)}
        </div>
-       <img src="../assets/icon/prio-${task.prio}-transparent.png" alt="priority icon" />
+       <img src="../assets/icon/prio-${task.prio}-transparent.png" class="prio-img" alt="priority icon" />
      </div>
    </li>
   `;

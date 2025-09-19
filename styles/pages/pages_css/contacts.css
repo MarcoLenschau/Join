@@ -345,6 +345,13 @@
   margin: -60px;
 }
 
+.person-icon-without-picture { 
+  height: 128px;
+  width: 122px;
+  border-radius: 0%;
+  margin: -32px;
+}
+
 @media (max-width: 900px) {
   .person-icon {
     height: 118px;
