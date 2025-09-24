@@ -1,0 +1,58 @@
+name: Build and Release APK
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Capacitor CLI
+        run: npm install -g @capacitor/cli
+
+      - name: Copy web assets to Android
+        run: npx cap copy android
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 33
+          target: android-33
+          build-tools: '33.0.2'
+
+      - name: Build APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      - name: Upload APK to Server
+        uses: appleboy/scp-action@v0.1.4
+
+      - name: Copy files via SCP
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SECRET_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "./android/app/build/outputs/apk/release/app-release.apk"
+          target: "/var/www/html/downloads/"
+          
