@@ -109,6 +109,7 @@ function checkAssignedUsers(assignedTo) {
 */
 function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
+  defineDropFunction();
   const target = e?.target;
   const isModal = target?.closest('[data-modal]');
   const closeButton = target?.closest('.button-close-modal');
@@ -580,8 +581,11 @@ function stopPropagation(e) {
  * If invalid, displays an error message using `showErrorMessage`.
  */
 function defineDropFunction() {
-  window.addEventListener("dragover", e => e.preventDefault());
-  window.addEventListener("drop", e => e.preventDefault());
-  const dropzone = document.getElementById("dropzone");
-  dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));  
+  if (!defineDropZone) {
+    window.addEventListener("dragover", e => e.preventDefault());
+    window.addEventListener("drop", e => e.preventDefault());
+    const dropzone = document.getElementById("dropzone");
+    dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));
+    defineDropZone = true;
+  }  
 }

@@ -1,12 +1,13 @@
 header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
   height: 170px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 64px;
+  margin-right: 240px;
   z-index: 1;
-
+    
   .logo-black {
     display: none;
   }
@@ -227,82 +228,6 @@ a {
 
 .col-gap-24 {
   column-gap: 24px;
-}
-
-/* Loader Overlay */
-.loader {
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  z-index: 1000;
-  animation: fadeOutLoader 2s ease forwards;
-}
-
-/* Logo zuerst groß & zentriert */
-#loginLogo.loader-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 274px;
-  height: 334px;
-  transform: translate(-50%, -50%);
-  animation: logoFly 2s ease forwards;
-}
-
-/* Nach der Animation -> normale Headergröße */
-.join-icon {
-  width: 100px;
-  height: 122px;
-  margin: 24px 0;
-  z-index: 2000;
-}
-
-/* Keyframes */
-@keyframes logoFly {
-  0% {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 274px;
-    height: 334px;
-    transform: translate(-50%, -50%);
-  }
-
-  100% {
-    width: 100px;
-    height: 122px;
-    transform: none;
-    background-color: rgba(255, 255, 255, 0); 
-  }
-}
-
-@keyframes fadeOutLoader {
-  0% { background: white; opacity: 1; }
-  100% { background: transparent; opacity: 0; visibility: hidden; }
-}
-
-.loader {
-  z-index: 1000;
-  animation: logoFly 2s ease forwards;
-  pointer-events: none;
-}
-
-.loader-image {
-  width: 50px;
-  height: 50px;
-  transform: translate(-50%, -50%); 
-  animation: logoFly 2s ease forwards;
-}
-
-@keyframes backgroundTransition {
-  0% {
-    background-color: rgba(255, 255, 255, 1);
-  }
-  100% {
-    background-color: rgba(255, 255, 255, 0); 
-  }
 }
 
 .add-contact-img-div {
@@ -543,10 +468,12 @@ a {
 }
 
 .auth-header-container {
-  width: 100vw;
   display: flex;
   justify-content: center;
+  max-width: 1920px;
+  position: relative;
 }
+
 
 .subtasks-container {
   display: flex;
@@ -661,4 +588,46 @@ a {
   width: 38px;
   border-radius: 50%;
   aspect-ratio: 1 / 1; 
+}
+
+.animation-wrapper {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  animation: logo-move 2s ease-in-out forwards;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  animation: logo-size 2s ease-in-out forwards;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes logo-size {
+    to {
+      width: 125px;
+      height: 125px;
+      /* transform: scale(0.5) */
+    }
+}
+
+@keyframes logo-move {
+  to {
+    width: 125px;
+    height: 125px;
+    top: 25px;
+    left: 25px;
+    translate: 0 0;
+  }
 }

@@ -9,3 +9,4 @@ let dragElement = null;
 let draggableArea = null;
 let filepickerDefine = true;
 let imagepickerDefine = [];
+let defineDropZone = false;

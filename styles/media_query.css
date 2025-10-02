@@ -127,10 +127,6 @@
     display: flex !important;
     padding: 30px;
   }
-
-  header {
-    width: 1920px;
-  }
 }
 
 @media (max-width: 1300px) {
