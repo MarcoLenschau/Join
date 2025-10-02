@@ -27,3 +27,7 @@ jobs:
 
       - name: Run ESLint
         run: npx eslint .
+        
+  deploy:
+    uses: ./.github/workflows/deploy.yml 
+    needs: linting
