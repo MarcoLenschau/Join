@@ -17,21 +17,18 @@
     <script src="./scripts/login.js" defer></script>
   </head>
   <body>
-    <div id="content" class="d_flex_column">
-      <div class="auth-header-container">
-        <header class="auth-header">
-          <div id="loader" class="loader">
-            <img src="./assets/img/logo-black.svg" class="loader-image" alt="logo">
-          </div>
-          <div class="d_flex_c sign-in hiddenMax">
-            <span>Not a Join user ?</span>
-            <a href="./pages/sign_up.html">
-              <button class="primary-button">Sign up</button>
-            </a>
-          </div>
-        </header>
+    <div id="content" class="d_flex_column content">
+      <div class="animation-wrapper">
+        <img src="./assets/img/logo-black.svg" class="logo" alt="logo">
       </div>
-
+      <header class="auth-header">
+        <div class="d_flex_c sign-in hiddenMax">
+          <span>Not a Join user ?</span>
+          <a href="./pages/sign_up.html">
+            <button class="primary-button">Sign up</button>
+          </a>
+        </div>
+      </header>
       <main class="d_flex_c auth-main">
         <form onsubmit="handleLogin(event);" class="formDiv login-form-container">
           <div class="text-center login-form w-100" style="padding: 38px 18px;">
