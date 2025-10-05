@@ -21,78 +21,80 @@
 </head>
 
 <body>
-    <div class="header-container">
-        <header class="auth-header">
-            <div>
-                <img src="../assets/icon/icon.svg" class="join-icon" alt="Join">
-            </div>
-        </header>
-    </div>
-    <main class="d_flex_c singup-main">
-        <div class="back-button-container">
-            <a href="../index.html" class="back-button-link">
-                <img src="../assets/img/back.svg" class="back-button singup-back-button" />
-            </a>
-        </div> 
-        <form class="formDiv-signup" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
-            <div class="text-center login-form w-100">
-                <div class="d_flex_c p-24">
-                    <div class="text-center login-signup-container">
-                        <h1>Sign up</h1>
-                        <div class="separator"></div>
-                    </div>
+    <div class="limit-container">
+        <div class="header-container">  
+            <header class="auth-header">
+                <div class="animation-wrapper">
+                    <img src="../assets/img/logo-black.svg" class="logo" alt="logo">
                 </div>
-                <div class="register-container">
-                    <div class="d_flex_column">
-                        <div class="d_flex_c responsive-register-form" style="width: 330px;">
-                            <input id="name" type="text" placeholder="Name" 
-                            class="w-100 default-border input-font" onclick="validate(userValidateEvent, 'name')" required>
-                            <img src="../assets/img/person.svg" alt="name" class="overlay-image">
-                        </div>
-                        <span id="name-error" class="transparent">Name to short</span>
-                    </div>    
-                    <div class="d_flex_column">
-                        <div class="d_flex_c responsive-register-form" style="width: 330px;">
-                             <input id="email" type="email" placeholder="E-Mail" 
-                             class="w-100 default-border input-font" onclick="validate(emailValidateEvent, 'email')" required>
-                             <img src="../assets/img/mail.svg" alt="E-Mail" class="overlay-image">
-                        </div>
-                        <span id="email-error" class="transparent">Email not validate</span>
-                    </div>
-                    <div class="d_flex_column">
-                        <div class="d_flex_c responsive-register-form" style="width: 330px;">
-                            <input id="password" type="password" placeholder="Password" minlength="5" 
-                            class="w-100 default-border input-font" onclick="validate(passwordValidateEvent, 'password')" required>
-                            <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
-                        </div>
-                        <span id="password-error" class="transparent">Password to short</span>
-                    </div>
-                    <div class="d_flex_column">
-                        <div class="d_flex_c responsive-register-form" style="width: 330px;">
-                            <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" 
-                            class="w-100 default-border input-font" onclick="validate(passwordConfirmValidateEvent, 'passwordConfirm')" required>
-                            <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
-                        </div>
-                        <span id="passwordConfirm-error" class="transparent">Password not same</span>
-                    </div>
-                    <span id="auth-error-message">User name already</span>
-                    <div id="checkboxContainer">
-                        <input id="checkBox" type="checkbox" required>
-                        <span>I accept the Privacy policy</span>
-                    </div>
-                    <div class="buttonDiv">
-                        <img class="auth-loading-spinner" src="../assets/icon/loading.png" alt="loading icon" />
-                        <button class="primary-button">Sign up</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </main>
-    <footer>
-        <div class="d_flex_c sign-in">
-            <a href="./privacy_policy.html" target="_blank"><span>Privacy Policy</span><a>
-            <a href="./legal_notice.html" target="_blank"><span>Legal notice</span><a>
+            </header>
         </div>
-    </footer>
+        <main class="d_flex_c singup-main">
+            <div class="back-button-container">
+                <a href="../index.html" class="back-button-link">
+                    <img src="../assets/img/back.svg" class="back-button singup-back-button" />
+                </a>
+            </div> 
+            <form class="formDiv-signup" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
+                <div class="text-center login-form w-100">
+                    <div class="d_flex_c p-24">
+                        <div class="text-center login-signup-container">
+                            <h1>Sign up</h1>
+                            <div class="separator"></div>
+                        </div>
+                    </div>
+                    <div class="register-container">
+                        <div class="d_flex_column">
+                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                                <input id="name" type="text" placeholder="Name" 
+                                class="w-100 default-border input-font" onclick="validate(userValidateEvent, 'name')" required>
+                                <img src="../assets/img/person.svg" alt="name" class="overlay-image">
+                            </div>
+                            <span id="name-error" class="transparent">Name to short</span>
+                        </div>    
+                        <div class="d_flex_column">
+                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                                 <input id="email" type="email" placeholder="E-Mail" 
+                                 class="w-100 default-border input-font" onclick="validate(emailValidateEvent, 'email')" required>
+                                 <img src="../assets/img/mail.svg" alt="E-Mail" class="overlay-image">
+                            </div>
+                            <span id="email-error" class="transparent">Email not validate</span>
+                        </div>
+                        <div class="d_flex_column">
+                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                                <input id="password" type="password" placeholder="Password" minlength="5" 
+                                class="w-100 default-border input-font" onclick="validate(passwordValidateEvent, 'password')" required>
+                                <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
+                            </div>
+                            <span id="password-error" class="transparent">Password to short</span>
+                        </div>
+                        <div class="d_flex_column">
+                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                                <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" 
+                                class="w-100 default-border input-font" onclick="validate(passwordConfirmValidateEvent, 'passwordConfirm')" required>
+                                <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
+                            </div>
+                            <span id="passwordConfirm-error" class="transparent">Password not same</span>
+                        </div>
+                        <span id="auth-error-message">User name already</span>
+                        <div id="checkboxContainer">
+                            <input id="checkBox" type="checkbox" required>
+                            <span>I accept the Privacy policy</span>
+                        </div>
+                        <div class="buttonDiv">
+                            <img class="auth-loading-spinner" src="../assets/icon/loading.png" alt="loading icon" />
+                            <button class="primary-button">Sign up</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <footer>
+            <div class="d_flex_c sign-in">
+                <a href="./privacy_policy.html" target="_blank"><span>Privacy Policy</span><a>
+                <a href="./legal_notice.html" target="_blank"><span>Legal notice</span><a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
