@@ -22,14 +22,13 @@ body {
 
 .singup-main { 
   margin: 0 12px;
-  height: 80vh;
 }
 
 .header-container {
   position: relative;
   display: flex;
   justify-content: center;
-  height: 10vh;
+  height: 150px;
   width: 100%;
   max-width: 1920px;
 }
@@ -64,12 +63,15 @@ body {
 }
 
 .limit-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  max-width: 1920px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 100vw;
 }
 
 footer {
-  height: 10vh;
+  bottom: 150px !important;
 }
