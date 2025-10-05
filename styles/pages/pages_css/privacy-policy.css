@@ -1,7 +1,7 @@
 .headline {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 84%;
     justify-content: space-between;
     align-items: center;
     a {

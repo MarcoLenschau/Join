@@ -3,6 +3,21 @@ body {
   justify-content: center;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  height: 170px;
+  width: 100%;
+  margin-right: 240px;
+  z-index: 1;
+    
+  .logo-black {
+    display: none;
+  }
+}
+
 .buttonDiv {
   display: flex;
   flex-direction: column;
@@ -106,6 +121,55 @@ body {
   justify-content: center;
 }
 
+.animation-wrapper {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  animation: logo-move 2s ease-in-out forwards;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  animation: logo-size 2s ease-in-out forwards;
+}
+
+.content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  max-width: 1920px;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-main {
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+}
+
+@keyframes logo-size {
+    to {
+      width: 125px;
+      height: 125px;
+      /* transform: scale(0.5) */
+    }
+}
+
+@keyframes logo-move {
+  to {
+    width: 125px;
+    height: 125px;
+    top: 25px;
+    left: 25px;
+    translate: 0 0;
+  }
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0);
@@ -114,11 +178,4 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.auth-main {
-  flex-direction: column;
-  align-items: center;
-  padding: 0 12px;
-  height: 66vh;
 }

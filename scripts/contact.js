@@ -236,7 +236,7 @@ function organizeContacts() {
   const listOfContacts = Array.from(listContactsElement.children);
   listContactsElement.innerHTML = '';
   listOfContacts.forEach((contactEl) => {
-    createDivGroup(contactEl);
+    createDivGroup(contactEl, listContactsElement);
   });
 }
 
@@ -249,7 +249,7 @@ function organizeContacts() {
  *
  * @param {HTMLElement} contactEl - The contact element to be added to the grouped div.
  */
-function createDivGroup(contactEl) {
+function createDivGroup(contactEl, listContactsElement) {
   const firstLetter = contactEl.dataset.firstletter;
   let divGroup = document.querySelector(`[data-firstletter="${firstLetter}"]`);
   if (!divGroup) {
