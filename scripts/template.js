@@ -233,17 +233,16 @@ function getContactsTemplate(index) {
  * @returns {string} HTML string representing the contact without a picture.
  */
 function getContactsWithFirstLetter(name, index, contact) {
-  return `<span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-              <span id="first-letter-${index}" class="first-letter">
-                ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
-              </span>
-              <div class="center-contacts">
-                  <span id="contact-name-${index}">${name}</span>
-                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-              </div>
+  // Use a single wrapper element for both the first-letter grouping and the clickable contact
+  return `<div data-firstletter="${firstLetter(name)}" data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+            <span id="first-letter-${index}" class="first-letter">
+              ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
+            </span>
+            <div class="center-contacts">
+                <span id="contact-name-${index}">${name}</span>
+                <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
             </div>
-          </span>`;
+          </div>`;
 }
 
 /**
@@ -258,15 +257,13 @@ function getContactsWithFirstLetter(name, index, contact) {
  * @returns {string} HTML string representing the contact with a picture.
  */
 function getContactsWithPicture(name, index, contact) {
-  return `<span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-              <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
-              <div class="center-contacts">
-                  <span id="contact-name-${index}">${name}</span>
-                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-              </div>
+  return `<div data-firstletter="${firstLetter(name)}" data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+            <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
+            <div class="center-contacts">
+                <span id="contact-name-${index}">${name}</span>
+                <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
             </div>
-          </span>`;
+          </div>`;
 }
 
 /**
