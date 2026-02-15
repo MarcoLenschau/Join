@@ -382,9 +382,8 @@
   }
 
   .main-div {
-    flex-direction: column;
     align-items: center;
-    margin-top: 52px;
+    gap: 24px;
   }
 
   .media-w-300 {
@@ -605,6 +604,10 @@
     .task-preview {
       height: 100vh;
     }
+  }
+
+  .main-div {
+    flex-direction: column;
   }
 }
 
