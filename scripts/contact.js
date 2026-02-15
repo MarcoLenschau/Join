@@ -198,9 +198,7 @@ function saveContact(numberOfContact) {
     contacts[numberOfContact].name = document.getElementById('name').value;
     contacts[numberOfContact].email = document.getElementById('email').value;
     contacts[numberOfContact].phone = document.getElementById('phone').value;
-    if (document.querySelector(".profile-picture-span")) {
-      contacts[numberOfContact].img = document.querySelector(".profile-picture-span").src;
-    }
+    // Image handling is done separately by updateContactImageIfNeeded()
     hideAddContactMenu();
   }
 }
