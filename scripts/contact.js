@@ -357,7 +357,7 @@ function userImgDefine(numberOfContact, dialog="") {
  * @param {Object} dialog - A dialog object (used for handling UI updates or confirmations).
  */
 function createUserImage(numberOfContact, dialog) {
-  const imagepicker = createImagePicker();
+  const imagepicker = createImagePicker(numberOfContact);
   imagepicker.addEventListener("change", () => {
     const image = imagepicker.files;
     document.querySelector(".person-icon").classList.remove("person-icon-without-picture");
@@ -379,7 +379,7 @@ function createUserImage(numberOfContact, dialog) {
  * @param {number|null} numberOfContact - The ID or index of the contact. If null, the default image picker is used.
  * @returns {HTMLInputElement} The image input element from the DOM.
  */
-function createImagePicker() {
+function createImagePicker(numberOfContact) {
   let imagepicker;
   if (numberOfContact === null) {
     imagepicker = document.getElementById("imagepicker");
