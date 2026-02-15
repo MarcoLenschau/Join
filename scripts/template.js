@@ -233,17 +233,15 @@ function getContactsTemplate(index) {
  * @returns {string} HTML string representing the contact without a picture.
  */
 function getContactsWithFirstLetter(name, index, contact) {
-  return `<span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-              <span id="first-letter-${index}" class="first-letter">
-                ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
-              </span>
-              <div class="center-contacts">
-                  <span id="contact-name-${index}">${name}</span>
-                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-              </div>
+  return `<div data-firstletter="${firstLetter(name)}" data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+            <span id="first-letter-${index}" class="first-letter">
+              ${name.at(0)}${name.split(' ')[1]?.at(0) || ''}
+            </span>
+            <div class="center-contacts">
+                <span id="contact-name-${index}">${name}</span>
+                <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
             </div>
-          </span>`;
+          </div>`;
 }
 
 /**
@@ -258,15 +256,13 @@ function getContactsWithFirstLetter(name, index, contact) {
  * @returns {string} HTML string representing the contact with a picture.
  */
 function getContactsWithPicture(name, index, contact) {
-  return `<span data-firstletter="${firstLetter(name)}">
-            <div data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
-              <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
-              <div class="center-contacts">
-                  <span id="contact-name-${index}">${name}</span>
-                  <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
-              </div>
+  return `<div data-firstletter="${firstLetter(name)}" data-contact onclick="toggleContactSelect(event, ${index}); toggleContactMenu('add');" class="d_flex_c_c contacts-div first-letter-hover">
+            <img id="first-letter-${index}" onclick="stopPropagation(event); bigPicture('first-letter-${index}');" src="${contact.img}" class="profile-picture-list">
+            <div class="center-contacts">
+                <span id="contact-name-${index}">${name}</span>
+                <a><span id="contact-email-${index}" class="email">${contact.email}</span></a>
             </div>
-          </span>`;
+          </div>`;
 }
 
 /**
@@ -387,7 +383,7 @@ function getSubTaskItemTemplate(description) {
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
   const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicker" + numberOfContact;
   const editpicker =  "editpicker" + numberOfContact;
-  const userPicture = numberOfContact != null ?  contacts[numberOfContact].img : "../assets/icon/person-light.png";
+  const userPicture = numberOfContact != null ? contacts[numberOfContact].img : "../assets/icon/person-light.png";
   const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact})` : `userImgDefine(${numberOfContact})`}`;
   return `
   <div>
@@ -402,7 +398,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     <form class="form-ctn" onsubmit="saveAndCreate(event, '${content}', ${numberOfContact})">
       <section class="picture-section">
         <div class="add-contact-img-div file-upload-container">
-          <img src="${userPicture}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon person-icon-without-picture' } ${userPicture  === undefined ? "hidden" : "" }">
+          <img src="${userPicture !== undefined ? userPicture : "../assets/icon/person-light.png"}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon person-icon-without-picture'} ${userPicture === undefined ? "hidden" : "" }">
           <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*" onclick="${onclickHandler}">
           <span class="error hidden-error-message">Only image allowed</span>
         </div>

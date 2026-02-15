@@ -219,19 +219,27 @@ main {
   gap: 38px;
 
   div {
-    border: 2px white solid;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    
+    display: flex;
+    flex-direction: column;
+
     span {
+      font-size: 16px;
       color: grey;
+      border: 1px solid #d1d1d1;
+      border-top: none;
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+      width: 138px !important;
+      text-align: center;
+    }
+
+    img {
+      width: 135px;
+      height: 95px;
     }
   }
 
-  img {
-    width: 100px;
-    height: 100px;
-  }
+
 }
 
 .distance-data {

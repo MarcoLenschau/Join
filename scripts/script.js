@@ -109,7 +109,6 @@ function checkAssignedUsers(assignedTo) {
 */
 function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
-  defineDropFunction();
   const target = e?.target;
   const isModal = target?.closest('[data-modal]');
   const closeButton = target?.closest('.button-close-modal');
@@ -120,6 +119,7 @@ function toggleAddTaskModal(e, tasks) {
   if ((isModal && !closeButton) || (taskPreview && !deleteButton && !closeButton) || dragIcon) return;
   const modal = document.querySelector('.add-task-modal');
   modal.classList.toggle('show-modal');
+  setTimeout(() => defineDropFunction(),1);
 }
 
 /**
