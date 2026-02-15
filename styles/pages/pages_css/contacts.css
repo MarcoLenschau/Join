@@ -193,7 +193,7 @@
   cursor: pointer;
 }
 
-.overlay_cancelbutton_mobile {
+.overlay_cancel, .button_mobile {
   cursor: pointer;
   position: absolute;
   height: 40px;
