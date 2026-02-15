@@ -397,9 +397,9 @@ function fileDefine() {
 function addFiles(files) {
   files = Array.from(files);
   if (files.length > 0) {
-    files.forEach(file => {
+    files.forEach(async file => {
       if (checkFormatOfFile(file)) {
-        checkIfFileNew(file) ? imageCreate(file) : "";
+        checkIfFileNew(file) ? await imageCreate(file) : "";
       } else {
         showErrorMessage();
       }
