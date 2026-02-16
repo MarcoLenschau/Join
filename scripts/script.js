@@ -502,7 +502,7 @@ function createFilesImage(filesContainer, imageContainer, file) {
   const span = document.createElement("span");
   styleImage(img, span, file, filesContainer);
   styleWrapper(img, span, wrapper);
-  filesContainer == null ? imageContainer.appendChild(img) : filesContainer.appendChild(wrapper); 
+  filesContainer == null ? imageContainer.appendChild(wrapper) : filesContainer.appendChild(wrapper); 
 }
 
 /**
@@ -514,8 +514,6 @@ function createFilesImage(filesContainer, imageContainer, file) {
  */
 function styleWrapper(img, span, wrapper) {
   wrapper.classList.add("d_flex_column");
-  wrapper.style.alignItems = "center";
-  wrapper.style.gap = "8px";
   wrapper.appendChild(img);
   wrapper.appendChild(span);
 }

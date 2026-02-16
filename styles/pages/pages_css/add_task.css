@@ -213,7 +213,7 @@ main {
   height: 50px;
 }
 
-#image-container {
+#image-container, #files-container {
   display: flex;
   align-items: center;
   gap: 38px;
@@ -221,21 +221,27 @@ main {
   div {
     display: flex;
     flex-direction: column;
-
+    height: 155px;
     span {
       font-size: 16px;
       color: grey;
+      background-color: rgba(0, 0, 0, 0.01) !important;
       border: 1px solid #d1d1d1;
       border-top: none;
       border-bottom-right-radius: 12px;
       border-bottom-left-radius: 12px;
       width: 138px !important;
       text-align: center;
+      justify-content: center;
     }
 
     img {
-      width: 135px;
+      width: 138px;
       height: 95px;
+      border: 1px solid #d1d1d1;
+      border-bottom: 0;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
   }
 
