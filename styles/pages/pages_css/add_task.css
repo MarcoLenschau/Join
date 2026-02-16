@@ -254,6 +254,7 @@ main {
 
 .image-overflow {
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .image-container-div {
