@@ -32,7 +32,10 @@ async function handleLogin(event) {
   const password = document.getElementById('password').value;
   const users = Object.values(await loadFromBackend('users'));
   const user = users.find((user) => user.email === email);
-
+  if (!email || !password) {
+    toggleSignupError('Please enter email and password', 'add');
+    return;
+  }
   checkCredentials(user, password);
 }
 
@@ -66,4 +69,27 @@ function userLogIn(username) {
   localStorage.setItem('currentUser', username);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
+}
+
+function validateEmail() {
+  const emailInput = document.getElementById('email');
+  const emailErrorMessage = document.getElementById("email-error-message");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  validateInput(!emailPattern.test(emailInput.value), emailInput, emailErrorMessage);
+}
+
+function validatePassword() {
+  const passwordInput = document.getElementById('password');
+  const passwordErrorMessage = document.getElementById("password-error-message");
+  validateInput(passwordInput.value.length < 1, passwordInput, passwordErrorMessage);
+}
+
+function validateInput(operation, input, inputTextElement) {
+  if (operation) {
+    input.style.borderColor = 'var(--color-orange-dark)';
+    inputTextElement.style.color = 'var(--color-orange-dark)';
+  } else {
+    input.style.borderColor = '';
+    inputTextElement.style.color = '';
+  }
 }

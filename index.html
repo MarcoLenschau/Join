@@ -30,7 +30,7 @@
         </div>
       </header>
       <main class="d_flex_c auth-main">
-        <form onsubmit="handleLogin(event);" class="formDiv login-form-container">
+        <form onsubmit="handleLogin(event);" class="formDiv login-form-container" novalidate>
           <div class="text-center login-form w-100" style="padding: 38px 18px;">
             <div class="d_flex_c">
               <div class="login-signup-container">
@@ -39,14 +39,15 @@
               </div>
             </div>
             <div class="d_flex">
-              <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" required/>
+              <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" onchange="validateEmail()" onclick="validateEmail()" required/>
               <img src="./assets/img/mail.svg" alt="E-Mail" class="overlay-image"/>
             </div>
+            <span id="email-error-message">Email is not valid</span>
             <div class="d_flex">
-              <input id="password" type="password" placeholder="Password" class="w-100 default-border input-font" required/>
-              <img src="./assets/img/lock.svg" alt="password" class="overlay-image"
-              />
+              <input id="password" type="password" placeholder="Password" class="w-100 default-border input-font" onchange="validatePassword()" onclick="validatePassword()"  required/>
+              <img src="./assets/img/lock.svg" alt="password" class="overlay-image"/>
             </div>
+            <span id="password-error-message">Password is not valid</span>
             <span id="auth-error-message">User name already</span>
             <div class="buttonDiv">
               <img class="auth-loading-spinner" src="../assets/icon/loading.png" alt="loading icon"/>

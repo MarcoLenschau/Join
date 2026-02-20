@@ -401,9 +401,14 @@ function guestLogin() {
  * @param {string} method - The method to apply ('add' or 'remove') to show or hide the error message.
  */
 function toggleSignupError(errorMessage, method) {
+  toggleLoadingSpinner('remove');
   const errorMessageElement = document.getElementById('auth-error-message');
+  errorMessageElement.style.color = 'var(--color-orange-dark)';
   errorMessageElement.innerHTML = errorMessage;
   errorMessageElement.classList[method]('show-element');
+  setTimeout(() => {
+    errorMessageElement.style.color = 'transparent';
+  }, 5000);
 }
 
 /**

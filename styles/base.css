@@ -25,7 +25,7 @@ textarea {
   }
 
   &:focus {
-    outline: 1px solid var(--color-light-blue);
+    outline: none;
   }
 
   border: none;
