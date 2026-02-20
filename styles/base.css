@@ -189,6 +189,7 @@ button {
 }
 
 .clear-button {
+  background-color: white;
   border: 1px solid var(--color-black-light);
   transition: scale 0.2s;
 
