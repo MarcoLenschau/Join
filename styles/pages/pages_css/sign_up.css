@@ -74,4 +74,12 @@
 
 .register-form {
   height: 600px;
+  padding: 24px 0;
+  border-radius: 24px;
+  background-color: white;
+}
+
+#checkboxContainer {
+  margin-top: -6px;
+  margin-bottom: 14px;
 }

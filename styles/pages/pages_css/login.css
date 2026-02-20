@@ -24,7 +24,6 @@ header {
   flex-direction: column;
   align-items: center;
   row-gap: 12px;
-  margin-top: 24px;
   margin-bottom: 8px;
   
   button {
@@ -110,10 +109,15 @@ header {
 }
 
 #auth-error-message {
-  margin-top: 8px;
-  color: var(--color-orange-dark);
-  display: none;
+  color: transparent;
   justify-content: center;
+}
+
+#email-error-message, #password-error-message {
+  color: transparent;
+  margin-top: -18px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .animation-wrapper {
