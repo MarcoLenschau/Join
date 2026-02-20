@@ -399,13 +399,15 @@ function guestLogin() {
  * 
  * @param {string} errorMessage - The error message to display.
  * @param {string} method - The method to apply ('add' or 'remove') to show or hide the error message.
+ * @param {Function} callback - A callback function to be executed after toggling the error message.
  */
-function toggleSignupError(errorMessage, method) {
+function toggleSignupError(errorMessage, method, callback = () => {}) {
   toggleLoadingSpinner('remove');
   const errorMessageElement = document.getElementById('auth-error-message');
   errorMessageElement.style.color = 'var(--color-orange-dark)';
   errorMessageElement.innerHTML = errorMessage;
   errorMessageElement.classList[method]('show-element');
+  callback();
   setTimeout(() => {
     errorMessageElement.style.color = 'transparent';
   }, 5000);
