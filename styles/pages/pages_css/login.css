@@ -110,6 +110,8 @@ header {
 
 #auth-error-message {
   color: transparent;
+  font-size: 14px;
+  font-weight: bold;
   justify-content: center;
 }
 
