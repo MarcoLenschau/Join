@@ -29,6 +29,7 @@
     display: none !important;
   }
 
+
   .join-icon {
     width: 60px;
     height: 60px;
@@ -45,20 +46,20 @@
     align-items: center;
     width: 100% !important;
   }
-
-  .responsive-register-form {
-    width: 300px !important;
-    margin: 0 -16px;
-  }
-
-  footer {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
   
+  .buttonDiv > div {
+    flex-direction: column;
+    gap: 12px;
+    >button {
+      width: 200px;
+      justify-content: center;
+    }
+  }
+
+  .notUser {
+    margin-top: 26px;
+  }
+
   .contact-initials {
     margin-bottom: 56px;
   }
