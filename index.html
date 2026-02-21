@@ -31,20 +31,20 @@
       </header>
       <main class="d_flex_c auth-main">
         <form onsubmit="handleLogin(event);" class="formDiv login-form-container" novalidate>
-          <div class="text-center login-form w-100" style="padding: 38px 18px;">
+          <div class="text-center login-form w-100">
             <div class="d_flex_c">
               <div class="login-signup-container">
-                <h1>Log in</h1>
+                <h1 class="f_s_xxl">Log in</h1>
                 <div class="separator"></div>
               </div>
             </div>
-            <div class="d_flex">
-              <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" oninput="validateEmail()" onclick="validateEmail()" required/>
+            <div class="d_flex margin-auto">
+              <input id="email" type="email" placeholder="E-Mail" class="margin-left default-border input-font" oninput="validateEmail()" onclick="validateEmail()" required/>
               <img src="./assets/img/mail.svg" alt="E-Mail" class="overlay-image"/>
             </div>
             <span id="email-error-message">Email is not valid</span>
-            <div class="d_flex">
-              <input id="password" type="password" placeholder="Password" class="w-100 default-border input-font" oninput="validatePassword()" onclick="validatePassword()"  required/>
+            <div class="d_flex margin-auto">
+              <input id="password" type="password" placeholder="Password" class="margin-left default-border input-font" oninput="validatePassword()" onclick="validatePassword()"  required/>
               <img src="./assets/img/lock.svg" alt="password" class="overlay-image"/>
             </div>
             <span id="password-error-message">Password is not valid</span>
