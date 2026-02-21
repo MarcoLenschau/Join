@@ -5,7 +5,8 @@
  * @returns {void} This function does not return any value.
  */
 function loadLegalNotice() {
-  loadSidebar();
+  const loggedIn = sessionStorage.getItem('loggedIn'); 
+  loadSidebar(loggedIn === 'true');
   loadHeader();
   showWhichSiteIsAktiv();
 }

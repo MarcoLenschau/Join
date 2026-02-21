@@ -16,8 +16,8 @@ async function loadTemplateData(url) {
  * Loads the sidebar content into the designated HTML element.
  * 
 */
-function loadSidebar() {
-  document.getElementById('sidebar').innerHTML = sidebarShow();
+function loadSidebar(loggedIn) {
+  document.getElementById('sidebar').innerHTML = sidebarShow(loggedIn);
 }
 
 /**
@@ -34,8 +34,9 @@ function addClassToElement(element, aktiveClass) {
  * Loads the header content dynamically and sets the user's initial in the header.
  * 
 */
-async function loadHeader() {
-  document.getElementById('header').innerHTML = await loadTemplateData('../template/header.html');
+function loadHeader() {
+  const loggedIn = sessionStorage.getItem('loggedIn');
+  document.getElementById('header').innerHTML = headerShow(loggedIn === 'true');
   document.getElementById('first-letter-header').innerText = firstLetterBig(localStorage.getItem('currentUser'));
 }
 
@@ -391,6 +392,7 @@ function showLoadAnimation() {
  */
 function guestLogin() {
   localStorage.setItem('currentUser', 'Guest');
+  sessionStorage.setItem('loggedIn', 'true');
   window.location.href = './pages/summary.html';
 }
 
