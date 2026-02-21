@@ -118,13 +118,18 @@ a {
   row-gap: 1.2rem;
   left: 0;
   bottom: 7%;
-  width: 85%;
+  width: 100%;
   text-align: center;
 
   a {
     color: #cdcdcd;
     transition: all 0.2s;
-
+    &.active {
+      height: 37px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     &:hover {
       color: #29abe2;
     }
