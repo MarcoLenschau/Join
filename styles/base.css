@@ -248,6 +248,10 @@ button {
   font-size: 58px;
 }
 
+.f_s_xxl {
+  font-size: xxx-large;
+}
+
 .mt-32 {
   margin-top: 32px;
 }
@@ -263,7 +267,11 @@ button {
 .input-font {
   font-size: 20px;
   border-radius: 12px;
-  padding: 12px;
+  padding: 6px 18px;
+}
+
+.margin-auto {
+  margin: auto;
 }
 
 .default-border {
