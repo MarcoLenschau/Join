@@ -589,3 +589,11 @@ a {
   border-radius: 50%;
   aspect-ratio: 1 / 1; 
 }
+
+.width-unset {
+  width: unset;
+}
+
+.p-2 {
+  padding: 0 2rem;
+}
