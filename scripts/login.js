@@ -84,11 +84,10 @@ function validatePassword(validate = true) {
 }
 
 function validateInput(validate, input, inputTextElement) {
-  if (!validate) {
-    input.style.borderColor = 'var(--color-orange-dark)';
-    inputTextElement.style.color = 'var(--color-orange-dark)';
-  } else {
-    input.style.borderColor = '';
-    inputTextElement.style.color = '';
-  }
+  validate ? makeError(input, inputTextElement, "") : makeError(input, inputTextElement);
+}
+
+function makeError(input, inputErrorMessage, color = "var(--color-orange-dark)") {
+  input.style.borderColor = color;
+  inputErrorMessage.style.color = color;
 }
