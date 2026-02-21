@@ -213,6 +213,10 @@
     }
   }
 
+  .mobile-hidden {
+    display: none !important;
+  }
+
   .sidebar {
     position: absolute;
     bottom: 0;
@@ -220,8 +224,7 @@
     height: 75px;
     flex-direction: row;
     align-items: center;
-    column-gap: 1.2rem;
-
+    justify-content: space-between;
     .logo {
       margin-left: 1.2rem;
       margin-right: 1rem;
@@ -233,10 +236,7 @@
       flex-direction: row;
       margin-top: 0;
       & > div {
-        width: 100px;
-        height: fit-content;
-        padding: 1.2rem 0;
-        border-radius: 25px;
+        padding: 2.5rem 0;
 
         a {
           align-items: center;
@@ -251,12 +251,13 @@
 
     .privacy-container {
       position: relative;
+      bottom: 0;
       flex-direction: row;
       gap: 1rem;
+      height: 100%;
       width: unset;
-      padding: 28px 0;
       >a {
-        height: 75px;
+        height: 100%;
         min-width: 94px;
         align-items: center;
         justify-content: center;
@@ -264,7 +265,7 @@
       }
     }
 
-    .logo {
+    .logo-link {
       display: none;
     }
   }
@@ -323,18 +324,14 @@
     height: 75px;
     flex-direction: row;
     align-items: center;
-    column-gap: 1.2rem;
 
     & > a {
       display: none;
     }
 
     .navigation {
-      padding: 0.4rem;
       gap: 12px;
       & > div {
-        padding: 0.8rem 0.4rem;
-
         a {
           font-size: 12px;
 
@@ -676,9 +673,9 @@
      & > ul > li{
         width: 250px;
       }
-    }
-  
+    } 
  }
+}
 
 @media (max-width: 440px) {
   .image-container-div {
@@ -687,10 +684,6 @@
 }
 
 @media(max-width: 400px){
-  .sidebar > .navigation > div { 
-    width: unset;
-  }
-
   .back-button-link  {
     left: 280px;
   }
@@ -715,8 +708,6 @@
   .upload-file {
     width: 350px;
   }
-}
-
 
   .board-container{
     padding: 0 24px !important;

@@ -4,8 +4,10 @@
  * @returns {string} The HTML string for the sidebar.
  */
 function sidebarShow(loggedIn = true) {
-  return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
-          <div class="navigation">
+  return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}" class="logo-link">
+            <img class="logo" src="../assets/img/logo-white.png" alt="logo"/>
+          </a>
+          <div class="navigation ${loggedIn ? '' : 'width-unset p-2'}">
               <div id="summary" class="${loggedIn ? '' : 'd_none'}">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/summary.png" alt="summary icon"/>    
@@ -37,11 +39,10 @@ function sidebarShow(loggedIn = true) {
                   </a>
               </div>  
           </div>
-          <div class="privacy-container">
-          <a href="privacy_policy.html" id="privacy-policy" class="${loggedIn ? 'd_none' : ''}">Privacy Policy</a>
-          <a href="legal_notice.html" id="legal-notice" class="${loggedIn ? 'd_none' : ''}">Legal notice</a>
-      </div>
-  `;
+          <div class="privacy-container ${loggedIn ? '' : 'p-2'}">
+            <a href="privacy_policy.html" id="privacy-policy" class="${loggedIn ? 'mobile-hidden' : ''}">Privacy Policy</a>
+            <a href="legal_notice.html" id="legal-notice" class="${loggedIn ? 'mobile-hidden' : ''}">Legal notice</a>
+          </div>`;
 }
 
 function headerShow(loggedIn = true) {
