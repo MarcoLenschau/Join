@@ -15,7 +15,7 @@ function sidebarShow(loggedIn = true) {
             ${createOptionForMenu('contacts', '../pages/contacts.html', '../assets/icon/contacts.png', 'Contacts', loggedIn)}
             ${createOptionForMenu('login', '../index.html', '../assets/img/login.svg', 'Log In', loggedIn, true)}
           </div>
-          <div class="privacy-container ${loggedIn ? '' : 'p-2'}">
+          <div class="privacy-container">
             ${createJuridicalLink('privacy-policy', 'privacy_policy.html', 'Privacy Policy', loggedIn)}
             ${createJuridicalLink('legal-notice', 'legal_notice.html', 'Legal notice', loggedIn)}
           </div>`;
