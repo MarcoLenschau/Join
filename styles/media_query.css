@@ -233,8 +233,8 @@
       flex-direction: row;
       justify-content: space-between;
       margin-top: 0;
+      width: 48%;
       padding: 0 1.2rem;
-
       & > div {
         width: 100px;
         height: fit-content;
@@ -253,6 +253,15 @@
     }
 
     .privacy-container {
+      position: relative;
+      flex-direction: row;
+      gap: 3rem;
+      >a {
+        min-width: 94px;
+      }
+    }
+
+    .logo {
       display: none;
     }
   }
