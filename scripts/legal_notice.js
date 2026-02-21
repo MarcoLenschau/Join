@@ -22,6 +22,7 @@ function showWhichSiteIsAktiv() {
   addClassToElement('task', 'no-active');
   addClassToElement('board', 'no-active');
   addClassToElement('contacts', 'no-active');
+  addClassToElement('legal-notice', 'active');
 }
 
 /**

@@ -38,8 +38,8 @@ function sidebarShow(loggedIn = true) {
               </div>  
           </div>
           <div class="privacy-container">
-        <a href="privacy_policy.html">Privacy Policy</a>
-        <a href="legal_notice.html">Legal notice</a>
+        <a href="privacy_policy.html" id="privacy-policy">Privacy Policy</a>
+        <a href="legal_notice.html" id="legal-notice">Legal notice</a>
       </div>
   `;
 }
