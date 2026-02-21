@@ -331,7 +331,7 @@
 
     .navigation {
       padding: 0.4rem;
-
+      gap: 12px;
       & > div {
         padding: 0.8rem 0.4rem;
 
