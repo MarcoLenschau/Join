@@ -39,12 +39,12 @@
               </div>
             </div>
             <div class="d_flex">
-              <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" onchange="validateEmail()" onclick="validateEmail()" required/>
+              <input id="email" type="email" placeholder="E-Mail" class="w-100 default-border input-font" oninput="validateEmail()" onclick="validateEmail()" required/>
               <img src="./assets/img/mail.svg" alt="E-Mail" class="overlay-image"/>
             </div>
             <span id="email-error-message">Email is not valid</span>
             <div class="d_flex">
-              <input id="password" type="password" placeholder="Password" class="w-100 default-border input-font" onchange="validatePassword()" onclick="validatePassword()"  required/>
+              <input id="password" type="password" placeholder="Password" class="w-100 default-border input-font" oninput="validatePassword()" onclick="validatePassword()"  required/>
               <img src="./assets/img/lock.svg" alt="password" class="overlay-image"/>
             </div>
             <span id="password-error-message">Password is not valid</span>

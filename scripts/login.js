@@ -73,18 +73,18 @@ function userLogIn(username) {
 function validateEmail(validate = true) {
   const emailInput = document.getElementById('email');
   const emailErrorMessage = document.getElementById("email-error-message");
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  validateInput(!emailPattern.test(emailInput.value) + validate, emailInput, emailErrorMessage);
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+  validateInput(emailPattern.test(emailInput.value) && validate, emailInput, emailErrorMessage);
 }
 
 function validatePassword(validate = true) {
   const passwordInput = document.getElementById('password');
   const passwordErrorMessage = document.getElementById("password-error-message");
-  validateInput(passwordInput.value.length < 1 + validate, passwordInput, passwordErrorMessage);
+  validateInput(!passwordInput.value.length < 1 && validate, passwordInput, passwordErrorMessage);
 }
 
-function validateInput(operation, input, inputTextElement) {
-  if (operation) {
+function validateInput(validate, input, inputTextElement) {
+  if (!validate) {
     input.style.borderColor = 'var(--color-orange-dark)';
     inputTextElement.style.color = 'var(--color-orange-dark)';
   } else {
