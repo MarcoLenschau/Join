@@ -65,15 +65,10 @@ footer > div > a {
   height: 40px;
 }
 
-.login-form-container {
-  margin-top: -150px !important;
-}
-
 .formDiv {    
   display: flex;  
   justify-content: center;
   align-items: center;
-  margin-top: -32px;
   width: 450px;
 
   img {
@@ -85,7 +80,6 @@ footer > div > a {
   display: flex;  
   justify-content: center;
   align-items: center;
-  margin-top: -32px;
   max-width: 400px;
   width: 400px;
 
@@ -156,21 +150,19 @@ footer > div > a {
 .auth-main {
   flex-direction: column;
   align-items: center;
-  padding: 0 12px;
 }
 
 @keyframes logo-size {
     to {
-      width: 125px;
-      height: 125px;
-      /* transform: scale(0.5) */
+      width: 100px;
+      height: 100px;
     }
 }
 
 @keyframes logo-move {
   to {
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
     top: 25px;
     left: 25px;
     translate: 0 0;

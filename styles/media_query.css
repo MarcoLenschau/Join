@@ -39,13 +39,6 @@
     flex-direction: column;
     align-items: center;
   }
-
-  .formDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100% !important;
-  }
   
   .buttonDiv > div {
     flex-direction: column;
@@ -90,6 +83,12 @@
 
   .input-field {
     width: 101%;
+  }
+}
+
+@media (max-width: 1185px) {
+  .separator {
+    margin: 0 !important;
   }
 }
 
@@ -145,7 +144,6 @@
     height: 3px;
     width: 87px;
     background-color: rgb(41, 171, 226);
-
   }
 
   .app-main {
@@ -387,10 +385,6 @@
     align-items: center;
   }
 
-  .separator-max {
-    display: none !important;
-  }
-
   .main-div {
     align-items: center;
     gap: 24px;
@@ -626,6 +620,10 @@
     padding: 0 !important;
   }
 
+  .formDiv {
+    width: 95% !important;
+  }
+
   .file-upload {
     width: 100%;
   }
@@ -686,6 +684,10 @@
 @media(max-width: 400px){
   .back-button-link  {
     left: 280px;
+  }
+
+  .login-form {
+    gap: 0.5rem !important;
   }
   
   .drag-task-popup{
