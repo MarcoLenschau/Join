@@ -1,6 +1,7 @@
 /**
  * Generates the HTML template for the sidebar.
  *
+ * @param {boolean} loggedIn - Indicates if the user is logged in. Defaults to true.
  * @returns {string} The HTML string for the sidebar.
  */
 function sidebarShow(loggedIn = true) {
@@ -8,41 +9,28 @@ function sidebarShow(loggedIn = true) {
             <img class="logo" src="../assets/img/logo-white.png" alt="logo"/>
           </a>
           <div class="navigation ${loggedIn ? '' : 'width-unset p-2'}">
-              <div id="summary" class="${loggedIn ? '' : 'd_none'}">
-                  <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/summary.png" alt="summary icon"/>    
-                      <span class="sidebar-link">Summary</span>
-                  </a>
-               </div>   
-              <div id="task" class="${loggedIn ? '' : 'd_none'}">
-                  <a href="../pages/add_task.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/addTask.png" alt="task icon"/>    
-                      <span class="sidebar-link">Add Task</span>
-                  </a>
-              </div> 
-              <div id="board" class="${loggedIn ? '' : 'd_none'}">
-                  <a href="../pages/board.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/board.png" alt="board icon"/>    
-                      <span class="sidebar-link">Board</span>
-                  </a>
-              </div>   
-              <div id="contacts" class="${loggedIn ? '' : 'd_none'}">
-                  <a href="../pages/contacts.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/contacts.png" alt="contacts icon"/>    
-                      <span class="sidebar-link">Contacts</span>
-                  </a>
-              </div> 
-              <div id="login" class="${loggedIn ? 'd_none' : ''}">
-                  <a href="../index.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/img/login.svg" alt="login icon"/>    
-                      <span class="sidebar-link">Log In</span>
-                  </a>
-              </div>  
+            ${createOptionForMenu('summary', '../pages/summary.html', '../assets/icon/summary.png', 'Summary', loggedIn)}
+            ${createOptionForMenu('task', '../pages/add_task.html', '../assets/icon/addTask.png', 'Add Task', loggedIn)}
+            ${createOptionForMenu('board', '../pages/board.html', '../assets/icon/board.png', 'Board', loggedIn)}
+            ${createOptionForMenu('contacts', '../pages/contacts.html', '../assets/icon/contacts.png', 'Contacts', loggedIn)}
+            ${createOptionForMenu('login', '../index.html', '../assets/img/login.svg', 'Log In', loggedIn, true)}
           </div>
           <div class="privacy-container ${loggedIn ? '' : 'p-2'}">
-            <a href="privacy_policy.html" id="privacy-policy" class="${loggedIn ? 'mobile-hidden' : ''}">Privacy Policy</a>
-            <a href="legal_notice.html" id="legal-notice" class="${loggedIn ? 'mobile-hidden' : ''}">Legal notice</a>
+            ${createJuridicalLink('privacy-policy', 'privacy_policy.html', 'Privacy Policy', loggedIn)}
+            ${createJuridicalLink('legal-notice', 'legal_notice.html', 'Legal notice', loggedIn)}
           </div>`;
+}
+
+function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) {
+  if (reverse) { loggedIn = !loggedIn };
+  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? '' : 'd_none'}">     
+            <img src="${imgPath}" alt="${id} icon"/>    
+            <span class="sidebar-link">${text}</span>
+          </a>`
+}
+
+function createJuridicalLink(id, url, text, loggedIn) {
+  return `<a id="${id}" href="${url}" class="${loggedIn ? 'mobile-hidden' : ''}">${text}</a>`;
 }
 
 function headerShow(loggedIn = true) {
