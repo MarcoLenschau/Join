@@ -3,11 +3,11 @@
  * 
  */
 function loadPrivavyPolicy() {
-  loadSidebar();
+  const loggedIn = sessionStorage.getItem('loggedIn'); 
+  loadSidebar(loggedIn === 'true');
   loadHeader();
   showWhichSiteIsAktiv();
 }
-
 
 /**
  * Sets all relevant pages as "inactive" and ensures that only the current page is active.

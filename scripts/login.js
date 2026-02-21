@@ -66,6 +66,7 @@ function checkCredentials(user, password) {
  */
 function userLogIn(username) {
   localStorage.setItem('currentUser', username);
+  sessionStorage.setItem('loggedIn', true);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
 }

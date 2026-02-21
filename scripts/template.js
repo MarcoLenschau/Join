@@ -3,39 +3,62 @@
  *
  * @returns {string} The HTML string for the sidebar.
  */
-function sidebarShow() {
-  return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
+function sidebarShow(loggedIn = true) {
+  return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
           <div class="navigation">
-              <div id="summary">
+              <div id="summary" class="${loggedIn ? '' : 'd_none'}">
                   <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/summary.png" alt="summary icon"/>    
                       <span class="sidebar-link">Summary</span>
                   </a>
                </div>   
-              <div id="task">
+              <div id="task" class="${loggedIn ? '' : 'd_none'}">
                   <a href="../pages/add_task.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/addTask.png" alt="task icon"/>    
                       <span class="sidebar-link">Add Task</span>
                   </a>
               </div> 
-              <div id="board">
+              <div id="board" class="${loggedIn ? '' : 'd_none'}">
                   <a href="../pages/board.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/board.png" alt="board icon"/>    
                       <span class="sidebar-link">Board</span>
                   </a>
               </div>   
-              <div id="contacts">
+              <div id="contacts" class="${loggedIn ? '' : 'd_none'}">
                   <a href="../pages/contacts.html" class="d_flex_c g_12 w-100">     
                       <img src="../assets/icon/contacts.png" alt="contacts icon"/>    
                       <span class="sidebar-link">Contacts</span>
                   </a>
               </div> 
+              <div id="login" class="${loggedIn ? 'd_none' : ''}">
+                  <a href="../index.html" class="d_flex_c g_12 w-100">     
+                      <img src="../assets/img/login.svg" alt="login icon"/>    
+                      <span class="sidebar-link">Log In</span>
+                  </a>
+              </div>  
           </div>
           <div class="privacy-container">
         <a href="privacy_policy.html">Privacy Policy</a>
         <a href="legal_notice.html">Legal notice</a>
       </div>
   `;
+}
+
+function headerShow(loggedIn = true) {
+  return `<section class="content-limited">
+            <h1>Kanban Project Management Tool</h1>
+            <div class="profile ${loggedIn ? '' : 'd_none'}">
+              <a href="./help.html">
+                <img class="help-icon" src="../assets/icon/help.png" alt="help icon" />
+              </a>
+              <span id="first-letter-header" onclick="toggleHeaderMenu();"></span>
+            </div>    
+            <div class="header-menu">
+              <a href="./legal_notice.html">Legal Notice</a>
+              <a href="./privacy_policy.html">Privacy Policy</a>
+              <a href="../index.html">Logout</a>
+            </div>
+          </section>`;
 }
 
 /**
