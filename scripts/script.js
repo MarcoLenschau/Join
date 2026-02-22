@@ -600,7 +600,9 @@ function defineDropFunction() {
   }  
 }
 
-function showEditUserTemplate() {
+async function showEditUserTemplate() {
+  const allUser = Object.values(await loadFromBackend('contacts'));
+  const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser')); 
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
-  document.getElementById('add-contact-menu').innerHTML = getUserTemplate();
+  document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser);
 }
