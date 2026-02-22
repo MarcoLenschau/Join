@@ -14,10 +14,6 @@
   transform: translate(30px, -20px);
 }
 
-.singup-main { 
-  margin: 0 12px;
-}
-
 .header-section {
   position: absolute;
 }
@@ -47,9 +43,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  bottom: 230px;
+  position: absolute;
+  top: 72%;
   left: 17px;
+  bottom: 50%;
+}
+
+.relative {
+  position: relative;
 }
 
 .signup-container {
@@ -65,4 +66,15 @@
   grid-template-rows: 152px 1fr 0.05fr;
   height: 100vh;
   width: clamp(320px, 100%, 1920px);
+}
+
+.register-form {
+  padding: 24px 0;
+  border-radius: 24px;
+  background-color: white;
+}
+
+#checkboxContainer {
+  margin-top: -6px;
+  margin-bottom: 14px;
 }

@@ -9,7 +9,6 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
-  
 }
 
 /**
