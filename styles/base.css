@@ -48,7 +48,6 @@ button {
   border: none;
 }
 
-/* DO NOT CHANGE ANYTHING */
 .app-main {
   width: calc(100% - 230px);
   height: 100vh;
@@ -313,7 +312,7 @@ button {
 .headline {
   display: flex;
   flex-direction: row;
-  width: 84%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   a {

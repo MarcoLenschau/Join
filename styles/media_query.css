@@ -178,11 +178,13 @@
       column-gap: 132px;
     }
   }
-}
 
-@media (min-width: 901px) {
   .sidebar {
     padding: 42px 0;
+  }
+
+  .desktopHidden {
+    display: none !important;
   }
 }
 
@@ -232,7 +234,7 @@
 
   .grid-navigation {
     display: grid;
-    grid-template-columns: repeat(4, minMax(100px, 1fr));
+    grid-template-columns: repeat(4, minMax(90px, 1fr));
   }
 
   .sidebar {
@@ -348,7 +350,7 @@
     }
 
     .navigation {
-      gap: 12px;
+      gap: 4px;
       & > div {
         a {
           font-size: 12px;
@@ -384,8 +386,6 @@
     }
   }
 }
-
-/** Task QUERIES ** */
 
 @media (max-width: 1375px) {
   .more-button-div {
@@ -610,6 +610,11 @@
     padding: 10px;
   }
 
+  .separator {
+    height: 1px;
+    width: 90%;
+  }
+
   .board-content {
     & > div {
       width: 100%;
@@ -677,6 +682,18 @@
 
   .primary-title {
     font-size: 45px;
+  }
+
+  .mobile-height {
+    gap: 0.2rem;
+  }
+
+  .sidebar {
+    overflow: hidden;
+    span {
+      font-size: 12px;
+      width: unset;
+    }
   }
 
   .board-content{
