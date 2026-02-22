@@ -599,3 +599,8 @@ function defineDropFunction() {
     defineDropZone = true;
   }  
 }
+
+function showEditUserTemplate() {
+  document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
+  document.getElementById('add-contact-menu').innerHTML = getUserTemplate();
+}

@@ -593,3 +593,7 @@ a {
 .p-2 {
   padding: 0 2rem;
 }
+
+.delete-button {
+  min-width: 195px;
+}
