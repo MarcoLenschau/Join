@@ -230,6 +230,11 @@
     display: none !important;
   }
 
+  .grid-navigation {
+    display: grid;
+    grid-template-columns: repeat(4, minMax(100px, 1fr));
+  }
+
   .sidebar {
     position: absolute;
     bottom: 0;

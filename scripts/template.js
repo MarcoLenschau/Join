@@ -8,7 +8,7 @@ function sidebarShow(loggedIn = true) {
   return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}" class="logo-link">
             <img class="logo" src="../assets/img/logo-white.png" alt="logo"/>
           </a>
-          <div class="navigation ${loggedIn ? '' : 'width-unset p-2'}">
+          <div class="navigation ${loggedIn ? 'grid-navigation ' : 'width-unset p-2'}">
             ${createOptionForMenu('summary', '../pages/summary.html', '../assets/icon/summary.png', 'Summary', loggedIn)}
             ${createOptionForMenu('task', '../pages/add_task.html', '../assets/icon/addTask.png', 'Add Task', loggedIn)}
             ${createOptionForMenu('board', '../pages/board.html', '../assets/icon/board.png', 'Board', loggedIn)}
