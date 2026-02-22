@@ -27,5 +27,5 @@ function showWhichSiteIsAktiv() {
  * 
  */
 function goBack() {
-  window.history.back(); // Navigiert zur vorherigen Seite in der Browser-Historie
+  window.history.back();
 }

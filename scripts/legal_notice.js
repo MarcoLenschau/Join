@@ -32,5 +32,5 @@ function showWhichSiteIsAktiv() {
  * @returns {void} This function does not return any value.
  */
 function goBack() {
-  window.history.back(); // Navigiert zur vorherigen Seite in der Browser-Historie
+  window.history.back();
 }

@@ -17,7 +17,10 @@ async function loadTemplateData(url) {
  * 
 */
 function loadSidebar(loggedIn) {
-  document.getElementById('sidebar').innerHTML = sidebarShow(loggedIn);
+  const sidebar = document.getElementById('sidebar');
+  // The comparison with false must remain in order to prevent this behaviour from being triggered by undefined.
+  if (loggedIn === false) { sidebar.classList.add('sidebar-padding'); }
+  sidebar.innerHTML = sidebarShow(loggedIn);
 }
 
 /**

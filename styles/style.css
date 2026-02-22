@@ -33,12 +33,8 @@
   height: 40px;
 }
 
-
-/* SIDEBAR STYLE FOR ALL PAGES */
-
 .sidebar {
   position: relative;
-  padding: 38px 0;
   background-color: #2a3647;
   width: 232px;
   height: 100vh;
@@ -46,7 +42,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 100;
-
+  
   span {
     display: flex;
     align-items: center;
