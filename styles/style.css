@@ -597,3 +597,15 @@ a {
 .delete-button {
   min-width: 195px;
 }
+
+.picture-from-user-edit {
+  height: 180px;
+  width: 190px;
+  border-radius: 50%;
+  margin: -26px;
+}
+
+.default-picture {
+  height: 260px;
+  width: 125px;
+}

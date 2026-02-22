@@ -56,6 +56,7 @@ function checkCredentials(user, password) {
     toggleSignupError('Email or password is invalid', 'add');
     return;
   }
+  sessionStorage.setItem('currentUser', user.email);
   userLogIn(user.name);
 }
 

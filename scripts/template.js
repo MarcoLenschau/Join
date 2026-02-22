@@ -1,4 +1,4 @@
-function getUserTemplate() {
+function getUserTemplate(currentUser) {
   return ` <div>
     <div class="overlay_mobile_top_part">
       <img src="../assets/img/logo-white.png" class="logo">
@@ -10,18 +10,20 @@ function getUserTemplate() {
     <form class="form-ctn">
       <section class="picture-section">
         <div class="add-contact-img-div file-upload-container">
+          <img src="${currentUser != undefined ? currentUser?.img : '../assets/img/person.svg'}" id="profile-picture" class="${ currentUser == undefined ? 'default-picture': 'picture-from-user-edit'}">
+        </div>
       </section>
       <div id="inputsfields_div" class="d_flex_column g_12">
         <div class="d_flex_c_c">
-          <input id="name" type="text" placeholder="Name" class="default-border input-field_contacts" required>
+          <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
           <img src="../assets/img/person.svg" class="overlay-image">
         </div>
         <div class="d_flex_c_c">
-          <input type="email" id="email" placeholder="Email" class="default-border input-field_contacts" required>
+          <input type="email" id="email" placeholder="Email" value="${currentUser != undefined ? currentUser?.email : 'gast@example.com'}" class="default-border input-field_contacts" required>
           <img src="../assets/img/mail.svg" class="overlay-image">
         </div>
         <div class="d_flex_c_c">
-          <input type="tel" id="phone" placeholder="Phone" class="default-border input-field_contacts" required>
+          <input type="tel" id="phone" placeholder="Phone" value="${currentUser != undefined ? currentUser?.phone : '0123456789'}" class="default-border input-field_contacts" required>
           <img src="../assets/icon/phone.png" class="overlay-image">
         </div>
         <div class="d_flex_c contact-overlay-buttons">
