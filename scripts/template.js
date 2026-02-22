@@ -1,3 +1,44 @@
+function getUserTemplate() {
+  return ` <div>
+    <div class="overlay_mobile_top_part">
+      <img src="../assets/img/logo-white.png" class="logo">
+      <div>
+        <h1 class="f_s_58">My account</h1>
+        <div class="add-contact-separator"></div>
+      </div>
+    </div>
+    <form class="form-ctn">
+      <section class="picture-section">
+        <div class="add-contact-img-div file-upload-container">
+      </section>
+      <div id="inputsfields_div" class="d_flex_column g_12">
+        <div class="d_flex_c_c">
+          <input id="name" type="text" placeholder="Name" class="default-border input-field_contacts" required>
+          <img src="../assets/img/person.svg" class="overlay-image">
+        </div>
+        <div class="d_flex_c_c">
+          <input type="email" id="email" placeholder="Email" class="default-border input-field_contacts" required>
+          <img src="../assets/img/mail.svg" class="overlay-image">
+        </div>
+        <div class="d_flex_c_c">
+          <input type="tel" id="phone" placeholder="Phone" class="default-border input-field_contacts" required>
+          <img src="../assets/icon/phone.png" class="overlay-image">
+        </div>
+        <div class="d_flex_c contact-overlay-buttons">
+          <div id="cancel_button">
+            <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
+          </div>
+          <a class="overlay_cancel button_mobile">X</a>
+          <div>
+            <button class="primary-button clear-and-create-button">Edit</button><img>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>`
+}
+
+
 /**
  * Generates the HTML template for the sidebar.
  *
@@ -43,6 +84,7 @@ function headerShow(loggedIn = true) {
               <span id="first-letter-header" onclick="toggleHeaderMenu();"></span>
             </div>    
             <div class="header-menu">
+              <a onclick="showEditUserTemplate();">Account</a>
               <a href="./legal_notice.html">Legal Notice</a>
               <a href="./privacy_policy.html">Privacy Policy</a>
               <a href="../index.html">Logout</a>
@@ -402,7 +444,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     <div class="overlay_mobile_top_part">
       <img src="../assets/img/logo-white.png" class="logo">
       <div>
-        <h1 class="f_s_58">${content} contacts</h1>
+        <h1 class="f_s_58">${content} ${content === 'Edit' || 'Add' ? 'contacts' : ''}</h1>
         <h2 class="m-bottom-20">Tasks are better with a team!</h2>
         <div class="add-contact-separator"></div>
       </div>
