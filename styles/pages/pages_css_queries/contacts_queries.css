@@ -1,5 +1,3 @@
-/* ADD CONTACT OVERLAY */
-
 @media (max-width: 1300px) {
   .add-contact-overlay {
     position: absolute;
@@ -27,10 +25,9 @@
     .form-ctn {
       background-color: var(--color-white);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      column-gap: 48px;
+      column-gap: 100px;
       width: 65%;
       height: 600px;
 
