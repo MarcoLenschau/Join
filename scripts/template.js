@@ -23,7 +23,7 @@ function sidebarShow(loggedIn = true) {
 
 function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) {
   if (reverse) { loggedIn = !loggedIn };
-  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? '' : 'd_none'}">     
+  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? 'mobile-height' : 'd_none'}">     
             <img src="${imgPath}" alt="${id} icon"/>    
             <span class="sidebar-link">${text}</span>
           </a>`
