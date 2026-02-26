@@ -30,12 +30,24 @@ async function handleLogin(event) {
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  const users = Object.values(await loadFromBackend('users'));
-  const user = users.find((user) => user.email === email);
   !email && !password ? toggleSignupError('Please enter a email and password', 'add', validateEmail(false), validatePassword(false)):
   !email ? toggleSignupError('Please enter a email', 'add', validateEmail(false)): 
-  !password ? toggleSignupError('Please enter a password', 'add', validatePassword(false)): 
-  checkCredentials(user, password);
+  !password ? toggleSignupError('Please enter a password', 'add', validatePassword(false)) : checkIfValidUser(email, password);
+}
+
+async function checkIfValidUser(email, password) {
+  const allUsers = await loadFromBackend('users');
+  if (isNull(allUsers)) {
+    toggleSignupError('Not user with this Email', 'add');
+  } else {
+    const users = Object.values(allUsers);
+    const user = users.find((user) => user.email === email);
+    checkCredentials(user, password);
+  }
+}
+
+function isNull(value) {
+  return value === null;
 }
 
 /**
