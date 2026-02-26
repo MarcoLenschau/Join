@@ -234,7 +234,7 @@
 
   .grid-navigation {
     display: grid;
-    grid-template-columns: repeat(4, minMax(90px, 1fr));
+    grid-template-columns: repeat(4, minMax(70px, 1fr));
   }
 
   .sidebar {
@@ -738,6 +738,13 @@
   .register-form {
     padding: 0;
     padding-bottom: 12px;
+  }
+
+  .sidebar {
+    a img:not(.logo) {
+        width: 13px;
+        height: 13px;
+    }
   }
 
   .drag-task-popup{
