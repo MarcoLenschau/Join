@@ -609,3 +609,7 @@ a {
   height: 260px;
   width: 125px;
 }
+
+.responsive-register-container {
+  align-items: baseline;
+}
