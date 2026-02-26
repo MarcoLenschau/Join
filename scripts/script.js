@@ -393,7 +393,8 @@ function showLoadAnimation() {
 /**
  * Sets the current user to 'Guest' and redirects to the summary page.
  */
-function guestLogin() {
+function guestLogin(event) {
+  event.preventDefault();
   localStorage.setItem('currentUser', 'Guest');
   sessionStorage.setItem('loggedIn', 'true');
   window.location.href = './pages/summary.html';
