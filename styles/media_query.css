@@ -727,6 +727,19 @@
     gap: 0.5rem !important;
   }
 
+  .formDiv-signup {
+    width: 95%;
+  }
+
+  .register-container { 
+    gap: 0;
+  }
+
+  .register-form {
+    padding: 0;
+    padding-bottom: 12px;
+  }
+
   .drag-task-popup{
     width: 300px;
     padding-bottom: 24px;
