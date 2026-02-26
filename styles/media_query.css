@@ -747,6 +747,13 @@
     }
   }
 
+  #more-information {
+    .big-letter-ctn {
+        padding: 18px 0px;
+        margin-left: -24px;
+    }
+  }
+
   .drag-task-popup{
     width: 300px;
     padding-bottom: 24px;
