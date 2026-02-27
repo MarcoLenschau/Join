@@ -6,12 +6,13 @@ body {
 header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
+  justify-content: center;
   height: 170px;
   width: 100%;
-  margin-right: 240px;
-  z-index: 1;
+  padding: 0 19px;
+  position: relative;
+  top: -47px;
     
   .logo-black {
     display: none;
@@ -21,11 +22,8 @@ header {
 .buttonDiv {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  row-gap: 12px;
-  margin-top: 24px;
-  margin-bottom: 8px;
-  
+  align-items: center; 
+
   button {
     padding: 12px 24px;
     border-radius: 10px;
@@ -42,7 +40,7 @@ header {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
   padding: 24px 0;
   width: 100%;
   border-radius: 18px;
@@ -54,23 +52,24 @@ header {
   text-align: center;
 }
 
+.margin-left {
+  margin-left: -54px;
+}
+
+footer > div > a {
+  color: rgba(0, 0, 0, 0.3);
+}
+
 .button {
   width: 120px;
   height: 40px;
-}
-
-.login-form-container {
-  margin-top: -150px !important;
 }
 
 .formDiv {    
   display: flex;  
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin-top: -32px;
-  max-width: 400px;
-  width: 400px;
+  width: 450px;
 
   img {
     width: 16px;
@@ -81,9 +80,8 @@ header {
   display: flex;  
   justify-content: center;
   align-items: center;
-  margin-top: -32px;
   max-width: 400px;
-  width: 400px;
+  width: 100%;
 
   img {
     width: 16px;
@@ -97,15 +95,10 @@ header {
 }
 
 .notUser {
-  padding-top: 24px;
   align-items: center;
   gap: 14px;
   margin-left: auto;
   margin-right: auto;
-}
-
-#checkboxContainer {
-  margin-top: 24px;
 }
 
 .auth-loading-spinner {
@@ -115,10 +108,17 @@ header {
 }
 
 #auth-error-message {
-  margin-top: 8px;
-  color: var(--color-orange-dark);
-  display: none;
+  color: transparent;
+  font-size: 14px;
+  font-weight: bold;
   justify-content: center;
+}
+
+#email-error-message, #password-error-message {
+  color: transparent;
+  margin-top: -18px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .animation-wrapper {
@@ -138,32 +138,31 @@ header {
 }
 
 .content {
+  display: grid;
+  grid-template-rows: 0.5fr 1fr 0.1fr;
   position: relative;
   height: 100vh;
   width: 100%;
   max-width: 1920px;
-  justify-content: center;
   align-items: center;
 }
 
 .auth-main {
   flex-direction: column;
   align-items: center;
-  padding: 0 12px;
 }
 
 @keyframes logo-size {
     to {
-      width: 125px;
-      height: 125px;
-      /* transform: scale(0.5) */
+      width: 100px;
+      height: 100px;
     }
 }
 
 @keyframes logo-move {
   to {
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
     top: 25px;
     left: 25px;
     translate: 0 0;

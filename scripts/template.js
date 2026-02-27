@@ -1,41 +1,97 @@
+function getUserTemplate(currentUser) {
+  return ` <div>
+    <div class="overlay_mobile_top_part">
+      <img src="../assets/img/logo-white.png" class="logo">
+      <div>
+        <h1 class="f_s_58">My account</h1>
+        <div class="add-contact-separator"></div>
+      </div>
+    </div>
+    <form class="form-ctn">
+      <section class="picture-section">
+        <div class="add-contact-img-div file-upload-container">
+          <img src="${currentUser != undefined ? currentUser?.img : '../assets/img/person.svg'}" id="profile-picture" class="${ currentUser == undefined ? 'default-picture': 'picture-from-user-edit'}">
+        </div>
+      </section>
+      <div id="inputsfields_div" class="d_flex_column g_12">
+        <div class="d_flex_c_c">
+          <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
+          <img src="../assets/img/person.svg" class="overlay-image">
+        </div>
+        <div class="d_flex_c_c">
+          <input type="email" id="email" placeholder="Email" value="${currentUser != undefined ? currentUser?.email : 'gast@example.com'}" class="default-border input-field_contacts" required>
+          <img src="../assets/img/mail.svg" class="overlay-image">
+        </div>
+        <div class="d_flex_c_c">
+          <input type="tel" id="phone" placeholder="Phone" value="${currentUser != undefined ? currentUser?.phone : '0123456789'}" class="default-border input-field_contacts" required>
+          <img src="../assets/icon/phone.png" class="overlay-image">
+        </div>
+        <div class="d_flex_c contact-overlay-buttons">
+          <div id="cancel_button">
+            <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
+          </div>
+          <a class="overlay_cancel button_mobile">X</a>
+          <div>
+            <button class="primary-button clear-and-create-button">Edit</button><img>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>`
+}
+
+
 /**
  * Generates the HTML template for the sidebar.
  *
+ * @param {boolean} loggedIn - Indicates if the user is logged in. Defaults to true.
  * @returns {string} The HTML string for the sidebar.
  */
-function sidebarShow() {
-  return `<a href="../pages/summary.html"><img class="logo" src="../assets/img/logo-white.png" alt="logo"/></a>
-          <div class="navigation">
-              <div id="summary">
-                  <a href="../pages/summary.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/summary.png" alt="summary icon"/>    
-                      <span class="sidebar-link">Summary</span>
-                  </a>
-               </div>   
-              <div id="task">
-                  <a href="../pages/add_task.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/addTask.png" alt="task icon"/>    
-                      <span class="sidebar-link">Add Task</span>
-                  </a>
-              </div> 
-              <div id="board">
-                  <a href="../pages/board.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/board.png" alt="board icon"/>    
-                      <span class="sidebar-link">Board</span>
-                  </a>
-              </div>   
-              <div id="contacts">
-                  <a href="../pages/contacts.html" class="d_flex_c g_12 w-100">     
-                      <img src="../assets/icon/contacts.png" alt="contacts icon"/>    
-                      <span class="sidebar-link">Contacts</span>
-                  </a>
-              </div> 
+function sidebarShow(loggedIn = true) {
+  return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}" class="logo-link">
+            <img class="logo" src="../assets/img/logo-white.png" alt="logo"/>
+          </a>
+          <div class="navigation ${loggedIn ? 'grid-navigation ' : 'width-unset p-2'}">
+            ${createOptionForMenu('summary', '../pages/summary.html', '../assets/icon/summary.png', 'Summary', loggedIn)}
+            ${createOptionForMenu('task', '../pages/add_task.html', '../assets/icon/addTask.png', 'Add Task', loggedIn)}
+            ${createOptionForMenu('board', '../pages/board.html', '../assets/icon/board.png', 'Board', loggedIn)}
+            ${createOptionForMenu('contacts', '../pages/contacts.html', '../assets/icon/contacts.png', 'Contacts', loggedIn)}
+            ${createOptionForMenu('login', '../index.html', '../assets/img/login.svg', 'Log In', loggedIn, true)}
           </div>
           <div class="privacy-container">
-        <a href="privacy_policy.html">Privacy Policy</a>
-        <a href="legal_notice.html">Legal notice</a>
-      </div>
-  `;
+            ${createJuridicalLink('privacy-policy', 'privacy_policy.html', 'Privacy Policy', loggedIn)}
+            ${createJuridicalLink('legal-notice', 'legal_notice.html', 'Legal notice', loggedIn)}
+          </div>`;
+}
+
+function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) {
+  if (reverse) { loggedIn = !loggedIn };
+  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? 'mobile-height' : 'd_none'}">     
+            <img src="${imgPath}" alt="${id} icon"/>    
+            <span class="sidebar-link">${text}</span>
+          </a>`
+}
+
+function createJuridicalLink(id, url, text, loggedIn) {
+  return `<a id="${id}" href="${url}" class="${loggedIn ? 'mobile-hidden' : ''}">${text}</a>`;
+}
+
+function headerShow(loggedIn = true) {
+  return `<section class="content-limited">
+            <h1>Kanban Project Management Tool</h1>
+            <div class="profile ${loggedIn ? '' : 'd_none'}">
+              <a href="./help.html">
+                <img class="help-icon" src="../assets/icon/help.png" alt="help icon" />
+              </a>
+              <span id="first-letter-header" onclick="toggleHeaderMenu();"></span>
+            </div>    
+            <div class="header-menu">
+              <a onclick="showEditUserTemplate();">Account</a>
+              <a href="./legal_notice.html">Legal Notice</a>
+              <a href="./privacy_policy.html">Privacy Policy</a>
+              <a href="../index.html">Logout</a>
+            </div>
+          </section>`;
 }
 
 /**
@@ -390,7 +446,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
     <div class="overlay_mobile_top_part">
       <img src="../assets/img/logo-white.png" class="logo">
       <div>
-        <h1 class="f_s_58">${content} contacts</h1>
+        <h1 class="f_s_58">${content} ${content === 'Edit' || 'Add' ? 'contacts' : ''}</h1>
         <h2 class="m-bottom-20">Tasks are better with a team!</h2>
         <div class="add-contact-separator"></div>
       </div>

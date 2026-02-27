@@ -12,12 +12,12 @@ async function handleRegisterNewUser(event) {
   const { name, email, password, confirmPassword } = getFieldValues();
   const errorElement = document.getElementById("auth-error-message");
   const checkBox = document.getElementById('checkBox');
+  if (name === "" || email === "" || password === "" || confirmPassword === "") {
+    return toggleSignupError('Please fill in all fields', 'add');
+  }
   if (!checkBox.checked) { return checkBoxIsNotChecked(); }
   if(errorElement) errorElement.innerHTML = "";
-  if (password !== confirmPassword) {
-    toggleLoadingSpinner('remove');
-    return toggleSignupError('Not the same password', 'add');
-  }
+  if (password !== confirmPassword) { return toggleSignupError('Not the same password', 'add'); }
   await checkExistingUser(name, email, password);
 }
 

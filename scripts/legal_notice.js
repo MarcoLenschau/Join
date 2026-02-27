@@ -5,7 +5,8 @@
  * @returns {void} This function does not return any value.
  */
 function loadLegalNotice() {
-  loadSidebar();
+  const loggedIn = sessionStorage.getItem('loggedIn'); 
+  loadSidebar(loggedIn === 'true');
   loadHeader();
   showWhichSiteIsAktiv();
 }
@@ -21,6 +22,7 @@ function showWhichSiteIsAktiv() {
   addClassToElement('task', 'no-active');
   addClassToElement('board', 'no-active');
   addClassToElement('contacts', 'no-active');
+  addClassToElement('legal-notice', 'active');
 }
 
 /**
@@ -30,5 +32,5 @@ function showWhichSiteIsAktiv() {
  * @returns {void} This function does not return any value.
  */
 function goBack() {
-  window.history.back(); // Navigiert zur vorherigen Seite in der Browser-Historie
+  window.history.back();
 }

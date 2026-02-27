@@ -16,8 +16,11 @@ async function loadTemplateData(url) {
  * Loads the sidebar content into the designated HTML element.
  * 
 */
-function loadSidebar() {
-  document.getElementById('sidebar').innerHTML = sidebarShow();
+function loadSidebar(loggedIn) {
+  const sidebar = document.getElementById('sidebar');
+  // The comparison with false must remain in order to prevent this behaviour from being triggered by undefined.
+  if (loggedIn === false) { sidebar.classList.add('sidebar-padding'); }
+  sidebar.innerHTML = sidebarShow(loggedIn);
 }
 
 /**
@@ -34,8 +37,9 @@ function addClassToElement(element, aktiveClass) {
  * Loads the header content dynamically and sets the user's initial in the header.
  * 
 */
-async function loadHeader() {
-  document.getElementById('header').innerHTML = await loadTemplateData('../template/header.html');
+function loadHeader() {
+  const loggedIn = sessionStorage.getItem('loggedIn');
+  document.getElementById('header').innerHTML = headerShow(loggedIn === 'true');
   document.getElementById('first-letter-header').innerText = firstLetterBig(localStorage.getItem('currentUser'));
 }
 
@@ -389,8 +393,10 @@ function showLoadAnimation() {
 /**
  * Sets the current user to 'Guest' and redirects to the summary page.
  */
-function guestLogin() {
+function guestLogin(event) {
+  event.preventDefault();
   localStorage.setItem('currentUser', 'Guest');
+  sessionStorage.setItem('loggedIn', 'true');
   window.location.href = './pages/summary.html';
 }
 
@@ -399,11 +405,18 @@ function guestLogin() {
  * 
  * @param {string} errorMessage - The error message to display.
  * @param {string} method - The method to apply ('add' or 'remove') to show or hide the error message.
+ * @param {Function} callback - A callback function to be executed after toggling the error message.
  */
-function toggleSignupError(errorMessage, method) {
+function toggleSignupError(errorMessage, method, callback = () => {}) {
+  toggleLoadingSpinner('remove');
   const errorMessageElement = document.getElementById('auth-error-message');
+  errorMessageElement.style.color = 'var(--color-orange-dark)';
   errorMessageElement.innerHTML = errorMessage;
   errorMessageElement.classList[method]('show-element');
+  callback();
+  setTimeout(() => {
+    errorMessageElement.style.color = 'transparent';
+  }, 5000);
 }
 
 /**
@@ -586,4 +599,11 @@ function defineDropFunction() {
     dropzone.addEventListener("drop", e => addFiles(e.dataTransfer.files));
     defineDropZone = true;
   }  
+}
+
+async function showEditUserTemplate() {
+  const allUser = Object.values(await loadFromBackend('contacts'));
+  const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser')); 
+  document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
+  document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser);
 }

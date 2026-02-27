@@ -30,10 +30,24 @@ async function handleLogin(event) {
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  const users = Object.values(await loadFromBackend('users'));
-  const user = users.find((user) => user.email === email);
+  !email && !password ? toggleSignupError('Please enter a email and password', 'add', validateEmail(false), validatePassword(false)):
+  !email ? toggleSignupError('Please enter a email', 'add', validateEmail(false)): 
+  !password ? toggleSignupError('Please enter a password', 'add', validatePassword(false)) : checkIfValidUser(email, password);
+}
 
-  checkCredentials(user, password);
+async function checkIfValidUser(email, password) {
+  const allUsers = await loadFromBackend('users');
+  if (isNull(allUsers)) {
+    toggleSignupError('Not user with this Email', 'add');
+  } else {
+    const users = Object.values(allUsers);
+    const user = users.find((user) => user.email === email);
+    checkCredentials(user, password);
+  }
+}
+
+function isNull(value) {
+  return value === null;
 }
 
 /**
@@ -54,6 +68,7 @@ function checkCredentials(user, password) {
     toggleSignupError('Email or password is invalid', 'add');
     return;
   }
+  sessionStorage.setItem('currentUser', user.email);
   userLogIn(user.name);
 }
 
@@ -64,6 +79,29 @@ function checkCredentials(user, password) {
  */
 function userLogIn(username) {
   localStorage.setItem('currentUser', username);
+  sessionStorage.setItem('loggedIn', true);
   window.location.href = '../pages/summary.html';
   toggleLoadingSpinner('remove');
+}
+
+function validateEmail(validate = true) {
+  const emailInput = document.getElementById('email');
+  const emailErrorMessage = document.getElementById("email-error-message");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+  validateInput(emailPattern.test(emailInput.value) && validate, emailInput, emailErrorMessage);
+}
+
+function validatePassword(validate = true) {
+  const passwordInput = document.getElementById('password');
+  const passwordErrorMessage = document.getElementById("password-error-message");
+  validateInput(!passwordInput.value.length < 1 && validate, passwordInput, passwordErrorMessage);
+}
+
+function validateInput(validate, input, inputTextElement) {
+  validate ? makeError(input, inputTextElement, "") : makeError(input, inputTextElement);
+}
+
+function makeError(input, inputErrorMessage, color = "var(--color-orange-dark)") {
+  input.style.borderColor = color;
+  inputErrorMessage.style.color = color;
 }

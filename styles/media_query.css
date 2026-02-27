@@ -29,6 +29,7 @@
     display: none !important;
   }
 
+
   .join-icon {
     width: 60px;
     height: 60px;
@@ -38,27 +39,20 @@
     flex-direction: column;
     align-items: center;
   }
-
-  .formDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100% !important;
-  }
-
-  .responsive-register-form {
-    width: 300px !important;
-    margin: 0 -16px;
-  }
-
-  footer {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
   
+  .buttonDiv > div {
+    flex-direction: column;
+    gap: 12px;
+    >button {
+      width: 200px;
+      justify-content: center;
+    }
+  }
+
+  .notUser {
+    margin-top: 26px;
+  }
+
   .contact-initials {
     margin-bottom: 56px;
   }
@@ -89,6 +83,12 @@
 
   .input-field {
     width: 101%;
+  }
+}
+
+@media (max-width: 1185px) {
+  .separator {
+    margin: 0 !important;
   }
 }
 
@@ -144,7 +144,84 @@
     height: 3px;
     width: 87px;
     background-color: rgb(41, 171, 226);
+  }
 
+    .add-contact-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    min-height: 38%;
+    border-radius: 32px;
+    color: white;
+    background-color: var(--color-blue);
+    overflow: hidden;
+    padding-left: 32px;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      width: 50px;
+    }
+
+    .form-ctn {
+      background-color: var(--color-white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 100px;
+      width: 65%;
+      height: 600px;
+
+      .contact-overlay-buttons {
+        display: flex;
+        column-gap: 24px;
+        align-items: center;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          column-gap: 12px;
+
+          img {
+            width: 15px;
+          }
+        }
+      }
+
+      input {
+        width: 100%;
+
+        & + img {
+          width: 16px;
+        }
+      }
+    }
+
+    h2 {
+      font-weight: 500;
+    }
+  }
+
+  .add-contact-separator {
+    width: 88px;
+    background-color: var(--color-light-blue);
+    height: 3px;
+  }
+
+  #inputsfields_div {
+    margin-top: 20px;
+  }
+
+  .title-of-contacts {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .app-main {
@@ -179,6 +256,14 @@
       column-gap: 132px;
     }
   }
+
+  .sidebar {
+    padding: 42px 0;
+  }
+
+  .desktopHidden {
+    display: none !important;
+  }
 }
 
 @media (max-width: 900px) {
@@ -191,6 +276,135 @@
   .add-contact-div {
     bottom: 15% !important;
     bottom: 15% !important;
+  }
+
+  .sidebar-padding {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  
+  .add-contact-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 396px;
+    height: 98vh;
+    background: #2a3647;
+
+    padding-left: 0;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      flex-direction: column;
+      position: relative;
+    }
+
+    .overlay_mobile_top_part {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+    }
+
+    .logo {
+      display: none;
+    }
+
+    .form-ctn {
+      background-color: var(--color-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      column-gap: 48px;
+      width: 100%;
+      height: 60vh;
+      padding-top: 30px;
+      border-bottom-right-radius: 6%;
+      border-bottom-left-radius: 6%;
+      
+      input {
+        width: 100%;
+
+        & + img {
+          width: 16px;
+        }
+      }
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 47px;
+    }
+
+    h2 {
+      font-weight: 400;
+      font-size: 20px;
+    }
+  }
+
+  .overlay_cancelbutton_mobile {
+    color: #fff;
+  }
+
+  .list-of-contacts{
+    padding-bottom: 250px;
+  }
+
+  .person-icon {
+    height: 118px;
+    width: 122px;
+    border-radius: 50%;
+    margin: 0;
+  }
+
+  .add-contact-img-div {
+    background-color: var(--color-grey);
+    padding: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--color-white);
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
+    height: 120px;
+    width: 120px;
+
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .hide-contact-menu {
+    display: none !important;
+  }
+
+  #inputfields_div {
+    width: 364px;
+    height: 153px;
+    margin-top: 0 !important;
+  }
+
+  #cancel_button {
+    display: none;
+  }
+
+  .more-button {
+    bottom: 25%;
+  }
+
+  #toggleMenu {
+    bottom: 22%;
+  }
+
+  .big-content{
+    padding-bottom: 250px;
   }
 
   .app-main {
@@ -212,15 +426,27 @@
     }
   }
 
+  .mobile-height {
+    height: 4.6rem !important;
+  }
+
+  .mobile-hidden {
+    display: none !important;
+  }
+
+  .grid-navigation {
+    display: grid;
+    grid-template-columns: repeat(4, minMax(70px, 1fr));
+  }
+
   .sidebar {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 90px;
+    height: 75px;
+    display: grid;
     flex-direction: row;
     align-items: center;
-    column-gap: 1.2rem;
-
     .logo {
       margin-left: 1.2rem;
       margin-right: 1rem;
@@ -230,15 +456,9 @@
 
     .navigation {
       flex-direction: row;
-      justify-content: space-between;
       margin-top: 0;
-      padding: 0 1.2rem;
-
       & > div {
-        width: 100px;
-        height: fit-content;
-        padding: 1.2rem 0;
-        border-radius: 25px;
+        padding: 2.5rem 0;
 
         a {
           align-items: center;
@@ -252,6 +472,22 @@
     }
 
     .privacy-container {
+      position: relative;
+      bottom: 0;
+      flex-direction: row;
+      gap: 1rem;
+      padding: 0 2rem;
+      width: unset;
+      >a {
+        height: 75px;
+        min-width: 94px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .logo-link {
       display: none;
     }
   }
@@ -307,21 +543,17 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 90px;
+    height: 75px;
     flex-direction: row;
     align-items: center;
-    column-gap: 1.2rem;
 
     & > a {
       display: none;
     }
 
     .navigation {
-      padding: 0.4rem;
-
+      gap: 4px;
       & > div {
-        padding: 0.8rem 0.4rem;
-
         a {
           font-size: 12px;
 
@@ -357,8 +589,6 @@
   }
 }
 
-/** Task QUERIES ** */
-
 @media (max-width: 1375px) {
   .more-button-div {
     position: fixed;
@@ -375,10 +605,6 @@
 
   .app-main {
     align-items: center;
-  }
-
-  .separator-max {
-    display: none !important;
   }
 
   .main-div {
@@ -586,6 +812,11 @@
     padding: 10px;
   }
 
+  .separator {
+    height: 1px;
+    width: 90%;
+  }
+
   .board-content {
     & > div {
       width: 100%;
@@ -614,6 +845,10 @@
 @media (max-width: 500px) {
   .add-task-modal > [data-modal] { 
     padding: 0 !important;
+  }
+
+  .formDiv {
+    width: 95% !important;
   }
 
   .file-upload {
@@ -651,6 +886,18 @@
     font-size: 45px;
   }
 
+  .mobile-height {
+    gap: 0.2rem;
+  }
+
+  .sidebar {
+    overflow: hidden;
+    span {
+      font-size: 12px;
+      width: unset;
+    }
+  }
+
   .board-content{
     width: 100%;
 
@@ -663,9 +910,9 @@
      & > ul > li{
         width: 250px;
       }
-    }
-  
+    } 
  }
+}
 
 @media (max-width: 440px) {
   .image-container-div {
@@ -677,7 +924,38 @@
   .back-button-link  {
     left: 280px;
   }
-  
+
+  .login-form {
+    gap: 0.5rem !important;
+  }
+
+  .formDiv-signup {
+    width: 95%;
+  }
+
+  .register-container { 
+    gap: 0;
+  }
+
+  .register-form {
+    padding: 0;
+    padding-bottom: 12px;
+  }
+
+  .sidebar {
+    a img:not(.logo) {
+        width: 13px;
+        height: 13px;
+    }
+  }
+
+  #more-information {
+    .big-letter-ctn {
+        padding: 18px 0px;
+        margin-left: -24px;
+    }
+  }
+
   .drag-task-popup{
     width: 300px;
     padding-bottom: 24px;
@@ -698,8 +976,6 @@
   .upload-file {
     width: 350px;
   }
-}
-
 
   .board-container{
     padding: 0 24px !important;

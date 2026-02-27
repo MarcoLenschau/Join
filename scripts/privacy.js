@@ -3,11 +3,11 @@
  * 
  */
 function loadPrivavyPolicy() {
-  loadSidebar();
+  const loggedIn = sessionStorage.getItem('loggedIn'); 
+  loadSidebar(loggedIn === 'true');
   loadHeader();
   showWhichSiteIsAktiv();
 }
-
 
 /**
  * Sets all relevant pages as "inactive" and ensures that only the current page is active.
@@ -18,6 +18,7 @@ function showWhichSiteIsAktiv() {
   addClassToElement('task', 'no-active');
   addClassToElement('board', 'no-active');
   addClassToElement('contacts', 'no-active');
+  addClassToElement('privacy-policy', 'active');
 }
 
 
@@ -26,5 +27,5 @@ function showWhichSiteIsAktiv() {
  * 
  */
 function goBack() {
-  window.history.back(); // Navigiert zur vorherigen Seite in der Browser-Historie
+  window.history.back();
 }

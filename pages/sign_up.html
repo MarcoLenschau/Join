@@ -27,33 +27,31 @@
                 <img src="../assets/img/logo-black.svg" class="logo" alt="logo">
             </header>
         </section>
-
-   
         <main class="d_flex_c singup-main">
-            <div class="back-button-container">
-                <a href="../index.html" class="back-button-link">
-                    <img src="../assets/img/back.svg" class="back-button singup-back-button" />
-                </a>
-            </div> 
             <form class="formDiv-signup" onsubmit="handleRegisterNewUser(event);" novalidate="novalidate">
-                <div class="text-center login-form w-100">
-                    <div class="d_flex_c p-24">
+                <div class="text-center register-form w-100">
+                    <div class="d_flex_c p-24 relative">
+                        <div class="back-button-container">
+                            <a href="../index.html" class="back-button-link">
+                                <img src="../assets/img/back.svg" class="back-button singup-back-button" />
+                            </a>
+                        </div>
                         <div class="text-center login-signup-container">
-                            <h1>Sign up</h1>
+                            <h1 class="f_s_xxl">Sign up</h1>
                             <div class="separator"></div>
                         </div>
                     </div>
                     <div class="register-container">
-                        <div class="d_flex_column">
-                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                        <div class="d_flex_column responsive-register-container">
+                            <div class="d_flex_c responsive-register-form" style="width: 85%;">
                                 <input id="name" type="text" placeholder="Name" 
                                 class="w-100 default-border input-font" onclick="validate(userValidateEvent, 'name')" required>
                                 <img src="../assets/img/person.svg" alt="name" class="overlay-image">
                             </div>
-                            <span id="name-error" class="transparent">Name to short</span>
+                            <span id="name-error" class="w-100 d_flex_c transparent">Name to short</span>
                         </div>    
                         <div class="d_flex_column">
-                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                            <div class="d_flex_c responsive-register-form" style="width: 85%;">
                                  <input id="email" type="email" placeholder="E-Mail" 
                                  class="w-100 default-border input-font" onclick="validate(emailValidateEvent, 'email')" required>
                                  <img src="../assets/img/mail.svg" alt="E-Mail" class="overlay-image">
@@ -61,7 +59,7 @@
                             <span id="email-error" class="transparent">Email not validate</span>
                         </div>
                         <div class="d_flex_column">
-                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                            <div class="d_flex_c responsive-register-form" style="width: 85%;">
                                 <input id="password" type="password" placeholder="Password" minlength="5" 
                                 class="w-100 default-border input-font" onclick="validate(passwordValidateEvent, 'password')" required>
                                 <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
@@ -69,7 +67,7 @@
                             <span id="password-error" class="transparent">Password to short</span>
                         </div>
                         <div class="d_flex_column">
-                            <div class="d_flex_c responsive-register-form" style="width: 330px;">
+                            <div class="d_flex_c responsive-register-form" style="width: 85%;">
                                 <input id="passwordConfirm" type="password" placeholder="Confirm password" minlength="5" 
                                 class="w-100 default-border input-font" onclick="validate(passwordConfirmValidateEvent, 'passwordConfirm')" required>
                                 <img src="../assets/img/lock.svg" alt="password" class="overlay-image">
@@ -96,6 +94,5 @@
             </div>
         </footer>
     </div>
-
-</body>
+    </body>
 </html>
