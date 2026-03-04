@@ -153,6 +153,11 @@ a {
   align-items: center;
 }
 
+.first-letter-span {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 .first-big-letter {
   display: inline-block;
   height: 145px;
