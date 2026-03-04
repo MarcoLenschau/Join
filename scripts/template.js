@@ -14,20 +14,20 @@ function getUserTemplate(currentUser) {
         </div>
       </section>
       <div id="inputsfields_div" class="d_flex_column g_12">
-        <div class="d_flex_c_c">
+        <div class="d_flex_c_c" onclick="stopPropagation(event)">
           <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
           <img src="../assets/img/person.svg" class="overlay-image">
         </div>
-        <div class="d_flex_c_c">
+        <div class="d_flex_c_c" onclick="stopPropagation(event)">
           <input type="email" id="email" placeholder="Email" value="${currentUser != undefined ? currentUser?.email : 'gast@example.com'}" class="default-border input-field_contacts" required>
           <img src="../assets/img/mail.svg" class="overlay-image">
         </div>
-        <div class="d_flex_c_c">
+        <div class="d_flex_c_c" onclick="stopPropagation(event)">
           <input type="tel" id="phone" placeholder="Phone" value="${currentUser === undefined || currentUser?.phone === undefined ? '0123456789' : currentUser.phone }" class="default-border input-field_contacts" required>
           <img src="../assets/icon/phone.png" class="overlay-image">
         </div>
         <a class="overlay_cancel button_mobile">X</a>
-        <div class="d_flex_c contact-overlay-buttons contact-overlay-buttons-profile">
+        <div class="d_flex_c contact-overlay-buttons contact-overlay-buttons-profile" onclick="stopPropagation(event)">
           <div>
             <button class="primary-button clear-and-create-button">Edit</button><img>
           </div>
