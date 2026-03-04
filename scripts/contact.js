@@ -9,7 +9,6 @@ async function loadContact() {
   loadHeader();
   showWhichSiteIsAktiv();
   renderContacts();
-  
 }
 
 /**
@@ -305,16 +304,6 @@ function closeSmallMenu(event){
   const moreButtonDiv = event.target.closest(".more-button-div");
   if (moreButtonDiv) return;
   document.getElementById('toggleMenu')?.classList.add('d_none');
-}
-
-/**
- * Closes the contact modal when the user clicks outside of the modal content.
- * 
- */
-function closeContactModal(event) {
-  const isTaskMenu = event.target.closest('.add-contact-overlay');
-  const modal = event.currentTarget;
-  if (!isTaskMenu) modal.classList.remove('show-modal');
 }
 
 /**

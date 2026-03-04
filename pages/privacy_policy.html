@@ -25,7 +25,7 @@
       <div class="container">
         <div class="headline">
           <h1 class="primary-title">Privacy Policy</h1>
-          <a href="javascript:void(0);">
+          <a href="javascript:void(0);" class="desktopHidden">
             <img src="../assets/img/back.svg" class="back-button" onclick="goBack()" />
           </a>
         </div>
@@ -65,5 +65,8 @@
         </div>
       </div>
     </main>
+    <dialog onclick="closeContactModal(event);" id="add-contact-menu-dialog" open>
+      <div id="add-contact-menu" class="add-contact-overlay"></div>
+    </dialog>
   </body>
 </html>
