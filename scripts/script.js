@@ -602,8 +602,23 @@ function defineDropFunction() {
 }
 
 async function showEditUserTemplate() {
-  const allUser = Object.values(await loadFromBackend('contacts'));
-  const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser')); 
+  const allUser = Object.values(await loadFromBackend('users'));
+  const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser'));
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
   document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser);
+  currentUser !== undefined && currentUser.img === undefined ? createImageFromFirstLetter(currentUser.name) : "";
+}
+
+function createImageFromFirstLetter(name) {
+  const addContactDiv = document.querySelector(".add-contact-img-div");
+  const userPicture = document.createElement("span");
+  let firstLetter = [];
+  if (name.split(" ").length >= 1 ) {
+    firstLetter = [name[0].toUpperCase()];
+  } else {
+    firstLetter = [name[0].toUpperCase(), name[1].toUpperCase()];
+  }
+  userPicture.textContent = firstLetter;
+  userPicture.classList.add("first-letter-span");
+  addContactDiv.appendChild(userPicture);
 }
