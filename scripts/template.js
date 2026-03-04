@@ -26,20 +26,19 @@ function getUserTemplate(currentUser) {
           <input type="tel" id="phone" placeholder="Phone" value="${currentUser === undefined || currentUser?.phone === undefined ? '0123456789' : currentUser.phone }" class="default-border input-field_contacts" required>
           <img src="../assets/icon/phone.png" class="overlay-image">
         </div>
-        <div class="d_flex_c contact-overlay-buttons">
-          <div id="cancel_button">
-            <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
-          </div>
-          <a class="overlay_cancel button_mobile">X</a>
+        <a class="overlay_cancel button_mobile">X</a>
+        <div class="d_flex_c contact-overlay-buttons contact-overlay-buttons-profile">
           <div>
             <button class="primary-button clear-and-create-button">Edit</button><img>
+          </div>
+          <div>
+            <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
           </div>
         </div>
       </div>
     </form>
   </div>`
 }
-
 
 /**
  * Generates the HTML template for the sidebar.

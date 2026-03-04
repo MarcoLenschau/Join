@@ -146,7 +146,11 @@
     background-color: rgb(41, 171, 226);
   }
 
-    .add-contact-overlay {
+  #inputfield_div {
+    gap: 0.5rem;
+  }
+
+  .add-contact-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -275,7 +279,10 @@
 
   .add-contact-div {
     bottom: 15% !important;
-    bottom: 15% !important;
+  }
+
+  .add-contact-img-div {
+    top: 246px;
   }
 
   .sidebar-padding {
@@ -326,7 +333,17 @@
       padding-top: 30px;
       border-bottom-right-radius: 6%;
       border-bottom-left-radius: 6%;
+      padding-top: 0 !important;
       
+      .overlay_mobile_top_part {
+        height: 250px;
+      }
+
+      .contact-overlay-buttons-profile {
+        flex-direction: column;
+        padding-top: 1rem;
+      }
+    }
       input {
         width: 100%;
 
@@ -509,7 +526,7 @@
   .picture-section {
     margin-bottom: 48px;
   }
-}
+
 
 @media (max-width: 600px) {
   .hiddenMax {
@@ -587,6 +604,14 @@
       display: none;
     }
   }
+
+  .grid-navigation > a {
+    flex-direction: column;
+    >img {
+      height: 18px !important;
+      width: 18px !important;
+    }
+  } 
 }
 
 @media (max-width: 1375px) {
@@ -807,6 +832,11 @@
     width: 100%;
   }
 
+  .clear-and-create-button {
+    width: 150px;
+    margin-top: 0;
+  }
+
   .board-add-task-button {
     font-size: 17px;
     padding: 10px;
@@ -853,10 +883,6 @@
 
   .file-upload {
     width: 100%;
-  }
-
-  .clear-and-create-button {
-    width: 150px;
   }
 
   .delete-all {
