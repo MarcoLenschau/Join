@@ -289,6 +289,19 @@
     display: flex !important;
     justify-content: space-between;
   }
+
+  .form-ctn-user-template {
+    padding-top: 0 !important;
+      
+    .overlay_mobile_top_part {
+      height: 250px;
+    }
+
+    .contact-overlay-buttons-profile {
+      flex-direction: column;
+      padding-top: 1rem;
+    }
+  }
   
   .add-contact-overlay {
     position: absolute;
@@ -333,16 +346,6 @@
       padding-top: 30px;
       border-bottom-right-radius: 6%;
       border-bottom-left-radius: 6%;
-      padding-top: 0 !important;
-      
-      .overlay_mobile_top_part {
-        height: 250px;
-      }
-
-      .contact-overlay-buttons-profile {
-        flex-direction: column;
-        padding-top: 1rem;
-      }
     }
       input {
         width: 100%;
