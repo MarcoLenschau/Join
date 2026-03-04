@@ -612,13 +612,9 @@ async function showEditUserTemplate() {
 function createImageFromFirstLetter(name) {
   const addContactDiv = document.querySelector(".add-contact-img-div");
   const userPicture = document.createElement("span");
-  let firstLetter = [];
-  if (name.split(" ").length >= 1 ) {
-    firstLetter = [name[0].toUpperCase()];
-  } else {
-    firstLetter = [name[0].toUpperCase(), name[1].toUpperCase()];
-  }
-  userPicture.textContent = firstLetter;
+  let firstLetter = name.split(" ");
+  firstLetter = firstLetter.length > 1 ? firstLetter.map(nameLetter => nameLetter[0]) : [name[0]];
+  userPicture.textContent = firstLetter.map(nameLetter => nameLetter.toUpperCase()).join("");
   userPicture.classList.add("first-letter-span");
   addContactDiv.appendChild(userPicture);
 }
