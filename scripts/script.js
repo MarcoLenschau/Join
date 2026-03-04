@@ -618,3 +618,12 @@ function createImageFromFirstLetter(name) {
   userPicture.classList.add("first-letter-span");
   addContactDiv.appendChild(userPicture);
 }
+
+/**
+ * Closes the contact modal when the user clicks outside of the modal content.
+ * 
+ */
+function closeContactModal(event) {
+  const modal = event.currentTarget;
+  modal.classList.remove('show-modal');
+}

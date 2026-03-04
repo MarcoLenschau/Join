@@ -307,16 +307,6 @@ function closeSmallMenu(event){
 }
 
 /**
- * Closes the contact modal when the user clicks outside of the modal content.
- * 
- */
-function closeContactModal(event) {
-  const isTaskMenu = event.target.closest('.add-contact-overlay');
-  const modal = event.currentTarget;
-  if (!isTaskMenu) modal.classList.remove('show-modal');
-}
-
-/**
  * Toggles the visibility of the menu.
 */
 function toggleMenu() {
