@@ -7,7 +7,7 @@ function getUserTemplate(currentUser) {
         <div class="add-contact-separator"></div>
       </div>
     </div>
-    <form class="form-ctn">
+    <form class="form-ctn form-ctn-user-template">
       <section class="picture-section">
         <div class="add-contact-img-div file-upload-container">
           <img src="${currentUser === undefined ? '../assets/img/person.svg' : currentUser.img != undefined ? currentUser?.img : ''}" id="profile-picture" class="${ currentUser == undefined ? 'default-picture': 'picture-from-user-edit'} ${currentUser !== undefined && currentUser.img === undefined ? 'd_none' : '' }">
