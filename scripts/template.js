@@ -1,3 +1,13 @@
+/**
+ * Generates an HTML template for displaying and editing user account information.
+ *
+ * @param {Object} [currentUser] - The current user object containing user details.
+ * @param {string} [currentUser.name] - The name of the user. Defaults to "Gast" if not provided.
+ * @param {string} [currentUser.email] - The email of the user. Defaults to "gast@example.com" if not provided.
+ * @param {string} [currentUser.phone] - The phone number of the user. Defaults to "0123456789" if not provided.
+ * @param {string} [currentUser.img] - The URL of the user's profile image. Defaults to a placeholder image if not provided. 
+ * @returns {string} The HTML string representing the user account template.
+ */
 function getUserTemplate(currentUser) {
   return ` <div>
     <div class="overlay_mobile_top_part">
@@ -63,6 +73,17 @@ function sidebarShow(loggedIn = true) {
           </div>`;
 }
 
+/**
+ * Generates an HTML string for a menu option with customizable properties.
+ *
+ * @param {string} id - The unique identifier for the menu option.
+ * @param {string} url - The URL the menu option links to.
+ * @param {string} imgPath - The path to the image displayed in the menu option.
+ * @param {string} text - The text displayed in the menu option.
+ * @param {boolean} loggedIn - Determines if the menu option is visible when the user is logged in.
+ * @param {boolean} [reverse=false] - If true, reverses the visibility logic based on the `loggedIn` parameter.
+ * @returns {string} - The HTML string representing the menu option.
+ */
 function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) {
   if (reverse) { loggedIn = !loggedIn };
   return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? 'mobile-height' : 'd_none'}">     
@@ -71,10 +92,26 @@ function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) 
           </a>`
 }
 
+/**
+ * Creates an HTML anchor element as a string with specified attributes and classes.
+ *
+ * @param {string} id - The ID to assign to the anchor element.
+ * @param {string} url - The URL to set as the href attribute of the anchor element.
+ * @param {string} text - The text content to display inside the anchor element.
+ * @param {boolean} loggedIn - A flag indicating whether the user is logged in. If true, the anchor element will have the "mobile-hidden" class.
+ * @returns {string} The generated HTML string for the anchor element.
+ */
 function createJuridicalLink(id, url, text, loggedIn) {
   return `<a id="${id}" href="${url}" class="${loggedIn ? 'mobile-hidden' : ''}">${text}</a>`;
 }
 
+/**
+ * Generates the HTML template for the header section of the Kanban Project Management Tool.
+ *
+ * @param {boolean} [loggedIn=true] - Indicates whether the user is logged in. 
+ *                                    If true, the profile section is displayed; otherwise, it is hidden.
+ * @returns {string} The HTML string for the header section.
+ */
 function headerShow(loggedIn = true) {
   return `<section class="content-limited">
             <h1>Kanban Project Management Tool</h1>

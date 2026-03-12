@@ -601,6 +601,12 @@ function defineDropFunction() {
   }  
 }
 
+/**
+ * Open and populate the "edit user" modal for the currently logged-in user.
+ *
+ * @async
+ * @returns {Promise<void>} Resolves once the user data is loaded and the DOM is updated.
+ */
 async function showEditUserTemplate() {
   const allUser = Object.values(await loadFromBackend('users'));
   const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser'));
@@ -609,6 +615,14 @@ async function showEditUserTemplate() {
   currentUser !== undefined && currentUser.img === undefined ? createImageFromFirstLetter(currentUser.name) : "";
 }
 
+/**
+ * Creates and appends a span element showing the uppercase initials of each word
+ * in the provided name into the first element matching the selector ".add-contact-img-div".
+ *
+ * @param {string} name - Full name or label; words are split on spaces and their
+ *   first characters are used to form the monogram. Leading/trailing whitespace is ignored.
+ * @returns {void} This function does not return a value.
+ */
 function createImageFromFirstLetter(name) {
   const addContactDiv = document.querySelector(".add-contact-img-div");
   const userPicture = document.createElement("span");
