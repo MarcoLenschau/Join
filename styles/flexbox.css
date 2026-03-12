@@ -21,6 +21,11 @@
   justify-content: space-around;
 }
 
+.d_flex_s_b {
+  display: flex;
+  justify-content: space-between;
+}
+
 .d_flex_jc_row {
   display: flex;
   flex-direction: row;
@@ -51,4 +56,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.h-70 {
+  height: 70%;
+}
+
+.g-4 {
+  gap: 4px;
+}
+
+.g-12 {
+  gap: 12px;
 }

@@ -612,7 +612,7 @@ a {
 
 .default-picture {
   height: 260px;
-  width: 125px;
+  width: 80px;
 }
 
 .responsive-register-container {
@@ -689,9 +689,7 @@ a {
     }
 
     input {
-      width: 100%;
-
-      & + img {
+      & img {
         width: 16px;
       }
     }

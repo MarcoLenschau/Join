@@ -23,27 +23,25 @@ function getUserTemplate(currentUser) {
           <img src="${currentUser === undefined ? '../assets/img/person.svg' : currentUser.img != undefined ? currentUser?.img : ''}" id="profile-picture" class="${ currentUser == undefined ? 'default-picture': 'picture-from-user-edit'} ${currentUser !== undefined && currentUser.img === undefined ? 'd_none' : '' }">
         </div>
       </section>
-      <div id="inputsfields_div" class="d_flex_column g_12">
-        <div class="d_flex_c_c" onclick="stopPropagation(event)">
-          <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
-          <img src="../assets/img/person.svg" class="overlay-image">
-        </div>
-        <div class="d_flex_c_c" onclick="stopPropagation(event)">
-          <input type="email" id="email" placeholder="Email" value="${currentUser != undefined ? currentUser?.email : 'gast@example.com'}" class="default-border input-field_contacts" required>
-          <img src="../assets/img/mail.svg" class="overlay-image">
-        </div>
-        <div class="d_flex_c_c" onclick="stopPropagation(event)">
-          <input type="tel" id="phone" placeholder="Phone" value="${currentUser === undefined || currentUser?.phone === undefined ? '0123456789' : currentUser.phone }" class="default-border input-field_contacts" required>
-          <img src="../assets/icon/phone.png" class="overlay-image">
-        </div>
-        <a class="overlay_cancel button_mobile">X</a>
-        <div class="d_flex_c contact-overlay-buttons contact-overlay-buttons-profile" onclick="stopPropagation(event)">
-          <div>
-            <button class="primary-button clear-and-create-button">Edit</button><img>
+      <div id="inputsfields_div" class="d_flex_column d_flex_s_b h-70">
+        <section class="d_flex_column g-12">
+          <div class="d_flex_c_c" onclick="stopPropagation(event)">
+            <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
+            <img src="../assets/img/person.svg" class="overlay-image">
           </div>
-          <div>
+          <div class="d_flex_c_c" onclick="stopPropagation(event)">
+            <input type="email" id="email" placeholder="Email" value="${currentUser != undefined ? currentUser?.email : 'gast@example.com'}" class="default-border input-field_contacts" required>
+            <img src="../assets/img/mail.svg" class="overlay-image">
+          </div>
+          <div class="d_flex_c_c" onclick="stopPropagation(event)">
+            <input type="tel" id="phone" placeholder="Phone" value="${currentUser === undefined || currentUser?.phone === undefined ? '0123456789' : currentUser.phone }" class="default-border input-field_contacts" required>
+            <img src="../assets/icon/phone.png" class="overlay-image">
+          </div>
+          <a class="overlay_cancel button_mobile">X</a>
+        </section>
+        <div class="contact-overlay-buttons contact-overlay-buttons-profile g-4" onclick="stopPropagation(event)">
+            <button class="primary-button clear-and-create-button">Edit</button>
             <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
-          </div>
         </div>
       </div>
     </form>
@@ -390,10 +388,6 @@ function getMoreInfomationTemplate(numberOfContact) {
                       <span class="bold">Phone</span>
                       <a href="tel:${contacts[numberOfContact].phone}" class="p_12 color-black"><span>${contacts[numberOfContact].phone}</span></a>
                   </div>
-                  <div class="d_flex_column">
-                      <span class="bold">Role</span>
-                      <span class="p_12">${contacts[numberOfContact].role}</span>
-                  </div>
               </div>
               <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div">
                   <div id="toggleMenu" class="d_none d_flex_column bg-blue">
@@ -704,8 +698,7 @@ function getSubTasksTemplate(subTasks, taskId) {
       <li>
         <input type="checkbox" ${done ? 'checked' : ''}  onchange="updateCheckbox(event, '${taskId}')"/>
         <span>${description}</span>
-      </li>
-    `;
+      </li>`;
     })
   .join('');
 }
