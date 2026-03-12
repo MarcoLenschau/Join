@@ -34,27 +34,39 @@ function greetUser() {
   document.getElementById('greeting').innerText = getGreetText();
 }
 
-/* todo icon */
 const hoverTodo = document.getElementById('todo_div');
 const todo_img = document.getElementById('todo_img');
+const hoverDone = document.getElementById('done_div');
+const done_img = document.getElementById('done_img');
 
-// Event Listener für Hover-Effekt
+/**
+ * Changes the todo icon to the hover state when the user enters the element.
+ * Updates the src attribute to display the hover version of the todo icon.
+ */
 hoverTodo.addEventListener('mouseenter', () => {
   todo_img.src = '../assets/icon/summary_todo_hover.svg';
 });
 
+/**
+ * Restores the todo icon to its default state when the user leaves the element.
+ * Updates the src attribute back to the default todo icon.
+ */
 hoverTodo.addEventListener('mouseleave', () => {
   todo_img.src = '../assets/icon/summary_todo.svg';
 });
 
-/* done icon */
-const hoverDone = document.getElementById('done_div');
-const done_img = document.getElementById('done_img');
-
+/**
+ * Changes the done icon to the hover state when the user enters the element.
+ * Updates the src attribute to display the hover version of the done icon.
+ */
 hoverDone.addEventListener('mouseenter', () => {
   done_img.src = '../assets/icon/summary_done_hover.svg';
 });
 
+/**
+ * Restores the done icon to its default state when the user leaves the element.
+ * Updates the src attribute back to the default done icon.
+ */
 hoverDone.addEventListener('mouseleave', () => {
   done_img.src = '../assets/icon/summary_done.svg'; 
 });

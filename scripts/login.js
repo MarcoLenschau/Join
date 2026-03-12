@@ -35,6 +35,15 @@ async function handleLogin(event) {
   !password ? toggleSignupError('Please enter a password', 'add', validatePassword(false)) : checkIfValidUser(email, password);
 }
 
+/**
+ * Asynchronously verifies whether a user with the given email exists and, if so,
+ * checks their credentials against the provided password.
+ *
+ * @async
+ * @param {string} email - The email address to look up among stored users.
+ * @param {string} password - The plaintext password to validate for the found user.
+ * @returns {Promise<void>} Resolves when processing is complete. Rejects if loading users fails.
+ */
 async function checkIfValidUser(email, password) {
   const allUsers = await loadFromBackend('users');
   if (isNull(allUsers)) {
@@ -46,6 +55,12 @@ async function checkIfValidUser(email, password) {
   }
 }
 
+/**
+ * Determine whether a value is strictly null.
+ *
+ * @param {*} value - The value to check.
+ * @returns {boolean} True if the value is strictly equal to null; otherwise false.
+ */
 function isNull(value) {
   return value === null;
 }
@@ -84,6 +99,13 @@ function userLogIn(username) {
   toggleLoadingSpinner('remove');
 }
 
+/**
+ * Validate the email field value and delegate result handling to validateInput.
+ * 
+ * @param {boolean} [validate=true] - When true, perform the regex test; when false, bypass the regex test
+ *                                     and pass false as the validation result to validateInput.
+ * @returns {void}
+ */
 function validateEmail(validate = true) {
   const emailInput = document.getElementById('email');
   const emailErrorMessage = document.getElementById("email-error-message");
@@ -91,16 +113,47 @@ function validateEmail(validate = true) {
   validateInput(emailPattern.test(emailInput.value) && validate, emailInput, emailErrorMessage);
 }
 
+/**
+ * Validate the password field and update its error message element.
+ *
+ * @param {boolean} [validate=true] - Whether to perform validation (defaults to true).
+ * @returns {void}
+ */
 function validatePassword(validate = true) {
   const passwordInput = document.getElementById('password');
   const passwordErrorMessage = document.getElementById("password-error-message");
   validateInput(!passwordInput.value.length < 1 && validate, passwordInput, passwordErrorMessage);
 }
 
+
+/**
+ * Update the error display for a given input based on a validation result.
+ *
+ * Calls makeError to either clear the error text when validation passes
+ * (by passing an empty string) or to show/set the error when validation fails
+ * (relying on makeError's default behavior).
+ *
+ * @param {boolean} validate - True if the input is valid, false if invalid.
+ * @param {HTMLElement} input - The input element whose error state should be updated.
+ * @param {HTMLElement} inputTextElement - The element used to display the validation/error message.
+ * @returns {void}
+ * @see makeError
+ */
 function validateInput(validate, input, inputTextElement) {
   validate ? makeError(input, inputTextElement, "") : makeError(input, inputTextElement);
 }
 
+/**
+ * Apply error styling to an input element and its associated error message element.
+ *
+ * This function mutates the provided DOM elements' inline styles by setting the
+ * input element's border color and the error message element's text color.
+ *
+ * @param {HTMLElement} input - The input (or form control) element whose border color will be changed.
+ * @param {HTMLElement} inputErrorMessage - The element that displays the error message; its text color will be changed.
+ * @param {string} [color="var(--color-orange-dark)"] - CSS color value to apply (e.g., hex, rgb(), named color, or CSS variable). Defaults to "var(--color-orange-dark)".
+ * @returns {void}
+ */
 function makeError(input, inputErrorMessage, color = "var(--color-orange-dark)") {
   input.style.borderColor = color;
   inputErrorMessage.style.color = color;
