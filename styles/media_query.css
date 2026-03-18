@@ -536,16 +536,81 @@
   }
 
 
+@media (min-width: 901px) {
+  .sidebar {
+    position: relative !important;
+    bottom: auto !important;
+    width: 232px !important;
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 48px;
+    
+    .logo {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      transform: none;
+      flex-shrink: 0;
+    }
+
+    .navigation {
+      display: flex !important;
+      flex-direction: column !important;
+      margin-top: 0 !important;
+      width: 100% !important;
+      flex-grow: 1;
+      justify-content: center !important;
+      
+      & > div {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        height: 50px;
+        width: 100% !important;
+      }
+    }
+
+    .privacy-container {
+      position: static !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      padding: 20px 0 !important;
+      width: 100% !important;
+      flex-shrink: 0;
+      
+      >a {
+        height: auto !important;
+        min-width: auto !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+      }
+    }
+
+    .logo-link {
+      display: block !important;
+    }
+  }
+
+  .app-main {
+    width: calc(100% - 232px) !important;
+    height: 100vh !important;
+    padding-bottom: 0 !important;
+  }
+
+  .grid-navigation {
+    display: none !important;
+  }
+}
+
 @media (max-width: 600px) {
   .hiddenMax {
     display: none !important;
   }
-
-  @media (max-width: 600px) {
-  .hiddenMax {
-    display: none !important;
-  }
-}
 }
 
 
