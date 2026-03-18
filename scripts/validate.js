@@ -79,7 +79,7 @@ function isValidPassword(password) {
  */
 function isValidPasswordConfirm(password) {
   const inputField = document.getElementById("password");
-  return password.length > 5 && password === inputField.value;
+  return password === inputField.value;
 }
 
 /**
