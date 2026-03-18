@@ -24,6 +24,38 @@ function loadSidebar(loggedIn) {
 }
 
 /**
+ * Find the Firebase-ID of a user based on their email.
+ *
+ * @param {string} email - The email of the user.
+ * @returns {Promise<string|null>} The generic ID or null if not found.
+ */
+async function getFirebaseUserIdByEmail(email) {
+  const usersObj = await loadFromBackend('users');
+  if (!usersObj) return null;
+  const entry = Object.entries(usersObj).find(([id, user]) => user.email === email);
+  return entry ? entry[0] : null;
+}
+
+/**
+ * Deletes a user from the backend database using the Firebase user ID.
+ *
+ * @async
+ * @param {string} userId - The Firebase user ID to delete.
+ * @returns {Promise<void>} A promise that resolves when the user is deleted.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
+async function deleteUserFromBackend(userId) {
+  try {
+    await fetch(`${BACKEND_URL}/users/${userId}.json`, {
+      method: 'DELETE',
+    });
+    sessionStorage.clear();
+    localStorage.clear();
+    window.location.href = '/';
+  } catch (err) {}
+}
+
+/**
  * The function add a class to the element.
  *
  * @param {string} element - The element that is added to the class.
@@ -610,8 +642,10 @@ function defineDropFunction() {
 async function showEditUserTemplate() {
   const allUser = Object.values(await loadFromBackend('users'));
   const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser'));
+  const numberOfContact = allUser.findIndex((user) => user.email === sessionStorage.getItem('currentUser'));
+  const userId = await getFirebaseUserIdByEmail(currentUser.email);
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
-  document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser);
+  document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser, userId);
   currentUser !== undefined && currentUser.img === undefined ? createImageFromFirstLetter(currentUser.name) : "";
 }
 

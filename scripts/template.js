@@ -8,7 +8,7 @@
  * @param {string} [currentUser.img] - The URL of the user's profile image. Defaults to a placeholder image if not provided. 
  * @returns {string} The HTML string representing the user account template.
  */
-function getUserTemplate(currentUser) {
+function getUserTemplate(currentUser, userId) {
   return ` <div>
     <div class="overlay_mobile_top_part">
       <img src="../assets/img/logo-white.png" class="logo">
@@ -41,7 +41,7 @@ function getUserTemplate(currentUser) {
         </section>
         <div class="contact-overlay-buttons contact-overlay-buttons-profile g-4" onclick="stopPropagation(event)">
             <button class="primary-button clear-and-create-button">Edit</button>
-            <button type="button" class="clear-button clear-and-create-button delete-button">Delete my account</button><img>
+            <button type="button" class="clear-button clear-and-create-button delete-button" onclick="deleteUserFromBackend('${userId}')">Delete my account</button><img>
         </div>
       </div>
     </form>
