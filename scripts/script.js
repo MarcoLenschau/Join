@@ -5,7 +5,11 @@ const currentUser = '';
 /**
  * Loads the HTML template data from a given URL.
  *
-*/
+ * @async
+ * @param {string} url - The URL to fetch the template from.
+ * @return {Promise<string>} The fetched template as text.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function loadTemplateData(url) {
   const response = await fetch(url);
   const template = await response.text();
@@ -14,8 +18,11 @@ async function loadTemplateData(url) {
 
 /**
  * Loads the sidebar content into the designated HTML element.
- * 
-*/
+ *
+ * @param {boolean} loggedIn - Whether the user is logged in (true) or not (false).
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function loadSidebar(loggedIn) {
   const sidebar = document.getElementById('sidebar');
   // The comparison with false must remain in order to prevent this behaviour from being triggered by undefined.
@@ -26,8 +33,10 @@ function loadSidebar(loggedIn) {
 /**
  * Find the Firebase-ID of a user based on their email.
  *
+ * @async
  * @param {string} email - The email of the user.
- * @returns {Promise<string|null>} The generic ID or null if not found.
+ * @return {Promise<string|null>} The generic ID or null if not found.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function getFirebaseUserIdByEmail(email) {
   const usersObj = await loadFromBackend('users');
@@ -41,7 +50,7 @@ async function getFirebaseUserIdByEmail(email) {
  *
  * @async
  * @param {string} userId - The Firebase user ID to delete.
- * @returns {Promise<void>} A promise that resolves when the user is deleted.
+ * @return {Promise<void>} A promise that resolves when the user is deleted.
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function deleteUserFromBackend(userId) {
@@ -56,19 +65,23 @@ async function deleteUserFromBackend(userId) {
 }
 
 /**
- * The function add a class to the element.
+ * Adds a class to an element by id.
  *
- * @param {string} element - The element that is added to the class.
+ * @param {string} element - The id of the element to which the class will be added.
  * @param {string} aktiveClass - The class that is added to the element.
-*/
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function addClassToElement(element, aktiveClass) {
   document.getElementById(element).classList.add(aktiveClass);
 }
 
 /**
  * Loads the header content dynamically and sets the user's initial in the header.
- * 
-*/
+ *
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function loadHeader() {
   const loggedIn = sessionStorage.getItem('loggedIn');
   document.getElementById('header').innerHTML = headerShow(loggedIn === 'true');
@@ -78,11 +91,13 @@ function loadHeader() {
 
 /**
  * Loads the task modal dynamically, setting it up for adding or editing a task.
- * 
+ *
+ * @async
  * @param {boolean} isEditMode - Specifies whether the modal is in edit mode (true) or create mode (false).
  * @param {string} taskId - The ID of the task being edited (if in edit mode).
- * 
-*/
+ * @return {Promise<void>} Resolves once modal content is loaded.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function loadModal(isEditMode, taskId) {
   const task = tasks.find((task) => task.id === taskId);
   const date = isEditMode ? task?.date.split('/').reverse().join('-') : '';
@@ -102,10 +117,11 @@ async function loadModal(isEditMode, taskId) {
 
 /**
  * Loads a preview of a task into the modal.
- * 
+ *
  * @param {string} taskId - The ID of the task to be previewed.
- * 
-*/
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function loadTaskPreview(taskId) {
   const task = tasks.find((task) => task.id == taskId);
   document.getElementById('add-task-modal').innerHTML = getTaskPreviewTemplate(task);
@@ -113,8 +129,10 @@ function loadTaskPreview(taskId) {
 
 /**
  * Toggles the visibility of the header menu by adding or removing the 'show-element' class.
- * 
-*/
+ *
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function toggleHeaderMenu() {
   const menu = document.querySelector('.header-menu');
   menu.classList.toggle('show-element');
@@ -123,7 +141,10 @@ function toggleHeaderMenu() {
 /**
  * Checks the users assigned to a task and marks them as selected in the UI.
  *
-*/
+ * @param {Array<{name: string}>} assignedTo - Array of assigned user objects containing `name`.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function checkAssignedUsers(assignedTo) {
   const userlist = Array.from(document.getElementById('userlist').children);
 
@@ -141,8 +162,12 @@ function checkAssignedUsers(assignedTo) {
 
 /**
  * Toggles the visibility of the "Add Task" modal.
- * 
-*/
+ *
+ * @param {Event} e - The original event that triggered the toggle.
+ * @param {Array} tasks - The tasks array (may be used in context where passed).
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function toggleAddTaskModal(e, tasks) {
   e.stopPropagation();
   const target = e?.target;
@@ -160,8 +185,11 @@ function toggleAddTaskModal(e, tasks) {
 
 /**
  * Toggles the edit mode for a list item.
- * 
-*/
+ *
+ * @param {Event} event - The click event from the edit icon.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function toggleEditMode(event) {
   const itemElement = event.target.closest('li');
   const inputElement = itemElement.querySelector('input');
@@ -175,8 +203,10 @@ function toggleEditMode(event) {
 
 /**
  * Adds a new subtask to the subtask list.
- * 
-*/
+ *
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function addSubTask() {
   const subTaskListElement = document.querySelector('.subtask-list');
   const subTaskInput = document.querySelector('.subTask-input');
@@ -191,8 +221,11 @@ function addSubTask() {
 
 /**
  * Deletes a subtask from the subtask list.
- * 
-*/
+ *
+ * @param {Event} event - The click event that occurred on the delete button.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function deleteSubTask(event) {
   event.stopPropagation();
   const subTaskItem = event.target.closest('li');
@@ -201,10 +234,13 @@ function deleteSubTask(event) {
 
 /**
  * Deletes a task from the task list and removes it from persistent storage.
- * 
+ *
+ * @async
  * @param {string} taskId - The unique identifier of the task to be deleted.
  * @param {HTMLElement} taskState - The container element (e.g., a list or section) where tasks are stored.
-*/
+ * @return {Promise<void>} Resolves when deletion is complete.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function deleteTask(taskId, taskState) {
   const taskElement = Array.from(taskState.children).find((taskElement) => taskElement.dataset.id === taskId);
   taskElement?.remove();
@@ -214,9 +250,12 @@ async function deleteTask(taskId, taskState) {
 
 /**
  * Loads and renders contacts, optionally creating a new contact.
- * 
+ *
+ * @async
  * @param {boolean} isCreateContact - True if creating a new contact, false if rendering existing contacts.
-*/
+ * @return {Promise<void>} Resolves once contacts are rendered.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function renderContacts(isCreateContact) {
   const loadedContacts = await loadFromBackend('contacts');
 
@@ -235,10 +274,11 @@ async function renderContacts(isCreateContact) {
 
 /**
  * Extracts the first letter of each word.
- * 
+ *
  * @param {string} word - The word from which to extract the first letter.
- * @returns {string} A string containing the first letter of each word.
-*/
+ * @return {string} A string containing the first letter of each word.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function extractTheFirstLetter(word) {
   let shortcut = '';
   for (let index = 0; index < word.length; index++) {
@@ -251,7 +291,8 @@ function extractTheFirstLetter(word) {
  * Capitalizes the first letter of the given string.
  *
  * @param {string} str - The input string.
- * @returns {string} The input string with the first letter capitalized.
+ * @return {string} The input string with the first letter capitalized.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function firstLetterOfWordBig(str) {
   return str[0].toUpperCase() + str.substr(1);
@@ -263,9 +304,11 @@ function firstLetterOfWordBig(str) {
  *
  * @param {string} content - The content or context for the add contact menu.
  * @param {number|null} numberOfContact - The index of the contact to edit, or null to add a new contact.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function addContact(content, numberOfContact) {
-  let { contentButton0, contentButton1 } = showTheRightButtonText(content);
+  const { contentButton0, contentButton1 } = showTheRightButtonText(content);
   const elements = [content, contentButton0, contentButton1, numberOfContact];
 
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
@@ -286,6 +329,8 @@ function addContact(content, numberOfContact) {
  * If the contact does not have a profile picture, their initials are shown instead.
  *
  * @param {number} numberOfContact - The index of the contact in the `contacts` array.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function createContact(numberOfContact) {
   const nameParts = contacts[numberOfContact].name.split(' ');
@@ -300,10 +345,11 @@ function createContact(numberOfContact) {
 
 /**
  * Returns the appropriate button text based on the provided content type.
- * 
+ *
  * @param {string} content - The type of content ('Edit' or other).
- * @returns {Object} An object containing the button texts for Cancel and the second button.
-*/
+ * @return {Object} An object containing the button texts for Cancel and the second button.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function showTheRightButtonText(content) {
   let contentButton0,
     contentButton1 = '';
@@ -320,10 +366,13 @@ function showTheRightButtonText(content) {
 
 /**
  * Deletes a user from the contact list and removes the data from persistent storage.
- * 
+ *
+ * @async
  * @param {number} numberOfContact - The index of the contact to be deleted.
  * @param {string} contactId - The unique ID of the contact to be deleted.
-*/
+ * @return {Promise<void>} Resolves when deletion is complete.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function deleteUser(numberOfContact, contactId) {
   document.getElementById('big-content').style = '';
   contacts.splice(numberOfContact, 1);
@@ -338,6 +387,8 @@ async function deleteUser(numberOfContact, contactId) {
  * Empties the inner HTML content of a specified element.
  *
  * @param {string} content - The ID of the element to be emptied.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function emptyContent(content) {
   document.getElementById(content).innerHTML = '';
@@ -345,10 +396,11 @@ function emptyContent(content) {
 
 /**
  * Checks the job title, formats it, and adds a class based on the job.
- * 
+ *
  * @param {number} numberOfContact - The index of the contact whose job title is being processed.
- * @returns {string} The formatted job title.
-*/
+ * @return {string} The formatted job title.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function checkJobAndColor(numberOfContact) {
   const job = contacts[numberOfContact]?.role.toLowerCase().split(' ');
   let jobTitle = '';
@@ -362,11 +414,14 @@ function checkJobAndColor(numberOfContact) {
 }
 
 /**
- * This is a function for the post data at backend.
- * @param {object} userData - A Object with email and password from user.
- * @param {string} path - path to right data.
+ * Posts data to the backend at a given path.
  *
-*/
+ * @async
+ * @param {Object} userData - An object with data to post (e.g., email and password).
+ * @param {string} path - Path to the backend resource (without .json).
+ * @return {Promise<Object|undefined>} The backend response parsed as JSON, or undefined on error.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function postDataAtBackend(userData, path) {
   try {
     const res = await fetch(`${BACKEND_URL}/${path}.json`, {
@@ -385,9 +440,11 @@ async function postDataAtBackend(userData, path) {
 /**
  * Deletes data from the backend at a specified path and ID.
  *
+ * @async
  * @param {string} id - The ID of the data to be deleted.
  * @param {string} path - The path where the data is stored.
- * @returns {Promise<void>} A promise that resolves when the data is deleted.
+ * @return {Promise<void>} A promise that resolves when the data is deleted.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function deleteData(id, path) {
   await fetch(`${BACKEND_URL}/${path}/${id}.json`, {
@@ -398,10 +455,13 @@ async function deleteData(id, path) {
 /**
  * Updates data at the backend with new data at a specified path and ID.
  *
+ * @async
  * @param {string} id - The ID of the data to be updated.
  * @param {string} path - The path where the data is stored.
  * @param {Object} newData - The new data to be updated.
- * @returns {Promise<void>} A promise that resolves when the data is updated.
+ * @return {Promise<void>} A promise that resolves when the data is updated.
+ * @author mohamad-dev12
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function updateDataAtBackend(id, path, newData) {
   await fetch(`${BACKEND_URL}/${path}/${id}.json`, {
@@ -413,7 +473,11 @@ async function updateDataAtBackend(id, path, newData) {
 
 /**
  * Displays a loading animation and hides it after 3 seconds.
-*/
+ *
+ * @return {void}
+ * @author mohamad-dev12
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 function showLoadAnimation() {
   const loadAnimation = document.getElementById('load-animation');
   loadAnimation.classList.add('load-animation-move');
@@ -424,6 +488,11 @@ function showLoadAnimation() {
 
 /**
  * Sets the current user to 'Guest' and redirects to the summary page.
+ *
+ * @param {Event} event - The submit or click event that triggers guest login.
+ * @return {void}
+ * @author mohamad-dev12
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function guestLogin(event) {
   event.preventDefault();
@@ -434,10 +503,13 @@ function guestLogin(event) {
 
 /**
  * Toggles the visibility of an error message on the signup form.
- * 
+ *
  * @param {string} errorMessage - The error message to display.
  * @param {string} method - The method to apply ('add' or 'remove') to show or hide the error message.
  * @param {Function} callback - A callback function to be executed after toggling the error message.
+ * @return {void}
+ * @author mohamad-dev12
+ * @author Marco Lenschau <contact@marcolenschau.de> 
  */
 function toggleSignupError(errorMessage, method, callback = () => {}) {
   toggleLoadingSpinner('remove');
@@ -455,6 +527,8 @@ function toggleSignupError(errorMessage, method, callback = () => {}) {
  * Toggles the visibility of a loading spinner element.
  *
  * @param {string} method - The method to be used on the classList ('add', 'remove', or 'toggle').
+ * @return {void}
+ * @author mohamad-dev12 
  */
 function toggleLoadingSpinner(method) {
   const loadingSpinner = document.querySelector('.auth-loading-spinner');
@@ -463,9 +537,11 @@ function toggleLoadingSpinner(method) {
 
 /**
  * Updates a task and syncs it with the backend.
- * 
+ *
+ * @async
  * @param {string} taskId - The ID of the task to update.
- * @returns {Promise<void>} A promise that resolves when the task is updated.
+ * @return {Promise<void>} A promise that resolves when the task is updated.
+ * @author mohamad-dev12 
  */
 async function updateTask(taskId) {
   const newTask = tasks.find((task) => task.id === taskId);
@@ -475,9 +551,12 @@ async function updateTask(taskId) {
 
 /**
  * Updates the state of a task and syncs it with the backend.
- * 
+ *
+ * @async
  * @param {string} taskId - The ID of the task to update.
  * @param {string} newState - The new state to set for the task.
+ * @return {Promise<void>} Resolves once task state is updated.
+ * @author mohamad-dev12
  */
 async function updateTaskState(taskId, newState) {
   const task = tasks.find((task) => task.id === taskId);
@@ -487,9 +566,12 @@ async function updateTaskState(taskId, newState) {
 
 /**
  * Loads data from the backend.
- * 
+ *
+ * @async
  * @param {string} path - The path to fetch data from.
-*/
+ * @return {Promise<*>} Parsed JSON response from the backend for the given path.
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
 async function loadFromBackend(path) {
   const response = await fetch(`${BACKEND_URL}/${path}.json`);
   const responeData = await response.json();
@@ -499,8 +581,10 @@ async function loadFromBackend(path) {
 /**
  * Loads and displays image files that are saved with a specific task.
  *
+ * @async
  * @param {number} id - The ID of the task whose files should be loaded.
- * @returns {boolean|void} Returns false if the task has no files.
+ * @return {Promise<boolean|void>} Returns false if the task has no files.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function loadFiles(id) {
   const filesContainer = document.getElementById('files-container');
@@ -519,9 +603,11 @@ async function loadFiles(id) {
  *
  * @param {HTMLElement|null} filesContainer - The container where images should be appended. If null, `imageContainer` will be used instead.
  * @param {HTMLElement} imageContainer - Fallback container for images if `filesContainer` is null.
- * @param {Object[]} tasks - An array of task objects containing files.
- *
+ * @param {Object[]} tasks - An object or array of task objects containing files.
+ * @param {number|string} id - The id/key of the task in `tasks`.
+ * @return {void}
  * @throws {ReferenceError} If `id` is not defined in the current scope.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function loadAllFiles(filesContainer, imageContainer, tasks, id) {
   if (tasks[id].files) {
@@ -540,6 +626,8 @@ function loadAllFiles(filesContainer, imageContainer, tasks, id) {
  * @param {HTMLElement|null} filesContainer - The container for file previews; if null, imageContainer is used.
  * @param {HTMLElement} imageContainer - Fallback container if filesContainer is null.
  * @param {{ filename: string, base64: string }} file - The file object containing the image data and filename.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function createFilesImage(filesContainer, imageContainer, file) {
   const wrapper = document.createElement("div");
@@ -556,6 +644,8 @@ function createFilesImage(filesContainer, imageContainer, file) {
  * @param {HTMLImageElement} img - The image element to be displayed.
  * @param {HTMLSpanElement} span - The span containing the filename.
  * @param {HTMLDivElement} wrapper - The wrapper element that holds the image and span.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function styleWrapper(img, span, wrapper) {
   wrapper.classList.add("d_flex_column");
@@ -570,6 +660,8 @@ function styleWrapper(img, span, wrapper) {
  * @param {HTMLSpanElement} span - The span element for displaying the filename.
  * @param {{ filename: string, base64: string }} file - The file object.
  * @param {HTMLElement|null} filesContainer - Determines which container context to use for click behavior.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function styleImage(img, span, file, filesContainer) {
   span.textContent = file.filename;
@@ -587,6 +679,8 @@ function styleImage(img, span, file, filesContainer) {
  * Displays a larger view of the image based on the container context.
  *
  * @param {HTMLElement|null} filesContainer - Determines whether to show image from image-container or files-container.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function showBigPicture(filesContainer) {
   filesContainer == null ? bigPicture("image-container") : bigPicture("files-container");
@@ -595,6 +689,9 @@ function showBigPicture(filesContainer) {
 /**
  * Displays an error message by removing the "hidden-error-message" class from the element
  * with the "error" class, then hides it again after 5 seconds by re-adding the class.
+ *
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function showErrorMessage() {
   document.querySelectorAll(".error").forEach(errorMessage => {
@@ -609,6 +706,8 @@ function showErrorMessage() {
  * Prevents an event from bubbling up the DOM tree.
  *
  * @param {Event} e - The event to stop.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function stopPropagation(e) {
   e.stopPropagation();
@@ -619,9 +718,12 @@ function stopPropagation(e) {
  * Prevents default browser behavior for dragover and drop events on the window.
  * Handles file drops on the element with ID "dropzone".
  * For each dropped file:
- * Checks if the file format is valid using `checkFormatOfFile`.
- * If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
- * If invalid, displays an error message using `showErrorMessage`.
+ * - Checks if the file format is valid using `checkFormatOfFile`.
+ * - If valid and the file is new (checked by `checkIfFileNew`), calls `imageCreate` with the file.
+ * - If invalid, displays an error message using `showErrorMessage`.
+ *
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function defineDropFunction() {
   if (!defineDropZone) {
@@ -637,7 +739,8 @@ function defineDropFunction() {
  * Open and populate the "edit user" modal for the currently logged-in user.
  *
  * @async
- * @returns {Promise<void>} Resolves once the user data is loaded and the DOM is updated.
+ * @return {Promise<void>} Resolves once the user data is loaded and the DOM is updated.
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function showEditUserTemplate() {
   const allUser = Object.values(await loadFromBackend('users'));
@@ -655,7 +758,8 @@ async function showEditUserTemplate() {
  *
  * @param {string} name - Full name or label; words are split on spaces and their
  *   first characters are used to form the monogram. Leading/trailing whitespace is ignored.
- * @returns {void} This function does not return a value.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function createImageFromFirstLetter(name) {
   const addContactDiv = document.querySelector(".add-contact-img-div");
@@ -667,7 +771,10 @@ function createImageFromFirstLetter(name) {
 
 /**
  * Closes the contact modal when the user clicks outside of the modal content.
- * 
+ *
+ * @param {Event} event - The event object from the click on the dialog.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function closeContactModal(event) {
   const modal = event.currentTarget;
