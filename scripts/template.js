@@ -58,12 +58,13 @@ function sidebarShow(loggedIn = true) {
   return `<a href="${loggedIn ? '../pages/summary.html' : '../index.html'}" class="logo-link">
             <img class="logo" src="../assets/img/logo-white.png" alt="logo"/>
           </a>
-          <div class="navigation ${loggedIn ? 'grid-navigation ' : 'width-unset p-2'}">
+          <div class="navigation ${loggedIn ? 'grid-navigation ' : ''}">
             ${createOptionForMenu('summary', '../pages/summary.html', '../assets/icon/summary.png', 'Summary', loggedIn)}
             ${createOptionForMenu('task', '../pages/add_task.html', '../assets/icon/addTask.png', 'Add Task', loggedIn)}
             ${createOptionForMenu('board', '../pages/board.html', '../assets/icon/board.png', 'Board', loggedIn)}
             ${createOptionForMenu('contacts', '../pages/contacts.html', '../assets/icon/contacts.png', 'Contacts', loggedIn)}
             ${createOptionForMenu('login', '../index.html', '../assets/img/login.svg', 'Log In', loggedIn, true)}
+            ${createOptionForMenu('signup', '../pages/sign_up.html', '../assets/img/login.svg', 'Sign up', loggedIn, true)}
           </div>
           <div class="privacy-container">
             ${createJuridicalLink('privacy-policy', 'privacy_policy.html', 'Privacy Policy', loggedIn)}
@@ -84,7 +85,7 @@ function sidebarShow(loggedIn = true) {
  */
 function createOptionForMenu(id, url, imgPath, text, loggedIn, reverse = false) {
   if (reverse) { loggedIn = !loggedIn };
-  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 ${loggedIn ? 'mobile-height' : 'd_none'}">     
+  return `<a id="${id}" href="${url}" class="d_flex_c d_flex_c_c g_12 h-50 w-100 sidebar-links ${loggedIn ? 'mobile-height' : 'd_none'}">     
             <img src="${imgPath}" alt="${id} icon"/>    
             <span class="sidebar-link">${text}</span>
           </a>`
