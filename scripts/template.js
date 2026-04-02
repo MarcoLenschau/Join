@@ -284,13 +284,12 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       ${isEditMode ? assignedTemplate : ''}
                     </ul> 
                 </div>
-                             <div class="d_flex g_12">
+                <div class="d_flex g_12">
                   <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
                     isEditMode ? 'd_none' : ''
                   }" formnovalidate> Clear X</button>
-                  <button onclick="${
-                    isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'
-                  }" class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''}  "> ${isEditMode ? 'Ok' : ' Create Task'}
+                  <button onclick="${isEditMode ? `updateTaskFields('${task.id}')` : ' createNewTask();'}" 
+                    class="primary-button clear-and-create-button ${isEditMode ? 'ok-button-edit-mode' : ''} "> ${isEditMode ? 'Ok' : ' Create Task'}
                       <img src="../assets/img/check.svg" alt="check" />
                   </button>
                 </div>
