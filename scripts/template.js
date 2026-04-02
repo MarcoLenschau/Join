@@ -488,9 +488,9 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
           <img src="${userPicture !== undefined ? userPicture : "../assets/icon/person-light.png"}" class="${ content === "Edit" ? 'profile-picture-span' : 'person-icon person-icon-without-picture'} ${userPicture === undefined ? "hidden" : "" }">
           <input type="file" id="${ content === "Edit" ? editpicker : imagepicker }" style="display: none" accept="image/*" onclick="${onclickHandler}">
           <span class="error hidden-error-message">Only image allowed</span>
-        </div>
-        <div class="camera-container" onclick="${ content === "Edit" ? editpicker : imagepicker }.click();">
-          <img src="../assets/img/camera.svg">
+          <div class="camera-container" onclick="${ content === "Edit" ? editpicker : imagepicker }.click();">
+            <img src="../assets/img/camera.svg">
+          </div>
         </div>
       </section>
       <div id="inputsfields_div" class="d_flex_column g_12">
