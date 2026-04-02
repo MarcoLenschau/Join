@@ -9,7 +9,8 @@
  * @returns {string} The HTML string representing the user account template.
  */
 function getUserTemplate(currentUser, userId) {
-  return ` <div>
+  return `
+  <div>
     <div class="overlay_mobile_top_part">
       <img src="../assets/img/logo-white.png" class="logo">
       <div>
@@ -23,7 +24,7 @@ function getUserTemplate(currentUser, userId) {
           <img src="${currentUser === undefined ? '../assets/img/person.svg' : currentUser.img != undefined ? currentUser?.img : ''}" id="profile-picture" class="${ currentUser == undefined ? 'default-picture': 'picture-from-user-edit'} ${currentUser !== undefined && currentUser.img === undefined ? 'd_none' : '' }">
         </div>
       </section>
-      <div id="inputsfields_div" class="d_flex_column d_flex_s_b h-70">
+      <div id="inputsfields_div">
         <section class="d_flex_column g-12">
           <div class="d_flex_c_c" onclick="stopPropagation(event)">
             <input id="name" type="text" placeholder="Name" value="${currentUser != undefined ? currentUser?.name : 'Gast'}" class="default-border input-field_contacts" required>
@@ -39,9 +40,9 @@ function getUserTemplate(currentUser, userId) {
           </div>
           <a class="overlay_cancel button_mobile">X</a>
         </section>
-        <div class="contact-overlay-buttons contact-overlay-buttons-profile g-4" onclick="stopPropagation(event)">
-            <button class="primary-button clear-and-create-button">Edit</button>
-            <button type="button" class="clear-button clear-and-create-button delete-button" onclick="deleteUserFromBackend('${userId}')">Delete my account</button><img>
+        <div class="contact-overlay-buttons" onclick="stopPropagation(event)">
+          <button type="button" class="clear-button clear-and-create-button delete-button" onclick="deleteUserFromBackend('${userId}')">Delete my account</button><img>
+          <button class="primary-button clear-and-create-button">Edit</button>
         </div>
       </div>
     </form>

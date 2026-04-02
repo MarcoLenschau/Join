@@ -181,13 +181,12 @@
 
       .contact-overlay-buttons {
         display: flex;
-        column-gap: 24px;
+        gap: 12px;
 
         button {
           display: flex;
           justify-content: center;
           align-items: center;
-          column-gap: 12px;
 
           img {
             width: 15px;
@@ -241,13 +240,6 @@
       width: 22px;
       height: 22px;
     }
-  }
-}
-
-@media (min-width: 991px) AND (max-width: 1300px) {
-  .contact-overlay-buttons {
-    column-gap: 18px !important;
-    align-items: center;
   }
 }
 
