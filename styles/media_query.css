@@ -175,14 +175,13 @@
 
     .form-ctn {
       background-color: var(--color-white);
-      min-width: 550px;
+      min-width: 650px;
       width: 65%;
       height: 600px;
 
       .contact-overlay-buttons {
         display: flex;
         column-gap: 24px;
-        align-items: center;
 
         button {
           display: flex;
@@ -212,10 +211,6 @@
     width: 88px;
     background-color: var(--color-light-blue);
     height: 3px;
-  }
-
-  #inputsfields_div {
-    margin-top: 20px;
   }
 
   .title-of-contacts {
@@ -249,18 +244,14 @@
   }
 }
 
-@media (min-width: 961px) AND (max-width: 1300px) {
+@media (min-width: 991px) AND (max-width: 1300px) {
   .contact-overlay-buttons {
     column-gap: 18px !important;
     align-items: center;
   }
 }
 
-@media (min-width: 961px) {
-  #inputsfields_div {
-    justify-content: center;
-  }
-
+@media (min-width: 991px) {
   .desktopHidden {
     display: none !important;
   }
@@ -270,11 +261,15 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 990px) {
   .body {
     display: flex;
     align-items: center;
     flex-direction: column-reverse;
+  }
+
+  #inputsfields_div > div {
+    width: 300px;
   }
 
   .add-contact-div {
@@ -282,7 +277,9 @@
   }
 
   .add-contact-img-div {
-    top: 246px;
+    top: 64px;
+    left: 50%;
+    right: 50%;
   }
 
   .sidebar-padding {
@@ -337,12 +334,10 @@
       background-color: var(--color-white);
       display: flex;
       flex-direction: column;
-      justify-content: start;
+      justify-content: center;
       align-items: center;
-      column-gap: 48px;
+      gap: 48px;
       width: 100%;
-      height: 60vh;
-      padding-top: 30px;
       border-bottom-right-radius: 6%;
       border-bottom-left-radius: 6%;
     }
@@ -403,10 +398,6 @@
     width: 364px;
     height: 153px;
     margin-top: 0 !important;
-  }
-
-  #cancel_button {
-    display: none;
   }
 
   .more-button {
@@ -892,11 +883,6 @@
     width: 100%;
   }
 
-  .clear-and-create-button {
-    width: 150px;
-    margin-top: 0;
-  }
-
   .board-add-task-button {
     font-size: 17px;
     padding: 10px;
@@ -974,6 +960,15 @@
 
   .mobile-height {
     gap: 0.2rem;
+  }
+
+  .add-contact-overlay {
+    & .form-ctn {
+        .contact-overlay-buttons {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+    }
   }
 
   .sidebar {

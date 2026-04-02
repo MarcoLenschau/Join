@@ -151,6 +151,7 @@ button {
   display: flex;
   align-items: center;
   column-gap: 12px;
+  margin-top: 36px;
   font-size: 21px;
   padding: 12px;
   border-radius: 10px;
@@ -184,7 +185,6 @@ button {
   font-weight: bold;
   font-size: 18px;
   padding: 12px;
-  margin-top: 3vh;
 }
 
 .clear-button {
