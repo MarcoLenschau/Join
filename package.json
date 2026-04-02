@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "viewerjs": "^1.11.7"
   },
@@ -8,6 +9,7 @@
     "eslint-plugin-jsdoc": "^62.9.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint"
   }
 }
