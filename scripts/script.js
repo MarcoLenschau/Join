@@ -745,8 +745,7 @@ function defineDropFunction() {
 async function showEditUserTemplate() {
   const allUser = Object.values(await loadFromBackend('users'));
   const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser'));
-  const numberOfContact = allUser.findIndex((user) => user.email === sessionStorage.getItem('currentUser'));
-  const userId = await getFirebaseUserIdByEmail(currentUser.email);
+  const userId = await getFirebaseUserIdByEmail(currentUser?.email);
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
   document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser, userId);
   currentUser !== undefined && currentUser.img === undefined ? createImageFromFirstLetter(currentUser.name) : "";

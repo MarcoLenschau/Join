@@ -175,10 +175,7 @@
 
     .form-ctn {
       background-color: var(--color-white);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      column-gap: 100px;
+      min-width: 550px;
       width: 65%;
       height: 600px;
 
@@ -252,22 +249,14 @@
   }
 }
 
-@media (min-width: 901px) AND (max-width: 1300px) {
-    .add-contact-overlay {
-      & .form-ctn {
-          input {
-            width: 70%;
-          }
-      }
-    }
-    .contact-overlay-buttons {
-      column-gap: 18px !important;
-      align-items: center;
-    }
+@media (min-width: 961px) AND (max-width: 1300px) {
+  .contact-overlay-buttons {
+    column-gap: 18px !important;
+    align-items: center;
+  }
 }
 
-@media (min-width: 901px) {
-
+@media (min-width: 961px) {
   #inputsfields_div {
     justify-content: center;
   }
@@ -275,9 +264,13 @@
   .desktopHidden {
     display: none !important;
   }
+
+  .picture-section {
+    height: 45%;
+  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .body {
     display: flex;
     align-items: center;
@@ -395,15 +388,11 @@
     box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
     height: 120px;
     width: 120px;
-
-    position: absolute;
-    top: 275px;
-    left: 48%;
+    position: relative;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
   }
 
   .hide-contact-menu {
@@ -526,17 +515,15 @@
   }
 
   .camera-container {
-    padding: 32px;
     position: absolute;
-    margin: -36px 4px;
+    bottom: -22px;
+    right: 34px;
   }
-
-  .picture-section {
-    margin-bottom: 48px;
-  }
-
 
 @media (min-width: 901px) {
+  .overlay_mobile_top_part {
+    min-width: 300px;
+  }
   .sidebar {
     position: relative !important;
     bottom: auto !important;

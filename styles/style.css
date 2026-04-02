@@ -667,7 +667,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap: 48px;
     width: 65%;
     height: 500px;
 
