@@ -1,6 +1,7 @@
 /**
  * Returns the first letter of a given string.
- *
+ * 
+ * @unitTest
  * @param {string} string - The input string.
  * @returns {string|undefined} The first letter of the string, or undefined if the string is empty or not provided.
  */
@@ -11,6 +12,7 @@ function firstLetter(string) {
 /**
  * Returns the first letter of a given string, converted to uppercase.
  *
+ * @unitTest
  * @param {string} str - The input string.
  * @returns {string|undefined} The first uppercase letter of the string, or undefined if the string is empty or not provided.
  */
@@ -19,18 +21,9 @@ function firstLetterBig(str) {
 }
 
 /**
- * Converts a role string to lowercase and removes all spaces.
- *
- * @param {string} role - The role string to be transformed.
- * @returns {string} The transformed role string.
- */
-function getRoleString(role) {
-  return role.toLowerCase().split(' ').join('');
-}
-
-/**
  * Creates a string representation of the assigned elements, showing the first four elements concatenated and the count of remaining elements.
- *
+ * 
+ * @unitTest
  * @param {Array} assignedElements - The array of assigned elements.
  * @returns {string} The string representation of the first four elements followed by the count of remaining elements.
  */
@@ -65,6 +58,7 @@ function checkFormatOfFile(file) {
 /**
  * Extracts the file extension from a filename string.
  *
+ * @unitTest
  * @param {string} file - The filename as a string.
  * @returns {string} The file extension (text after the last dot).
  */
@@ -117,6 +111,7 @@ function imageLoad({maxWidth, maxHeight, quality, resolve, event}){
 /**
  * Adjusts the width and height of an image while maintaining aspect ratio.
  *
+ * @unitTest
  * @param {number} maxWidth - The maximum allowed width.
  * @param {number} maxHeight - The maximum allowed height.
  * @param {number} width - Original width of the image.
@@ -159,4 +154,4 @@ function compressImageCreate({ maxWidth, maxHeight, quality, img}, resolve) {
   resolve(compressedBase64);
 }
 
-module.exports = { checkSize, extractFileExtension };
+module.exports = { checkSize, extractFileExtension, firstLetter, firstLetterBig, getAssignedToString };

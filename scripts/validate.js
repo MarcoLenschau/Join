@@ -54,8 +54,10 @@ function errorValidate(method, element) {
 /**
  * Validates if the email is in a proper format.
  *
+ * @unitTest
  * @param {string} email - The email string to validate.
  * @returns {boolean} True if valid email format, otherwise false.
+ * 
  */
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -64,6 +66,7 @@ function isValidEmail(email) {
 /**
  * Validates if the password meets the minimum length requirement.
  *
+ * @unitTest
  * @param {string} password - The password string to validate.
  * @returns {boolean} True if the password length is greater than 5.
  */
@@ -85,6 +88,7 @@ function isValidPasswordConfirm(password) {
 /**
  * Validates if the user input meets the minimum length requirement.
  *
+ * @unitTest
  * @param {string} user - The username to validate.
  * @returns {boolean} True if the username length is greater than 1.
  */
