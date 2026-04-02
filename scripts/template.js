@@ -682,8 +682,8 @@ function assignedToWithPicture(name, img, previewTask) {
  * @param {boolean} previewTask - If true, wraps the output in a <li> and includes the full name.
  * @returns {string} The generated HTML string for the assigned user.
  */
-function assignedToWithoutPicture(name, role, previewTask) {
-  const elements = `<span class="${getRoleString(role)}">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
+function assignedToWithoutPicture(name, previewTask) {
+  const elements = `<span class="tester">${getInitialsName(name)}</span> ${previewTask ? `<span>${name}</span>` : ''}`;
   return previewTask ? `<li>${elements}</li>` : elements;
 }
 
