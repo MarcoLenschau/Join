@@ -158,3 +158,5 @@ function compressImageCreate({ maxWidth, maxHeight, quality, img}, resolve) {
   const compressedBase64 = canvas.toDataURL('image/svg', quality);
   resolve(compressedBase64);
 }
+
+module.exports = { checkSize, extractFileExtension };

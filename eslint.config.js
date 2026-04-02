@@ -3,7 +3,7 @@ import jsdoc from "eslint-plugin-jsdoc";
 export default [
   {
     files: ["**/*.js"],
-    ignores: ["**/template.js"],
+    ignores: ["**/template.js", "**/tests/**"],
     rules: {
       "max-lines-per-function": ["warn", { max: 14, skipBlankLines: true, skipComments: true }],
       "max-lines": ["warn", { max: 650 }],
