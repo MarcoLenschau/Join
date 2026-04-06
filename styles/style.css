@@ -47,7 +47,6 @@
     display: flex;
     align-items: center;
     column-gap: 1.2rem;
-    width: 100px;
     white-space: nowrap;
     font-size: 20px;
     font-weight: bold;
@@ -514,7 +513,11 @@ a {
 }
 
 .contact-initials {
-  margin-bottom: 27px;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  display: flex;
+  align-items: center;
   font-size: 48px;
 }
 
@@ -635,7 +638,6 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
-
 .add-contact-overlay {
   position: absolute;
   top: 50%;
@@ -674,6 +676,8 @@ a {
       display: flex;
       flex-direction: row-reverse;
       align-items: flex-end;
+      gap: 38px;
+      margin-top: 18px;
 
       button {
         display: flex;
@@ -688,6 +692,7 @@ a {
     }
 
     input {
+      width: 100%;
       & img {
         width: 16px;
       }
@@ -844,9 +849,6 @@ a {
 .profile-picture-span {
   height: 120px;
   width: 130px;
-  border-radius: 50%;
-  margin-top: 36px;
-  margin-bottom: -24px;
 }
 
 .person-icon {
@@ -870,4 +872,9 @@ a {
 
 .sidebar-links:hover:not(.active) {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+#board {
+  width: 105%;
+  margin-right: 18px;
 }

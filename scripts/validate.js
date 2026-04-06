@@ -96,4 +96,4 @@ function isValidUser(user) {
   return user.length > 1;
 }
 
-module.exports = { isValidUser, isValidEmail, isValidPassword, isValidPasswordConfirm };
+// module.exports = { isValidUser, isValidEmail, isValidPassword, isValidPasswordConfirm };

@@ -48,6 +48,10 @@ button {
   border: none;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .app-main {
   width: calc(100% - 230px);
   height: 100vh;
@@ -151,7 +155,6 @@ button {
   display: flex;
   align-items: center;
   column-gap: 12px;
-  margin-top: 36px;
   font-size: 21px;
   padding: 12px;
   border-radius: 10px;

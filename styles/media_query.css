@@ -18,8 +18,9 @@
 
 @media (min-width: 901px) {
   .profile-picture-span {
-    height: 210px;
-    width: 210px;
+    height: 118px;
+    width: 68px;
+    border-radius: unset;
     position: absolute;
   }
 }
@@ -127,6 +128,12 @@
   }
 }
 
+@media (max-width: 1300px) AND (min-width: 600px) {
+  .form-ctn {
+    min-height: 400px;  
+  };
+}
+
 @media (max-width: 1300px) {
   .back-button-contacts {
     display: flex !important;
@@ -177,11 +184,14 @@
       background-color: var(--color-white);
       min-width: 650px;
       width: 65%;
-      height: 600px;
-
+      height: 38dvh;      
+      height: 38vh;
+    
       .contact-overlay-buttons {
         display: flex;
-        gap: 12px;
+        align-items: center;
+        gap: 8px !important;
+        margin-top: 18px;
 
         button {
           display: flex;
@@ -195,6 +205,7 @@
       }
 
       input {
+        width: 100%;
         & + img {
           width: 16px;
         }
@@ -268,6 +279,11 @@
     bottom: 15% !important;
   }
 
+  .contact-overlay-buttons {
+      flex-direction: column-reverse !important;
+      gap: 0px !important;
+  }
+
   .add-contact-img-div {
     top: 64px;
     left: 50%;
@@ -297,22 +313,20 @@
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 396px;
-    height: 98vh;
     background: #2a3647;
-
     padding-left: 0;
 
     & > div {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       flex-direction: column;
       position: relative;
+      height: 100%;
     }
 
     .overlay_mobile_top_part {
-      height: 300px;
+      height: 330px;
       display: flex;
       align-items: center;
       padding: 12px 20px;
@@ -332,6 +346,9 @@
       width: 100%;
       border-bottom-right-radius: 6%;
       border-bottom-left-radius: 6%;
+      height: 59dvh;            
+      height: 59vh;
+            
     }
       input {
         width: 100%;
@@ -503,7 +520,7 @@
     right: 34px;
   }
 
-@media (min-width: 901px) {
+@media (min-width: 991px) {
   .overlay_mobile_top_part {
     min-width: 300px;
   }
@@ -580,6 +597,13 @@
 @media (max-width: 600px) {
   .hiddenMax {
     display: none !important;
+  }
+}
+ 
+@media (max-width: 900px) {
+  .profile-picture-span {
+    height: 80px;
+    margin-top: 48px;
   }
 }
 
@@ -851,7 +875,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .board-head {
     align-items: start;
     height: 150px;
@@ -955,10 +979,14 @@
   }
 
   .add-contact-overlay {
+    height: 100%;
     & .form-ctn {
+        height: 100%;
         .contact-overlay-buttons {
             flex-direction: column-reverse;
             align-items: center;
+            gap: 12px !important;
+            margin-bottom: 12px;
         }
     }
   }
@@ -1052,5 +1080,9 @@
 
   .board-container{
     padding: 0 24px !important;
+  }
+
+  #inputsfields_div > div {
+    width: 280px;
   }
 }
