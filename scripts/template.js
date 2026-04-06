@@ -42,7 +42,7 @@ function getUserTemplate(currentUser, userId) {
         </section>
         <div class="contact-overlay-buttons" onclick="stopPropagation(event)">
           <button type="button" class="clear-button clear-and-create-button delete-button" onclick="deleteUserFromBackend('${userId}')">Delete my account</button><img>
-          <button class="primary-button clear-and-create-button">Edit</button>
+          <button class="primary-button clear-and-create-button" onclick="addContact('Edit', null, event)">Edit</button>
         </div>
       </div>
     </form>
@@ -285,7 +285,7 @@ function getAddTaskRightFormTemplate(isEditMode, date, subTasks, task) {
                       ${isEditMode ? assignedTemplate : ''}
                     </ul> 
                 </div>
-                <div class="d_flex g_12">
+                <div class="d_flex g_12 items-end">
                   <button onclick="resetTaskValues();" class="clear-button clear-and-create-button ${
                     isEditMode ? 'd_none' : ''
                   }" formnovalidate> Clear X</button>
@@ -363,20 +363,22 @@ function getContactsWithPicture(name, index, contact) {
  * @returns {string} The HTML string for the assigned contact.
  */
 function getMoreInfomationTemplate(numberOfContact) {
+  const contact = contacts[numberOfContact];
+  if (!contact) return '<div>Kontakt nicht gefunden</div>';
   return `<div class="d_flex_c_c g_12">
-                ${contacts[numberOfContact].img ?  getMoreInfoWithPicute(numberOfContact) : getMoreInfoWithBigLetter(numberOfContact)}
-                <div class="d_flex_column">
-                    <span class="bold" data-contact-name>${contacts[numberOfContact].name}</span>
-                    <div class="d_flex g_12">
-                        <div onclick="addContact('Edit', ${numberOfContact});" class="d_flex_c_c delete-and-edit">
-                            <img src="../assets/icon/edit.svg"></img>
-                            <span>Edit</span>
-                        </div>
-                        <div onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}');" class="d_flex_c_c delete-and-edit">
-                            <img src="../assets/icon/delete.svg"></img>
-                            <span>Delete</span>
-                        </div>
-                    </div>
+    ${contact.img ? getMoreInfoWithPicute(numberOfContact) : getMoreInfoWithBigLetter(numberOfContact)}
+    <div class="d_flex_column">
+      <span class="bold" data-contact-name>${contact.name}</span>
+      <div class="d_flex g_12">
+        <div onclick="addContact('Edit', ${numberOfContact});" class="d_flex_c_c delete-and-edit">
+          <img src="../assets/icon/edit.svg"></img>
+          <span>Edit</span>
+        </div>
+        <div onclick="deleteUser(${numberOfContact}, '${contact.id}');" class="d_flex_c_c delete-and-edit">
+          <img src="../assets/icon/delete.svg"></img>
+          <span>Delete</span>
+        </div>
+      </div>
                 </div>
               </div>
               <div>
@@ -470,7 +472,8 @@ function getSubTaskItemTemplate(description) {
 function getAddContactsTemplate(content, contentButton0, contentButton1, numberOfContact) {
   const imagepicker =  numberOfContact === null ? "imagepicker" : "imagepicker" + numberOfContact;
   const editpicker =  "editpicker" + numberOfContact;
-  const userPicture = numberOfContact != null ? contacts[numberOfContact].img : "../assets/icon/person-light.png";
+  const userPicture = (numberOfContact != null && contacts[numberOfContact] && contacts[numberOfContact].img) ? 
+    contacts[numberOfContact].img : "../assets/icon/person-light.png";
   const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact})` : `userImgDefine(${numberOfContact})`}`;
   return `
   <div>
@@ -511,8 +514,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
             <button type="button" onclick="deleteAndCancel('${content}', ${numberOfContact})"
                class="clear-button clear-and-create-button">${contentButton0}</button><img>
           </div>
-          <a onclick="deleteAndCancel('${content}', ${numberOfContact})"
-          class="overlay_cancel button_mobile">X</a>
+          <a onclick="deleteAndCancel('${content}', ${numberOfContact})" class="overlay_cancel button_mobile">X</a>
           <div>
             <button class="primary-button clear-and-create-button">${contentButton1}</button><img>
           </div>

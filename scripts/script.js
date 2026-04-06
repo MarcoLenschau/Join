@@ -54,14 +54,16 @@ async function getFirebaseUserIdByEmail(email) {
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function deleteUserFromBackend(userId) {
-  try {
-    await fetch(`${BACKEND_URL}/users/${userId}.json`, {
-      method: 'DELETE',
-    });
-    sessionStorage.clear();
-    localStorage.clear();
-    window.location.href = '/';
-  } catch (err) {}
+  if (userId !== null) {
+    try {
+      await fetch(`${BACKEND_URL}/users/${userId}.json`, {
+        method: 'DELETE',
+      });
+    } catch (err) {}
+  };
+  sessionStorage.clear();
+  localStorage.clear();
+  window.location.href = '/';
 }
 
 /**
@@ -307,20 +309,35 @@ function firstLetterOfWordBig(str) {
  * @return {void}
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
-function addContact(content, numberOfContact) {
+function addContact(content, numberOfContact, event = null) {
+  if (event !== null) event.preventDefault();
   const { contentButton0, contentButton1 } = showTheRightButtonText(content);
   const elements = [content, contentButton0, contentButton1, numberOfContact];
-
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
   document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(...elements);
-  
   if (numberOfContact != null) {
     document.getElementById('name').value = contacts[numberOfContact].name;
     document.getElementById('email').value = contacts[numberOfContact].email;
     document.getElementById('phone').value = contacts[numberOfContact].phone;
-    if (contacts[numberOfContact].img === undefined) {
-      createContact(numberOfContact);
-    }
+    if (contacts[numberOfContact].img === undefined) createContact(numberOfContact);
+  } else createDefaultContact(content); 
+}
+
+/**
+ * Sets default values for a contact form when the specified content is "Edit".
+ * Updates the profile picture, name, email, and phone fields with default values.
+ *
+ * @param {string} content - A string indicating the action to perform. 
+ *                           If the value is "Edit", the default contact values are set.
+ * @return {void}
+ * @author Marco Lenschau <contact@marcolenschau.de>
+ */
+function createDefaultContact(content) {
+  if (content === "Edit") {
+    document.querySelector(".profile-picture-span").src = "../assets/img/person.svg";
+    document.getElementById('name').value = "Gast";
+    document.getElementById('email').value = "gast@example.com";
+    document.getElementById('phone').value = "+49 123 4567890";
   }
 }
 

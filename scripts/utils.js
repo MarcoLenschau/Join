@@ -154,4 +154,4 @@ function compressImageCreate({ maxWidth, maxHeight, quality, img}, resolve) {
   resolve(compressedBase64);
 }
 
-module.exports = { checkSize, extractFileExtension, firstLetter, firstLetterBig, getAssignedToString };
+// module.exports = { checkSize, extractFileExtension, firstLetter, firstLetterBig, getAssignedToString };
