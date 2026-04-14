@@ -474,7 +474,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
   const editpicker =  "editpicker" + numberOfContact;
   const userPicture = (numberOfContact != null && contacts[numberOfContact] && contacts[numberOfContact].img) ? 
     contacts[numberOfContact].img : "../assets/icon/person-light.png";
-  const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact})` : `userImgDefine(${numberOfContact})`}`;
+  const onclickHandler = `${content === "Edit" ? `userImageEdit(${numberOfContact}, event)` : `userImgDefine(${numberOfContact})`}`;
   return `
   <div>
     <div class="overlay_mobile_top_part">
@@ -613,24 +613,28 @@ function getTaskPreviewTemplate(task) {
  */
 function getTaskTemplate(task, doneSubTasksLength) {
   return `
-    <li ondragstart="handleDragStart(event)"
-    draggable="true"
+    <li ondragstart="handleDragStart(event)" draggable="true"
     onclick="toggleAddTaskModal(event); loadTaskPreview('${task.id}'); loadFiles('${task.id}');" data-id="${task.id}">
      <div class="drag-and-drop-ctn"><span class="task-category bg-${task.category === 'User Story' ? 'dark-blue' : 'turquoise'}">${task.category}</span>
-       <div onclick="toggleStatePopup(event)" class="drag-icon-ctn"><img data-drag-icon src="../assets/icon/drag-and-drop.png" alt="drag and drop icon" /></div></div
+       <div onclick="toggleStatePopup(event)" class="drag-icon-ctn"><img data-drag-icon src="../assets/icon/drag-and-drop.png" alt="drag and drop icon" />
+       </div>
+    </div>
      <h3 class="task-title">${task.title}</h3>
      <p class="task-description">${task.description}</p>
      <span class="progressbar ${!task.subTasks ? 'd_none' : ''}">
        <progress value="${doneSubTasksLength}" max="${task.subTasks?.length}"></progress>
        <span class="subtasks-text">${doneSubTasksLength}/${task.subTasks?.length} Subtasks</span>
-     </span>
+     </span>  
+     <section class="d_flex">
+    
+    ${getAssignedTemplate(task.assignedTo)}
      <div class="task-assigned-container">
-       <div class="assigned-users">
-        ${getAssignedTemplate(task.assignedTo)}
-       </div>
-       <img src="../assets/icon/prio-${task.prio}-transparent.png" class="prio-img" alt="priority icon" />
-     </div>
-   </li>
+        <img src="../assets/icon/prio-${task.prio}-transparent.png" class="prio-img" alt="priority icon"/>
+     </div>    
+    </section>
+
+    
+    </li>
   `;
 }
 
@@ -646,20 +650,25 @@ function getTaskTemplate(task, doneSubTasksLength) {
  * @returns {string} HTML string representing the assigned users, or a summarized string if not in preview mode and more than four users are assigned.
  */
 function getAssignedTemplate(assignedTo, previewTask) {
-  let assignedElements;  
+  let assignedElements;
   const assignedToUsers = contacts.filter(contact =>
     assignedTo.some(user => user.name === contact.name)
   );
-  
+
   assignedElements = assignedToUsers?.map(({ name, role, img }) => {
     return img ? assignedToWithPicture(name, img, previewTask) : assignedToWithoutPicture(name, role, previewTask);
   });
-  
+
   if (!previewTask && assignedElements.length > 4) {
     return getAssignedToString(assignedElements);
   }
+
   const assignedTemplates = assignedElements?.join(' ');
   assignedTemplate = assignedTemplates;
+
+  if (!previewTask) {
+    return `<ul class="assigned-list">${assignedTemplates}</ul>`;
+  }
   return assignedTemplates;
 }
 
@@ -673,7 +682,7 @@ function getAssignedTemplate(assignedTo, previewTask) {
  */
 function assignedToWithPicture(name, img, previewTask) {
   const elements = `<img src="${img}" class="assigned-to-picture"> ${previewTask ? `<span>${name}</span>` : ''}`;
-  return previewTask ? `<li>${elements}</li>` : elements;
+  return previewTask ? `<div>${elements}</div>` : elements;
 }
 
 /**

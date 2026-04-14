@@ -106,9 +106,7 @@ function showTasks(filteredTasks) {
     const doneSubTasksLength = task.subTasks?.filter(
       (subTask) => subTask.done,
     )?.length;
-
-    if (listElement)
-      listElement.innerHTML += getTaskTemplate(task, doneSubTasksLength);
+    if (listElement) listElement.innerHTML += getTaskTemplate(task, doneSubTasksLength);
   });
 }
 
