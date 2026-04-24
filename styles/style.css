@@ -878,3 +878,7 @@ a {
   width: 105%;
   margin-right: 18px;
 }
+
+dialog {
+  z-index: 1200 !important;
+}
