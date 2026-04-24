@@ -199,7 +199,7 @@ async function addElementToBoardList(event) {
  */
 function toggleEmptyMessage() {
   const boardContent = document.querySelector('.board-content');
-  const listElements = boardContent?.querySelectorAll('ul');
+  const listElements = boardContent?.querySelectorAll('ul[data-draggable-area="true"]');
   if (listElements) {
     listElements.forEach((element) => {
       const emptyMessageElement = element.querySelector('.empty-message');
