@@ -626,7 +626,6 @@ function getTaskTemplate(task, doneSubTasksLength) {
        <span class="subtasks-text">${doneSubTasksLength}/${task.subTasks?.length} Subtasks</span>
      </span>  
      <section class="d_flex">
-    
     ${getAssignedTemplate(task.assignedTo)}
      <div class="task-assigned-container">
         <img src="../assets/icon/prio-${task.prio}-transparent.png" class="prio-img" alt="priority icon"/>
