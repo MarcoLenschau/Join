@@ -54,16 +54,26 @@ async function getFirebaseUserIdByEmail(email) {
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
 async function deleteUserFromBackend(userId) {
-  if (userId !== null) {
-    try {
-      await fetch(`${BACKEND_URL}/users/${userId}.json`, {
-        method: 'DELETE',
-      });
-    } catch (err) {}
-  };
+  if (userId === 'null' && localStorage.getItem('currentUser') === 'Guest') {
+    window.location.href = '/';
+    return;
+  }
+  await tryDeleteUser(userId);
   sessionStorage.clear();
   localStorage.clear();
   window.location.href = '/';
+}
+
+/**
+ * Sends a DELETE request to remove a user from the backend.
+ *
+ * @param {string|null} userId - The Firebase user ID to delete. Does nothing if null.
+ */
+async function tryDeleteUser(userId) {
+  if (userId === null) return;
+  try {
+    await fetch(`${BACKEND_URL}/users/${userId}.json`, { method: 'DELETE' });
+  } catch (err) {}
 }
 
 /**
@@ -311,16 +321,27 @@ function firstLetterOfWordBig(str) {
  */
 function addContact(content, numberOfContact, event = null) {
   if (event !== null) event.preventDefault();
+  if (content === 'Edit' && localStorage.getItem('currentUser') === 'Guest') {
+    document.getElementById('add-contact-menu-dialog').classList.remove('show-modal');
+    return;
+  }
   const { contentButton0, contentButton1 } = showTheRightButtonText(content);
   const elements = [content, contentButton0, contentButton1, numberOfContact];
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
   document.getElementById('add-contact-menu').innerHTML = getAddContactsTemplate(...elements);
-  if (numberOfContact != null) {
-    document.getElementById('name').value = contacts[numberOfContact].name;
-    document.getElementById('email').value = contacts[numberOfContact].email;
-    document.getElementById('phone').value = contacts[numberOfContact].phone;
-    if (contacts[numberOfContact].img === undefined) createContact(numberOfContact);
-  } else createDefaultContact(content); 
+  numberOfContact != null ? fillContactForm(numberOfContact) : createDefaultContact(content);
+}
+
+/**
+ * Fills the contact form fields with the data of an existing contact.
+ *
+ * @param {number} numberOfContact - Index of the contact in the contacts array.
+ */
+function fillContactForm(numberOfContact) {
+  document.getElementById('name').value = contacts[numberOfContact].name;
+  document.getElementById('email').value = contacts[numberOfContact].email;
+  document.getElementById('phone').value = contacts[numberOfContact].phone;
+  if (contacts[numberOfContact].img === undefined) createContact(numberOfContact);
 }
 
 /**
