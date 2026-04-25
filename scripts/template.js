@@ -38,7 +38,7 @@ function getUserTemplate(currentUser, userId) {
             <input type="tel" id="phone" placeholder="Phone" value="${currentUser === undefined || currentUser?.phone === undefined ? '0123456789' : currentUser.phone }" class="default-border input-field_contacts" required>
             <img src="../assets/icon/phone.png" class="overlay-image">
           </div>
-          <a class="overlay_cancel button_mobile">X</a>
+          <a onclick="hideAddContactMenu()" class="overlay_cancel button_mobile">X</a>
         </section>
         <div class="contact-overlay-buttons" onclick="stopPropagation(event)">
           <button type="button" class="clear-button clear-and-create-button delete-button" onclick="deleteUserFromBackend('${userId}')">Delete my account</button><img>

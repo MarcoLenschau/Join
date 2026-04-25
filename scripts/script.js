@@ -98,6 +98,16 @@ function loadHeader() {
   const loggedIn = sessionStorage.getItem('loggedIn');
   document.getElementById('header').innerHTML = headerShow(loggedIn === 'true');
   document.getElementById('first-letter-header').innerText = firstLetterBig(localStorage.getItem('currentUser'));
+  document.addEventListener('click', closeHeaderMenuOnOutsideClick);
+}
+
+function closeHeaderMenuOnOutsideClick(event) {
+  const menu = document.querySelector('.header-menu');
+  const toggle = document.getElementById('first-letter-header');
+  if (!menu || !toggle) return;
+  if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+    menu.classList.remove('show-element');
+  }
 }
 
 
@@ -814,6 +824,6 @@ function createImageFromFirstLetter(name) {
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function closeContactModal(event) {
-  const modal = event.currentTarget;
-  modal.classList.remove('show-modal');
+  if (event.target !== event.currentTarget) return;
+  event.currentTarget.classList.remove('show-modal');
 }

@@ -859,8 +859,8 @@ a {
 }
 
 .person-icon-without-picture { 
-  height: 128px;
-  width: 122px;
+  height: 78px !important;
+  width: 68px !important;
   border-radius: 0%;
   margin: -32px;
 }
