@@ -62,7 +62,7 @@ img {
 }
 
 span {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .navigation {
@@ -103,7 +103,7 @@ span {
 }
 
 a {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .privacy-container {
@@ -250,7 +250,7 @@ a {
 }
 
 .subtask-list {
-  font-size: 15px;
+  font-size: 16px;
   margin-left: 24px;
 
   li > div {
@@ -431,7 +431,7 @@ a {
 .file-name {
   background-color: rgba(0, 0, 0, 0.01);
   padding: 2px 8px;
-  font-size: 14px !important;  
+  font-size: 16px !important;
 }
 
 .files {
@@ -448,7 +448,7 @@ a {
 
 .error {
   color: red;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
 }

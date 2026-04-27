@@ -244,7 +244,7 @@
     width: 200px;
 
     span {
-      font-size: 15px;
+      font-size: 16px;
     }
 
     a img:not(.logo) {
@@ -574,7 +574,7 @@
         display: flex !important;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
+        font-size: 16px;
       }
     }
 
@@ -639,10 +639,10 @@
       gap: 4px;
       & > div {
         a {
-          font-size: 12px;
+          font-size: 16px;
 
           span {
-            font-size: 14px;
+            font-size: 16px;
           }
         }
       }
@@ -789,7 +789,7 @@
   }
 
   .prio-button {
-    font-size: 12px;
+    font-size: 16px;
     gap: 6px;
 
     img {
@@ -956,9 +956,9 @@
   }
 
   span {
-    font-size: 13px;
+    font-size: 16px;
   }
-  
+
   .add-contact-div {
     padding: 0;
     right: 12%;
@@ -994,7 +994,7 @@
   .sidebar {
     overflow: hidden;
     span {
-      font-size: 12px;
+      font-size: 16px;
       width: unset;
     }
   }
