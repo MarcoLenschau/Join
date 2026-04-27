@@ -326,10 +326,10 @@
     }
 
     .overlay_mobile_top_part {
-      height: 330px;
+      height: 80vh;
       display: flex;
       align-items: center;
-      padding: 12px 20px;
+      padding: 48px 20px;
     }
 
     .logo {
@@ -406,7 +406,6 @@
   #inputfields_div {
     width: 364px;
     height: 153px;
-    margin-top: 0 !important;
   }
 
   .more-button {
@@ -516,8 +515,8 @@
 
   .camera-container {
     position: absolute;
-    bottom: -22px;
-    right: 34px;
+    bottom: -20px;
+    right: 54px;
   }
 
 @media (min-width: 991px) {
@@ -1084,5 +1083,11 @@
 
   #inputsfields_div > div {
     width: 280px;
+  }
+}
+
+@media (max-height: 700px) {
+  #inputsfields_div {
+    padding-top: 94px;
   }
 }

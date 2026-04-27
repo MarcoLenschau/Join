@@ -132,11 +132,8 @@ a {
 }
 
 .center-contacts {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 208px;
+  width: 224px;
+  padding-left: 24px;
 }
 
 .first-letter {
@@ -145,7 +142,7 @@ a {
   font-size: 22px;
   padding: -5px;
   border-radius: 50%;
-  width: 62px;
+  width: 52px;
   height: 55px;
   display: flex;
   justify-content: center;
@@ -159,8 +156,8 @@ a {
 
 .first-big-letter {
   display: inline-block;
-  height: 145px;
-  width: 158px;
+  height: 105px;
+  width: 130px;
   border-radius: 50%;
   font-size: 58px;
   color: white;
@@ -538,6 +535,8 @@ a {
 }
 
 .picture-section {
+  position: absolute;
+  top: 240px;
   display: flex;
   align-items: flex-end;
 }
@@ -552,7 +551,7 @@ a {
   height: 32px;
   background-size: cover;
   background-position: center;
-  padding: 36px;
+  padding: 24px;
   margin: 0 -58px;
   z-index: 1;
   

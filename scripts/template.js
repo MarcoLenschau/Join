@@ -512,7 +512,7 @@ function getAddContactsTemplate(content, contentButton0, contentButton1, numberO
         <div class="d_flex_c contact-overlay-buttons">
           <div id="cancel_button">
             <button type="button" onclick="deleteAndCancel('${content}', ${numberOfContact})"
-               class="clear-button clear-and-create-button">${contentButton0}</button><img>
+               class="clear-button clear-and-create-button ${contentButton0 === "Cancel" ? "hidden" : ""}">${contentButton0}</button><img>
           </div>
           <a onclick="deleteAndCancel('${content}', ${numberOfContact})" class="overlay_cancel button_mobile">X</a>
           <div>
