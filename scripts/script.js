@@ -795,6 +795,7 @@ async function showEditUserTemplate() {
   const currentUser = allUser.find((user) => user.email === sessionStorage.getItem('currentUser'));
   const userId = await getFirebaseUserIdByEmail(currentUser?.email);
   document.getElementById('add-contact-menu-dialog').classList.add('show-modal');
+  document.querySelector('.header-menu')?.classList.remove('show-element');
   document.getElementById('add-contact-menu').innerHTML = getUserTemplate(currentUser, userId);
   currentUser !== undefined && currentUser.img === undefined ? createImageFromFirstLetter(currentUser.name) : "";
 }
@@ -826,4 +827,9 @@ function createImageFromFirstLetter(name) {
 function closeContactModal(event) {
   if (event.target !== event.currentTarget) return;
   event.currentTarget.classList.remove('show-modal');
+}
+
+/** Hides the contact/user dialog by removing the show-modal class. */
+function hideAddContactMenu() {
+  document.getElementById('add-contact-menu-dialog').classList.remove('show-modal');
 }

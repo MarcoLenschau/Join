@@ -214,13 +214,6 @@ function deleteAndCancel(content) {
   }
 }
 
-/**
- * Hides the "Add Contact" modal by removing the `show-modal` class.
- * 
- */
-function hideAddContactMenu() {
-  document.getElementById('add-contact-menu-dialog').classList.remove('show-modal');
-}
 
 /**
  * Organizes contact elements in the DOM by grouping them according to their first letter.
