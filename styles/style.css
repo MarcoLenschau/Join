@@ -534,13 +534,6 @@ a {
   width: 1920px;
 }
 
-.picture-section {
-  position: absolute;
-  top: 240px;
-  display: flex;
-  align-items: flex-end;
-}
-
 .camera-container {
   background-color: grey;
   border-radius: 50%;
@@ -666,7 +659,6 @@ a {
   .form-ctn {
     background-color: var(--color-white);
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 65%;
     height: 500px;
@@ -732,7 +724,7 @@ a {
   top: 30px;
   right: 30px;
   font-size: 24px;
-  color: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;

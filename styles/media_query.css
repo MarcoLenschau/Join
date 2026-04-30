@@ -128,12 +128,6 @@
   }
 }
 
-@media (max-width: 1300px) AND (min-width: 600px) {
-  .form-ctn {
-    min-height: 400px;  
-  };
-}
-
 @media (max-width: 1300px) {
   .back-button-contacts {
     display: flex !important;
@@ -184,9 +178,6 @@
       background-color: var(--color-white);
       min-width: 650px;
       width: 65%;
-      height: 38dvh;      
-      height: 38vh;
-    
       .contact-overlay-buttons {
         display: flex;
         align-items: center;
@@ -259,8 +250,12 @@
     display: none !important;
   }
 
-  .picture-section {
-    height: 45%;
+  #inputsfields_div {
+    width: 50%;
+  }
+
+  .overlay_cancel {
+    color: #000000;
   }
 }
 
@@ -285,7 +280,7 @@
   }
 
   .add-contact-img-div {
-    top: 64px;
+    position: relative;
     left: 50%;
     right: 50%;
   }
@@ -326,7 +321,6 @@
     }
 
     .overlay_mobile_top_part {
-      height: 80vh;
       display: flex;
       align-items: center;
       padding: 48px 20px;
@@ -340,15 +334,9 @@
       background-color: var(--color-white);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 48px;
       width: 100%;
       border-bottom-right-radius: 6%;
-      border-bottom-left-radius: 6%;
-      height: 59dvh;            
-      height: 59vh;
-            
+      border-bottom-left-radius: 6%;            
     }
       input {
         width: 100%;
@@ -390,9 +378,8 @@
     border-radius: 50%;
     border: 1px solid var(--color-white);
     box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.05);
-    height: 120px;
+    height: 109px;
     width: 120px;
-    position: relative;
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
@@ -979,8 +966,8 @@
 
   .add-contact-overlay {
     height: 100%;
+    max-height: 700px;
     & .form-ctn {
-        height: 100%;
         .contact-overlay-buttons {
             flex-direction: column-reverse;
             align-items: center;
@@ -1083,11 +1070,5 @@
 
   #inputsfields_div > div {
     width: 280px;
-  }
-}
-
-@media (max-height: 700px) {
-  #inputsfields_div {
-    padding-top: 94px;
   }
 }

@@ -365,7 +365,8 @@ function getContactsWithPicture(name, index, contact) {
 function getMoreInfomationTemplate(numberOfContact) {
   const contact = contacts[numberOfContact];
   if (!contact) return '<div>Kontakt nicht gefunden</div>';
-  return `<div class="d_flex_c_c g_12">
+  return `
+  <div class="d_flex_c_c g_12">
     ${contact.img ? getMoreInfoWithPicute(numberOfContact) : getMoreInfoWithBigLetter(numberOfContact)}
     <div class="d_flex_column">
       <span class="bold" data-contact-name>${contact.name}</span>
@@ -379,28 +380,29 @@ function getMoreInfomationTemplate(numberOfContact) {
           <span>Delete</span>
         </div>
       </div>
-                </div>
-              </div>
-              <div>
-                  <span class="bold">Contact Information</span>
-                  <div class="d_flex_column contact-email-info">
-                      <span class="bold">Email</span>
-                      <a href="mailto:${contacts[numberOfContact].email}" class="p_12"><span class="email">${contacts[numberOfContact].email}</span></a>
-                  </div>
-                  <div class="d_flex_column">
-                      <span class="bold">Phone</span>
-                      <a href="tel:${contacts[numberOfContact].phone}" class="p_12 color-black"><span>${contacts[numberOfContact].phone}</span></a>
-                  </div>
-              </div>
-              <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div">
-                  <div id="toggleMenu" class="d_none d_flex_column bg-blue">
-                      <a onclick="addContact('Edit', ${numberOfContact});">Edit</a>
-                      <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu('remove');">Delete</a>
-                  </div>
-                  <div class="more-button">
-                      <img src="../assets/img/show_more.svg">            
-                  </div>
-              </div>`;
+    </div>
+    <span class="error hidden-error-message">Only image allowed</span>   
+  </div>
+  <div>
+      <span class="bold">Contact Information</span>
+      <div class="d_flex_column contact-email-info">
+          <span class="bold">Email</span>
+          <a href="mailto:${contacts[numberOfContact].email}" class="p_12"><span class="email">${contacts[numberOfContact].email}</span></a>
+      </div>
+      <div class="d_flex_column">
+          <span class="bold">Phone</span>
+          <a href="tel:${contacts[numberOfContact].phone}" class="p_12 color-black"><span>${contacts[numberOfContact].phone}</span></a>
+      </div>
+  </div>
+  <div onclick="toggleMenu();" id="more-button-div" class="d_flex_c_c d_flex_column h-100 more-button-div">
+      <div id="toggleMenu" class="d_none d_flex_column bg-blue">
+          <a onclick="addContact('Edit', ${numberOfContact});">Edit</a>
+          <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu('remove');">Delete</a>
+      </div>
+      <div class="more-button">
+          <img src="../assets/img/show_more.svg">            
+      </div>
+  </div>`;
 }
 
 /**
@@ -414,8 +416,7 @@ function getMoreInfoWithBigLetter(numberOfContact) {
   const imagepicker = `imagepicker${numberOfContact}`;
   return `<div class="big-letter-ctn file-upload-container">
               <span id="first-big-letter-${numberOfContact}" class="bold first-big-letter"></span>
-              <input type="file" id="${imagepicker}" style='display: none' accept="image/*">
-              <span class="error hidden-error-message">Only image allowed</span>          
+              <input type="file" id="${imagepicker}" style='display: none' accept="image/*">       
           </div>`;
 }
 
