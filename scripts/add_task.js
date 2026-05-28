@@ -36,7 +36,7 @@ async function loadContactsList() {
  * @returns {Promise<string>} A string representing the concatenated job title.
  */
 async function createJobTitleClass(index) {
-  let jobTitle = contacts[index].role.toLocaleLowerCase().split(' ');
+  const jobTitle = contacts[index].role.toLocaleLowerCase().split(' ');
   let jobTitleStr = '';
   for (let i = 0; i < jobTitle.length; i++) {
     jobTitleStr += jobTitle[i];
@@ -113,14 +113,14 @@ function handleTaskCreatedMessage() {
  * @property {Array<Object>} subTasks - An array of subtask objects associated with the task.
  */
 function defindeUserObj(state) {
-  let title = document.getElementById('title').value;
-  let date = document.getElementById('date').value;
-  let prio = document.getElementsByClassName('active-prio')[0].dataset.prio;
-  let category = document.getElementById('category').value;
-  let description = document.getElementById('description').value;
-  let assignedTo = assignedToDataExtract();
-  let subTasks = getSubtasks();
-  let files = allFiles;
+  const title = document.getElementById('title').value;
+  const date = document.getElementById('date').value;
+  const prio = document.getElementsByClassName('active-prio')[0].dataset.prio;
+  const category = document.getElementById('category').value;
+  const description = document.getElementById('description').value;
+  const assignedTo = assignedToDataExtract();
+  const subTasks = getSubtasks();
+  const files = allFiles;
   return { title, date, prio, category, description, assignedTo, state: state || 'todo', subTasks, files };
 }
 
@@ -145,9 +145,9 @@ function defindeUserObj(state) {
  * @returns {Array<{name: string, role: string}>} An array of objects representing the selected users, each containing `name` and `role`.
  */
 function assignedToDataExtract() {
-  let assignedToUserList = [];
+  const assignedToUserList = [];
   for (let index = 0; index < contacts.length; index++) {
-    let checkbox = document.getElementById('checkbox' + index)?.checked;
+    const checkbox = document.getElementById('checkbox' + index)?.checked;
     if (checkbox) {
       const { name, role } = contacts[index];
       assignedToUserList.push({ name, role });
@@ -298,7 +298,7 @@ function resetValue() {
 */
 async function updateTaskFields(taskId) {
   const state = tasks.find((task) => task.id === taskId).state;
-  let newTask = { ...defindeUserObj(state), id: taskId };
+  const newTask = { ...defindeUserObj(state), id: taskId };
   const modal = document.querySelector('.add-task-modal');
   if (!isValidTaskInputs(newTask.assignedTo)) return;
   const newTasks = tasks.map((task) => (task.id === taskId ? newTask : task));
@@ -480,6 +480,9 @@ function createImage(base64, file) {
   const img = document.createElement("img");
   img.src = base64;
   img.id = file.name;
+  /**
+   *
+   */
   img.onclick = () => bigPicture("image-container");
   return img;
 }

@@ -63,7 +63,7 @@ function checkFormatOfFile(file) {
  * @returns {string} The file extension (text after the last dot).
  */
 function extractFileExtension(file) {
-  let filename = file.split('.');
+  const filename = file.split('.');
   return filename[filename.length - 1];
 }
 
@@ -80,10 +80,16 @@ function extractFileExtension(file) {
 function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
+    /**
+     *
+     */
     reader.onload = (event) => {
-      let options = { maxWidth, maxHeight, quality, resolve, event };
+      const options = { maxWidth, maxHeight, quality, resolve, event };
       imageLoad(options);
     };
+    /**
+     *
+     */
     reader.onerror = () => reject('Error reading file.');
     reader.readAsDataURL(file);
   });
@@ -100,6 +106,9 @@ function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
  */
 function imageLoad({maxWidth, maxHeight, quality, resolve, event}){
   const img = new Image();
+  /**
+   *
+   */
   img.onload = () => {
     const imageLoadOptions = { maxWidth, maxHeight, quality, img };
     compressImageCreate(imageLoadOptions, resolve);

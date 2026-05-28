@@ -101,6 +101,15 @@ function loadHeader() {
   document.addEventListener('click', closeHeaderMenuOnOutsideClick);
 }
 
+/**
+ * Close the header menu when a click or pointer event occurs outside of it.
+ *
+ * @param {Event} event - The DOM event (e.g. MouseEvent, PointerEvent, TouchEvent)
+ *                        triggered by a user interaction. The function uses
+ *                        event.target to determine whether the interaction
+ *                        occurred outside the menu and toggle.
+ * @returns {void}
+ */
 function closeHeaderMenuOnOutsideClick(event) {
   const menu = document.querySelector('.header-menu');
   const toggle = document.getElementById('first-letter-header');

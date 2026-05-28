@@ -22,7 +22,7 @@ function showWhichSiteIsAktiv() {
  * Greets the user based on the time of day and user status (Guest or logged-in user).
  */
 function greetUser() {
-  let user = localStorage.getItem('currentUser');
+  const user = localStorage.getItem('currentUser');
 
   if (user == 'Guest') {
     document.getElementById('user_name').classList.add('d_none');
@@ -130,7 +130,7 @@ function getEarliestTaskDate() {
 function getGreetText() {
   const date = new Date();
   const hours = date.getHours();
-  let user = localStorage.getItem('currentUser');
+  const user = localStorage.getItem('currentUser');
 
   if (hours >= 22 || hours < 6) {
     return `Good night${user === "Guest" ? "" : ","}`;

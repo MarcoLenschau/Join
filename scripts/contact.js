@@ -159,10 +159,10 @@ function defineNewContact() {
   const name = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  let imgElement = document.querySelector(".person-icon");
-  let imgSrc = imgElement.src;  
-  let url = new URL(imgSrc);    
-  let path = url.pathname;   
+  const imgElement = document.querySelector(".person-icon");
+  const imgSrc = imgElement.src;  
+  const url = new URL(imgSrc);    
+  const path = url.pathname;   
   if (path != '/assets/icon/person-light.png') {
     const img = document.querySelector('.person-icon').src;
     return { name,email, phone, img: img, role: 'Tester' };

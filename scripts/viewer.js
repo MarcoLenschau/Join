@@ -9,6 +9,12 @@ function bigPicture(element) {
       inline: false, 
       toolbar: true,      
       tooltip: false,     
+      /**
+       * Tear down the viewer when the containing view is hidden.
+       *
+       * @returns {void}
+       * @throws {Error} If the underlying destroy operation fails.
+       */
       hidden() {
         viewer.destroy();
       },
