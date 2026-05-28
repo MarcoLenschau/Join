@@ -40,7 +40,7 @@ header {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
   padding: 24px 0;
   width: 100%;
   border-radius: 18px;
@@ -69,7 +69,7 @@ footer > div > a {
   display: flex;  
   justify-content: center;
   align-items: center;
-  width: 450px;
+  width: 650px;
 
   img {
     width: 16px;
@@ -80,7 +80,7 @@ footer > div > a {
   display: flex;  
   justify-content: center;
   align-items: center;
-  max-width: 400px;
+  max-width: 650px;
   width: 100%;
 
   img {

@@ -1,7 +1,7 @@
 .register-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  padding: 0 62px;
 }
 
 .back-button {

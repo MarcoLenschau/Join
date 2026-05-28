@@ -450,7 +450,7 @@ function emptyContent(content) {
  * @author Marco Lenschau <contact@marcolenschau.de>
  */
 function checkJobAndColor(numberOfContact) {
-  const job = contacts[numberOfContact]?.role.toLowerCase().split(' ');
+  const job = (contacts[numberOfContact]?.role ?? '').toLowerCase().split(' ');
   let jobTitle = '';
 
   for (let index = 0; index < job.length; index++) {

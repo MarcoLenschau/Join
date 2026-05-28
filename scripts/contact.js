@@ -280,7 +280,7 @@ function toggleContactSelect(event, index) {
     const isSelectedContact = contactElement === contact;
 
     if (isSelectedContact) {
-      contact.classList.toggle('selected-contact');
+      contact.classList.add('selected-contact');
     } else {
       contact.classList.remove('selected-contact');
     }

@@ -273,7 +273,8 @@ button {
 .input-font {
   font-size: 20px;
   border-radius: 12px;
-  padding: 6px 18px;
+  padding: 6px 14px;
+  padding-right: 64px;
 }
 
 .margin-auto {

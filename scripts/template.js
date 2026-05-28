@@ -381,7 +381,7 @@ function getMoreInfomationTemplate(numberOfContact) {
         </div>
       </div>
     </div>
-    <span class="error hidden-error-message">Only image allowed</span>   
+    <span class="error hidden-error-message">Only image allowed</span>
   </div>
   <div>
       <span class="bold">Contact Information</span>
@@ -400,7 +400,7 @@ function getMoreInfomationTemplate(numberOfContact) {
           <a onclick="deleteUser(${numberOfContact}, '${contacts[numberOfContact].id}'); toggleContactMenu('remove');">Delete</a>
       </div>
       <div class="more-button">
-          <img src="../assets/img/show_more.svg">            
+          <img src="../assets/img/show_more.svg">
       </div>
   </div>`;
 }
