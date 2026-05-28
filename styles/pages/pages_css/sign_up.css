@@ -62,8 +62,8 @@
 }
 
 .limit-container {
-  display: grid;
-  grid-template-rows: 152px 1fr 0.05fr;
+  display: flex;
+  justify-content: center;
   height: 100vh;
   width: clamp(320px, 100%, 1920px);
 }
@@ -77,4 +77,8 @@
 #checkboxContainer {
   margin-top: -6px;
   margin-bottom: 14px;
+}
+
+.singup-main {
+  width: 1920px;
 }

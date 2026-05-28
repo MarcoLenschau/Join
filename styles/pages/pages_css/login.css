@@ -5,15 +5,13 @@ body {
 
 header {
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
   height: 170px;
   width: 100%;
   padding: 0 19px;
-  position: relative;
-  top: -47px;
-    
+  position: absolute;
+  top: 54px;
   .logo-black {
     display: none;
   }
@@ -124,11 +122,16 @@ footer > div > a {
 .animation-wrapper {
   width: 250px;
   height: 250px;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
   animation: logo-move 2s ease-in-out forwards;
+}
+
+.animation-section {
+  position: absolute;
+  top: 54px;
 }
 
 .logo {
@@ -138,13 +141,13 @@ footer > div > a {
 }
 
 .content {
-  display: grid;
-  grid-template-rows: 0.5fr 1fr 0.1fr;
+  display: flex;
   position: relative;
   height: 100vh;
   width: 100%;
   max-width: 1920px;
   align-items: center;
+  justify-content: center;
 }
 
 .auth-main {
